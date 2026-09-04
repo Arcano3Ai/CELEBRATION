@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Valentina & Mateo — Invitación de Boda | CELEBRATION Demo</title>
+  <meta name="description" content="Invitación de boda de Valentina & Mateo. Estilo Romántico & Botánico por CELEBRATION.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Pinyon+Script&family=Raleway:wght@300;400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --cream: #FAF7F2;
+      --cream-alt: #F1ECE3;
+      --card-bg: #FFFFFF;
+      --text: #2C2621;
+      --muted: #7E766D;
+      --rose: #C99E8F;
+      --sage: #8A9A86;
+      --gold: #C5A059;
+      --border: rgba(201, 158, 143, 0.25);
+      
+      --font-script: 'Pinyon Script', cursive;
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Raleway', sans-serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; background: var(--cream); color: var(--text); }
+    body { font-family: var(--font-serif); line-height: 1.6; overflow-x: hidden; }
+
+    /* Top Banner */
+    .demo-bar {
+      background: #24211D;
+      color: #F4F1EA;
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      padding: 0.6rem 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 200;
+    }
+    .demo-bar a { color: var(--gold); text-decoration: underline; font-weight: 600; }
+
+    /* Hero */
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem 1.5rem;
+      background: radial-gradient(circle at center, rgba(250,247,242,0.92) 0%, rgba(241,236,227,0.85) 100%), url('assets/images/estilo_romantico.jpg') center/cover no-repeat;
+      position: relative;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-names {
+      font-family: var(--font-script);
+      font-size: clamp(3.8rem, 11vw, 7rem);
+      line-height: 1;
+      color: var(--text);
+      margin-bottom: 1rem;
+      text-shadow: 0 2px 10px rgba(201, 158, 143, 0.2);
+    }
+
+    .hero-date {
+      font-family: var(--font-serif);
+      font-size: clamp(1.2rem, 3.5vw, 1.6rem);
+      font-weight: 300;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+    }
+
+    /* Countdown Card */
+    .countdown-card {
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border);
+      padding: 1.8rem 2.8rem;
+      border-radius: 50px;
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      box-shadow: 0 10px 30px rgba(44, 38, 33, 0.06);
+    }
+
+    .countdown-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .countdown-num {
+      font-family: var(--font-serif);
+      font-size: 2.2rem;
+      font-weight: 400;
+      line-height: 1;
+      color: var(--text);
+    }
+
+    .countdown-lbl {
+      font-family: var(--font-sans);
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 0.3rem;
+    }
+
+    /* Sections */
+    .section {
+      padding: 5.5rem 1.5rem;
+      max-width: 980px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .sec-title {
+      font-family: var(--font-script);
+      font-size: clamp(2.8rem, 8vw, 4.2rem);
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+
+    .sec-subtitle {
+      font-family: var(--font-sans);
+      font-size: 0.68rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 3rem;
+    }
+
+    .love-story-text {
+      font-size: clamp(1.1rem, 3.2vw, 1.25rem);
+      font-weight: 300;
+      line-height: 1.85;
+      max-width: 680px;
+      margin: 0 auto;
+      color: var(--text);
+      font-style: italic;
+    }
+
+    /* Itinerary Grid */
+    .itinerary-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    @media (min-width: 720px) {
+      .itinerary-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    .event-card {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      padding: 3rem 2rem;
+      border-radius: 4px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      box-shadow: 0 8px 24px rgba(44, 38, 33, 0.04);
+    }
+
+    .event-time {
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.24em;
+      color: var(--rose);
+      text-transform: uppercase;
+    }
+
+    .event-name {
+      font-family: var(--font-serif);
+      font-size: 1.8rem;
+      font-weight: 400;
+    }
+
+    .event-venue {
+      font-size: 1.05rem;
+      color: var(--muted);
+      font-weight: 300;
+      line-height: 1.6;
+    }
+
+    .btn-maps {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: transparent;
+      border: 1px solid var(--text);
+      padding: 0.8rem 1.8rem;
+      border-radius: 50px;
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text);
+      text-decoration: none;
+      transition: all 0.3s;
+      margin-top: 0.8rem;
+    }
+    .btn-maps:hover { background: var(--text); color: #FFF; }
+
+    /* Smart RSVP Interactive Simulation */
+    .rsvp-box {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      padding: 3.5rem 2rem;
+      max-width: 620px;
+      margin: 0 auto;
+      border-radius: 4px;
+      box-shadow: 0 14px 40px rgba(44, 38, 33, 0.06);
+    }
+
+    .rsvp-input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      text-align: left;
+      margin-bottom: 1.5rem;
+    }
+
+    .rsvp-label {
+      font-family: var(--font-sans);
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .rsvp-input {
+      padding: 1rem 1.2rem;
+      border: 1px solid rgba(126, 118, 109, 0.3);
+      border-radius: 2px;
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      outline: none;
+      transition: border-color 0.25s;
+    }
+    .rsvp-input:focus { border-color: var(--rose); }
+
+    .btn-rsvp {
+      width: 100%;
+      background: var(--text);
+      color: #FFF;
+      padding: 1.1rem;
+      border: none;
+      border-radius: 50px;
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .btn-rsvp:hover { background: var(--rose); }
+
+    .rsvp-result-card {
+      display: none;
+      margin-top: 1.8rem;
+      padding: 1.5rem;
+      background: var(--cream);
+      border: 1px dashed var(--rose);
+      border-radius: 4px;
+      text-align: left;
+    }
+
+    /* Gift Registry */
+    .gift-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+
+    .gift-card {
+      background: #FFF;
+      border: 1px solid var(--border);
+      padding: 2rem;
+      border-radius: 4px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .copy-btn {
+      background: var(--cream-alt);
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 50px;
+      font-family: var(--font-sans);
+      font-size: 0.62rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.25s;
+    }
+    .copy-btn:hover { background: var(--rose); color: #FFF; }
+
+    /* Footer */
+    footer {
+      background: var(--cream-alt);
+      padding: 4rem 1.5rem;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+    .footer-brand {
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Demo Notice Bar -->
+  <aside class="demo-bar">
+    <span>✦ CELEBRATION Demo: <strong>Colección Romántica & Botánica</strong></span>
+    <a href="index.html">← Volver al sitio principal</a>
+  </aside>
+
+  <!-- Hero Section -->
+  <header class="hero">
+    <span class="hero-eyebrow">Nos casamos • Save the Date</span>
+    <h1 class="hero-names">Valentina &amp; Mateo</h1>
+    <p class="hero-date">Sábado 14 de Noviembre de 2026 • San Miguel de Allende</p>
+
+    <div class="countdown-card" id="demoCountdown">
+      <div class="countdown-item">
+        <span class="countdown-num" id="dDays">72</span>
+        <span class="countdown-lbl">Días</span>
+      </div>
+      <div class="countdown-item">
+        <span class="countdown-num" id="dHours">14</span>
+        <span class="countdown-lbl">Horas</span>
+      </div>
+      <div class="countdown-item">
+        <span class="countdown-num" id="dMins">30</span>
+        <span class="countdown-lbl">Minutos</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Nuestra Historia -->
+  <section class="section">
+    <h2 class="sec-title">Nuestra Historia</h2>
+    <p class="sec-subtitle">Capítulo Uno • El Comienzo</p>
+    <p class="love-story-text">
+      “Nos conocimos una tarde de primavera bajo los jacarandás de la ciudad. Lo que inició como una conversación casual se transformó en incontables viajes, complicidades y la certeza compartida de que juntos el mundo es infinitamente más hermoso. Hoy queremos celebrar este nuevo comienzo rodeados de las personas que más amamos.”
+    </p>
+  </section>
+
+  <!-- Itinerario -->
+  <section class="section" style="background:var(--cream-alt); max-width:100%; padding-left:2rem; padding-right:2rem;">
+    <div style="max-width:980px; margin:0 auto;">
+      <h2 class="sec-title">El Gran Día</h2>
+      <p class="sec-subtitle">Itinerario & Locaciones</p>
+      
+      <div class="itinerary-grid">
+        <div class="event-card">
+          <span class="event-time">16:30 hrs • Ceremonia Religiosa</span>
+          <h3 class="event-name">Parroquia de San Miguel Arcángel</h3>
+          <p class="event-venue">Plaza Principal S/N, Centro Histórico<br>San Miguel de Allende, Gto.</p>
+          <a href="https://maps.google.com" target="_blank" class="btn-maps">Ver en Google Maps ↗</a>
+        </div>
+
+        <div class="event-card">
+          <span class="event-time">18:30 hrs • Recepción & Fiesta</span>
+          <h3 class="event-name">Hacienda Las Trancas</h3>
+          <p class="event-venue">Carretera San Miguel - Dolores Km 12<br>Recepción, Cóctel de Bienvenida & Banquete</p>
+          <a href="https://maps.google.com" target="_blank" class="btn-maps">Ver en Google Maps ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Smart RSVP Demo Interactivo -->
+  <section class="section">
+    <h2 class="sec-title">Confirmar Asistencia</h2>
+    <p class="sec-subtitle">Smart RSVP • Escribe tu nombre</p>
+
+    <div class="rsvp-box">
+      <div class="rsvp-input-group">
+        <label class="rsvp-label" for="guestSearch">Busca tu nombre o el de tu familia:</label>
+        <input type="text" id="guestSearch" class="rsvp-input" placeholder="Ej. Familia Morales, Sofia, Alejandro..." autocomplete="off">
+      </div>
+      <button class="btn-rsvp" id="btnSearchGuest">Buscar mi invitación →</button>
+
+      <div class="rsvp-result-card" id="rsvpResult">
+        <p style="font-family:var(--font-sans); font-size:0.75rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--rose); margin-bottom:0.5rem;">Invitación Encontrada</p>
+        <h4 style="font-size:1.4rem; margin-bottom:0.3rem;" id="resGuestName">Familia Morales Garza</h4>
+        <p style="color:var(--muted); font-size:0.95rem; margin-bottom:1rem;">Pases asignados: <strong>2 Adultos</strong></p>
+        
+        <label style="font-family:var(--font-sans); font-size:0.65rem; letter-spacing:0.15em; text-transform:uppercase; display:block; margin-bottom:0.4rem;">Confirmación:</label>
+        <select style="width:100%; padding:0.8rem; font-family:var(--font-serif); font-size:1rem; margin-bottom:1rem; border:1px solid var(--border);">
+          <option>¡Sí, asistiremos con alegría! (2 personas)</option>
+          <option>Solo asistirá 1 persona</option>
+          <option>Lo sentimos, no podremos asistir</option>
+        </select>
+
+        <label style="font-family:var(--font-sans); font-size:0.65rem; letter-spacing:0.15em; text-transform:uppercase; display:block; margin-bottom:0.4rem;">Restricciones o Alergias:</label>
+        <input type="text" placeholder="Ej. Vegetariano, alergia a mariscos..." style="width:100%; padding:0.8rem; font-family:var(--font-serif); font-size:1rem; border:1px solid var(--border); margin-bottom:1.2rem;">
+
+        <button class="btn-rsvp" onclick="alert('¡Gracias! Tu confirmación ha sido enviada con éxito a Valentina y Mateo.')">Confirmar por WhatsApp →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mesa de Regalos -->
+  <section class="section" style="background:var(--cream-alt); max-width:100%; padding-left:2rem; padding-right:2rem;">
+    <div style="max-width:980px; margin:0 auto;">
+      <h2 class="sec-title">Mesa de Regalos</h2>
+      <p class="sec-subtitle">Su presencia es nuestro mayor regalo</p>
+      <p style="max-width:540px; margin:0 auto 2rem; color:var(--muted); font-size:1.05rem;">
+        Si desean tener un detalle con nosotros para comenzar nuestro hogar o nuestra luna de miel, ponemos a su disposición las siguientes opciones:
+      </p>
+
+      <div class="gift-grid">
+        <div class="gift-card">
+          <h4 style="font-size:1.3rem;">Liverpool</h4>
+          <p style="color:var(--muted); font-size:0.95rem;">Evento: #51209384</p>
+          <a href="https://www.liverpool.com.mx" target="_blank" class="btn-maps">Ver mesa ↗</a>
+        </div>
+        <div class="gift-card">
+          <h4 style="font-size:1.3rem;">Amazon</h4>
+          <p style="color:var(--muted); font-size:0.95rem;">Mesa Valentina & Mateo</p>
+          <a href="https://www.amazon.com.mx" target="_blank" class="btn-maps">Ver mesa ↗</a>
+        </div>
+        <div class="gift-card">
+          <h4 style="font-size:1.3rem;">Transferencia Bancaria</h4>
+          <p style="color:var(--muted); font-size:0.95rem;">BBVA: 012180015948372615</p>
+          <button class="copy-btn" onclick="navigator.clipboard.writeText('012180015948372615'); alert('CLABE copiada al portapapeles');">Copiar CLABE</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Demo -->
+  <footer>
+    <p class="footer-brand">CELEBRATION</p>
+    <p style="color:var(--muted); font-size:0.85rem; margin-bottom:1.5rem;">Plantilla Demo: Colección Romántica &amp; Botánica</p>
+    <a href="index.html" class="btn-maps" style="background:var(--text); color:#FFF;">Crear mi invitación con CELEBRATION →</a>
+  </footer>
+
+  <script>
+    // Search guest simulation
+    document.getElementById('btnSearchGuest').addEventListener('click', () => {
+      const val = document.getElementById('guestSearch').value.trim();
+      const res = document.getElementById('rsvpResult');
+      if (val) {
+        document.getElementById('resGuestName').textContent = val;
+        res.style.display = 'block';
+        res.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } else {
+        document.getElementById('resGuestName').textContent = 'Familia Morales Garza';
+        res.style.display = 'block';
+      }
+    });
+  </script>
+</body>
+</html>

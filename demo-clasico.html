@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Isabella & Santiago — Invitación de Boda | CELEBRATION Demo</title>
+  <meta name="description" content="Invitación de boda de Isabella & Santiago. Estilo Clásico Atemporal & Black Tie por CELEBRATION.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg: #F7F5F0;
+      --bg-dark: #1A1816;
+      --card: #FFFFFF;
+      --text: #1C1A17;
+      --muted: #6E6861;
+      --gold: #C5A059;
+      --border: rgba(197, 160, 89, 0.3);
+      
+      --font-classic: 'Cinzel', serif;
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Raleway', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; background: var(--bg); color: var(--text); }
+    body { font-family: var(--font-serif); line-height: 1.65; overflow-x: hidden; }
+
+    /* Top Notice */
+    .demo-bar {
+      background: var(--bg-dark);
+      color: #F7F5F0;
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      padding: 0.6rem 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 200;
+    }
+    .demo-bar a { color: var(--gold); text-decoration: underline; font-weight: 600; }
+
+    /* Monogram */
+    .monogram-crest {
+      width: 80px;
+      height: 80px;
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 2rem;
+      font-family: var(--font-classic);
+      font-size: 1.6rem;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      position: relative;
+    }
+    .monogram-crest::before {
+      content: '';
+      position: absolute;
+      inset: 4px;
+      border: 1px dashed var(--gold);
+      border-radius: 50%;
+      opacity: 0.5;
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 5rem 1.5rem;
+      background: radial-gradient(circle, rgba(247,245,240,0.96) 20%, rgba(235,231,223,0.9) 100%), url('assets/images/estilo_clasico.jpg') center/cover no-repeat;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .hero-names {
+      font-family: var(--font-classic);
+      font-size: clamp(2.4rem, 6.5vw, 4.8rem);
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      color: var(--text);
+      line-height: 1.15;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-date {
+      font-family: var(--font-serif);
+      font-size: clamp(1.2rem, 3.5vw, 1.6rem);
+      font-weight: 300;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+    }
+
+    /* Sections */
+    .section {
+      padding: 6rem 1.5rem;
+      max-width: 960px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .sec-title {
+      font-family: var(--font-classic);
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text);
+      margin-bottom: 0.8rem;
+    }
+
+    .sec-divider {
+      width: 60px;
+      height: 1px;
+      background: var(--gold);
+      margin: 0 auto 2.5rem;
+    }
+
+    /* Itinerary */
+    .itinerary-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+      margin-top: 2rem;
+    }
+    @media (min-width: 720px) {
+      .itinerary-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    .event-card {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      padding: 3.5rem 2.2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.2rem;
+      box-shadow: 0 10px 30px rgba(28, 26, 23, 0.04);
+    }
+
+    .event-time {
+      font-family: var(--font-sans);
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+
+    .event-name {
+      font-family: var(--font-classic);
+      font-size: 1.5rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    /* Dress Code */
+    .dresscode-box {
+      background: #1C1A17;
+      color: #F7F5F0;
+      padding: 4rem 2rem;
+      margin: 3rem auto 0;
+      max-width: 700px;
+      border: 1px solid rgba(197, 160, 89, 0.4);
+    }
+    .dresscode-title {
+      font-family: var(--font-classic);
+      font-size: 1.8rem;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    /* Buttons */
+    .btn-gold {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--text);
+      color: #FFF;
+      padding: 1.1rem 2.8rem;
+      border-radius: 0;
+      font-family: var(--font-sans);
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      border: 1px solid var(--gold);
+      text-decoration: none;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+    .btn-gold:hover {
+      background: var(--gold);
+      color: var(--text);
+    }
+
+    /* Footer */
+    footer {
+      background: #12100E;
+      color: #E8E4DC;
+      padding: 4.5rem 1.5rem;
+      text-align: center;
+      border-top: 1px solid rgba(197, 160, 89, 0.25);
+    }
+  </style>
+</head>
+<body>
+
+  <aside class="demo-bar">
+    <span>✦ CELEBRATION Demo: <strong>Colección Clásica &amp; Black Tie</strong></span>
+    <a href="index.html">← Volver al sitio principal</a>
+  </aside>
+
+  <header class="hero">
+    <div class="monogram-crest">I &amp; S</div>
+    <span class="hero-eyebrow">Con la bendición de nuestras familias</span>
+    <h1 class="hero-names">Isabella &amp; Santiago</h1>
+    <p class="hero-date">Sábado 10 de Octubre de 2026 • Ciudad de México</p>
+    <a href="#rsvp" class="btn-gold">Confirmar Asistencia →</a>
+  </header>
+
+  <section class="section">
+    <h2 class="sec-title">Ceremonia &amp; Recepción</h2>
+    <div class="sec-divider"></div>
+    
+    <div class="itinerary-grid">
+      <div class="event-card">
+        <span class="event-time">17:00 Horas</span>
+        <h3 class="event-name">Catedral Metropolitana</h3>
+        <p style="color:var(--muted); font-size:1.05rem;">Plaza de la Constitución S/N, Centro Histórico<br>Misa Solemne de Matrimonio</p>
+      </div>
+
+      <div class="event-card">
+        <span class="event-time">19:30 Horas</span>
+        <h3 class="event-name">Palacio Metropolitano</h3>
+        <p style="color:var(--muted); font-size:1.05rem;">Calle de Tacuba 15, Centro Histórico<br>Cóctel de Bienvenida, Banquete &amp; Fiesta</p>
+      </div>
+    </div>
+
+    <div class="dresscode-box">
+      <h3 class="dresscode-title">Rigurosa Etiqueta • Black Tie</h3>
+      <p style="font-size:1.05rem; font-style:italic; line-height:1.7; color:#CCC;">
+        Caballeros: Esmoquin tradicional en color negro con corbatín de lazo.<br>
+        Damas: Vestido largo de noche. Se agradece reservar los tonos blancos y crema para la novia.
+      </p>
+    </div>
+  </section>
+
+  <!-- Smart RSVP Demo -->
+  <section class="section" id="rsvp" style="background:rgba(235,231,223,0.5); max-width:100%; padding-left:2rem; padding-right:2rem;">
+    <div style="max-width:680px; margin:0 auto;">
+      <h2 class="sec-title">Smart RSVP</h2>
+      <div class="sec-divider"></div>
+      <p style="color:var(--muted); font-size:1.05rem; margin-bottom:2rem;">
+        Agradecemos confirmar su asistencia antes del 15 de Septiembre de 2026.
+      </p>
+
+      <div style="background:#FFF; padding:3rem 2rem; border:1px solid var(--border); box-shadow:0 10px 30px rgba(0,0,0,0.04);">
+        <input type="text" placeholder="Escriba su apellido o nombre..." style="width:100%; padding:1rem; border:1px solid var(--border); font-family:var(--font-serif); font-size:1.1rem; margin-bottom:1.5rem; outline:none;">
+        <button class="btn-gold" style="width:100%;" onclick="alert('Confirmación simulada en demo para Isabella & Santiago.')">Buscar Pase Familiar →</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="monogram-crest" style="margin-bottom:1.2rem;">I &amp; S</div>
+    <p style="font-family:var(--font-sans); font-size:0.75rem; letter-spacing:0.3em; text-transform:uppercase; color:#AAA; margin-bottom:1.5rem;">CELEBRATION • Colección Clásica Atemporal</p>
+    <a href="index.html" class="btn-gold">Diseñar mi invitación →</a>
+  </footer>
+
+</body>
+</html>
