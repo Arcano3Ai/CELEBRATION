@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initTimelineCarousel();
   initReviewsCarousel();
   initFaqAccordion();
+  initShareExperience();
 });
 
 /* --------------------------------------------------------------------------
@@ -297,4 +298,80 @@ function initFaqAccordion() {
       }
     });
   });
+}
+
+/* --------------------------------------------------------------------------
+   8. Epic Social Share Card Experience
+   -------------------------------------------------------------------------- */
+function initShareExperience() {
+  const btnShareWA = document.getElementById('btnShareWhatsApp');
+  const btnCopy = document.getElementById('btnCopyShareCard');
+  const shareCard = document.getElementById('epicShareCard');
+
+  const shareUrl = 'https://arcano3ai.github.io/CELEBRATION/';
+  const shareMessage = `✦ CELEBRATION — Haute Couture Wedding Suites & Smart RSVP\n\nSu boda, a su manera. Espacios digitales y piezas de alta costura interactiva concebidos exclusivamente para su enlace matrimonial.\n\n✧ Página Web Editorial con Dominio Propio\n✧ Smart RSVP con Asignación de Mesas\n✧ Tarjetas NFC & Galería Live Event en Pantallas\n\nConoce nuestras colecciones exclusivas:\n${shareUrl}`;
+
+  if (btnShareWA) {
+    btnShareWA.addEventListener('click', () => {
+      const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareMessage)}`;
+      window.open(waUrl, '_blank', 'noopener,noreferrer');
+    });
+  }
+
+  if (btnCopy) {
+    btnCopy.addEventListener('click', () => {
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(shareMessage).then(() => {
+          showToastFeedback('✓ Mensaje con tarjeta épica copiado al portapapeles');
+        }).catch(() => {
+          fallbackCopyText(shareMessage);
+        });
+      } else {
+        fallbackCopyText(shareMessage);
+      }
+    });
+  }
+
+  if (shareCard) {
+    shareCard.addEventListener('click', (e) => {
+      // Smooth scroll to services
+      const target = document.getElementById('pw');
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  }
+}
+
+function fallbackCopyText(text) {
+  const textarea = document.createElement('textarea');
+  textarea.value = text;
+  textarea.style.position = 'fixed';
+  textarea.style.opacity = '0';
+  document.body.appendChild(textarea);
+  textarea.focus();
+  textarea.select();
+  try {
+    document.execCommand('copy');
+    showToastFeedback('✓ Mensaje con tarjeta épica copiado');
+  } catch (err) {
+    prompt('Copie el enlace de su invitación:', text);
+  }
+  document.body.removeChild(textarea);
+}
+
+function showToastFeedback(msg) {
+  let toast = document.getElementById('toastMsg');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'toastMsg';
+    toast.className = 'toast-msg';
+    document.body.appendChild(toast);
+  }
+  toast.textContent = msg;
+  toast.classList.add('show');
+  setTimeout(() => {
+    toast.classList.remove('show');
+  }, 3500);
 }

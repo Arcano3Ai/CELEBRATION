@@ -6,11 +6,41 @@
   <title>CELEBRATION — Sitios Web de Lujo e Invitaciones Inteligentes para Bodas</title>
   <meta name="description" content="Diseños 100% personalizados para su boda. Sitios web editoriales, Smart RSVP y tarjetas inteligentes con todo lo que sus invitados necesitan.">
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="CELEBRATION — Sitios web de lujo para bodas">
-  <meta property="og:description" content="Diseños 100% personalizados para su boda. Sitios web elegantes con Smart RSVP, dominio propio y todo lo que sus invitados necesitan.">
+  <!-- Canonical & Open Graph Metadata for Epic WhatsApp / Social Sharing -->
+  <link rel="canonical" href="https://arcano3ai.github.io/CELEBRATION/">
+  
+  <meta property="og:site_name" content="CELEBRATION">
+  <meta property="og:title" content="CELEBRATION — Sitios Web de Lujo e Invitaciones Inteligentes para Bodas">
+  <meta property="og:description" content="Diseños 100% personalizados para su boda. Sitios web de alta costura, Smart RSVP, itinerarios interactivos con GPS y tarjetas inteligentes NFC. Su boda, a su manera.">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="assets/images/hero_editorial_couple.jpg">
+  <meta property="og:url" content="https://arcano3ai.github.io/CELEBRATION/">
+  <meta property="og:image" content="https://arcano3ai.github.io/CELEBRATION/assets/images/og_share_cover.jpg">
+  <meta property="og:image:secure_url" content="https://arcano3ai.github.io/CELEBRATION/assets/images/og_share_cover.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="675">
+  <meta property="og:image:alt" content="CELEBRATION — Boda de destino de ultra lujo frente al mar">
+  
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="CELEBRATION — Sitios Web de Lujo e Invitaciones Inteligentes para Bodas">
+  <meta name="twitter:description" content="Diseños 100% personalizados para su boda. Sitios web de alta costura, Smart RSVP y tarjetas inteligentes NFC.">
+  <meta name="twitter:image" content="https://arcano3ai.github.io/CELEBRATION/assets/images/og_share_cover.jpg">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "CELEBRATION",
+    "url": "https://arcano3ai.github.io/CELEBRATION/",
+    "logo": "https://arcano3ai.github.io/CELEBRATION/assets/images/og_share_cover.jpg",
+    "description": "Atelier de sitios web de ultra lujo e invitaciones interactivas para bodas de destino.",
+    "sameAs": [
+      "https://github.com/Arcano3Ai/CELEBRATION"
+    ]
+  }
+  </script>
 
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="concierge-ai.css">
@@ -325,6 +355,67 @@
           </div>
           <h3 class="estilo-name">Editorial Vanguardia</h3>
           <a href="demo-editorial.html" target="_blank" class="srv-link" rel="noopener">Explorar demo →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- TARJETA ÉPICA AL COMPARTIR (PREVIEW EN WHATSAPP / SOCIAL) -->
+    <section class="share-experience-sec" id="compartir">
+      <div class="tl-header rv">
+        <span style="font-family:var(--font-sans); font-size:0.68rem; letter-spacing:0.32em; text-transform:uppercase; color:var(--gold); font-weight:600; display:block; margin-bottom:0.8rem;">
+          ✦ Experiencia al Compartir
+        </span>
+        <h2 class="sc" style="margin-bottom:1.2rem;">La primera impresión de sus invitados</h2>
+        <p class="tl-subtitle">
+          Al enviar su invitación por WhatsApp o mensaje, sus invitados reciben una tarjeta visual cinematográfica. Sin enlaces técnicos visibles: al tocar la imagen o los servicios ingresan directamente a su celebración.
+        </p>
+      </div>
+
+      <div class="share-card-wrapper rv d1">
+        <!-- Toda la tarjeta es un enlace interactivo que oculta la URL visualmente -->
+        <a href="#pw" class="epic-share-card" id="epicShareCard" aria-label="Ingresar a CELEBRATION y conocer los servicios">
+          <div class="epic-share-media">
+            <img src="assets/images/og_share_cover.jpg" alt="CELEBRATION — Boda editorial épica de ultra lujo" class="epic-share-img" loading="lazy">
+            <span class="epic-share-badge">CELEBRATION • Haute Couture</span>
+            <span class="epic-share-clickhint">
+              <span>Ingresar al Sitio</span>
+              <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 11L11 5M11 5H6M11 5V10"/></svg>
+            </span>
+          </div>
+
+          <div class="epic-share-body">
+            <div class="epic-share-domain">CELEBRATION • DIGITAL WEDDING ATELIER</div>
+            <h3 class="epic-share-title">Su boda, a su manera.</h3>
+            <p class="epic-share-desc">
+              “Invitaciones digitales de alta costura diseñadas para sorprender desde el primer instante.”
+            </p>
+
+            <div class="epic-share-services">
+              <div class="epic-share-srv-item">
+                <span class="epic-share-srv-dot">✦</span>
+                <span>Página Web Editorial &amp; Dominio Propio por 1 Año</span>
+              </div>
+              <div class="epic-share-srv-item">
+                <span class="epic-share-srv-dot">✦</span>
+                <span>Smart RSVP Predictivo con Asignación de Pases y Mesas</span>
+              </div>
+              <div class="epic-share-srv-item">
+                <span class="epic-share-srv-dot">✦</span>
+                <span>Tarjetas Inteligentes NFC &amp; Galería Live Event en Pantallas</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Botones de Acción para Novios y Clientes -->
+        <div class="share-action-buttons">
+          <button class="btn-share-wa" id="btnShareWhatsApp">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.634.072-1.802-.416-1.5-.625-2.47-2.148-2.545-2.247-.074-.099-.607-.807-.607-1.54 0-.733.385-1.093.522-1.242.137-.149.299-.187.399-.187.1 0 .199.001.287.006.094.004.22-.036.344.262.129.31.44 1.074.479 1.152.039.078.065.169.013.272-.053.104-.079.169-.157.26-.078.091-.164.204-.234.274-.078.078-.16.163-.069.319.091.156.404.667.868 1.08.597.532 1.101.697 1.258.775.156.078.247.065.338-.039.091-.104.39-.455.494-.611.104-.156.208-.13.351-.078.144.052.91.429 1.066.507.156.078.26.117.299.182.039.065.039.377-.105.782z"/></svg>
+            <span>Compartir por WhatsApp</span>
+          </button>
+          <button class="btn-share-copy" id="btnCopyShareCard">
+            <span>Copiar Mensaje con Tarjeta 📋</span>
+          </button>
         </div>
       </div>
     </section>
