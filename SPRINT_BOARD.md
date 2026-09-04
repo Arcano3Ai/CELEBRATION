@@ -25,12 +25,14 @@
 | **CEL-12** | Catálogo Oficial de Colecciones & Tarifas | Concierge / Copy | ✅ Completado | `docs/CATALOGO_PAQUETES_Y_PRECIOS.md` con desglose 2026–2027. |
 | **CEL-13** | Manual de Identidad Visual & Brand Guidelines | UI/UX / Brand | ✅ Completado | `docs/BRAND_GUIDELINES.md` con paletas, fuentes y texturas. |
 | **CEL-14** | Brief Editorial y Cuestionario para Novios | Concierge | ✅ Completado | `docs/BRIEF_EDITORIAL_NOVIOS.md` para onboarding de parejas. |
-| **CEL-15** | Publicación y sincronización en GitHub Pages | DevOps | ✅ Completado | Listo en `https://arcano3ai.github.io/CELEBRATION/`. |
+| **CEL-16** | Concierge AI & Event Database Engine | Logic + Concierge | ✅ Completado | `concierge-db.js`, `concierge-ai.js`, `concierge-ai.css` con folios `#VAL-2026`, `#ISA-2026`, `#CAM-2026`. |
+| **CEL-17** | 3 Demos de Alta Costura Completos con Tri-Demo Switcher | UI/UX + Frontend + QA | ✅ Completado | Romántico, Clásico y Editorial 100% interactivos con countdown, mapas, RSVP predictivo y simulación Live Event. |
 
 ---
 
 ## 🔮 Backlog de Próximos Sprints (Por Demanda)
 
-- [ ] **CEL-16 (Live Event Real-Time Upload Engine):** Conexión con Supabase/Firebase o backend ligero para almacenar fotos de invitados.
-- [ ] **CEL-17 (Generador de Códigos QR para Mesas):** Script interactivo para exportar e imprimir tarjetas de mesa en PDF listo para imprenta.
-- [ ] **CEL-18 (Integración Stripe Checkout):** Botón de pago en línea directo para anticipos de $945 MXN (50%).
+- [ ] **CEL-18 (Generador de Códigos QR & Tarjetas NFC para Mesas):** Script para maquetar tarjetas de mesa listas para imprenta con folio único.
+- [ ] **CEL-19 (Integración Stripe Checkout):** Botón de pago en línea directo para anticipos de $945 MXN (50%).
+- [ ] **CEL-20 (Exportador Excel/CSV de Smart RSVP):** Descarga de lista de invitados con confirmaciones para Wedding Planners.
+

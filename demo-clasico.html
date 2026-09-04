@@ -3,62 +3,115 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Isabella & Santiago — Invitación de Boda | CELEBRATION Demo</title>
-  <meta name="description" content="Invitación de boda de Isabella & Santiago. Estilo Clásico Atemporal & Black Tie por CELEBRATION.">
+  <title>Isabella &amp; Santiago — Invitación de Boda | CELEBRATION Clásico</title>
+  <meta name="description" content="Invitación de boda de Isabella & Santiago en el Centro Histórico de la Ciudad de México. Colección Clásica Atemporal & Black Tie por CELEBRATION.">
   
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Raleway:wght@300;400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   
+  <link rel="stylesheet" href="concierge-ai.css">
+
   <style>
     :root {
-      --bg: #F7F5F0;
+      --bg: #F8F6F2;
       --bg-dark: #1A1816;
       --card: #FFFFFF;
       --text: #1C1A17;
       --muted: #6E6861;
       --gold: #C5A059;
-      --border: rgba(197, 160, 89, 0.3);
+      --border: rgba(197, 160, 89, 0.35);
       
       --font-classic: 'Cinzel', serif;
       --font-serif: 'Cormorant Garamond', Georgia, serif;
       --font-sans: 'Raleway', sans-serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; background: var(--bg); color: var(--text); }
     body { font-family: var(--font-serif); line-height: 1.65; overflow-x: hidden; }
 
-    /* Top Notice */
+    /* Top Notice Switcher */
     .demo-bar {
       background: var(--bg-dark);
       color: #F7F5F0;
       font-family: var(--font-sans);
-      font-size: 0.65rem;
-      letter-spacing: 0.22em;
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      padding: 0.6rem 1rem;
+      padding: 0.75rem 1.4rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
       position: sticky;
       top: 0;
       z-index: 200;
+      border-bottom: 1px solid rgba(197, 160, 89, 0.25);
+      flex-wrap: wrap;
+      gap: 0.5rem;
     }
-    .demo-bar a { color: var(--gold); text-decoration: underline; font-weight: 600; }
+    .demo-bar-left { display: flex; align-items: center; gap: 0.6rem; font-weight: 500; }
+    .demo-bar-left strong { color: var(--gold); letter-spacing: 0.22em; }
+    .demo-bar-nav { display: flex; align-items: center; gap: 1.2rem; }
+    .demo-bar-nav a {
+      color: #CCC7BC;
+      text-decoration: none;
+      transition: color 0.2s;
+      font-size: 0.64rem;
+    }
+    .demo-bar-nav a:hover, .demo-bar-nav a.active {
+      color: var(--gold);
+      text-decoration: underline;
+    }
+    .demo-bar-back {
+      color: #FFF !important;
+      background: rgba(197, 160, 89, 0.2);
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      border: 1px solid rgba(197, 160, 89, 0.4);
+    }
+
+    /* Sub Navigation */
+    .wedding-nav {
+      background: rgba(248, 246, 242, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 1.1rem 1.5rem;
+      display: flex;
+      justify-content: center;
+      gap: 2.2rem;
+      position: sticky;
+      top: 33px;
+      z-index: 100;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+    .wedding-nav a {
+      font-family: var(--font-sans);
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .wedding-nav a:hover { color: var(--text); }
 
     /* Monogram */
     .monogram-crest {
-      width: 80px;
-      height: 80px;
+      width: 86px;
+      height: 86px;
       border: 1px solid var(--gold);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto 2rem;
+      margin: 0 auto 1.8rem;
       font-family: var(--font-classic);
-      font-size: 1.6rem;
+      font-size: 1.75rem;
       letter-spacing: 0.1em;
       color: var(--gold);
       position: relative;
@@ -69,19 +122,19 @@
       inset: 4px;
       border: 1px dashed var(--gold);
       border-radius: 50%;
-      opacity: 0.5;
+      opacity: 0.6;
     }
 
     /* Hero */
     .hero {
-      min-height: 90vh;
+      min-height: 88vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
       padding: 5rem 1.5rem;
-      background: radial-gradient(circle, rgba(247,245,240,0.96) 20%, rgba(235,231,223,0.9) 100%), url('assets/images/estilo_clasico.jpg') center/cover no-repeat;
+      background: radial-gradient(circle, rgba(248,246,242,0.96) 20%, rgba(235,231,223,0.9) 100%), url('assets/images/estilo_clasico.jpg') center/cover no-repeat;
     }
 
     .hero-eyebrow {
@@ -114,6 +167,21 @@
       color: var(--muted);
       margin-bottom: 2.5rem;
     }
+
+    /* Countdown Card */
+    .countdown-card {
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid var(--border);
+      padding: 1.8rem 3rem;
+      display: flex;
+      gap: 2.2rem;
+      align-items: center;
+      box-shadow: 0 10px 30px rgba(28, 26, 23, 0.05);
+      margin-bottom: 2rem;
+    }
+    .countdown-item { display: flex; flex-direction: column; align-items: center; }
+    .countdown-num { font-family: var(--font-classic); font-size: 2rem; color: var(--text); }
+    .countdown-lbl { font-family: var(--font-sans); font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
 
     /* Sections */
     .section {
@@ -181,17 +249,52 @@
     .dresscode-box {
       background: #1C1A17;
       color: #F7F5F0;
-      padding: 4rem 2rem;
-      margin: 3rem auto 0;
-      max-width: 700px;
-      border: 1px solid rgba(197, 160, 89, 0.4);
+      padding: 4.5rem 2.5rem;
+      margin: 4rem auto 0;
+      max-width: 780px;
+      border: 1px solid rgba(197, 160, 89, 0.45);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.18);
     }
     .dresscode-title {
       font-family: var(--font-classic);
-      font-size: 1.8rem;
+      font-size: 1.85rem;
       letter-spacing: 0.2em;
       color: var(--gold);
       margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
+
+    /* Hotels Grid */
+    .hotels-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 2.5rem;
+    }
+    .hotel-card {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      padding: 2.5rem 2rem;
+      text-align: center;
+    }
+
+    /* Smart RSVP Box */
+    .rsvp-box {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      padding: 3.5rem 2.5rem;
+      max-width: 660px;
+      margin: 0 auto;
+      box-shadow: 0 12px 35px rgba(28, 26, 23, 0.06);
+    }
+    .rsvp-input {
+      width: 100%;
+      padding: 1rem 1.2rem;
+      border: 1px solid var(--border);
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      outline: none;
+      margin-bottom: 1.5rem;
     }
 
     /* Buttons */
@@ -222,7 +325,7 @@
     footer {
       background: #12100E;
       color: #E8E4DC;
-      padding: 4.5rem 1.5rem;
+      padding: 5rem 1.5rem;
       text-align: center;
       border-top: 1px solid rgba(197, 160, 89, 0.25);
     }
@@ -230,43 +333,140 @@
 </head>
 <body>
 
+  <!-- Demo Top Bar Switcher -->
   <aside class="demo-bar">
-    <span>✦ CELEBRATION Demo: <strong>Colección Clásica &amp; Black Tie</strong></span>
-    <a href="index.html">← Volver al sitio principal</a>
+    <div class="demo-bar-left">
+      <span>✦ DEMO OFICIAL:</span>
+      <strong>Colección Clásica &amp; Black Tie (#ISA-2026)</strong>
+    </div>
+    <div class="demo-bar-nav">
+      <a href="demo-romantico.html">1. Romántico (San Miguel)</a>
+      <a href="demo-clasico.html" class="active">2. Clásico (CDMX)</a>
+      <a href="demo-editorial.html">3. Editorial (Los Cabos)</a>
+      <a href="index.html" class="demo-bar-back">← Atelier CELEBRATION</a>
+    </div>
   </aside>
 
+  <!-- Sticky In-Page Navigation -->
+  <nav class="wedding-nav" aria-label="Navegación de la boda">
+    <a href="#ceremonia">Ceremonia &amp; Recepción</a>
+    <a href="#dresscode">Dress Code</a>
+    <a href="#hospedaje">Hospedaje</a>
+    <a href="#regalos">Mesa de Regalos</a>
+    <a href="#rsvp">Smart RSVP</a>
+  </nav>
+
+  <!-- Hero Section -->
   <header class="hero">
     <div class="monogram-crest">I &amp; S</div>
-    <span class="hero-eyebrow">Con la bendición de nuestras familias</span>
+    <span class="hero-eyebrow">Con la bendición de Dios y de nuestros padres</span>
     <h1 class="hero-names">Isabella &amp; Santiago</h1>
-    <p class="hero-date">Sábado 10 de Octubre de 2026 • Ciudad de México</p>
-    <a href="#rsvp" class="btn-gold">Confirmar Asistencia →</a>
-  </header>
+    <p class="hero-date">Sábado 10 de Octubre de 2026 • Centro Histórico, Ciudad de México</p>
 
-  <section class="section">
-    <h2 class="sec-title">Ceremonia &amp; Recepción</h2>
-    <div class="sec-divider"></div>
-    
-    <div class="itinerary-grid">
-      <div class="event-card">
-        <span class="event-time">17:00 Horas</span>
-        <h3 class="event-name">Catedral Metropolitana</h3>
-        <p style="color:var(--muted); font-size:1.05rem;">Plaza de la Constitución S/N, Centro Histórico<br>Misa Solemne de Matrimonio</p>
+    <div class="countdown-card" id="demoCountdown">
+      <div class="countdown-item">
+        <span class="countdown-num" id="dDays">35</span>
+        <span class="countdown-lbl">Días</span>
       </div>
-
-      <div class="event-card">
-        <span class="event-time">19:30 Horas</span>
-        <h3 class="event-name">Palacio Metropolitano</h3>
-        <p style="color:var(--muted); font-size:1.05rem;">Calle de Tacuba 15, Centro Histórico<br>Cóctel de Bienvenida, Banquete &amp; Fiesta</p>
+      <div class="countdown-item">
+        <span class="countdown-num" id="dHours">18</span>
+        <span class="countdown-lbl">Horas</span>
+      </div>
+      <div class="countdown-item">
+        <span class="countdown-num" id="dMins">20</span>
+        <span class="countdown-lbl">Minutos</span>
+      </div>
+      <div class="countdown-item">
+        <span class="countdown-num" id="dSecs">00</span>
+        <span class="countdown-lbl">Segundos</span>
       </div>
     </div>
 
-    <div class="dresscode-box">
+    <a href="#rsvp" class="btn-gold">Confirmar Asistencia →</a>
+  </header>
+
+  <!-- Ceremonia & Recepción -->
+  <section class="section" id="ceremonia">
+    <h2 class="sec-title">Ceremonia &amp; Recepción</h2>
+    <div class="sec-divider"></div>
+    <p style="max-width:640px; margin:0 auto; color:var(--muted); font-size:1.1rem; font-style:italic;">
+      “Tenemos el honor de invitarle a ser partícipe de la unión matrimonial de nuestras vidas, celebrando con solemnidad y regocijo este enlace sagrado.”
+    </p>
+
+    <div class="itinerary-grid">
+      <div class="event-card">
+        <span class="event-time">17:00 Horas • Misa Solemne</span>
+        <h3 class="event-name">Catedral Metropolitana</h3>
+        <p style="color:var(--muted); font-size:1.05rem;">Plaza de la Constitución S/N, Centro Histórico<br>Altar Mayor • Ciudad de México</p>
+        <a href="https://maps.google.com/?q=Catedral+Metropolitana+CDMX" target="_blank" class="btn-gold" style="padding:0.7rem 1.6rem; font-size:0.62rem;" rel="noopener">Cómo Llegar (Maps) ↗</a>
+      </div>
+
+      <div class="event-card">
+        <span class="event-time">19:30 Horas • Recepción &amp; Cena</span>
+        <h3 class="event-name">Palacio Metropolitano</h3>
+        <p style="color:var(--muted); font-size:1.05rem;">Calle de Tacuba 15, Centro Histórico<br>Cóctel Imperial, Banquete de Gala &amp; Baile</p>
+        <a href="https://maps.google.com/?q=Palacio+Metropolitano+Tacuba" target="_blank" class="btn-gold" style="padding:0.7rem 1.6rem; font-size:0.62rem;" rel="noopener">Cómo Llegar (Maps) ↗</a>
+      </div>
+    </div>
+
+    <!-- Dress Code -->
+    <div class="dresscode-box" id="dresscode">
       <h3 class="dresscode-title">Rigurosa Etiqueta • Black Tie</h3>
-      <p style="font-size:1.05rem; font-style:italic; line-height:1.7; color:#CCC;">
-        Caballeros: Esmoquin tradicional en color negro con corbatín de lazo.<br>
-        Damas: Vestido largo de noche. Se agradece reservar los tonos blancos y crema para la novia.
+      <p style="font-size:1.1rem; font-style:italic; line-height:1.8; color:#D4CFC7; margin-bottom:1.5rem;">
+        Caballeros: Esmoquin formal de gala en color negro con camisa de cuello de pajarita y corbatín de lazo negro.<br><br>
+        Damas: Vestido largo de noche riguroso. Agradecemos reservar los tonos blanco, marfil y perla para la novia.
       </p>
+      <span style="font-family:var(--font-sans); font-size:0.65rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--gold);">Evento de Gala Exclusivo para Adultos</span>
+    </div>
+  </section>
+
+  <!-- Hospedaje -->
+  <section class="section" id="hospedaje" style="background:rgba(235,231,223,0.4); max-width:100%; padding-left:2rem; padding-right:2rem;">
+    <div style="max-width:960px; margin:0 auto;">
+      <h2 class="sec-title">Hospedaje</h2>
+      <div class="sec-divider"></div>
+      <p style="color:var(--muted); font-size:1.05rem;">Convenios especiales en el primer cuadro de la ciudad:</p>
+
+      <div class="hotels-grid">
+        <div class="hotel-card">
+          <h4 style="font-family:var(--font-classic); font-size:1.35rem; margin-bottom:0.5rem;">Gran Hotel de la CDMX</h4>
+          <p style="color:var(--gold); font-size:0.68rem; letter-spacing:0.18em; text-transform:uppercase; font-family:var(--font-sans); margin-bottom:0.8rem;">Código: ISASANT</p>
+          <p style="color:var(--muted); font-size:0.95rem; margin-bottom:1.2rem;">Frente al Zócalo Capitalino</p>
+          <a href="https://maps.google.com" target="_blank" class="btn-gold" style="padding:0.65rem 1.4rem; font-size:0.6rem;" rel="noopener">Reservar ↗</a>
+        </div>
+
+        <div class="hotel-card">
+          <h4 style="font-family:var(--font-classic); font-size:1.35rem; margin-bottom:0.5rem;">Downtown México</h4>
+          <p style="color:var(--gold); font-size:0.68rem; letter-spacing:0.18em; text-transform:uppercase; font-family:var(--font-sans); margin-bottom:0.8rem;">Código: CELEBRATION-ISA</p>
+          <p style="color:var(--muted); font-size:0.95rem; margin-bottom:1.2rem;">Isabel La Católica 30, Centro</p>
+          <a href="https://maps.google.com" target="_blank" class="btn-gold" style="padding:0.65rem 1.4rem; font-size:0.6rem;" rel="noopener">Reservar ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mesa de Regalos -->
+  <section class="section" id="regalos">
+    <h2 class="sec-title">Mesa de Regalos</h2>
+    <div class="sec-divider"></div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:2rem; margin-top:2rem;">
+      <div style="background:#FFF; padding:2.5rem 2rem; border:1px solid var(--border);">
+        <h4 style="font-family:var(--font-classic); font-size:1.3rem; margin-bottom:0.4rem;">El Palacio de Hierro</h4>
+        <p style="color:var(--muted); font-size:0.95rem; margin-bottom:1rem;">Evento: ISA-SANT-26</p>
+        <a href="https://www.elpalaciodehierro.com" target="_blank" class="btn-gold" style="padding:0.6rem 1.2rem; font-size:0.6rem;" rel="noopener">Ir a Palacio ↗</a>
+      </div>
+
+      <div style="background:#FFF; padding:2.5rem 2rem; border:1px solid var(--border);">
+        <h4 style="font-family:var(--font-classic); font-size:1.3rem; margin-bottom:0.4rem;">Liverpool</h4>
+        <p style="color:var(--muted); font-size:0.95rem; margin-bottom:1rem;">Evento: #38928471</p>
+        <a href="https://www.liverpool.com.mx" target="_blank" class="btn-gold" style="padding:0.6rem 1.2rem; font-size:0.6rem;" rel="noopener">Ir a Liverpool ↗</a>
+      </div>
+
+      <div style="background:#FFF; padding:2.5rem 2rem; border:1px solid var(--border);">
+        <h4 style="font-family:var(--font-classic); font-size:1.3rem; margin-bottom:0.4rem;">Transferencia Bancaria</h4>
+        <p style="color:var(--muted); font-size:0.95rem; margin-bottom:1rem;">Banorte: 072180002938471625</p>
+        <button class="btn-gold" style="padding:0.6rem 1.2rem; font-size:0.6rem;" onclick="navigator.clipboard.writeText('072180002938471625'); alert('Cuenta CLABE copiada al portapapeles.');">Copiar CLABE</button>
+      </div>
     </div>
   </section>
 
@@ -279,18 +479,54 @@
         Agradecemos confirmar su asistencia antes del 15 de Septiembre de 2026.
       </p>
 
-      <div style="background:#FFF; padding:3rem 2rem; border:1px solid var(--border); box-shadow:0 10px 30px rgba(0,0,0,0.04);">
-        <input type="text" placeholder="Escriba su apellido o nombre..." style="width:100%; padding:1rem; border:1px solid var(--border); font-family:var(--font-serif); font-size:1.1rem; margin-bottom:1.5rem; outline:none;">
-        <button class="btn-gold" style="width:100%;" onclick="alert('Confirmación simulada en demo para Isabella & Santiago.')">Buscar Pase Familiar →</button>
+      <div class="rsvp-box">
+        <input type="text" id="guestInputClasico" class="rsvp-input" placeholder="Escriba su nombre o apellido (ej. Fernando Treviño)...">
+        <button class="btn-gold" style="width:100%;" id="btnSearchClasico">Localizar Mi Pase →</button>
+
+        <div id="resultClasico" style="display:none; margin-top:2rem; padding:1.5rem; background:var(--bg); border:1px solid var(--gold); text-align:left;">
+          <p style="font-family:var(--font-sans); font-size:0.68rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:0.4rem;">Pase Localizado</p>
+          <h4 style="font-family:var(--font-classic); font-size:1.4rem; margin-bottom:0.3rem;" id="nameClasico">Familia Treviño</h4>
+          <p style="color:var(--muted); font-size:0.95rem; margin-bottom:1rem;">Pases reservados: <strong>2 Lugares</strong> • Mesa: <strong>Mesa 1</strong></p>
+          <button class="btn-gold" style="width:100%;" onclick="alert('Asistencia confirmada con éxito para la boda de Isabella & Santiago.')">Confirmar Asistencia →</button>
+        </div>
       </div>
     </div>
   </section>
 
+  <!-- Footer -->
   <footer>
-    <div class="monogram-crest" style="margin-bottom:1.2rem;">I &amp; S</div>
-    <p style="font-family:var(--font-sans); font-size:0.75rem; letter-spacing:0.3em; text-transform:uppercase; color:#AAA; margin-bottom:1.5rem;">CELEBRATION • Colección Clásica Atemporal</p>
-    <a href="index.html" class="btn-gold">Diseñar mi invitación →</a>
+    <div class="monogram-crest" style="margin-bottom:1.4rem;">I &amp; S</div>
+    <p style="font-family:var(--font-sans); font-size:0.75rem; letter-spacing:0.32em; text-transform:uppercase; color:#AAA; margin-bottom:1.5rem;">CELEBRATION • Colección Clásica Atemporal</p>
+    <a href="index.html" class="btn-gold">Diseñar mi invitación con CELEBRATION →</a>
   </footer>
 
+  <script>
+    // Live countdown to Oct 10, 2026
+    const target = new Date('2026-10-10T17:00:00').getTime();
+    function tick() {
+      const now = new Date().getTime();
+      const diff = target - now;
+      if (diff > 0) {
+        document.getElementById('dDays').textContent = Math.floor(diff / (1000 * 60 * 60 * 24));
+        document.getElementById('dHours').textContent = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+        document.getElementById('dMins').textContent = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+        document.getElementById('dSecs').textContent = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
+      }
+    }
+    setInterval(tick, 1000);
+    tick();
+
+    document.getElementById('btnSearchClasico').addEventListener('click', () => {
+      const val = document.getElementById('guestInputClasico').value.trim();
+      const box = document.getElementById('resultClasico');
+      if (val) {
+        document.getElementById('nameClasico').textContent = val;
+      }
+      box.style.display = 'block';
+    });
+  </script>
+
+  <!-- Concierge AI Module -->
+  <script type="module" src="concierge-ai.js"></script>
 </body>
 </html>

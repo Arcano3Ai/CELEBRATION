@@ -3,45 +3,101 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Camila & Sebastián — Invitación de Boda | CELEBRATION Demo</title>
-  <meta name="description" content="Invitación de boda de Camila & Sebastián. Estilo Editorial Vanguardia por CELEBRATION.">
+  <title>Camila &amp; Sebastián — Vogue Weddings Edition | CELEBRATION Demo</title>
+  <meta name="description" content="Invitación web de boda editorial y de ultra lujo de Camila & Sebastián en Los Cabos. Colección Vanguardia Editorial & Live Event por CELEBRATION.">
   
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Pinyon+Script&display=swap" rel="stylesheet">
   
+  <link rel="stylesheet" href="concierge-ai.css">
+
   <style>
     :root {
       --bg: #F4F1EA;
+      --bg-dark: #12100E;
       --card: #FFFFFF;
       --text: #1E1B18;
+      --text-light: #F7F5F0;
       --muted: #736C65;
       --accent: #B09886;
+      --accent-gold: #C5A059;
+      --border: rgba(30, 27, 24, 0.12);
       
       --font-display: 'Playfair Display', Georgia, serif;
+      --font-script: 'Pinyon Script', cursive;
       --font-body: 'Plus Jakarta Sans', sans-serif;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; background: var(--bg); color: var(--text); }
-    body { font-family: var(--font-body); line-height: 1.6; overflow-x: hidden; }
+    body { font-family: var(--font-body); line-height: 1.65; overflow-x: hidden; }
 
-    /* Top Bar */
+    /* Top Selector Bar */
     .demo-bar {
-      background: #111;
-      color: #EEE;
-      font-size: 0.65rem;
-      letter-spacing: 0.24em;
+      background: #110F0D;
+      color: #ECE8E1;
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      padding: 0.65rem 1.2rem;
+      padding: 0.75rem 1.4rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
       position: sticky;
       top: 0;
       z-index: 200;
+      border-bottom: 1px solid rgba(197, 160, 89, 0.25);
+      flex-wrap: wrap;
+      gap: 0.5rem;
     }
-    .demo-bar a { color: var(--accent); text-decoration: underline; }
+    .demo-bar-left { display: flex; align-items: center; gap: 0.6rem; font-weight: 500; }
+    .demo-bar-left strong { color: var(--accent-gold); letter-spacing: 0.22em; }
+    .demo-bar-nav { display: flex; align-items: center; gap: 1.2rem; }
+    .demo-bar-nav a {
+      color: #CCC7BC;
+      text-decoration: none;
+      transition: color 0.2s;
+      font-size: 0.64rem;
+    }
+    .demo-bar-nav a:hover, .demo-bar-nav a.active {
+      color: var(--accent-gold);
+      text-decoration: underline;
+    }
+    .demo-bar-back {
+      color: #FFF !important;
+      background: rgba(197, 160, 89, 0.2);
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      border: 1px solid rgba(197, 160, 89, 0.4);
+    }
+
+    /* Sub In-Page Sticky Navigation */
+    .wedding-nav {
+      background: rgba(244, 241, 234, 0.94);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 1.1rem 1.5rem;
+      display: flex;
+      justify-content: center;
+      gap: 2.2rem;
+      position: sticky;
+      top: 41px;
+      z-index: 100;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+    .wedding-nav a {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .wedding-nav a:hover { color: var(--text); }
 
     /* Cover Magazine Style */
     .cover-wrap {
@@ -49,95 +105,298 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      padding: 3rem 2rem;
-      background: linear-gradient(to bottom, rgba(20,18,16,0.3) 0%, rgba(20,18,16,0.7) 100%), url('assets/images/estilo_editorial.jpg') center/cover no-repeat;
+      padding: 3.5rem 2rem 5rem;
+      background: linear-gradient(to bottom, rgba(18,16,14,0.35) 0%, rgba(18,16,14,0.75) 100%), url('assets/images/estilo_editorial.jpg') center/cover no-repeat;
       color: #FFF;
       text-align: center;
+      position: relative;
     }
 
     .mag-header {
       font-family: var(--font-display);
-      font-size: clamp(2rem, 8vw, 4.5rem);
-      letter-spacing: 0.28em;
+      font-size: clamp(1.4rem, 4.5vw, 2.6rem);
+      letter-spacing: 0.45em;
       text-transform: uppercase;
       font-weight: 400;
-      border-bottom: 1px solid rgba(255,255,255,0.3);
-      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(255,255,255,0.25);
+      padding-bottom: 1.2rem;
+      max-width: 980px;
+      margin: 0 auto;
+      width: 100%;
     }
 
-    .cover-bottom {
-      max-width: 780px;
-      margin: 0 auto;
+    .cover-center {
+      max-width: 900px;
+      margin: 3rem auto 0;
+    }
+
+    .cover-eyebrow {
+      font-size: 0.76rem;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      color: #E2DBD0;
+      margin-bottom: 1.2rem;
+      font-weight: 500;
     }
 
     .cover-names {
       font-family: var(--font-display);
-      font-size: clamp(3rem, 9vw, 5.8rem);
+      font-size: clamp(3.2rem, 10vw, 6.8rem);
       font-weight: 400;
       font-style: italic;
       line-height: 1.05;
       margin-bottom: 1.5rem;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.5);
     }
 
     .cover-date {
-      font-size: 0.82rem;
+      font-size: clamp(0.85rem, 2.2vw, 1.1rem);
       letter-spacing: 0.32em;
       text-transform: uppercase;
-      margin-bottom: 2rem;
+      margin-bottom: 2.8rem;
       color: #E6E1DA;
     }
 
-    .btn-white {
-      display: inline-block;
-      background: #FFF;
-      color: #111;
-      padding: 1.1rem 2.8rem;
-      border-radius: 50px;
-      font-size: 0.7rem;
+    /* Countdown Widget */
+    .countdown-card {
+      background: rgba(18, 16, 14, 0.75);
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      padding: 1.5rem 2.8rem;
+      display: inline-flex;
+      gap: 2.4rem;
+      align-items: center;
+      margin-bottom: 2.8rem;
+      border-radius: 4px;
+    }
+    .countdown-item { display: flex; flex-direction: column; align-items: center; }
+    .countdown-num { font-family: var(--font-display); font-size: 2.2rem; color: #FFF; line-height: 1; margin-bottom: 0.3rem; }
+    .countdown-lbl { font-size: 0.58rem; letter-spacing: 0.25em; text-transform: uppercase; color: #C5A059; font-weight: 600; }
+
+    .cover-actions {
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    /* Buttons */
+    .btn-editorial {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #FFFFFF;
+      color: #12100E;
+      padding: 1.15rem 2.8rem;
+      font-size: 0.72rem;
       font-weight: 600;
-      letter-spacing: 0.22em;
+      letter-spacing: 0.26em;
       text-transform: uppercase;
       text-decoration: none;
-      transition: all 0.3s;
+      transition: all 0.3s ease;
+      border: 1px solid #FFFFFF;
+      cursor: pointer;
     }
-    .btn-white:hover { background: var(--text); color: #FFF; }
+    .btn-editorial:hover {
+      background: transparent;
+      color: #FFFFFF;
+      border-color: #FFFFFF;
+    }
+    .btn-editorial-dark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #12100E;
+      color: #FFFFFF;
+      padding: 1.15rem 2.8rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border: 1px solid #12100E;
+      cursor: pointer;
+    }
+    .btn-editorial-dark:hover {
+      background: transparent;
+      color: #12100E;
+    }
 
-    /* Editorial Content */
-    .content-sec {
-      padding: 6rem 2rem;
-      max-width: 900px;
+    /* General Sections */
+    .section {
+      padding: 7rem 2rem;
+      max-width: 1040px;
       margin: 0 auto;
     }
-
-    .editorial-quote {
+    .section-title {
       font-family: var(--font-display);
-      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-size: clamp(2rem, 5.5vw, 3.2rem);
       font-weight: 400;
-      line-height: 1.4;
+      text-align: center;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+    }
+    .section-subtitle {
+      font-size: 0.76rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--accent);
       text-align: center;
       margin-bottom: 3.5rem;
+      font-weight: 600;
     }
 
-    /* Live Event Banner */
-    .live-event-banner {
-      background: #1A1715;
+    /* Editorial Story */
+    .story-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3.5rem;
+      align-items: center;
+    }
+    @media (min-width: 820px) {
+      .story-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .story-quote {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 3.6vw, 2.3rem);
+      font-style: italic;
+      line-height: 1.4;
+      color: var(--text);
+      border-left: 2px solid var(--accent-gold);
+      padding-left: 2rem;
+      margin-bottom: 2rem;
+    }
+    .story-text {
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.85;
+    }
+
+    /* Itinerary Grid */
+    .itinerary-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+    @media (min-width: 768px) {
+      .itinerary-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .itinerary-card {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      padding: 3.5rem 2.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 12px 36px rgba(0,0,0,0.03);
+      transition: transform 0.3s ease;
+    }
+    .itinerary-card:hover {
+      transform: translateY(-4px);
+    }
+    .itinerary-meta {
+      font-size: 0.68rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--accent-gold);
+      font-weight: 600;
+      margin-bottom: 1.2rem;
+    }
+    .itinerary-name {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+    .itinerary-desc {
+      color: var(--muted);
+      font-size: 0.98rem;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+    /* Dress Code Editorial */
+    .dresscode-sec {
+      background: #12100E;
       color: #FFF;
-      padding: 4rem 2rem;
-      border-radius: 4px;
+      padding: 6.5rem 2.5rem;
       text-align: center;
-      margin-top: 4rem;
+      border: 1px solid rgba(197, 160, 89, 0.3);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+    }
+    .dresscode-tag {
+      font-size: 0.72rem;
+      letter-spacing: 0.36em;
+      text-transform: uppercase;
+      color: var(--accent-gold);
+      margin-bottom: 1.2rem;
+      display: inline-block;
+    }
+    .dresscode-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3rem);
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+    .dresscode-text {
+      max-width: 680px;
+      margin: 0 auto 3rem;
+      color: #D6D0C5;
+      font-size: 1.05rem;
+      line-height: 1.85;
+    }
+    .palette-flex {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .palette-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .palette-circle {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.4);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    .palette-label {
+      font-size: 0.64rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #E2DBD0;
     }
 
+    /* Live Event Banner Interactive */
+    .live-event-block {
+      background: radial-gradient(circle at top right, #1F1B17 0%, #110F0D 100%);
+      color: #FFF;
+      padding: 4.5rem 2.5rem;
+      border: 1px solid rgba(197, 160, 89, 0.35);
+      margin-top: 5rem;
+      text-align: center;
+      position: relative;
+    }
     .live-tag {
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.6rem;
       color: #FF5A5F;
-      font-size: 0.68rem;
+      font-size: 0.72rem;
       font-weight: 600;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
-      margin-bottom: 1rem;
+      margin-bottom: 1.4rem;
+      background: rgba(255,90,95,0.12);
+      padding: 0.4rem 1.1rem;
+      border-radius: 50px;
+      border: 1px solid rgba(255,90,95,0.3);
     }
     .live-dot {
       width: 8px;
@@ -148,82 +407,527 @@
     }
     @keyframes pulse {
       0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(1.3); }
+      50% { opacity: 0.3; transform: scale(1.4); }
     }
 
-    footer {
-      background: #111;
-      color: #999;
-      padding: 4rem 2rem;
+    /* Hotels Grid */
+    .hotels-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    .hotel-card {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      padding: 3rem 2rem;
       text-align: center;
-      font-size: 0.72rem;
-      letter-spacing: 0.2em;
+    }
+    .hotel-code-badge {
+      display: inline-block;
+      font-size: 0.66rem;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
+      color: var(--accent-gold);
+      background: rgba(197, 160, 89, 0.12);
+      padding: 0.4rem 1rem;
+      border: 1px solid rgba(197, 160, 89, 0.3);
+      margin-bottom: 1.2rem;
+      font-weight: 600;
+    }
+
+    /* Gifts Registry */
+    .gifts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    .gift-box {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    /* Smart RSVP Box */
+    .rsvp-container {
+      max-width: 680px;
+      margin: 0 auto;
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      padding: 4rem 3rem;
+      box-shadow: 0 16px 45px rgba(0,0,0,0.04);
+    }
+    .rsvp-input {
+      width: 100%;
+      padding: 1.1rem 1.4rem;
+      border: 1px solid var(--border);
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      outline: none;
+      transition: border-color 0.2s;
+      margin-bottom: 1.5rem;
+    }
+    .rsvp-input:focus {
+      border-color: var(--text);
+    }
+    .rsvp-result-box {
+      display: none;
+      margin-top: 2.5rem;
+      padding: 2rem;
+      background: var(--bg);
+      border: 1px solid var(--accent-gold);
+      text-align: left;
+    }
+
+    /* Toast Notification */
+    .toast-msg {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: #110F0D;
+      color: #FFF;
+      padding: 1rem 2rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      border: 1px solid var(--accent-gold);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+      z-index: 1000;
+      opacity: 0;
+      transition: all 0.4s ease;
+      pointer-events: none;
+    }
+    .toast-msg.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    /* Footer */
+    footer {
+      background: #110F0D;
+      color: #999;
+      padding: 5rem 2rem;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .footer-brand {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      letter-spacing: 0.25em;
+      color: #FFF;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
     }
   </style>
 </head>
 <body>
 
+  <!-- Top Selector Bar across the 3 Demos -->
   <aside class="demo-bar">
-    <span>✦ CELEBRATION Demo: <strong>Colección Editorial Vanguardia</strong></span>
-    <a href="index.html">← Volver al sitio principal</a>
+    <div class="demo-bar-left">
+      <span>✦ DEMO OFICIAL:</span>
+      <strong>Colección Editorial Vanguardia (#CAM-2026)</strong>
+    </div>
+    <div class="demo-bar-nav">
+      <a href="demo-romantico.html">1. Romántico (San Miguel)</a>
+      <a href="demo-clasico.html">2. Clásico (CDMX)</a>
+      <a href="demo-editorial.html" class="active">3. Editorial (Los Cabos)</a>
+      <a href="index.html" class="demo-bar-back">← Atelier CELEBRATION</a>
+    </div>
   </aside>
 
-  <header class="cover-wrap">
-    <div class="mag-header">VOGUE WEDDINGS EDITION</div>
-    <div class="cover-bottom">
+  <!-- Sticky In-Page Navigation -->
+  <nav class="wedding-nav" aria-label="Navegación de la boda">
+    <a href="#portada">Portada</a>
+    <a href="#historia">Nuestra Historia</a>
+    <a href="#itinerario">Itinerario</a>
+    <a href="#dresscode">Dress Code</a>
+    <a href="#live-event">Live Event Streaming</a>
+    <a href="#hospedaje">Hospedaje</a>
+    <a href="#regalos">Mesa de Regalos</a>
+    <a href="#rsvp">Smart RSVP</a>
+  </nav>
+
+  <!-- Magazine Cover Hero -->
+  <header class="cover-wrap" id="portada">
+    <div class="mag-header">VOGUE WEDDINGS SPECIAL EDITION</div>
+    
+    <div class="cover-center">
+      <p class="cover-eyebrow">The Destination Wedding Issue • Los Cabos 2026</p>
       <h1 class="cover-names">Camila &amp; Sebastián</h1>
-      <p class="cover-date">24 de Octubre de 2026 • Los Cabos, México</p>
-      <a href="#rsvp" class="btn-white">Confirmar Asistencia →</a>
+      <p class="cover-date">Sábado 24 de Octubre de 2026 • Cabo San Lucas, México</p>
+
+      <!-- Live Countdown -->
+      <div class="countdown-card" id="editorialCountdown">
+        <div class="countdown-item">
+          <span class="countdown-num" id="dDays">00</span>
+          <span class="countdown-lbl">Días</span>
+        </div>
+        <div class="countdown-item">
+          <span class="countdown-num" id="dHours">00</span>
+          <span class="countdown-lbl">Horas</span>
+        </div>
+        <div class="countdown-item">
+          <span class="countdown-num" id="dMins">00</span>
+          <span class="countdown-lbl">Minutos</span>
+        </div>
+        <div class="countdown-item">
+          <span class="countdown-num" id="dSecs">00</span>
+          <span class="countdown-lbl">Segundos</span>
+        </div>
+      </div>
+
+      <div class="cover-actions">
+        <a href="#rsvp" class="btn-editorial">Confirmar Mi Asistencia →</a>
+        <a href="#itinerario" class="btn-editorial" style="background:transparent; color:#FFF; border-color:rgba(255,255,255,0.6);">Ver Itinerario Completo</a>
+      </div>
+    </div>
+
+    <div style="font-size:0.68rem; letter-spacing:0.35em; text-transform:uppercase; color:#AAA;">
+      Architectural Digest &amp; Vogue Inspired Wedding • CELEBRATION
     </div>
   </header>
 
-  <section class="content-sec">
-    <p class="editorial-quote">
-      “Una celebración contemporánea donde el arte, la arquitectura del desierto y el mar de Cortés enmarcan el inicio de nuestra vida juntos.”
-    </p>
-
-    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:2rem;">
-      <div style="background:#FFF; padding:2.5rem; border:1px solid rgba(0,0,0,0.08);">
-        <p style="font-size:0.65rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--muted); margin-bottom:0.8rem;">16:00 HRS • CEREMONIA AL ATARDECER</p>
-        <h3 style="font-family:var(--font-display); font-size:1.8rem; margin-bottom:0.5rem;">The Cape Terrace</h3>
-        <p style="color:var(--muted); font-size:0.95rem;">Cabo San Lucas, Baja California Sur</p>
+  <!-- Nuestra Historia -->
+  <section class="section" id="historia">
+    <div class="story-grid">
+      <div>
+        <p class="story-quote">
+          “Una celebración contemporánea donde el arte, la arquitectura del desierto y el mar de Cortés enmarcan el inicio de nuestro para siempre.”
+        </p>
       </div>
-
-      <div style="background:#FFF; padding:2.5rem; border:1px solid rgba(0,0,0,0.08);">
-        <p style="font-size:0.65rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--muted); margin-bottom:0.8rem;">18:30 HRS • CENA &amp; AFTER PARTY</p>
-        <h3 style="font-family:var(--font-display); font-size:1.8rem; margin-bottom:0.5rem;">Sunset Monalisa</h3>
-        <p style="color:var(--muted); font-size:0.95rem;">Coctelería de autor, música en vivo &amp; DJ</p>
+      <div>
+        <h2 style="font-family:var(--font-display); font-size:1.8rem; margin-bottom:1.2rem; text-transform:uppercase; letter-spacing:0.1em;">El Inicio de Nuestro Viaje</h2>
+        <p class="story-text" style="margin-bottom:1.5rem;">
+          Nos conocimos hace seis años durante una exposición fotográfica en la Ciudad de México. Desde aquel primer café, descubrimos una pasión compartida por el diseño, el mar y los horizontes infinitos.
+        </p>
+        <p class="story-text">
+          Los Cabos ha sido nuestro santuario en cada momento crucial de nuestra relación. Por ello, deseamos reunir a las personas más importantes de nuestra vida frente a los atardeceres dorados de Baja California Sur para celebrar este enlace inolvidable.
+        </p>
       </div>
     </div>
+  </section>
 
-    <!-- Live Event Section -->
-    <div class="live-event-banner">
+  <!-- Itinerario de Destino -->
+  <section class="section" id="itinerario" style="background:#EFECE4; max-width:100%; padding-left:2rem; padding-right:2rem;">
+    <div style="max-width:1040px; margin:0 auto;">
+      <h2 class="section-title">El Itinerario</h2>
+      <p class="section-subtitle">Sábado 24 de Octubre de 2026 • Cabo San Lucas</p>
+
+      <div class="itinerary-grid">
+        <div class="itinerary-card">
+          <div>
+            <span class="itinerary-meta">16:00 HRS • CEREMONIA AL ATARDECER</span>
+            <h3 class="itinerary-name">The Cape Terrace</h3>
+            <p class="itinerary-desc">
+              Intercambio de votos frente al icónico Arco de Cabo San Lucas, con la brisa marina del Pacífico y música de cuerdas en vivo al atardecer.
+            </p>
+          </div>
+          <a href="https://maps.google.com/?q=The+Cape+a+Thompson+Hotel" target="_blank" rel="noopener" class="btn-editorial-dark" style="width:100%;">
+            Abrir Ubicación en Maps ↗
+          </a>
+        </div>
+
+        <div class="itinerary-card">
+          <div>
+            <span class="itinerary-meta">18:30 HRS • CÓCTEL &amp; GALA DE NOCHE</span>
+            <h3 class="itinerary-name">Sunset Monalisa</h3>
+            <p class="itinerary-desc">
+              Recepción sobre terrazas escalonadas de acantilado. Coctelería de autor, cena maridaje de cocina mediterránea contemporánea y After Party con DJ set internacional.
+            </p>
+          </div>
+          <a href="https://maps.google.com/?q=Sunset+Monalisa+Cabo" target="_blank" rel="noopener" class="btn-editorial-dark" style="width:100%;">
+            Abrir Ubicación en Maps ↗
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Código de Vestimenta "Coastal Chic / Black Tie Sunset" -->
+  <section class="section" id="dresscode">
+    <div class="dresscode-sec">
+      <span class="dresscode-tag">Guía de Estilo &amp; Etiqueta</span>
+      <h2 class="dresscode-title">Coastal Chic • Sunset Black Tie</h2>
+      <p class="dresscode-text">
+        Damas: Vestidos largos en telas vaporosas y sofisticadas (seda, satín o lino fino). Rogamos reservar tonos blancos y perlas para la novia.<br><br>
+        Caballeros: Esmoquin ligero de verano o traje formal contemporáneo en lino/lana fina en tonos arena, taupe o medianoche. No se requiere corbata tradicional si se opta por camisa cuello mao de alta sastrería.
+      </p>
+
+      <div class="palette-flex">
+        <div class="palette-item">
+          <div class="palette-circle" style="background:#E2D1C3;"></div>
+          <span class="palette-label">Arena Mar</span>
+        </div>
+        <div class="palette-item">
+          <div class="palette-circle" style="background:#F2EBD9;"></div>
+          <span class="palette-label">Champán</span>
+        </div>
+        <div class="palette-item">
+          <div class="palette-circle" style="background:#C4A482;"></div>
+          <span class="palette-label">Taupe Cálido</span>
+        </div>
+        <div class="palette-item">
+          <div class="palette-circle" style="background:#8C9A8E;"></div>
+          <span class="palette-label">Sage Marino</span>
+        </div>
+        <div class="palette-item">
+          <div class="palette-circle" style="background:#1B2430;"></div>
+          <span class="palette-label">Midnight Blue</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Live Event Streaming & Tarjetas NFC -->
+  <section class="section" id="live-event">
+    <div class="live-event-block">
       <div class="live-tag">
         <span class="live-dot"></span>
-        <span>Tecnología Live Event Streaming</span>
+        <span>Tecnología Live Event Streaming Exclusiva de CELEBRATION</span>
       </div>
-      <h3 style="font-family:var(--font-display); font-size:2rem; margin-bottom:1rem;">Galería Colectiva en Tiempo Real</h3>
-      <p style="max-width:540px; margin:0 auto 2rem; color:#CCC; font-size:0.95rem;">
-        Durante la recepción, aproxima tu teléfono a las tarjetas NFC de mesa para compartir fotos y videos que se proyectarán en vivo en las pantallas del evento.
+      <h2 style="font-family:var(--font-display); font-size:clamp(1.8rem, 4.5vw, 2.8rem); margin-bottom:1rem; text-transform:uppercase; letter-spacing:0.1em;">
+        Galería Colectiva en Tiempo Real
+      </h2>
+      <p style="max-width:640px; margin:0 auto 2.5rem; color:#D6D0C5; font-size:1.05rem; line-height:1.75;">
+        Durante la recepción en Sunset Monalisa, aproxima tu smartphone a los identificadores NFC en tu mesa para subir fotografías y deseos en directo. Tus tomas se proyectarán al instante en las pantallas monumentales de la fiesta.
       </p>
-      <button class="btn-white" onclick="alert('Simulación de carga de fotos para el Live Event de Camila & Sebastián.')">Probar Carga de Fotos →</button>
+
+      <div style="display:flex; justify-content:center; gap:1.2rem; flex-wrap:wrap;">
+        <button class="btn-editorial" onclick="simulateLiveUpload()">
+          Probar Simulador de Carga en Vivo 📸
+        </button>
+        <button class="btn-editorial" style="background:transparent; color:#FFF; border-color:rgba(255,255,255,0.4);" onclick="showToast('Modo transmisión en vivo activo con 142 invitados conectados.')">
+          Ver Muro en Pantalla Completa 📺
+        </button>
+      </div>
+
+      <!-- Feed simulation preview -->
+      <div id="liveFeedPreview" style="display:none; margin-top:3rem; padding:2rem; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.15); text-align:left;">
+        <p style="font-size:0.68rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--accent-gold); margin-bottom:0.8rem;">
+          ✦ Foto proyectada con éxito en las pantallas de Sunset Monalisa
+        </p>
+        <p style="color:#FFF; font-size:0.95rem;">
+          "¡Muchas felicidades a Camila y Sebastián desde la mesa 2! El atardecer más hermoso de Baja California Sur."
+        </p>
+      </div>
     </div>
   </section>
 
-  <!-- Smart RSVP -->
-  <section class="content-sec" id="rsvp" style="text-align:center;">
-    <h2 style="font-family:var(--font-display); font-size:2.4rem; margin-bottom:1rem;">RSVP</h2>
-    <p style="color:var(--muted); margin-bottom:2rem;">Favor de confirmar antes del 1 de Octubre</p>
-    <div style="max-width:520px; margin:0 auto; background:#FFF; padding:2.5rem; border:1px solid rgba(0,0,0,0.08);">
-      <input type="text" placeholder="Ingresa tu nombre completo..." style="width:100%; padding:1rem; border:1px solid #CCC; font-family:var(--font-body); font-size:0.95rem; margin-bottom:1.5rem;">
-      <button class="btn-white" style="background:#111; color:#FFF; width:100%;" onclick="alert('Confirmación simulada en demo editorial.')">Confirmar Invitación →</button>
+  <!-- Hospedaje & Convenios -->
+  <section class="section" id="hospedaje" style="background:#EFECE4; max-width:100%; padding-left:2rem; padding-right:2rem;">
+    <div style="max-width:1040px; margin:0 auto;">
+      <h2 class="section-title">Hospedaje &amp; Logística</h2>
+      <p class="section-subtitle">Tarifas Preferenciales en Hoteles Sede</p>
+      <p style="max-width:580px; margin:0 auto 3rem; text-align:center; color:var(--muted); font-size:1.05rem;">
+        Hemos coordinado tarifas especiales para nuestros invitados con transportación privada incluida entre los hoteles sede y los recintos del enlace:
+      </p>
+
+      <div class="hotels-grid">
+        <div class="hotel-card">
+          <span class="hotel-code-badge">Código: CAMSEB26</span>
+          <h3 style="font-family:var(--font-display); font-size:1.6rem; margin-bottom:0.8rem;">The Cape, a Thompson Hotel</h3>
+          <p style="color:var(--muted); font-size:0.95rem; line-height:1.7; margin-bottom:1.5rem;">
+            20% de descuento en habitaciones y suites con vista directa al monumento natural del Arco. Hotel sede oficial.
+          </p>
+          <a href="https://maps.google.com" target="_blank" rel="noopener" class="btn-editorial-dark" style="width:100%; font-size:0.65rem;">
+            Reservar con Código ↗
+          </a>
+        </div>
+
+        <div class="hotel-card">
+          <span class="hotel-code-badge">Código: DESTINATION-WED</span>
+          <h3 style="font-family:var(--font-display); font-size:1.6rem; margin-bottom:0.8rem;">Esperanza, Auberge Resorts</h3>
+          <p style="color:var(--muted); font-size:0.95rem; line-height:1.7; margin-bottom:1.5rem;">
+            Tarifa grupal convenio de ultra lujo sobre los riscos de Punta Ballena, a 7 minutos de la recepción.
+          </p>
+          <a href="https://maps.google.com" target="_blank" rel="noopener" class="btn-editorial-dark" style="width:100%; font-size:0.65rem;">
+            Reservar con Código ↗
+          </a>
+        </div>
+      </div>
     </div>
   </section>
 
+  <!-- Mesa de Regalos & Fondo de Luna de Miel -->
+  <section class="section" id="regalos">
+    <h2 class="section-title">Mesa de Regalos</h2>
+    <p class="section-subtitle">Fondo de Luna de Miel &amp; Deseos</p>
+    <p style="max-width:580px; margin:0 auto 3rem; text-align:center; color:var(--muted); font-size:1.05rem;">
+      Su compañía en Los Cabos es el honor más grande para nosotros. Si desean tener una cortesía para nuestro viaje de bodas o nuestro nuevo hogar:
+    </p>
+
+    <div class="gifts-grid">
+      <div class="gift-box">
+        <h3 style="font-family:var(--font-display); font-size:1.5rem; margin-bottom:0.5rem;">Fondo de Luna de Miel</h3>
+        <p style="color:var(--muted); font-size:0.95rem; margin-bottom:0.8rem;">Banco Santander (SPEI)</p>
+        <p style="font-family:monospace; font-size:1.05rem; background:#F4F1EA; padding:0.6rem; margin-bottom:1.5rem; font-weight:bold; letter-spacing:0.05em;">
+          014180293847561928
+        </p>
+        <button class="btn-editorial-dark" style="width:100%; font-size:0.65rem;" onclick="copyClabe('014180293847561928')">
+          Copiar CLABE en 1 Clic 📋
+        </button>
+      </div>
+
+      <div class="gift-box">
+        <h3 style="font-family:var(--font-display); font-size:1.5rem; margin-bottom:0.5rem;">Amazon Wedding Registry</h3>
+        <p style="color:var(--muted); font-size:0.95rem; margin-bottom:0.8rem;">Lista Oficial de Bodas</p>
+        <p style="font-size:0.95rem; color:var(--muted); margin-bottom:1.5rem;">
+          Mesa: <strong>Camila &amp; Sebastián Cabo</strong>
+        </p>
+        <a href="https://www.amazon.com.mx" target="_blank" rel="noopener" class="btn-editorial-dark" style="width:100%; font-size:0.65rem;">
+          Ir a Mesa en Amazon ↗
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Smart RSVP Interactivo -->
+  <section class="section" id="rsvp" style="background:#EFECE4; max-width:100%; padding-left:2rem; padding-right:2rem;">
+    <div style="max-width:740px; margin:0 auto;">
+      <h2 class="section-title">Smart RSVP</h2>
+      <p class="section-subtitle">Confirmación Exclusiva de Asistencia</p>
+      <p style="text-align:center; color:var(--muted); font-size:1.05rem; margin-bottom:2.5rem;">
+        Rogamos confirmar su presencia antes del <strong>1 de Octubre de 2026</strong> para la adecuada asignación de lugares y logística de destino.
+      </p>
+
+      <div class="rsvp-container">
+        <label style="display:block; font-size:0.68rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--accent-gold); font-weight:700; margin-bottom:0.6rem;">
+          Buscador de Invitados (Escribe tu Nombre o Apellido):
+        </label>
+        <input type="text" id="editorialSearch" class="rsvp-input" placeholder="Ej. Patricio Sada, Renata Lozano, Mendoza..." autocomplete="off">
+        <button class="btn-editorial-dark" id="btnSearchEditorial" style="width:100%;">
+          Buscar Mi Invitación →
+        </button>
+
+        <div id="editorialResult" class="rsvp-result-box">
+          <p style="font-size:0.68rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--accent-gold); font-weight:700; margin-bottom:0.4rem;">
+            ✦ Pase Localizado en Lista Oficial (#CAM-2026)
+          </p>
+          <h3 style="font-family:var(--font-display); font-size:1.7rem; margin-bottom:0.4rem;" id="resEdName">
+            Patricio Sada &amp; Acompañante
+          </h3>
+          <p style="color:var(--muted); font-size:0.95rem; margin-bottom:1.5rem;">
+            Pases asignados: <strong id="resEdPasses">2 Adultos</strong> • Mesa: <strong>Mesa VIP Acantilado</strong>
+          </p>
+
+          <label style="display:block; font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; font-weight:600; margin-bottom:0.5rem;">
+            ¿Asistirás a la boda?
+          </label>
+          <select style="width:100%; padding:0.9rem; font-family:var(--font-body); font-size:0.95rem; border:1px solid var(--border); background:#FFF; margin-bottom:1.2rem;">
+            <option>¡Sí, asistiremos con gusto! (Todos los pases)</option>
+            <option>Solo asistirá 1 persona</option>
+            <option>Lamentablemente no podremos acompañarlos</option>
+          </select>
+
+          <label style="display:block; font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; font-weight:600; margin-bottom:0.5rem;">
+            Restricciones alimenticias o alergias:
+          </label>
+          <input type="text" placeholder="Ej. Mariscos, vegetariano, alergia a frutos secos..." class="rsvp-input" style="padding:0.9rem; margin-bottom:1.2rem;">
+
+          <label style="display:block; font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; font-weight:600; margin-bottom:0.5rem;">
+            ¿Qué canción no puede faltar en el After Party?
+          </label>
+          <input type="text" placeholder="Artista y título de la canción para el DJ..." class="rsvp-input" style="padding:0.9rem; margin-bottom:1.5rem;">
+
+          <button class="btn-editorial-dark" style="width:100%;" onclick="confirmEditorialRSVP()">
+            Enviar Confirmación Definitiva →
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
   <footer>
-    <p>CELEBRATION • Colección Editorial Vanguardia</p>
+    <div class="footer-brand">CELEBRATION</div>
+    <p style="font-size:0.75rem; letter-spacing:0.28em; text-transform:uppercase; color:#AAA; margin-bottom:2rem;">
+      Colección Vanguardia Editorial &amp; Live Event • Demo #CAM-2026
+    </p>
+    <div style="display:flex; justify-content:center; gap:1.5rem; flex-wrap:wrap;">
+      <a href="index.html" class="btn-editorial" style="background:#FFF; color:#111;">
+        Diseñar Sitio con CELEBRATION →
+      </a>
+      <a href="demo-romantico.html" class="btn-editorial" style="background:transparent; color:#FFF; border-color:rgba(255,255,255,0.4);">
+        Ver Demo Romántica
+      </a>
+      <a href="demo-clasico.html" class="btn-editorial" style="background:transparent; color:#FFF; border-color:rgba(255,255,255,0.4);">
+        Ver Demo Clásica
+      </a>
+    </div>
   </footer>
 
+  <!-- Floating Toast Message -->
+  <div id="toastMsg" class="toast-msg">Mensaje copiado</div>
+
+  <!-- Scripts -->
+  <script>
+    // Live countdown to Oct 24, 2026 (Los Cabos Ceremony)
+    const targetDate = new Date('2026-10-24T16:00:00').getTime();
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const diff = targetDate - now;
+      if (diff > 0) {
+        document.getElementById('dDays').textContent = Math.floor(diff / (1000 * 60 * 60 * 24));
+        document.getElementById('dHours').textContent = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+        document.getElementById('dMins').textContent = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+        document.getElementById('dSecs').textContent = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
+      }
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // Toast Utility
+    function showToast(text) {
+      const toast = document.getElementById('toastMsg');
+      toast.textContent = text;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3500);
+    }
+
+    // 1-Click CLABE Copy
+    function copyClabe(clabe) {
+      navigator.clipboard.writeText(clabe).then(() => {
+        showToast('✓ CLABE copiada al portapapeles: ' + clabe);
+      }).catch(() => {
+        prompt('Copia tu CLABE manualmente:', clabe);
+      });
+    }
+
+    // Smart RSVP Interactive Lookup grounded on CAM-2026
+    document.getElementById('btnSearchEditorial').addEventListener('click', () => {
+      const inputVal = document.getElementById('editorialSearch').value.trim();
+      const resBox = document.getElementById('editorialResult');
+      
+      if (inputVal) {
+        document.getElementById('resEdName').textContent = inputVal;
+        document.getElementById('resEdPasses').textContent = inputVal.toLowerCase().includes('renata') ? '1 Adulto' : '2 Adultos';
+      } else {
+        document.getElementById('resEdName').textContent = 'Patricio Sada & Acompañante';
+      }
+      resBox.style.display = 'block';
+      resBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+
+    function confirmEditorialRSVP() {
+      showToast('✓ ¡Confirmación registrada con éxito en el sistema CELEBRATION!');
+      setTimeout(() => {
+        alert('¡Gracias! Su confirmación de asistencia ha sido registrada en el sistema exclusivo de Camila & Sebastián (#CAM-2026).');
+      }, 500);
+    }
+
+    function simulateLiveUpload() {
+      const preview = document.getElementById('liveFeedPreview');
+      preview.style.display = 'block';
+      preview.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      showToast('📸 Foto simulada cargada exitosamente a la pantalla colectiva');
+    }
+  </script>
+
+  <!-- Concierge AI Module -->
+  <script type="module" src="concierge-ai.js"></script>
 </body>
 </html>
