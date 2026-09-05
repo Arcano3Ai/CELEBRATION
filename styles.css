@@ -1112,6 +1112,171 @@ header.site-header.scrolled {
   color: var(--taupe);
 }
 
+/* ── ENTREGA & META INFORMACIÓN EN TARJETAS ── */
+.srv-delivery-meta {
+  font-family: var(--font-sans);
+  font-size: 0.64rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-top: 0.35rem;
+}
+
+/* ── ADD-ONS Y POLÍTICAS DE PAGO (CATÁLOGO OFICIAL) ── */
+.pricing-extras-section {
+  max-width: var(--max-w);
+  margin: 3.5rem auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.pricing-extras-header {
+  text-align: center;
+}
+
+.pricing-extras-sub {
+  font-family: var(--font-sans);
+  font-size: 0.64rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+.pricing-extras-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.45rem, 3vw, 1.85rem);
+  font-weight: 400;
+  color: var(--text);
+  line-height: 1.25;
+}
+
+.addons-grid-4 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.2rem;
+}
+
+@media (min-width: 640px) {
+  .addons-grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .addons-grid-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.addon-card-box {
+  background: var(--card-bg);
+  border: 1px solid var(--border-card);
+  border-radius: 4px;
+  padding: 1.4rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.addon-card-box:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(36, 33, 29, 0.07);
+  border-color: rgba(197, 160, 89, 0.4);
+}
+
+.addon-card-top {
+  margin-bottom: 0.8rem;
+}
+
+.addon-card-title {
+  font-family: var(--font-serif);
+  font-size: 1.08rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0.35rem;
+  line-height: 1.25;
+}
+
+.addon-card-desc {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.addon-card-price {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text);
+  border-top: 1px solid var(--border-sub);
+  padding-top: 0.6rem;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.addon-card-unit {
+  font-family: var(--font-sans);
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+/* ── FORMAS DE PAGO Y GARANTÍAS ── */
+.payment-policies-card {
+  background: #f0ece3;
+  border: 1px solid var(--border-card);
+  border-radius: 4px;
+  padding: 2rem 2.2rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.8rem;
+}
+
+@media (min-width: 768px) {
+  .payment-policies-card {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.policy-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.policy-badge {
+  font-family: var(--font-sans);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.policy-title {
+  font-family: var(--font-serif);
+  font-size: 1.18rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.policy-desc {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
 /* ── TIMELINE "¿CUÁNDO EMPEZAR?" ── */
 .tl-header {
   text-align: center;

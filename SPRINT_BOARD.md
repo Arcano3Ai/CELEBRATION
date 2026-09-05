@@ -31,6 +31,7 @@
 | **CEL-19** | Reestructuración de Tarifas y Colecciones Iniciales | Copy + Brand + UI/UX | ✅ Completado | Documentación y estructura base de colecciones de alta costura. |
 | **CEL-20** | Calibración Sampetrina SPGG ($11,900 / $14,900 / $19,900 MXN) & Pulido Mobile | UI/UX + Frontend + QA | ✅ Completado | Tarifas elevadas para San Pedro Garza García, entregables reales (El Palacio de Hierro, Tiffany, Live Event Stream, tarjetas NFC), corrección de overflow en banner Bespoke y overlay de menú móvil z-index 101. |
 | **CEL-24** | Armonización Editorial de "Colecciones & Precios" y Enlaces Globales | UI/UX + Frontend + QA | ✅ Completado | Restauración del diseño limpio de 3 tarjetas de lujo, banner Bespoke sin intrusiones, sincronización de enlaces en Hero (`#servicios`), Navbars y anclas duales (`#servicios` y `#paquetes`), con 0 errores de consola y verificación visual aprobada. |
+| **CEL-25** | Integración del Catálogo Oficial en Colecciones & Precios | UI/UX + Copy + Frontend | ✅ Completado | Despliegue de plazos de entrega, entregables reales de `CATALOGO_PAQUETES_Y_PRECIOS.md`, banner Bespoke ($28,000+ MXN), grid de 4 Add-ons oficiales ($950, $650, $1,800, $990) y bloque de Políticas de Pago & Garantías (50/50, SPEI/Stripe, 3 rondas). |
 
 ---
 
