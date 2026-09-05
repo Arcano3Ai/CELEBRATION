@@ -28,13 +28,14 @@
 | **CEL-16** | Concierge AI & Event Database Engine | Logic + Concierge | ✅ Completado | `concierge-db.js`, `concierge-ai.js`, `concierge-ai.css` con folios `#VAL-2026`, `#ISA-2026`, `#CAM-2026`. |
 | **CEL-17** | 3 Demos de Alta Costura Completos con Tri-Demo Switcher | UI/UX + Frontend + QA | ✅ Completado | Romántico, Clásico y Editorial 100% interactivos con countdown, mapas, RSVP predictivo y simulación Live Event. |
 | **CEL-18** | Arquitectura PWA & Optimización Nativa iOS / Android | Frontend + DevOps | ✅ Completado | `manifest.webmanifest`, `sw.js` offline caching, safe-area insets (`--sat`, `--sab`), touch targets 44px, banner Android y modal guía iOS Safari. |
-| **CEL-19** | Reestructuración de Tarifas y Colecciones ($7,900 / $11,900 / $14,900 MXN) | Copy + Brand + UI/UX | ✅ Completado | Signature ($7.9k), Destination ($11.9k), Grand Luxe NFC ($14.9k) y Atelier Bespoke con entregables reales documentados en web, catálogo y concierge. |
+| **CEL-19** | Reestructuración de Tarifas y Colecciones Iniciales | Copy + Brand + UI/UX | ✅ Completado | Documentación y estructura base de colecciones de alta costura. |
+| **CEL-20** | Calibración Sampetrina SPGG ($11,900 / $14,900 / $19,900 MXN) & Pulido Mobile | UI/UX + Frontend + QA | ✅ Completado | Tarifas elevadas para San Pedro Garza García, entregables reales (El Palacio de Hierro, Tiffany, Live Event Stream, tarjetas NFC), corrección de overflow en banner Bespoke y overlay de menú móvil z-index 101. |
 
 ---
 
 ## 🔮 Backlog de Próximos Sprints (Por Demanda)
 
-- [ ] **CEL-20 (Generador de Códigos QR & Tarjetas NFC para Mesas):** Script para maquetar tarjetas de mesa listas para imprenta con folio único.
-- [ ] **CEL-21 (Integración Stripe Checkout):** Botón de pago en línea directo para anticipos de 50%.
-- [ ] **CEL-22 (Exportador Excel/CSV de Smart RSVP):** Descarga de lista de invitados con confirmaciones para Wedding Planners.
+- [ ] **CEL-21 (Generador de Códigos QR & Tarjetas NFC para Mesas):** Script para maquetar tarjetas de mesa listas para imprenta con folio único.
+- [ ] **CEL-22 (Integración Stripe Checkout):** Botón de pago en línea directo para anticipos de 50%.
+- [ ] **CEL-23 (Exportador Excel/CSV de Smart RSVP):** Descarga de lista de invitados con confirmaciones para Wedding Planners.
 
