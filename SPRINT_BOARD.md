@@ -30,6 +30,7 @@
 | **CEL-18** | Arquitectura PWA & Optimización Nativa iOS / Android | Frontend + DevOps | ✅ Completado | `manifest.webmanifest`, `sw.js` offline caching, safe-area insets (`--sat`, `--sab`), touch targets 44px, banner Android y modal guía iOS Safari. |
 | **CEL-19** | Reestructuración de Tarifas y Colecciones Iniciales | Copy + Brand + UI/UX | ✅ Completado | Documentación y estructura base de colecciones de alta costura. |
 | **CEL-20** | Calibración Sampetrina SPGG ($11,900 / $14,900 / $19,900 MXN) & Pulido Mobile | UI/UX + Frontend + QA | ✅ Completado | Tarifas elevadas para San Pedro Garza García, entregables reales (El Palacio de Hierro, Tiffany, Live Event Stream, tarjetas NFC), corrección de overflow en banner Bespoke y overlay de menú móvil z-index 101. |
+| **CEL-24** | Armonización Editorial de "Colecciones & Precios" y Enlaces Globales | UI/UX + Frontend + QA | ✅ Completado | Restauración del diseño limpio de 3 tarjetas de lujo, banner Bespoke sin intrusiones, sincronización de enlaces en Hero (`#servicios`), Navbars y anclas duales (`#servicios` y `#paquetes`), con 0 errores de consola y verificación visual aprobada. |
 
 ---
 
