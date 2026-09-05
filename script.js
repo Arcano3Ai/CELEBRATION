@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initReviewsCarousel();
   initFaqAccordion();
   initShareExperience();
+  initPwa();
 });
 
 /* --------------------------------------------------------------------------
@@ -374,4 +375,114 @@ function showToastFeedback(msg) {
   setTimeout(() => {
     toast.classList.remove('show');
   }, 3500);
+}
+
+/* --------------------------------------------------------------------------
+   9. PWA Installation & Service Worker Integration (Android & iOS)
+   -------------------------------------------------------------------------- */
+function initPwa() {
+  // 1. Registro de Service Worker para caché offline y rendimiento ultrarrápido
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./sw.js')
+        .then((registration) => {
+          console.log('[CELEBRATION PWA] Service Worker activo:', registration.scope);
+        })
+        .catch((error) => {
+          console.warn('[CELEBRATION PWA] Error al registrar SW:', error);
+        });
+    });
+  }
+
+  const pwaBanner = document.getElementById('pwaBanner');
+  const pwaInstallBtn = document.getElementById('pwaInstallBtn');
+  const pwaCloseBtn = document.getElementById('pwaCloseBtn');
+  const pwaIosModal = document.getElementById('pwaIosModal');
+  const pwaIosClose = document.getElementById('pwaIosClose');
+
+  if (!pwaBanner || !pwaInstallBtn) return;
+
+  const isIos = /iphone|ipad|ipod/.test(window.navigator.userAgent.toLowerCase());
+  const isStandalone = window.navigator.standalone || window.matchMedia('(display-mode: standalone)').matches;
+  const isDismissed = localStorage.getItem('celebration_pwa_dismissed');
+
+  // Si ya está ejecutándose como PWA standalone o fue cerrada recientemente, no insistir
+  if (isStandalone) return;
+  if (isDismissed && Date.now() - parseInt(isDismissed, 10) < 7 * 24 * 60 * 60 * 1000) return;
+
+  let deferredPrompt = null;
+
+  // Android, Chrome y Edge: Evento nativo beforeinstallprompt
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+
+    // Mostrar el banner discretamente tras 3.5 segundos de navegación fluida
+    setTimeout(() => {
+      pwaBanner.classList.add('show');
+      pwaBanner.setAttribute('aria-hidden', 'false');
+    }, 3500);
+  });
+
+  // iOS Safari: Mostrar tras 4.5 segundos si no está instalada
+  if (isIos && !isStandalone) {
+    setTimeout(() => {
+      pwaBanner.classList.add('show');
+      pwaBanner.setAttribute('aria-hidden', 'false');
+    }, 4500);
+  }
+
+  // Clic en botón "Instalar App"
+  pwaInstallBtn.addEventListener('click', async () => {
+    if (deferredPrompt) {
+      // Disparador nativo de Android
+      pwaBanner.classList.remove('show');
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      console.log('[CELEBRATION PWA] Elección del usuario:', outcome);
+      deferredPrompt = null;
+    } else if (isIos) {
+      // Desplegar guía de iOS Safari
+      pwaBanner.classList.remove('show');
+      if (pwaIosModal) {
+        pwaIosModal.classList.add('open');
+        pwaIosModal.setAttribute('aria-hidden', 'false');
+      }
+    } else {
+      showToastFeedback('✦ Para instalar, selecciona "Instalar aplicación" en el menú de tu navegador');
+      pwaBanner.classList.remove('show');
+    }
+  });
+
+  // Cerrar banner
+  if (pwaCloseBtn) {
+    pwaCloseBtn.addEventListener('click', () => {
+      pwaBanner.classList.remove('show');
+      pwaBanner.setAttribute('aria-hidden', 'true');
+      localStorage.setItem('celebration_pwa_dismissed', Date.now().toString());
+    });
+  }
+
+  // Cerrar guía de iOS
+  if (pwaIosClose && pwaIosModal) {
+    pwaIosClose.addEventListener('click', () => {
+      pwaIosModal.classList.remove('open');
+      pwaIosModal.setAttribute('aria-hidden', 'true');
+      localStorage.setItem('celebration_pwa_dismissed', Date.now().toString());
+    });
+
+    pwaIosModal.addEventListener('click', (e) => {
+      if (e.target === pwaIosModal) {
+        pwaIosModal.classList.remove('open');
+        pwaIosModal.setAttribute('aria-hidden', 'true');
+      }
+    });
+  }
+
+  // Notificación tras instalación exitosa
+  window.addEventListener('appinstalled', () => {
+    console.log('[CELEBRATION PWA] Aplicación instalada exitosamente');
+    pwaBanner.classList.remove('show');
+    showToastFeedback('✓ ¡CELEBRATION agregada a tu pantalla de inicio!');
+  });
 }

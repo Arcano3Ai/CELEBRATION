@@ -2,7 +2,7 @@
 <html lang="es-MX">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>CELEBRATION — Sitios Web de Lujo e Invitaciones Inteligentes para Bodas</title>
   <meta name="description" content="Diseños 100% personalizados para su boda. Sitios web editoriales, Smart RSVP y tarjetas inteligentes con todo lo que sus invitados necesitan.">
 
@@ -44,6 +44,21 @@
 
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="concierge-ai.css">
+
+  <!-- PWA & Mobile Web App Manifest -->
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#12100e" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f4f1ea" media="(prefers-color-scheme: light)">
+  
+  <!-- iOS & Android Native Web App Optimization -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="CELEBRATION">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/icons/icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="64x64" href="assets/icons/favicon-64x64.png">
+  <meta name="format-detection" content="telephone=no">
 </head>
 <body>
 
@@ -156,7 +171,7 @@
           <div class="inc-wrap">
             <h3 class="inc-heading">Todo lo que incluye su invitación web</h3>
             <p class="inc-sub">Una invitación 100% personalizada con dominio propio incluido.</p>
-            <p class="inc-price"><span class="inc-price-from">Desde</span> $1,890 MXN</p>
+            <p class="inc-price"><span class="inc-price-from">Desde</span> $7,900 MXN</p>
             <ul class="inc-list">
               <li>Dominio web propio incluido (ej. <em>mariaymateo.com</em>)</li>
               <li>Diseño 100% a la medida de su paleta floral y estilo estético</li>
@@ -213,30 +228,108 @@
 
     <!-- SERVICIOS / COLECCIONES -->
     <section class="sec" id="servicios">
-      <h2 class="sc rv">Nuestras Creaciones</h2>
-      <div class="servicios-grid">
+      <div class="tl-header rv">
+        <span style="font-family:var(--font-sans); font-size:0.68rem; letter-spacing:0.32em; text-transform:uppercase; color:var(--gold); font-weight:600; display:block; margin-bottom:0.8rem;">
+          ✦ Tarifas Oficiales Temporada 2026–2027
+        </span>
+        <h2 class="sc" style="margin-bottom:1.2rem;">Nuestras Colecciones</h2>
+        <p class="tl-subtitle">Piezas de alta costura digital con entregables tangibles, hardware físico y tecnología de vanguardia.</p>
+      </div>
+
+      <div class="servicios-grid-3">
+        <!-- TIER 1: SIGNATURE -->
         <div class="srv-card rv d1">
+          <div class="srv-badge-tag">Atelier Essential</div>
           <div class="srv-img-box">
-            <img src="assets/images/mobile_couple_story.jpg" alt="Invitación Web Signature — CELEBRATION" class="srv-img" loading="lazy">
+            <img src="assets/images/mobile_couple_story.jpg" alt="Colección Signature — CELEBRATION" class="srv-img" loading="lazy">
           </div>
           <div class="srv-body">
-            <h3 class="srv-title">Invitación Web Signature</h3>
-            <p class="srv-price">Desde $1,890 MXN</p>
-            <p class="srv-desc">El diseño insignia de CELEBRATION: dominio propio, Smart RSVP, itinerario dinámico, mesa de regalos y ambientación visual a medida.</p>
-            <a href="https://wa.me/5215500000000?text=Hola%20CELEBRATION%2C%20me%20interesa%20la%20Invitaci%C3%B3n%20Web%20Signature" class="srv-link" target="_blank" rel="noopener">Pedir informes →</a>
+            <h3 class="srv-title">Signature</h3>
+            <div class="srv-price-box">
+              <span class="srv-price-curr">$7,900</span>
+              <span class="srv-price-unit">MXN</span>
+            </div>
+            <p class="srv-lead">El estándar editorial por excelencia para enlaces locales que exigen perfección estética y orden absoluto.</p>
+            <ul class="srv-features-list">
+              <li><strong>Dominio web propio (.com / .wedding)</strong> con SSL por 1 año y CDN global ultra veloz</li>
+              <li><strong>Diseño 100% a medida</strong> inspirado en su paleta floral y papelería física</li>
+              <li><strong>Smart RSVP predictivo</strong> con buscador por familia y control estricto de pases</li>
+              <li><strong>Itinerario interactivo</strong> con conexión 1-clic a Google Maps, Apple Maps y Waze</li>
+              <li><strong>Mesa de regalos dual</strong> (CLABE bancaria de 1-clic + Liverpool / Amazon)</li>
+              <li><strong>Pases digitales personalizados</strong> en alta definición para compartir por WhatsApp</li>
+              <li><strong>3 rondas de ajustes</strong> con concierge personal hasta el día de la boda</li>
+            </ul>
+            <a href="https://wa.me/5215500000000?text=Hola%20CELEBRATION%2C%20deseamos%20reservar%20la%20Colecci%C3%B3n%20Signature%20(%247%2C900%20MXN)%20%E2%9C%A8" class="srv-btn" target="_blank" rel="noopener">Reservar Signature →</a>
           </div>
         </div>
 
-        <div class="srv-card rv d2">
+        <!-- TIER 2: DESTINATION & HERITAGE (DESTACADA) -->
+        <div class="srv-card srv-featured rv d2">
+          <div class="srv-badge-tag featured">★ Más Solicitada • Bodas de Destino</div>
           <div class="srv-img-box">
-            <img src="assets/images/reception_party_couple.jpg" alt="Suite Inteligente NFC y Live Event — CELEBRATION" class="srv-img" loading="lazy">
+            <img src="assets/images/hero_wedding_couple.jpg" alt="Colección Destination & Heritage — CELEBRATION" class="srv-img" loading="lazy">
           </div>
           <div class="srv-body">
-            <h3 class="srv-title">Suite NFC & Live Event</h3>
-            <p class="srv-price">Desde $3,490 MXN</p>
-            <p class="srv-desc">La vanguardia experiencial: tarjetas físicas con chip NFC para recepción y mesas, junto a una galería en vivo donde los invitados proyectan sus fotos durante la fiesta.</p>
-            <a href="https://wa.me/5215500000000?text=Hola%20CELEBRATION%2C%20me%20interesa%20la%20Suite%20NFC%20y%20Live%20Event" class="srv-link" target="_blank" rel="noopener">Pedir informes →</a>
+            <h3 class="srv-title">Destination &amp; Heritage</h3>
+            <div class="srv-price-box">
+              <span class="srv-price-curr">$11,900</span>
+              <span class="srv-price-unit">MXN</span>
+            </div>
+            <p class="srv-lead">Diseñada para bodas de destino y fines de semana completos con invitados nacionales e internacionales.</p>
+            <ul class="srv-features-list">
+              <li><strong>Todo lo de la Colección Signature más:</strong></li>
+              <li><strong>Arquitectura Multi-Evento:</strong> Cóctel rompehielos, ceremonia principal y tornaboda o brunch</li>
+              <li><strong>Smart RSVP segmentado:</strong> cada invitado ve y confirma únicamente sus eventos convocados</li>
+              <li><strong>Bilingüe Nativo (Español / Inglés)</strong> con conmutador fluido en un toque</li>
+              <li><strong>Concierge de Destino:</strong> Hoteles en convenio con códigos, rutas de transporte y shuttles</li>
+              <li><strong>Guía local recomendada</strong> por los novios (restaurantes, cafés y spas)</li>
+              <li><strong>Libro de firmas digital</strong> con dedicatorias y fotos de sus seres queridos</li>
+              <li><strong>Música ambiental selecta</strong> integrada con reproductor sutil</li>
+            </ul>
+            <a href="https://wa.me/5215500000000?text=Hola%20CELEBRATION%2C%20deseamos%20reservar%20la%20Colecci%C3%B3n%20Destination%20%26%20Heritage%20(%2411%2C900%20MXN)%20%E2%9C%A8" class="srv-btn featured" target="_blank" rel="noopener">Reservar Destination →</a>
           </div>
+        </div>
+
+        <!-- TIER 3: GRAND LUXE (NFC & LIVE EVENT) -->
+        <div class="srv-card rv d3">
+          <div class="srv-badge-tag">✦ Experiencia Suprema</div>
+          <div class="srv-img-box">
+            <img src="assets/images/reception_party_couple.jpg" alt="Colección Grand Luxe NFC & Live Event — CELEBRATION" class="srv-img" loading="lazy">
+          </div>
+          <div class="srv-body">
+            <h3 class="srv-title">Grand Luxe &amp; Live</h3>
+            <div class="srv-price-box">
+              <span class="srv-price-curr">$14,900</span>
+              <span class="srv-price-unit">MXN</span>
+            </div>
+            <p class="srv-lead">La fusión definitiva del plano digital con la experiencia física e interactiva durante la recepción.</p>
+            <ul class="srv-features-list">
+              <li><strong>Todo lo de la Colección Destination más:</strong></li>
+              <li><strong>Hardware NFC físico:</strong> 1 Tarjeta Maestra en acrílico mate o madera noble grabada para los novios</li>
+              <li><strong>15 a 20 tarjetas de proximidad NFC y QR</strong> de alta costura para centros de mesa del banquete</li>
+              <li><strong>Live Event Photo Stream:</strong> Pantalla interactiva en vivo para proyectar en pantallas gigantes del salón</li>
+              <li><strong>Cero descargas de apps:</strong> los invitados aproximan su teléfono a la mesa y suben fotos en directo</li>
+              <li><strong>Entrega RAW post-evento:</strong> Descarga completa de todas las memorias en alta resolución</li>
+              <li><strong>Guardia Técnica VIP:</strong> Monitoreo remoto prioritario durante las horas del enlace</li>
+            </ul>
+            <a href="https://wa.me/5215500000000?text=Hola%20CELEBRATION%2C%20deseamos%20reservar%20la%20Colecci%C3%B3n%20Grand%20Luxe%20(%2414%2C900%20MXN)%20%E2%9C%A8" class="srv-btn" target="_blank" rel="noopener">Reservar Grand Luxe →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- TIER 4: BESPOKE BANNER -->
+      <div class="srv-bespoke-card rv d1">
+        <div class="srv-bespoke-content">
+          <div class="srv-bespoke-tag">Atelier Bespoke • A la Medida</div>
+          <h3 class="srv-bespoke-title">¿Planeando una boda monumental o festival de varios días?</h3>
+          <p class="srv-bespoke-desc">
+            Para celebraciones de más de 350 invitados, logística de vuelos o charters, plano de asientos interactivo 3D, dominios corporativos dedicados o requerimientos de alta ingeniería digital. Diseñamos una suite tecnológica a la exacta medida de su visión.
+          </p>
+        </div>
+        <div class="srv-bespoke-action">
+          <a href="https://wa.me/5215500000000?text=Hola%20CELEBRATION%2C%20deseamos%20agendar%20una%20sesi%C3%B3n%20para%20un%20proyecto%20Bespoke%20a%20la%20medida%20%E2%9C%A8" class="btn-bespoke" target="_blank" rel="noopener">
+            Consultar con Concierge Senior →
+          </a>
         </div>
       </div>
     </section>
@@ -594,6 +687,21 @@
 
         <div class="faq-item">
           <button class="faq-btn" aria-expanded="false">
+            <span class="faq-q">¿Qué incluye cada colección y cuáles son los precios oficiales?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Manejamos tres colecciones de alta costura con entregables 100% reales:</p>
+            <ul style="margin-top:0.6rem; padding-left:1.2rem; display:flex; flex-direction:column; gap:0.4rem; list-style:disc;">
+              <li><strong>Colección Signature ($7,900 MXN):</strong> Sitio editorial a medida, dominio propio (.com / .wedding) por 1 año, Smart RSVP predictivo por familia, itinerario con GPS, mesa de regalos dual y pases digitales para WhatsApp.</li>
+              <li><strong>Colección Destination &amp; Heritage ($11,900 MXN):</strong> Todo lo anterior más arquitectura multi-evento (rompehielos, ceremonia, tornaboda/brunch), plataforma bilingüe nativa (Español/Inglés), módulo de convenios hoteleros, guía local recomendada y libro de dedicatorias digital.</li>
+              <li><strong>Colección Grand Luxe NFC &amp; Live ($14,900 MXN):</strong> Todo lo de Destination más hardware físico de tarjetas inteligentes NFC (1 Maestra para los novios + 15 a 20 tarjetas de mesa en hot-stamping), pantalla interactiva Live Event para proyectar fotos de los invitados en directo durante la fiesta y guardia técnica VIP.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-btn" aria-expanded="false">
             <span class="faq-q">¿Cuáles son los métodos de pago?</span>
             <span class="faq-icon">+</span>
           </button>
@@ -640,6 +748,52 @@
     </svg>
     <span>WhatsApp Concierge</span>
   </a>
+
+  <!-- PWA INSTALL BANNER (ANDROID & MODERN BROWSERS) -->
+  <aside class="pwa-install-banner" id="pwaBanner" aria-hidden="true" role="dialog" aria-label="Instalar CELEBRATION">
+    <div class="pwa-banner-content">
+      <div class="pwa-banner-icon">
+        <img src="assets/icons/apple-touch-icon-180x180.png" alt="Icono CELEBRATION" width="44" height="44">
+      </div>
+      <div class="pwa-banner-text">
+        <span class="pwa-banner-title">CELEBRATION • Suite Móvil</span>
+        <span class="pwa-banner-desc">Instala la experiencia de alta costura en tu pantalla de inicio para acceso instantáneo.</span>
+      </div>
+    </div>
+    <div class="pwa-banner-actions">
+      <button class="pwa-btn-install" id="pwaInstallBtn">Instalar App</button>
+      <button class="pwa-btn-close" id="pwaCloseBtn" aria-label="Cerrar notificación">✕</button>
+    </div>
+  </aside>
+
+  <!-- PWA IOS INSTALL GUIDE MODAL (SAFARI) -->
+  <div class="pwa-ios-modal" id="pwaIosModal" aria-hidden="true">
+    <div class="pwa-ios-sheet">
+      <button class="pwa-ios-close" id="pwaIosClose" aria-label="Cerrar guía">✕</button>
+      <div class="pwa-ios-header">
+        <img src="assets/icons/apple-touch-icon-180x180.png" alt="CELEBRATION" class="pwa-ios-icon">
+        <div>
+          <h4>Instalar CELEBRATION en iPhone</h4>
+          <p>Disfruta de la suite a pantalla completa sin barras del navegador.</p>
+        </div>
+      </div>
+      <ol class="pwa-ios-steps">
+        <li>
+          <span class="pwa-step-num">1</span>
+          <span>Toca el botón <strong>Compartir</strong> en la barra inferior de Safari:</span>
+          <svg class="pwa-share-svg" viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M16 5l-1.42 1.42-1.59-1.59V16h-1.98V4.83L9.42 6.42 8 5l4-4 4 4zm4 5v11c0 1.1-.9 2-2 2H6c-1.11 0-2-.9-2-2V10c0-1.11.89-2 2-2h3v2H6v11h12V10h-3V8h3c1.1 0 2 .89 2 2z"/></svg>
+        </li>
+        <li>
+          <span class="pwa-step-num">2</span>
+          <span>Desplázate hacia abajo y pulsa <strong>"Añadir a la pantalla de inicio"</strong>.</span>
+        </li>
+        <li>
+          <span class="pwa-step-num">3</span>
+          <span>Toca <strong>Añadir</strong> en la esquina superior derecha.</span>
+        </li>
+      </ol>
+    </div>
+  </div>
 
   <script src="script.js"></script>
   <script type="module" src="concierge-ai.js"></script>
