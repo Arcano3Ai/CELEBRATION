@@ -973,7 +973,8 @@ header.site-header.scrolled {
   font-weight: 500;
 }
 
-.srv-btn {
+.srv-btn,
+.srv-btn-primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -991,19 +992,22 @@ header.site-header.scrolled {
   margin-top: auto;
 }
 
-.srv-btn:hover {
+.srv-btn:hover,
+.srv-btn-primary:hover {
   background: var(--btn-hover);
   transform: translateY(-2px);
   box-shadow: 0 6px 18px rgba(36, 33, 29, 0.18);
 }
 
-.srv-btn.featured {
+.srv-btn.featured,
+.srv-btn-primary.featured {
   background: var(--text);
   color: #FFFFFF;
   border: 1px solid var(--gold);
 }
 
-.srv-btn.featured:hover {
+.srv-btn.featured:hover,
+.srv-btn-primary.featured:hover {
   background: #000;
   box-shadow: 0 8px 24px rgba(197, 160, 89, 0.3);
 }
