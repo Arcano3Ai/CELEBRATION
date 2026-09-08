@@ -4,7 +4,7 @@
  * Provides offline support, caching strategies, and instant load for iOS and Android
  */
 
-const CACHE_NAME = 'celebration-v2.1.0';
+const CACHE_NAME = 'celebration-v2.2.0';
 const STATIC_ASSETS = [
   './',
   './index.html',
