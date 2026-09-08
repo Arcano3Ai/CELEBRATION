@@ -83,7 +83,7 @@ class CelebrationConciergeAI {
 
           <div class="concierge-footer-note">
             <span>¿Deseas hablar con una persona? </span>
-            <a href="https://wa.me/5215500000000?text=Hola%20CELEBRATION%2C%20solicito%20atenci%C3%B3n%20con%20un%20concierge%20humano" target="_blank" rel="noopener">WhatsApp Directo ↗</a>
+            <a href="https://wa.me/528121912778?text=Hola%20CELEBRATION%2C%20solicito%20atenci%C3%B3n%20con%20un%20concierge%20humano" target="_blank" rel="noopener">WhatsApp Directo ↗</a>
           </div>
         </div>
       </div>
@@ -316,7 +316,7 @@ class CelebrationConciergeAI {
     }
 
     // 4. Default intelligent fallback
-    return `Comprendo tu pregunta. Para darte una respuesta precisa:\n\n1. Si deseas información sobre un enlace particular, escribe tu **Folio de evento** (ej. *#VAL-2026*, *#ISA-2026*, *#CAM-2026*) o tu nombre.\n2. Si deseas información sobre nuestros servicios de invitaciones web, puedes preguntarme sobre **paquetes**, **precios**, **tiempos de entrega**, **Smart RSVP** o **tecnología NFC**.\n\nTambién puedes contactar a nuestro equipo por [WhatsApp](https://wa.me/5215500000000) para atención inmediata.`;
+    return `Comprendo tu pregunta. Para darte una respuesta precisa:\n\n1. Si deseas información sobre un enlace particular, escribe tu **Folio de evento** (ej. *#VAL-2026*, *#ISA-2026*, *#CAM-2026*) o tu nombre.\n2. Si deseas información sobre nuestros servicios de invitaciones web, puedes preguntarme sobre **paquetes**, **precios**, **tiempos de entrega**, **Smart RSVP** o **tecnología NFC**.\n\nTambién puedes contactar a nuestro equipo por [WhatsApp](https://wa.me/528121912778) para atención inmediata.`;
   }
 
   renderUserMessage(text) {

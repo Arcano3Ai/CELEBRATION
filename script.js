@@ -497,7 +497,7 @@ function initPwa() {
    ╚══════════════════════════════════════════════════════════════════════╝
 */
 const PAYMENT_CONFIG = {
-  whatsapp: '5218112345678',          // ← REEMPLAZAR: número real sin +, ej. 5218112345678
+  whatsapp: '528121912778',
 
   spei: {
     beneficiary:  'CELEBRATION Atelier (Arcano Solutions)',
