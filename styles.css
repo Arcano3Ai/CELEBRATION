@@ -2400,16 +2400,16 @@ footer.site-footer {
 
 /* ── SOCIAL NETWORKS ICONS HOVER ── */
 .net-icon {
-  color: #cbc3b7;
+  color: #12100e;
   transition: color 0.3s ease, transform 0.3s ease;
   display: inline-flex;
 }
 .net-icon:hover {
   transform: scale(1.15);
 }
-.facebook-icon:hover {
-  color: #1877F2;
+a.facebook-icon:hover {
+  color: #1877F2 !important;
 }
-.instagram-icon:hover {
-  color: #E1306C;
+a.instagram-icon:hover {
+  color: #E1306C !important;
 }
