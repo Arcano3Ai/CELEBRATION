@@ -2398,3 +2398,18 @@ footer.site-footer {
   margin-left: 0.3rem;
 }
 
+/* ── SOCIAL NETWORKS ICONS HOVER ── */
+.net-icon {
+  color: #cbc3b7;
+  transition: color 0.3s ease, transform 0.3s ease;
+  display: inline-flex;
+}
+.net-icon:hover {
+  transform: scale(1.15);
+}
+.facebook-icon:hover {
+  color: #1877F2;
+}
+.instagram-icon:hover {
+  color: #E1306C;
+}
