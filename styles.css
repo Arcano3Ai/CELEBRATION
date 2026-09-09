@@ -2417,3 +2417,724 @@ a.facebook-icon:hover {
 a.instagram-icon:hover {
   color: #E1306C !important;
 }
+
+/* ==========================================================================
+   CHECKOUT MODAL — Pasarela de Pagos Luxury v2.0
+   co-* namespace · Dark overlay · Gold accents
+   ========================================================================== */
+
+/* ── Overlay backdrop ── */
+.co-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  background: rgba(26, 23, 20, 0.78);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.co-overlay.active,
+.co-overlay[aria-hidden="false"] {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* ── Modal container ── */
+.co-modal {
+  --co-ink:    #1a1714;
+  --co-cream:  #faf7f2;
+  --co-gold:   #c5a059;
+  --co-gold-lt:#e8c97a;
+  --co-line:   rgba(197,160,89,0.22);
+  --co-muted:  rgba(250,247,242,0.5);
+  --co-dim:    rgba(250,247,242,0.35);
+  --co-card:   rgba(255,255,255,0.04);
+  --co-radius: 20px;
+
+  background: #1e1b17;
+  border-radius: var(--co-radius);
+  width: 100%;
+  max-width: 960px;
+  max-height: 92dvh;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.55), 0 0 0 1px var(--co-line);
+  scrollbar-width: none;
+  transform: translateY(20px) scale(0.98);
+  transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
+}
+
+.co-overlay.active .co-modal,
+.co-overlay[aria-hidden="false"] .co-modal {
+  transform: translateY(0) scale(1);
+}
+
+.co-modal::-webkit-scrollbar { display: none; }
+
+/* ── Close button ── */
+.co-close {
+  position: absolute;
+  top: 1.1rem;
+  right: 1.1rem;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--co-cream);
+  z-index: 10;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.co-close svg { width: 16px; height: 16px; }
+
+.co-close:hover {
+  background: rgba(255,255,255,0.15);
+  border-color: var(--co-gold);
+}
+
+/* ─────────────────────────────────────────────
+   LEFT PANEL
+───────────────────────────────────────────── */
+.co-left {
+  padding: 2.4rem 2rem 2.4rem 2.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  border-right: 1px solid var(--co-line);
+  background: rgba(255,255,255,0.015);
+}
+
+/* Brand block */
+.co-left-brand { display: flex; flex-direction: column; gap: 0.5rem; }
+
+.co-left-ornament {
+  color: var(--co-gold);
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.co-left-title-sub {
+  font-family: var(--font-sans, 'Raleway', sans-serif);
+  font-size: 0.58rem;
+  letter-spacing: 0.36em;
+  text-transform: uppercase;
+  color: var(--co-gold);
+  font-weight: 600;
+}
+
+.co-left-headline {
+  font-family: var(--font-serif, 'Cormorant Garamond', serif);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 300;
+  line-height: 1.1;
+  color: var(--co-cream);
+  margin-top: 0.2rem;
+}
+
+.co-left-headline em {
+  font-style: italic;
+  color: var(--co-gold);
+}
+
+.co-left-copy {
+  font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.78rem;
+  line-height: 1.7;
+  color: var(--co-muted);
+  max-width: 300px;
+}
+
+/* Package summary card */
+.co-pkg-card {
+  background: var(--co-card);
+  border: 1px solid var(--co-line);
+  border-radius: 14px;
+  padding: 1.3rem 1.4rem;
+}
+
+.co-pkg-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.co-pkg-sub {
+  display: block;
+  font-family: var(--font-sans, 'Raleway', sans-serif);
+  font-size: 0.58rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--co-gold);
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.co-pkg-name {
+  display: block;
+  font-family: var(--font-serif, 'Cormorant Garamond', serif);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--co-cream);
+}
+
+.co-pkg-price-block { text-align: right; }
+
+.co-pkg-total {
+  display: block;
+  font-family: var(--font-serif, 'Cormorant Garamond', serif);
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: var(--co-muted);
+  white-space: nowrap;
+}
+
+.co-pkg-divider {
+  height: 1px;
+  background: var(--co-line);
+  margin: 1rem 0;
+}
+
+/* Payment scheme selector */
+.co-scheme-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.co-scheme-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.8rem 0.95rem;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  cursor: pointer;
+  color: var(--co-cream);
+  width: 100%;
+  text-align: left;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.co-scheme-btn.active {
+  border-color: var(--co-gold);
+  background: rgba(197,160,89,0.08);
+}
+
+.co-scheme-btn:hover:not(.active) {
+  border-color: rgba(255,255,255,0.25);
+}
+
+.co-scheme-radio {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255,255,255,0.3);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.2s;
+}
+
+.co-scheme-btn.active .co-scheme-radio {
+  border-color: var(--co-gold);
+}
+
+.co-scheme-btn.active .co-scheme-radio::after {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--co-gold);
+}
+
+.co-scheme-label {
+  display: block;
+  font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.co-scheme-caption {
+  display: block;
+  font-size: 0.63rem;
+  color: var(--co-dim);
+  margin-top: 0.1rem;
+}
+
+.co-scheme-amount {
+  display: block;
+  font-family: var(--font-serif, 'Cormorant Garamond', serif);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--co-gold);
+  margin-top: 0.15rem;
+}
+
+/* Form */
+.co-form { display: flex; flex-direction: column; gap: 0.85rem; }
+
+.co-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.co-form-field { display: flex; flex-direction: column; }
+
+.co-label {
+  font-family: var(--font-sans, 'Raleway', sans-serif);
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--co-muted);
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+}
+
+.co-input {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 8px;
+  padding: 0.72rem 0.85rem;
+  color: var(--co-cream);
+  font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.8rem;
+  outline: none;
+  transition: border-color 0.2s;
+  width: 100%;
+}
+
+.co-input::placeholder { color: rgba(250,247,242,0.28); }
+.co-input:focus { border-color: var(--co-gold); }
+
+/* Trust strip */
+.co-trust-strip {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.7rem;
+  padding-top: 0.4rem;
+}
+
+.co-trust-item {
+  font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.6rem;
+  color: rgba(250,247,242,0.38);
+  letter-spacing: 0.04em;
+}
+
+.co-trust-sep {
+  color: rgba(250,247,242,0.2);
+  font-size: 0.65rem;
+}
+
+/* ─────────────────────────────────────────────
+   RIGHT PANEL
+───────────────────────────────────────────── */
+.co-right {
+  padding: 2.4rem 2.4rem 2.4rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.co-right-headline {
+  font-family: var(--font-serif, 'Cormorant Garamond', serif);
+  font-size: 1.3rem;
+  font-weight: 300;
+  color: var(--co-cream);
+}
+
+.co-right-sub {
+  font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.75rem;
+  color: var(--co-muted);
+  margin-top: 0.3rem;
+}
+
+.co-pay-amount-hero {
+  font-family: var(--font-serif, 'Cormorant Garamond', serif);
+  font-size: 1.45rem;
+  font-weight: 400;
+  color: var(--co-gold-lt);
+}
+
+/* ── Method accordion card ── */
+.co-method-card {
+  background: rgba(255,255,255,0.025);
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: border-color 0.25s;
+}
+
+.co-method-card.open {
+  border-color: var(--co-gold);
+}
+
+.co-method-toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 1rem 1.1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--co-cream);
+  text-align: left;
+}
+
+.co-method-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.co-method-icon--spei   { background: rgba(0,123,255,0.14); }
+.co-method-icon--mp     { background: rgba(0,158,227,0.14); }
+.co-method-icon--stripe { background: rgba(99,91,255,0.14); }
+
+.co-method-info { flex: 1; min-width: 0; }
+
+.co-method-title {
+  display: block;
+  font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+.co-method-desc {
+  display: block;
+  font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.63rem;
+  color: var(--co-dim);
+  margin-top: 0.12rem;
+}
+
+.co-method-chevron {
+  width: 20px;
+  height: 20px;
+  color: rgba(250,247,242,0.32);
+  transition: transform 0.25s;
+  flex-shrink: 0;
+}
+
+.co-method-chevron svg { width: 20px; height: 20px; }
+
+.co-method-card.open .co-method-chevron {
+  transform: rotate(180deg);
+}
+
+/* Collapsible body */
+.co-method-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s ease;
+}
+
+.co-method-card.open .co-method-body,
+.co-method-body.open {
+  grid-template-rows: 1fr;
+}
+
+/* Border highlight when method body is open (JS adds .open to body, not card) */
+.co-method-body.open {
+  --_parent-border: var(--co-gold);
+}
+
+/* Chevron rotation when JS adds open to body */
+.co-method-body.open ~ * .co-method-chevron,
+.co-method-toggle[aria-expanded="true"] .co-method-chevron {
+  transform: rotate(180deg);
+}
+
+/* Card border gold when open via aria */
+.co-method-card:has(.co-method-body.open),
+.co-method-card:has([aria-expanded="true"]) {
+  border-color: var(--co-gold);
+}
+
+.co-method-body > div {
+  overflow: hidden;
+  padding: 0 1.1rem 1.1rem;
+}
+
+/* ── SPEI bank card ── */
+.co-bank-card {
+  background: linear-gradient(135deg, #1e3a5f 0%, #0d2340 100%);
+  border-radius: 12px;
+  padding: 1.15rem;
+  margin-bottom: 0.85rem;
+}
+
+.co-bank-card-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.85rem;
+}
+
+.co-bank-label {
+  display: block;
+  font-size: 0.56rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.48);
+  margin-bottom: 0.18rem;
+  font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+}
+
+.co-bank-val {
+  display: block;
+  font-size: 0.76rem;
+  font-weight: 500;
+  color: #fff;
+  font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+}
+
+.co-bank-clabe-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.85rem;
+}
+
+.co-bank-clabe {
+  font-family: 'Courier New', monospace;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.06em;
+}
+
+.co-btn-copy-clabe {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.38rem 0.7rem;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 6px;
+  font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.co-btn-copy-clabe svg { width: 12px; height: 12px; }
+.co-btn-copy-clabe:hover { background: rgba(255,255,255,0.22); }
+
+.co-bank-bottom-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.co-bank-amount {
+  display: block;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #fff;
+  font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+}
+
+.co-bank-concept {
+  display: block;
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.6);
+  font-family: 'Courier New', monospace;
+}
+
+/* ── Gateway cards (MP / Stripe) ── */
+.co-gateway-card {
+  border-radius: 10px;
+  padding: 0.95rem 1.05rem;
+  margin-bottom: 0.85rem;
+}
+
+.co-gateway-card--mp {
+  background: linear-gradient(135deg, #009ee3 0%, #0069a3 100%);
+}
+
+.co-gateway-card--stripe {
+  background: linear-gradient(135deg, #635bff 0%, #3730d4 100%);
+}
+
+.co-gateway-badges {
+  display: flex;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.45rem;
+}
+
+.co-badge {
+  font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.56rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.22rem 0.5rem;
+  border-radius: 4px;
+  color: #fff;
+  background: rgba(255,255,255,0.2);
+}
+
+.co-badge-msi {
+  font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.56rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.22rem 0.5rem;
+  border-radius: 4px;
+  color: #fff;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+.co-gateway-desc {
+  font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.68rem;
+  color: rgba(255,255,255,0.72);
+  margin-bottom: 0.65rem;
+}
+
+.co-gateway-amount {
+  font-family: var(--font-serif, 'Cormorant Garamond', serif);
+  font-size: 1.45rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+/* ── CTA Buttons ── */
+.co-btn-wa,
+.co-btn-mp,
+.co-btn-stripe {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  width: 100%;
+  padding: 0.85rem;
+  border-radius: 10px;
+  color: #fff;
+  font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: filter 0.2s, transform 0.15s;
+}
+
+.co-btn-wa     { background: #25D366; }
+.co-btn-mp     { background: #009ee3; }
+.co-btn-stripe { background: #635bff; }
+
+.co-btn-wa:hover,
+.co-btn-mp:hover,
+.co-btn-stripe:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+/* Footer meta */
+.co-footer-meta {
+  font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.6rem;
+  color: rgba(250,247,242,0.28);
+  text-align: center;
+  padding-top: 0.4rem;
+  letter-spacing: 0.04em;
+}
+
+/* ── Scrollbar override inside modal ── */
+.co-modal::-webkit-scrollbar { width: 0; }
+
+/* ── TOAST notification ── */
+.co-toast {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(14px);
+  background: #2a2520;
+  border: 1px solid var(--co-gold);
+  color: var(--co-cream);
+  font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.74rem;
+  padding: 0.65rem 1.35rem;
+  border-radius: 50px;
+  opacity: 0;
+  transition: opacity 0.3s, transform 0.3s;
+  z-index: 9999;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.co-toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ── RESPONSIVE — mobile full-screen modal ── */
+@media (max-width: 768px) {
+  .co-modal {
+    grid-template-columns: 1fr;
+    max-height: 96dvh;
+    border-radius: 16px 16px 0 0;
+    align-self: flex-end;
+    margin-top: auto;
+    max-width: 100%;
+  }
+
+  .co-overlay {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .co-left {
+    padding: 1.8rem 1.4rem 1.2rem;
+    border-right: none;
+    border-bottom: 1px solid var(--co-line);
+  }
+
+  .co-right {
+    padding: 1.4rem 1.4rem 2rem;
+  }
+
+  .co-left-headline { font-size: 2rem; }
+
+  .co-form-row { grid-template-columns: 1fr; }
+}
+
