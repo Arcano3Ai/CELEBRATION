@@ -1646,8 +1646,21 @@
     document.getElementById('btnExportCsv').addEventListener('click', exportToCSV);
     document.getElementById('btnPrintReport').addEventListener('click', () => window.print());
 
+    // Auto-sync when RSVP is submitted in demo or storage changes
+    window.addEventListener('storage', (e) => {
+      if (e.key === getStorageKey(currentFolio)) {
+        loadEvent(currentFolio);
+        showToast('✦ Datos de invitados sincronizados en tiempo real');
+      }
+    });
+
+    window.addEventListener('focus', () => {
+      loadEvent(currentFolio);
+    });
+
     // Init
     loadEvent('VAL-2026');
   </script>
 </body>
 </html>
+

@@ -1,0 +1,202 @@
+/**
+ * CELEBRATION — Smart RSVP Predictive Autocomplete & Sync Styles
+ * Luxury editorial styling adaptable to Romantic, Classic, and Editorial themes
+ */
+
+.smart-rsvp-wrap {
+  position: relative;
+  width: 100%;
+}
+
+.smart-rsvp-input-box {
+  position: relative;
+  width: 100%;
+}
+
+/* Predictive Dropdown */
+.smart-rsvp-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background: #FFFFFF;
+  border: 1px solid rgba(197, 160, 89, 0.4);
+  border-radius: 8px;
+  box-shadow: 0 16px 36px rgba(26, 23, 20, 0.15);
+  max-height: 280px;
+  overflow-y: auto;
+  z-index: 100;
+  display: none;
+  animation: rsvpFadeDown 0.2s ease-out;
+}
+
+.smart-rsvp-dropdown.show {
+  display: block;
+}
+
+@keyframes rsvpFadeDown {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.smart-rsvp-dropdown-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.85rem 1.1rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  transition: background 0.15s ease;
+  text-align: left;
+}
+
+.smart-rsvp-dropdown-item:last-child {
+  border-bottom: none;
+}
+
+.smart-rsvp-dropdown-item:hover,
+.smart-rsvp-dropdown-item.selected {
+  background: rgba(197, 160, 89, 0.08);
+}
+
+.smart-rsvp-item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.smart-rsvp-item-name {
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #1a1714;
+}
+
+.smart-rsvp-item-sub {
+  font-size: 0.72rem;
+  color: #7a7268;
+}
+
+.smart-rsvp-item-badges {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.smart-rsvp-badge-passes {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.2rem 0.55rem;
+  border-radius: 50px;
+  background: rgba(197, 160, 89, 0.15);
+  color: #8c6d2d;
+  letter-spacing: 0.04em;
+}
+
+.smart-rsvp-badge-table {
+  font-size: 0.65rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  background: #f0ece1;
+  color: #554e44;
+}
+
+/* Dark Theme overrides for Clásico */
+.dark-theme .smart-rsvp-dropdown {
+  background: #1f1c18;
+  border-color: rgba(197, 160, 89, 0.35);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6);
+}
+
+.dark-theme .smart-rsvp-dropdown-item {
+  border-bottom-color: rgba(255, 255, 255, 0.06);
+}
+
+.dark-theme .smart-rsvp-dropdown-item:hover {
+  background: rgba(197, 160, 89, 0.14);
+}
+
+.dark-theme .smart-rsvp-item-name {
+  color: #FAF7F2;
+}
+
+.dark-theme .smart-rsvp-item-sub {
+  color: rgba(250, 247, 242, 0.6);
+}
+
+.dark-theme .smart-rsvp-badge-passes {
+  background: rgba(197, 160, 89, 0.2);
+  color: #e8c97a;
+}
+
+.dark-theme .smart-rsvp-badge-table {
+  background: #2b2722;
+  color: #FAF7F2;
+}
+
+/* Confirmation Success Box */
+.smart-rsvp-success {
+  background: linear-gradient(135deg, rgba(197, 160, 89, 0.06) 0%, rgba(255, 255, 255, 0.8) 100%);
+  border: 1px solid rgba(197, 160, 89, 0.4);
+  border-radius: 12px;
+  padding: 2.2rem 1.8rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  animation: rsvpFadeDown 0.35s ease;
+}
+
+.dark-theme .smart-rsvp-success {
+  background: linear-gradient(135deg, rgba(197, 160, 89, 0.1) 0%, rgba(31, 28, 24, 0.95) 100%);
+  border-color: rgba(197, 160, 89, 0.4);
+}
+
+.smart-rsvp-success-seal {
+  font-size: 2.2rem;
+  color: #C5A059;
+  line-height: 1;
+  margin-bottom: 0.2rem;
+}
+
+.smart-rsvp-success-title {
+  font-family: inherit;
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: inherit;
+}
+
+.smart-rsvp-success-body {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  max-width: 460px;
+  opacity: 0.85;
+}
+
+.smart-rsvp-success-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+.smart-rsvp-btn-modify {
+  background: transparent;
+  border: 1px solid currentColor;
+  opacity: 0.65;
+  color: inherit;
+  padding: 0.4rem 0.9rem;
+  border-radius: 50px;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-top: 0.6rem;
+  transition: opacity 0.2s;
+}
+
+.smart-rsvp-btn-modify:hover {
+  opacity: 1;
+}

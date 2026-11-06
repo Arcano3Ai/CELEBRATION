@@ -27,6 +27,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Pinyon+Script&family=Raleway:wght@300;400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="concierge-ai.css">
+  <link rel="stylesheet" href="smart-rsvp.css">
+  <link rel="stylesheet" href="guestbook.css">
 
   <style>
     :root {
@@ -644,34 +646,21 @@
   <!-- Smart RSVP Demo Interactivo -->
   <section class="section" id="rsvp">
     <h2 class="sec-title">Confirmar Asistencia</h2>
-    <p class="sec-subtitle">Smart RSVP • Escribe tu nombre</p>
+    <p class="sec-subtitle">Smart RSVP • Empieza a escribir tu nombre</p>
 
     <div class="rsvp-box">
-      <div class="rsvp-input-group">
+      <div class="rsvp-input-group" style="position:relative;">
         <label class="rsvp-label" for="guestSearch">Busca tu nombre o el de tu familia:</label>
-        <input type="text" id="guestSearch" class="rsvp-input" placeholder="Ej. Mariana Garza, Sofia Benavides, Carlos..." autocomplete="off">
+        <input type="text" id="guestSearch" class="rsvp-input" placeholder="Ej. Mariana Garza, Alejandro, Sofia, Carlos..." autocomplete="off">
+        <div id="rsvpDropdown" class="smart-rsvp-dropdown"></div>
       </div>
-      <button class="btn-rsvp" id="btnSearchGuest">Buscar mi invitación →</button>
 
-      <div class="rsvp-result-card" id="rsvpResult">
-        <p style="font-family:var(--font-sans); font-size:0.75rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--rose); margin-bottom:0.5rem;">✦ Invitación Verificada</p>
-        <h4 style="font-size:1.5rem; margin-bottom:0.3rem;" id="resGuestName">Mariana Garza</h4>
-        <p style="color:var(--muted); font-size:0.95rem; margin-bottom:1rem;">Pases asignados: <strong id="resPasses">2 Adultos</strong> • Mesa asignada: <strong>Mesa 4</strong></p>
-        
-        <label style="font-family:var(--font-sans); font-size:0.65rem; letter-spacing:0.15em; text-transform:uppercase; display:block; margin-bottom:0.4rem;">Confirmación de Asistencia:</label>
-        <select style="width:100%; padding:0.8rem; font-family:var(--font-serif); font-size:1.05rem; margin-bottom:1rem; border:1px solid var(--border); background:#FFF;">
-          <option>¡Sí, asistiremos con alegría! (Todos los pases)</option>
-          <option>Solo asistirá 1 persona</option>
-          <option>Lo sentimos, no podremos asistir</option>
-        </select>
-
-        <label style="font-family:var(--font-sans); font-size:0.65rem; letter-spacing:0.15em; text-transform:uppercase; display:block; margin-bottom:0.4rem;">Alergias o Requerimientos de Menú:</label>
-        <input type="text" placeholder="Ej. Vegetariano, celiaquía, alergia a nueces..." style="width:100%; padding:0.8rem; font-family:var(--font-serif); font-size:1rem; border:1px solid var(--border); margin-bottom:1.2rem;">
-
-        <button class="btn-rsvp" onclick="alert('¡Confirmación registrada con éxito en el sistema Smart RSVP para Valentina y Mateo!')">Confirmar Asistencia Definitiva →</button>
-      </div>
+      <div class="rsvp-result-card" id="rsvpResult"></div>
     </div>
   </section>
+
+  <!-- Libro de Firmas Digital -->
+  <div id="guestbookSection"></div>
 
   <!-- Mesa de Regalos -->
   <section class="section" id="regalos" style="background:var(--cream-alt); max-width:100%; padding-left:2rem; padding-right:2rem;">
@@ -726,18 +715,27 @@
     setInterval(tick, 1000);
     tick();
 
-    // Guest search simulation grounded on CONCIERGE_EVENTS_DB
-    document.getElementById('btnSearchGuest').addEventListener('click', () => {
-      const val = document.getElementById('guestSearch').value.trim();
-      const res = document.getElementById('rsvpResult');
-      if (val) {
-        document.getElementById('resGuestName').textContent = val;
-        document.getElementById('resPasses').textContent = val.toLowerCase().includes('sofia') ? '1 Adulto' : '2 Adultos';
-      } else {
-        document.getElementById('resGuestName').textContent = 'Mariana Garza & Acompañante';
-      }
-      res.style.display = 'block';
-      res.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  </script>
+
+  <!-- Smart RSVP Engine & Digital Guestbook Modules -->
+  <script type="module">
+    import { SmartRSVPEngine } from './smart-rsvp.js';
+    import { DigitalGuestbook } from './guestbook.js';
+
+    // Initialize Smart RSVP with Autocomplete & Bi-directional Storage Sync
+    new SmartRSVPEngine({
+      folio: 'VAL-2026',
+      inputId: 'guestSearch',
+      dropdownId: 'rsvpDropdown',
+      resultBoxId: 'rsvpResult',
+      theme: 'light'
+    });
+
+    // Initialize Digital Guestbook
+    new DigitalGuestbook({
+      folio: 'VAL-2026',
+      containerId: 'guestbookSection',
+      theme: 'light'
     });
   </script>
 

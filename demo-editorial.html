@@ -27,6 +27,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Pinyon+Script&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="concierge-ai.css">
+  <link rel="stylesheet" href="smart-rsvp.css">
+  <link rel="stylesheet" href="guestbook.css">
 
   <style>
     :root {
@@ -809,50 +811,20 @@
 
       <div class="rsvp-container">
         <label style="display:block; font-size:0.68rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--accent-gold); font-weight:700; margin-bottom:0.6rem;">
-          Buscador de Invitados (Escribe tu Nombre o Apellido):
+          Buscador Predictivo de Invitados (Escribe tu Nombre o Apellido):
         </label>
-        <input type="text" id="editorialSearch" class="rsvp-input" placeholder="Ej. Patricio Sada, Renata Lozano, Mendoza..." autocomplete="off">
-        <button class="btn-editorial-dark" id="btnSearchEditorial" style="width:100%;">
-          Buscar Mi Invitación →
-        </button>
-
-        <div id="editorialResult" class="rsvp-result-box">
-          <p style="font-size:0.68rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--accent-gold); font-weight:700; margin-bottom:0.4rem;">
-            ✦ Pase Localizado en Lista Oficial (#CAM-2026)
-          </p>
-          <h3 style="font-family:var(--font-display); font-size:1.7rem; margin-bottom:0.4rem;" id="resEdName">
-            Patricio Sada &amp; Acompañante
-          </h3>
-          <p style="color:var(--muted); font-size:0.95rem; margin-bottom:1.5rem;">
-            Pases asignados: <strong id="resEdPasses">2 Adultos</strong> • Mesa: <strong>Mesa VIP Acantilado</strong>
-          </p>
-
-          <label style="display:block; font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; font-weight:600; margin-bottom:0.5rem;">
-            ¿Asistirás a la boda?
-          </label>
-          <select style="width:100%; padding:0.9rem; font-family:var(--font-body); font-size:0.95rem; border:1px solid var(--border); background:#FFF; margin-bottom:1.2rem;">
-            <option>¡Sí, asistiremos con gusto! (Todos los pases)</option>
-            <option>Solo asistirá 1 persona</option>
-            <option>Lamentablemente no podremos acompañarlos</option>
-          </select>
-
-          <label style="display:block; font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; font-weight:600; margin-bottom:0.5rem;">
-            Restricciones alimenticias o alergias:
-          </label>
-          <input type="text" placeholder="Ej. Mariscos, vegetariano, alergia a frutos secos..." class="rsvp-input" style="padding:0.9rem; margin-bottom:1.2rem;">
-
-          <label style="display:block; font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; font-weight:600; margin-bottom:0.5rem;">
-            ¿Qué canción no puede faltar en el After Party?
-          </label>
-          <input type="text" placeholder="Artista y título de la canción para el DJ..." class="rsvp-input" style="padding:0.9rem; margin-bottom:1.5rem;">
-
-          <button class="btn-editorial-dark" style="width:100%;" onclick="confirmEditorialRSVP()">
-            Enviar Confirmación Definitiva →
-          </button>
+        <div class="smart-rsvp-wrap" style="position:relative; margin-bottom:1.2rem;">
+          <input type="text" id="editorialSearch" class="rsvp-input" placeholder="Ej. Patricio Sada, Renata Lozano, Mauricio..." autocomplete="off">
+          <div id="editorialDropdown" class="smart-rsvp-dropdown"></div>
         </div>
+
+        <div id="editorialResult" class="rsvp-result-box" style="display:none;"></div>
       </div>
     </div>
   </section>
+
+  <!-- Libro de Firmas Digital -->
+  <div id="guestbookSection"></div>
 
   <!-- Footer -->
   <footer>
@@ -912,28 +884,6 @@
       });
     }
 
-    // Smart RSVP Interactive Lookup grounded on CAM-2026
-    document.getElementById('btnSearchEditorial').addEventListener('click', () => {
-      const inputVal = document.getElementById('editorialSearch').value.trim();
-      const resBox = document.getElementById('editorialResult');
-      
-      if (inputVal) {
-        document.getElementById('resEdName').textContent = inputVal;
-        document.getElementById('resEdPasses').textContent = inputVal.toLowerCase().includes('renata') ? '1 Adulto' : '2 Adultos';
-      } else {
-        document.getElementById('resEdName').textContent = 'Patricio Sada & Acompañante';
-      }
-      resBox.style.display = 'block';
-      resBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    });
-
-    function confirmEditorialRSVP() {
-      showToast('✓ ¡Confirmación registrada con éxito en el sistema CELEBRATION!');
-      setTimeout(() => {
-        alert('¡Gracias! Su confirmación de asistencia ha sido registrada en el sistema exclusivo de Camila & Sebastián (#CAM-2026).');
-      }, 500);
-    }
-
     function simulateLiveUpload() {
       const preview = document.getElementById('liveFeedPreview');
       preview.style.display = 'block';
@@ -959,6 +909,28 @@
       document.querySelectorAll('.reveal').forEach(el => {
         revealObserver.observe(el);
       });
+    });
+  </script>
+
+  <!-- Smart RSVP Engine & Digital Guestbook Modules -->
+  <script type="module">
+    import { SmartRSVPEngine } from './smart-rsvp.js';
+    import { DigitalGuestbook } from './guestbook.js';
+
+    // Initialize Smart RSVP with Autocomplete & Bi-directional Storage Sync
+    new SmartRSVPEngine({
+      folio: 'CAM-2026',
+      inputId: 'editorialSearch',
+      dropdownId: 'editorialDropdown',
+      resultBoxId: 'editorialResult',
+      theme: 'light'
+    });
+
+    // Initialize Digital Guestbook
+    new DigitalGuestbook({
+      folio: 'CAM-2026',
+      containerId: 'guestbookSection',
+      theme: 'light'
     });
   </script>
 

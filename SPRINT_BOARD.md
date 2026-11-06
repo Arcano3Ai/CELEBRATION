@@ -37,11 +37,14 @@
 | **CEL-23** | Portal Wedding Planner & Novios: Smart RSVP Manager & Exportador Excel/CSV | Frontend + UI/UX + QA | ✅ Completado | `planner.html` con KPIs de confirmación, métricas de dietas/alergias y shuttle, tabla reactiva con edición/eliminación, persistencia en `localStorage`, y exportador a Excel (CSV con UTF-8 BOM RFC 4180). |
 | **CEL-21** | Generador de Tarjetas de Mesa Físicas con Código QR & Folio Print-Ready | UI/UX + Frontend | ✅ Completado | Pestaña editorial en `planner.html` con maquetación de tarjetas para centros de mesa, código QR vectorial SVG, monograma de novios y modo de impresión `@media print`. |
 
+| **CEL-26** | Buscador Predictivo Autocomplete en Demos & Sincronización RSVP | Logic + Frontend + QA | ✅ Completado | `smart-rsvp.js` y `smart-rsvp.css` con dropdown predictivo instantáneo as-you-type en los 3 demos (`demo-romantico.html`, `demo-clasico.html`, `demo-editorial.html`), asignación estricta de pases, mesa, requerimientos de banquete, transporte y sincronización bi-direccional en tiempo real con `planner.html`. |
+| **CEL-27** | Módulo de Libro de Firmas Digital (Digital Guestbook) | Frontend + UI/UX | ✅ Completado | `guestbook.js` y `guestbook.css` con muro de dedicatorias conmemorativas por folio (#VAL-2026, #ISA-2026, #CAM-2026), modal de firma en vivo, persistencia local y estética editorial en tarjetas de ultra lujo. |
+
 ---
 
 ## 🔮 Backlog de Próximos Sprints (Por Demanda)
 
-- [ ] **CEL-26 (Buscador Predictivo Autocomplete en Demos):** Integrar el motor de búsqueda en tiempo real de invitados de `concierge-db.js` directamente en el formulario RSVP de los 3 demos (`demo-romantico.html`, `demo-clasico.html`, `demo-editorial.html`).
-- [ ] **CEL-27 (Módulo de Libro de Firmas Digital):** Muro interactivo para que invitados dejen mensajes y fotografías conmemorativas desde su teléfono.
 - [ ] **CEL-28 (Integración de Webhook / Backend para Notificaciones WhatsApp/Email):** Envío automático de confirmaciones vía Twilio / SendGrid / Supabase.
+- [ ] **CEL-29 (Pantalla Live Event Interactiva en Tiempo Real):** Muro interactivo full-screen para proyección en proyectores/pantallas LED de salón durante la recepción de boda con fotos de invitados.
+- [ ] **CEL-30 (Generador de PDF de Pases VIP Digitales para WhatsApp):** Creación dinámica de pases digitales descargables en imagen/PDF personalizados para enviar a cada familia.
 

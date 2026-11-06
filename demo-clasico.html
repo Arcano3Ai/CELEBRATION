@@ -27,6 +27,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Raleway:wght@300;400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="concierge-ai.css">
+  <link rel="stylesheet" href="smart-rsvp.css">
+  <link rel="stylesheet" href="guestbook.css">
 
   <style>
     :root {
@@ -495,18 +497,18 @@
       </p>
 
       <div class="rsvp-box">
-        <input type="text" id="guestInputClasico" class="rsvp-input" placeholder="Escriba su nombre o apellido (ej. Fernando Treviño)...">
-        <button class="btn-gold" style="width:100%;" id="btnSearchClasico">Localizar Mi Pase →</button>
-
-        <div id="resultClasico" style="display:none; margin-top:2rem; padding:1.5rem; background:var(--bg); border:1px solid var(--gold); text-align:left;">
-          <p style="font-family:var(--font-sans); font-size:0.68rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:0.4rem;">Pase Localizado</p>
-          <h4 style="font-family:var(--font-classic); font-size:1.4rem; margin-bottom:0.3rem;" id="nameClasico">Familia Treviño</h4>
-          <p style="color:var(--muted); font-size:0.95rem; margin-bottom:1rem;">Pases reservados: <strong>2 Lugares</strong> • Mesa: <strong>Mesa 1</strong></p>
-          <button class="btn-gold" style="width:100%;" onclick="alert('Asistencia confirmada con éxito para la boda de Isabella & Santiago.')">Confirmar Asistencia →</button>
+        <div class="smart-rsvp-wrap" style="position:relative; margin-bottom:1rem;">
+          <input type="text" id="guestInputClasico" class="rsvp-input" placeholder="Escriba su nombre o apellido (ej. Fernando Treviño, Lucía, Creel)..." autocomplete="off">
+          <div id="dropdownClasico" class="smart-rsvp-dropdown"></div>
         </div>
+
+        <div id="resultClasico" style="display:none; margin-top:1.5rem; text-align:left;"></div>
       </div>
     </div>
   </section>
+
+  <!-- Libro de Firmas Digital -->
+  <div id="guestbookSection"></div>
 
   <!-- Footer -->
   <footer>
@@ -531,13 +533,27 @@
     setInterval(tick, 1000);
     tick();
 
-    document.getElementById('btnSearchClasico').addEventListener('click', () => {
-      const val = document.getElementById('guestInputClasico').value.trim();
-      const box = document.getElementById('resultClasico');
-      if (val) {
-        document.getElementById('nameClasico').textContent = val;
-      }
-      box.style.display = 'block';
+  </script>
+
+  <!-- Smart RSVP Engine & Digital Guestbook Modules -->
+  <script type="module">
+    import { SmartRSVPEngine } from './smart-rsvp.js';
+    import { DigitalGuestbook } from './guestbook.js';
+
+    // Initialize Smart RSVP with Autocomplete & Bi-directional Storage Sync
+    new SmartRSVPEngine({
+      folio: 'ISA-2026',
+      inputId: 'guestInputClasico',
+      dropdownId: 'dropdownClasico',
+      resultBoxId: 'resultClasico',
+      theme: 'light'
+    });
+
+    // Initialize Digital Guestbook
+    new DigitalGuestbook({
+      folio: 'ISA-2026',
+      containerId: 'guestbookSection',
+      theme: 'light'
     });
   </script>
 
