@@ -33,11 +33,15 @@
 | **CEL-24** | Armonización Editorial de "Colecciones & Precios" y Enlaces Globales | UI/UX + Frontend + QA | ✅ Completado | Restauración del diseño limpio de 3 tarjetas de lujo, banner Bespoke sin intrusiones, sincronización de enlaces en Hero (`#servicios`), Navbars y anclas duales (`#servicios` y `#paquetes`), con 0 errores de consola y verificación visual aprobada. |
 | **CEL-25** | Integración del Catálogo Oficial en Colecciones & Precios | UI/UX + Copy + Frontend | ✅ Completado | Despliegue de plazos de entrega, entregables reales de `CATALOGO_PAQUETES_Y_PRECIOS.md`, banner Bespoke ($28,000+ MXN), grid de 4 Add-ons oficiales ($950, $650, $1,800, $990) y bloque de Políticas de Pago & Garantías (50/50, SPEI/Stripe, 3 rondas). |
 
+| **CEL-22** | Pasarela de Reservación Standalone & Checkout Multicanal | Frontend + UI/UX | ✅ Completado | `checkout.html` dedicado con desglose de paquetes ($11,900 / $14,900 / $19,900 MXN), selector de anticipo 50% vs 100%, transferencia SPEI con copiado en 1 clic de CLABE, comprobante automático a WhatsApp y enlaces Stripe / Mercado Pago. |
+| **CEL-23** | Portal Wedding Planner & Novios: Smart RSVP Manager & Exportador Excel/CSV | Frontend + UI/UX + QA | ✅ Completado | `planner.html` con KPIs de confirmación, métricas de dietas/alergias y shuttle, tabla reactiva con edición/eliminación, persistencia en `localStorage`, y exportador a Excel (CSV con UTF-8 BOM RFC 4180). |
+| **CEL-21** | Generador de Tarjetas de Mesa Físicas con Código QR & Folio Print-Ready | UI/UX + Frontend | ✅ Completado | Pestaña editorial en `planner.html` con maquetación de tarjetas para centros de mesa, código QR vectorial SVG, monograma de novios y modo de impresión `@media print`. |
+
 ---
 
 ## 🔮 Backlog de Próximos Sprints (Por Demanda)
 
-- [ ] **CEL-21 (Generador de Códigos QR & Tarjetas NFC para Mesas):** Script para maquetar tarjetas de mesa listas para imprenta con folio único.
-- [ ] **CEL-22 (Integración Stripe Checkout):** Botón de pago en línea directo para anticipos de 50%.
-- [ ] **CEL-23 (Exportador Excel/CSV de Smart RSVP):** Descarga de lista de invitados con confirmaciones para Wedding Planners.
+- [ ] **CEL-26 (Buscador Predictivo Autocomplete en Demos):** Integrar el motor de búsqueda en tiempo real de invitados de `concierge-db.js` directamente en el formulario RSVP de los 3 demos (`demo-romantico.html`, `demo-clasico.html`, `demo-editorial.html`).
+- [ ] **CEL-27 (Módulo de Libro de Firmas Digital):** Muro interactivo para que invitados dejen mensajes y fotografías conmemorativas desde su teléfono.
+- [ ] **CEL-28 (Integración de Webhook / Backend para Notificaciones WhatsApp/Email):** Envío automático de confirmaciones vía Twilio / SendGrid / Supabase.
 

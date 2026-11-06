@@ -38,10 +38,16 @@ export const CONCIERGE_EVENTS_DB = {
       { name: "Casa de Sierra Nevada (Belmond)", discountCode: "VALMATEO", rate: "Tarifa especial para invitados" }
     ],
     guests: [
-      { name: "Mariana Garza", passes: 2, family: "Familia Garza Morales", confirmed: true, table: "Mesa 4" },
-      { name: "Alejandro Morales", passes: 2, family: "Familia Morales", confirmed: true, table: "Mesa 4" },
-      { name: "Sofia Benavides", passes: 1, family: "Sofia Benavides", confirmed: false, table: "Mesa 8" },
-      { name: "Carlos Villarreal", passes: 2, family: "Familia Villarreal", confirmed: true, table: "Mesa 2" }
+      { name: "Mariana Garza", passes: 2, family: "Familia Garza Morales", confirmed: true, table: "Mesa 4", dietary: "Ninguna", shuttle: true, phone: "81 8345 9201" },
+      { name: "Alejandro Morales", passes: 2, family: "Familia Morales", confirmed: true, table: "Mesa 4", dietary: "Sin Gluten / Celíaco", shuttle: true, phone: "81 1204 8831" },
+      { name: "Sofia Benavides", passes: 1, family: "Sofia Benavides", confirmed: null, table: "Mesa 8", dietary: "Vegetariano", shuttle: false, phone: "81 9923 1049" },
+      { name: "Carlos Villarreal", passes: 2, family: "Familia Villarreal Cantú", confirmed: true, table: "Mesa 2", dietary: "Ninguna", shuttle: true, phone: "81 3302 9182" },
+      { name: "Luciana Zambrano", passes: 2, family: "Familia Zambrano", confirmed: true, table: "Mesa 1", dietary: "Alergia a Mariscos", shuttle: false, phone: "81 7712 3902" },
+      { name: "Rodrigo Elizondo", passes: 2, family: "Familia Elizondo", confirmed: null, table: "Mesa 3", dietary: "Ninguna", shuttle: true, phone: "81 4492 8821" },
+      { name: "Paulina Sada", passes: 1, family: "Paulina Sada", confirmed: false, table: "Sin Asignar", dietary: "Vegano", shuttle: false, phone: "81 5501 2940" },
+      { name: "Andrés Clariond", passes: 2, family: "Familia Clariond", confirmed: true, table: "Mesa 2", dietary: "Ninguna", shuttle: true, phone: "81 8820 4410" },
+      { name: "Camila Junco", passes: 2, family: "Familia Junco", confirmed: true, table: "Mesa 5", dietary: "Alergia a Frutos Secos", shuttle: true, phone: "81 6639 1042" },
+      { name: "Diego Santos", passes: 1, family: "Diego Santos", confirmed: null, table: "Mesa 7", dietary: "Ninguna", shuttle: false, phone: "81 7730 4912" }
     ]
   },
 
@@ -78,8 +84,12 @@ export const CONCIERGE_EVENTS_DB = {
       { name: "Downtown México", discountCode: "CELEBRATION-ISA", rate: "Convenio especial Centro Histórico" }
     ],
     guests: [
-      { name: "Fernando Treviño", passes: 2, family: "Familia Treviño", confirmed: true, table: "Mesa 1" },
-      { name: "Lucía Domínguez", passes: 2, family: "Familia Domínguez", confirmed: false, table: "Mesa 6" }
+      { name: "Fernando Treviño", passes: 2, family: "Familia Treviño", confirmed: true, table: "Mesa 1", dietary: "Ninguna", shuttle: false, phone: "55 1290 4811" },
+      { name: "Lucía Domínguez", passes: 2, family: "Familia Domínguez", confirmed: null, table: "Mesa 6", dietary: "Vegetariano", shuttle: true, phone: "55 8820 1933" },
+      { name: "Santiago Creel Jr.", passes: 2, family: "Familia Creel", confirmed: true, table: "Mesa 1", dietary: "Ninguna", shuttle: false, phone: "55 4910 2039" },
+      { name: "Valeria Romero", passes: 1, family: "Valeria Romero", confirmed: true, table: "Mesa 4", dietary: "Sin Gluten / Celíaco", shuttle: true, phone: "55 6602 1890" },
+      { name: "Mateo Carvajal", passes: 2, family: "Familia Carvajal", confirmed: false, table: "Sin Asignar", dietary: "Ninguna", shuttle: false, phone: "55 7710 3982" },
+      { name: "Renata Coppel", passes: 2, family: "Familia Coppel", confirmed: true, table: "Mesa 3", dietary: "Alergia a Mariscos", shuttle: true, phone: "55 3301 9840" }
     ]
   },
 
@@ -115,8 +125,11 @@ export const CONCIERGE_EVENTS_DB = {
       { name: "Esperanza, Auberge Resorts", discountCode: "DESTINATION-WED", rate: "Tarifa grupal convenio" }
     ],
     guests: [
-      { name: "Patricio Sada", passes: 2, family: "Familia Sada", confirmed: true, table: "Mesa VIP" },
-      { name: "Renata Lozano", passes: 1, family: "Renata Lozano", confirmed: true, table: "Mesa 3" }
+      { name: "Patricio Sada", passes: 2, family: "Familia Sada", confirmed: true, table: "Mesa VIP", dietary: "Ninguna", shuttle: true, phone: "624 102 9384" },
+      { name: "Renata Lozano", passes: 1, family: "Renata Lozano", confirmed: true, table: "Mesa 3", dietary: "Vegano", shuttle: true, phone: "624 883 1920" },
+      { name: "Mauricio Fernández", passes: 2, family: "Familia Fernández", confirmed: true, table: "Mesa VIP", dietary: "Ninguna", shuttle: false, phone: "624 559 1029" },
+      { name: "Regina Garza Lagüera", passes: 2, family: "Familia Garza Lagüera", confirmed: null, table: "Mesa 2", dietary: "Sin Gluten / Celíaco", shuttle: true, phone: "624 771 9028" },
+      { name: "Emilio Azcárraga", passes: 2, family: "Familia Azcárraga", confirmed: true, table: "Mesa VIP", dietary: "Ninguna", shuttle: false, phone: "624 330 1829" }
     ]
   }
 };

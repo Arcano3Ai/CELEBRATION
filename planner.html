@@ -1,0 +1,1653 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Portal Wedding Planner &amp; Smart RSVP — CELEBRATION</title>
+  <meta name="description" content="Panel privado de gestión de confirmaciones, asignación de mesas, restricciones de banquete y exportación a Excel para parejas y wedding planners.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="assets/icons/favicon-64x64.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --gold: #C5A059;
+      --gold-lt: #e8c97a;
+      --cream: #FAF7F2;
+      --cream-muted: rgba(250, 247, 242, 0.65);
+      --ink: #141210;
+      --ink-card: #1f1c18;
+      --ink-soft: #2b2722;
+      --line: rgba(197, 160, 89, 0.22);
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Inter', system-ui, sans-serif;
+      --r: 14px;
+      --green: #2ecc71;
+      --amber: #f39c12;
+      --red: #e74c3c;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans);
+      background: var(--ink);
+      color: var(--cream);
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* TOPBAR */
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.8rem;
+      border-bottom: 1px solid var(--line);
+      background: rgba(20, 18, 16, 0.95);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cream-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .back:hover { color: var(--gold); }
+    .brand-box {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .brand-tag {
+      font-size: 0.65rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+    }
+    .brand-pill {
+      font-size: 0.6rem;
+      padding: 0.25rem 0.55rem;
+      border-radius: 50px;
+      background: rgba(197, 160, 89, 0.12);
+      border: 1px solid var(--line);
+      color: var(--gold-lt);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    .event-select-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .event-select {
+      background: var(--ink-card);
+      border: 1px solid var(--line);
+      color: var(--cream);
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      padding: 0.45rem 0.9rem;
+      border-radius: 8px;
+      outline: none;
+      cursor: pointer;
+    }
+    .event-select:focus { border-color: var(--gold); }
+
+    /* LAYOUT WRAPPER */
+    .wrap {
+      max-width: 1280px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+      flex: 1;
+    }
+
+    /* HERO BANNER */
+    .hero-banner {
+      background: linear-gradient(135deg, rgba(31, 28, 24, 0.9) 0%, rgba(20, 18, 16, 0.95) 100%);
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      padding: 1.8rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-banner::after {
+      content: '✦';
+      position: absolute;
+      right: 20px;
+      top: -20px;
+      font-size: 8rem;
+      color: rgba(197, 160, 89, 0.03);
+      font-family: var(--font-serif);
+      pointer-events: none;
+    }
+    .hero-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    .hero-eyebrow {
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 3.8vw, 3rem);
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--cream);
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold);
+    }
+    .hero-details {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem 1.4rem;
+      font-size: 0.78rem;
+      color: var(--cream-muted);
+      margin-top: 0.4rem;
+    }
+    .hero-details span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 0.7rem;
+      flex-wrap: wrap;
+    }
+
+    /* BUTTONS */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.65rem 1.1rem;
+      border-radius: 8px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      border: 1px solid transparent;
+      outline: none;
+    }
+    .btn-gold {
+      background: var(--gold);
+      color: var(--ink);
+    }
+    .btn-gold:hover {
+      background: var(--gold-lt);
+      transform: translateY(-1px);
+    }
+    .btn-outline {
+      background: transparent;
+      border-color: var(--line);
+      color: var(--cream);
+    }
+    .btn-outline:hover {
+      border-color: var(--gold);
+      background: rgba(197, 160, 89, 0.08);
+      color: var(--gold-lt);
+    }
+    .btn-success {
+      background: #1e7e34;
+      color: #fff;
+    }
+    .btn-success:hover {
+      background: #28a745;
+      transform: translateY(-1px);
+    }
+
+    /* KPIS GRID */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 1rem;
+    }
+    .kpi-card {
+      background: var(--ink-card);
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      padding: 1.2rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      position: relative;
+    }
+    .kpi-title {
+      font-size: 0.65rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--cream-muted);
+      font-weight: 500;
+    }
+    .kpi-val {
+      font-family: var(--font-serif);
+      font-size: 2.2rem;
+      font-weight: 400;
+      color: var(--cream);
+      line-height: 1;
+    }
+    .kpi-sub {
+      font-size: 0.68rem;
+      color: var(--cream-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .kpi-bar {
+      width: 100%;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: 0.4rem;
+    }
+    .kpi-bar-fill {
+      height: 100%;
+      background: var(--gold);
+      border-radius: 4px;
+      transition: width 0.4s ease;
+    }
+
+    /* VIEW TABS */
+    .view-tabs {
+      display: flex;
+      gap: 0.5rem;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 0.6rem;
+      overflow-x: auto;
+    }
+    .tab-btn {
+      background: transparent;
+      border: none;
+      color: var(--cream-muted);
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      padding: 0.5rem 0.9rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .tab-btn:hover { color: var(--gold); }
+    .tab-btn.active {
+      background: rgba(197, 160, 89, 0.15);
+      color: var(--gold-lt);
+      border: 1px solid var(--line);
+    }
+
+    /* TOOLBAR */
+    .toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+    .search-box {
+      flex: 1;
+      min-width: 260px;
+      max-width: 450px;
+      position: relative;
+    }
+    .search-input {
+      width: 100%;
+      background: var(--ink-card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 0.65rem 0.9rem 0.65rem 2.2rem;
+      color: var(--cream);
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .search-input:focus { border-color: var(--gold); }
+    .search-icon {
+      position: absolute;
+      left: 0.75rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--cream-muted);
+      width: 14px;
+      height: 14px;
+    }
+    .filter-chips {
+      display: flex;
+      gap: 0.45rem;
+      flex-wrap: wrap;
+    }
+    .chip {
+      background: var(--ink-card);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--cream-muted);
+      font-size: 0.68rem;
+      font-weight: 500;
+      padding: 0.4rem 0.75rem;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .chip:hover { border-color: var(--gold); color: var(--cream); }
+    .chip.active {
+      background: var(--gold);
+      color: var(--ink);
+      border-color: var(--gold);
+      font-weight: 600;
+    }
+
+    /* TABLE SECTION */
+    .table-container {
+      background: var(--ink-card);
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      overflow-x: auto;
+    }
+    .guest-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.8rem;
+    }
+    .guest-table th {
+      padding: 0.9rem 1.1rem;
+      background: rgba(0, 0, 0, 0.25);
+      border-bottom: 1px solid var(--line);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .guest-table td {
+      padding: 0.9rem 1.1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      color: var(--cream);
+      vertical-align: middle;
+    }
+    .guest-table tr:hover td {
+      background: rgba(255, 255, 255, 0.02);
+    }
+    .guest-name-cell {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+    .g-name {
+      font-weight: 600;
+      color: var(--cream);
+    }
+    .g-family {
+      font-size: 0.68rem;
+      color: var(--cream-muted);
+    }
+
+    /* STATUS BADGES */
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.28rem 0.65rem;
+      border-radius: 50px;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      cursor: pointer;
+      user-select: none;
+      transition: transform 0.15s ease;
+      white-space: nowrap;
+    }
+    .status-badge:hover { transform: scale(1.05); }
+    .status-badge.confirmed {
+      background: rgba(46, 204, 113, 0.15);
+      border: 1px solid rgba(46, 204, 113, 0.4);
+      color: #2ecc71;
+    }
+    .status-badge.pending {
+      background: rgba(243, 156, 18, 0.15);
+      border: 1px solid rgba(243, 156, 18, 0.4);
+      color: #f39c12;
+    }
+    .status-badge.declined {
+      background: rgba(231, 76, 60, 0.15);
+      border: 1px solid rgba(231, 76, 60, 0.4);
+      color: #e74c3c;
+    }
+
+    /* TAGS */
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-size: 0.65rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--cream-muted);
+    }
+    .tag-dietary {
+      background: rgba(197, 160, 89, 0.12);
+      border: 1px solid var(--line);
+      color: var(--gold-lt);
+      font-weight: 500;
+    }
+    .tag-shuttle {
+      background: rgba(52, 152, 219, 0.15);
+      border: 1px solid rgba(52, 152, 219, 0.3);
+      color: #3498db;
+    }
+    .passes-badge {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--gold);
+    }
+    .table-badge {
+      display: inline-block;
+      padding: 0.25rem 0.6rem;
+      background: var(--ink-soft);
+      border-radius: 6px;
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--cream);
+    }
+
+    .table-actions {
+      display: flex;
+      gap: 0.4rem;
+    }
+    .action-btn {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--cream-muted);
+      border-radius: 6px;
+      width: 28px;
+      height: 28px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .action-btn:hover {
+      border-color: var(--gold);
+      color: var(--gold-lt);
+    }
+    .action-btn.btn-delete:hover {
+      border-color: var(--red);
+      color: var(--red);
+    }
+
+    /* SEATING VIEW GRID */
+    .seating-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.2rem;
+    }
+    .table-card {
+      background: var(--ink-card);
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      padding: 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+    .table-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 0.6rem;
+    }
+    .table-card-name {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--cream);
+    }
+    .table-card-seats {
+      font-size: 0.68rem;
+      color: var(--gold);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .table-guests-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+    .table-guest-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+      color: var(--cream-muted);
+      padding: 0.35rem 0.5rem;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.02);
+    }
+    .table-guest-item strong {
+      color: var(--cream);
+      font-weight: 500;
+    }
+
+    /* NFC / QR TABLE CARDS PRINT VIEW */
+    .qr-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+    .qr-stationery-card {
+      background: #FAF7F2;
+      color: #1a1714;
+      border-radius: 12px;
+      padding: 2rem 1.8rem;
+      border: 2px solid #C5A059;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+    }
+    .qr-stationery-card::before {
+      content: '';
+      position: absolute;
+      inset: 6px;
+      border: 1px solid rgba(197, 160, 89, 0.45);
+      border-radius: 8px;
+      pointer-events: none;
+    }
+    .qr-monogram {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      color: #C5A059;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.3rem;
+    }
+    .qr-couple {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: #1a1714;
+      margin-bottom: 0.2rem;
+    }
+    .qr-event-date {
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #7a7268;
+      margin-bottom: 1.2rem;
+    }
+    .qr-table-num {
+      font-family: var(--font-serif);
+      font-size: 2.2rem;
+      font-style: italic;
+      color: #C5A059;
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+    .qr-box {
+      width: 140px;
+      height: 140px;
+      background: #fff;
+      padding: 8px;
+      border: 1px solid rgba(197, 160, 89, 0.35);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.8rem;
+    }
+    .qr-box svg {
+      width: 100%;
+      height: 100%;
+    }
+    .qr-instructions {
+      font-size: 0.65rem;
+      color: #4a453e;
+      line-height: 1.4;
+      max-width: 220px;
+      letter-spacing: 0.02em;
+    }
+    .qr-folio-tag {
+      font-family: monospace;
+      font-size: 0.62rem;
+      color: #9c9284;
+      margin-top: 0.6rem;
+      letter-spacing: 0.1em;
+    }
+
+    /* MODAL */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      z-index: 999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+    .modal-backdrop.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .modal-card {
+      background: var(--ink-card);
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      width: 100%;
+      max-width: 520px;
+      padding: 1.8rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+      transform: translateY(20px);
+      transition: transform 0.25s ease;
+    }
+    .modal-backdrop.show .modal-card {
+      transform: translateY(0);
+    }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 0.8rem;
+    }
+    .modal-title {
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--cream);
+    }
+    .modal-close {
+      background: none;
+      border: none;
+      color: var(--cream-muted);
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+    .modal-close:hover { color: var(--gold); }
+    .modal-form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+    .form-group label {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--cream-muted);
+      font-weight: 500;
+    }
+    .form-control {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 8px;
+      padding: 0.65rem 0.85rem;
+      color: var(--cream);
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      outline: none;
+    }
+    .form-control:focus { border-color: var(--gold); }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8rem;
+    }
+
+    /* TOAST */
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: var(--ink-soft);
+      border: 1px solid var(--gold);
+      color: var(--cream);
+      font-size: 0.75rem;
+      padding: 0.7rem 1.4rem;
+      border-radius: 50px;
+      opacity: 0;
+      transition: opacity 0.3s, transform 0.3s;
+      z-index: 1000;
+      pointer-events: none;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    }
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* PRINT STYLES */
+    @media print {
+      body {
+        background: #fff !important;
+        color: #000 !important;
+      }
+      .topbar, .hero-actions, .view-tabs, .toolbar, .table-actions, .modal-backdrop, .toast, #tabQr {
+        display: none !important;
+      }
+      .wrap {
+        padding: 0 !important;
+        max-width: 100% !important;
+      }
+      .hero-banner {
+        background: #fff !important;
+        border: none !important;
+        border-bottom: 2px solid #000 !important;
+        color: #000 !important;
+        padding: 1rem 0 !important;
+      }
+      .hero-title {
+        color: #000 !important;
+        font-size: 2.2rem !important;
+      }
+      .hero-title em { color: #000 !important; }
+      .kpi-card {
+        border: 1px solid #ccc !important;
+        background: #fff !important;
+        color: #000 !important;
+      }
+      .kpi-val { color: #000 !important; }
+      .guest-table {
+        border: 1px solid #000 !important;
+      }
+      .guest-table th {
+        background: #eee !important;
+        color: #000 !important;
+        border: 1px solid #000 !important;
+      }
+      .guest-table td {
+        color: #000 !important;
+        border: 1px solid #ddd !important;
+      }
+      .status-badge {
+        border: 1px solid #000 !important;
+        color: #000 !important;
+        background: none !important;
+      }
+      .qr-stationery-card {
+        break-inside: avoid;
+        box-shadow: none !important;
+        border: 1px solid #000 !important;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .topbar { padding: 0.9rem 1rem; }
+      .wrap { padding: 1.2rem 1rem 3rem; }
+      .hero-banner { padding: 1.4rem; }
+      .form-row { grid-template-columns: 1fr; }
+      .hero-actions { width: 100%; }
+      .hero-actions .btn { flex: 1; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand-box">
+      <a href="index.html" class="back" title="Volver al inicio">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        <span>Volver</span>
+      </a>
+      <span class="brand-tag">✦ CELEBRATION</span>
+      <span class="brand-pill">Planner Portal</span>
+    </div>
+
+    <div class="event-select-wrap">
+      <label for="eventSelector" style="font-size:0.65rem; color:var(--cream-muted); text-transform:uppercase; letter-spacing:0.1em; display:none;">Evento:</label>
+      <select id="eventSelector" class="event-select" aria-label="Seleccionar evento de boda">
+        <option value="VAL-2026">Valentina &amp; Mateo — SMA (#VAL-2026)</option>
+        <option value="ISA-2026">Isabella &amp; Santiago — CDMX (#ISA-2026)</option>
+        <option value="CAM-2026">Camila &amp; Sebastián — Los Cabos (#CAM-2026)</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- HERO BANNER -->
+    <section class="hero-banner">
+      <div class="hero-meta">
+        <span class="hero-eyebrow">
+          <span>✦ Folio Oficial: <strong id="heroFolio">#VAL-2026</strong></span>
+          <span>·</span>
+          <span id="heroCity">San Miguel de Allende, GTO</span>
+        </span>
+        <h1 class="hero-title" id="heroCouple">Valentina &amp; <em>Mateo</em></h1>
+        <div class="hero-details">
+          <span id="heroDate">📅 Sábado 14 de Noviembre de 2026</span>
+          <span id="heroVenue">📍 Hacienda Las Trancas</span>
+          <span id="heroDress">👗 Formal Elegante / Cocktail</span>
+        </div>
+      </div>
+      <div class="hero-actions">
+        <button type="button" class="btn btn-outline" id="btnPrintReport">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+          Imprimir / PDF
+        </button>
+        <button type="button" class="btn btn-success" id="btnExportCsv">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Exportar a Excel (CSV)
+        </button>
+        <button type="button" class="btn btn-gold" id="btnOpenAddModal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          + Agregar Invitado
+        </button>
+      </div>
+    </section>
+
+    <!-- KPIS -->
+    <section class="kpi-grid">
+      <div class="kpi-card">
+        <span class="kpi-title">Pases Totales</span>
+        <div class="kpi-val" id="kpiTotalPasses">0</div>
+        <div class="kpi-sub"><span id="kpiTotalGuests">0</span> familias / registros</div>
+      </div>
+      <div class="kpi-card">
+        <span class="kpi-title">Confirmados</span>
+        <div class="kpi-val" id="kpiConfirmedPasses" style="color:#2ecc71;">0</div>
+        <div class="kpi-sub"><span id="kpiConfirmedPercent">0%</span> de asistencia</div>
+        <div class="kpi-bar"><div class="kpi-bar-fill" id="kpiConfirmedBar" style="width: 0%;"></div></div>
+      </div>
+      <div class="kpi-card">
+        <span class="kpi-title">Pendientes (Por Contactar)</span>
+        <div class="kpi-val" id="kpiPendingPasses" style="color:#f39c12;">0</div>
+        <div class="kpi-sub">Seguimiento en WhatsApp</div>
+      </div>
+      <div class="kpi-card">
+        <span class="kpi-title">Declinados</span>
+        <div class="kpi-val" id="kpiDeclinedPasses" style="color:#e74c3c;">0</div>
+        <div class="kpi-sub">Lugares liberados</div>
+      </div>
+      <div class="kpi-card">
+        <span class="kpi-title">Banquete Especial / Alergias</span>
+        <div class="kpi-val" id="kpiDietaryCount" style="color:var(--gold-lt);">0</div>
+        <div class="kpi-sub">Requerimientos para cocina</div>
+      </div>
+      <div class="kpi-card">
+        <span class="kpi-title">Shuttle / Transporte</span>
+        <div class="kpi-val" id="kpiShuttleCount" style="color:#3498db;">0</div>
+        <div class="kpi-sub">Solicitan transporte sede</div>
+      </div>
+    </section>
+
+    <!-- VIEW TABS -->
+    <nav class="view-tabs" aria-label="Vistas del portal">
+      <button type="button" class="tab-btn active" id="tabGuests" data-view="guests">📋 Lista de Invitados &amp; RSVP</button>
+      <button type="button" class="tab-btn" id="tabSeating" data-view="seating">🏛️ Distribución de Mesas</button>
+      <button type="button" class="tab-btn" id="tabQr" data-view="qr">🏷️ Tarjetas de Mesa QR / NFC (Print)</button>
+    </nav>
+
+    <!-- VIEW 1: GUEST LIST -->
+    <div id="viewGuests" class="view-panel">
+      <div class="toolbar" style="margin-bottom: 1rem;">
+        <div class="search-box">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="search" id="searchInput" class="search-input" placeholder="Buscar por invitado, familia o mesa..." autocomplete="off">
+        </div>
+        <div class="filter-chips">
+          <button type="button" class="chip active" data-filter="all">Todos</button>
+          <button type="button" class="chip" data-filter="confirmed">Confirmados</button>
+          <button type="button" class="chip" data-filter="pending">Pendientes</button>
+          <button type="button" class="chip" data-filter="declined">Declinados</button>
+          <button type="button" class="chip" data-filter="dietary">Alergias / Dieta</button>
+          <button type="button" class="chip" data-filter="shuttle">Transporte</button>
+        </div>
+      </div>
+
+      <div class="table-container">
+        <table class="guest-table" id="guestTable">
+          <thead>
+            <tr>
+              <th>Invitado / Familia</th>
+              <th>Pases</th>
+              <th>Estatus (Clic para cambiar)</th>
+              <th>Mesa</th>
+              <th>Banquete &amp; Alergias</th>
+              <th>Transporte</th>
+              <th>Teléfono</th>
+              <th style="text-align: right;">Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="guestTableBody">
+            <!-- Rendered by JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- VIEW 2: SEATING CHART -->
+    <div id="viewSeating" class="view-panel" style="display:none;">
+      <div class="seating-grid" id="seatingGrid">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+
+    <!-- VIEW 3: QR & NFC PRINT-READY CARDS -->
+    <div id="viewQr" class="view-panel" style="display:none;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.2rem; flex-wrap:wrap; gap:1rem;">
+        <div>
+          <h3 style="font-family:var(--font-serif); font-size:1.4rem; font-weight:400; color:var(--cream);">Tarjetas Físicas de Mesa con QR &amp; Folio</h3>
+          <p style="font-size:0.75rem; color:var(--cream-muted);">Diseñadas con estética editorial para centros de mesa o impresión en papel de algodón con hot-stamping.</p>
+        </div>
+        <button type="button" class="btn btn-gold" onclick="window.print()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+          Mandar a Imprimir Tarjetas
+        </button>
+      </div>
+      <div class="qr-cards-grid" id="qrCardsGrid">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+  </main>
+
+  <!-- MODAL: ADD / EDIT GUEST -->
+  <div class="modal-backdrop" id="guestModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modalTitle">Agregar Invitado / Familia</h3>
+        <button type="button" class="modal-close" id="modalClose">✕</button>
+      </div>
+      <form class="modal-form" id="guestForm">
+        <input type="hidden" id="editIndex" value="-1">
+        <div class="form-group">
+          <label for="inputGuestName">Nombre Principal del Invitado *</label>
+          <input type="text" id="inputGuestName" class="form-control" placeholder="Ej. Mariana Garza" required>
+        </div>
+        <div class="form-group">
+          <label for="inputGuestFamily">Familia o Grupo</label>
+          <input type="text" id="inputGuestFamily" class="form-control" placeholder="Ej. Familia Garza Morales">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="inputGuestPasses">Pases Asignados *</label>
+            <input type="number" id="inputGuestPasses" class="form-control" min="1" max="10" value="2" required>
+          </div>
+          <div class="form-group">
+            <label for="inputGuestTable">Mesa Asignada</label>
+            <input type="text" id="inputGuestTable" class="form-control" placeholder="Ej. Mesa 4">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="inputGuestStatus">Estatus RSVP</label>
+            <select id="inputGuestStatus" class="form-control">
+              <option value="confirmed">Confirmado</option>
+              <option value="pending" selected>Pendiente</option>
+              <option value="declined">Declinado</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="inputGuestPhone">WhatsApp / Teléfono</label>
+            <input type="tel" id="inputGuestPhone" class="form-control" placeholder="81 1234 5678">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputGuestDietary">Restricción Alimentaria / Menú Especial</label>
+          <select id="inputGuestDietary" class="form-control">
+            <option value="Ninguna">Ninguna (Estándar)</option>
+            <option value="Vegetariano">Vegetariano</option>
+            <option value="Vegano">Vegano</option>
+            <option value="Sin Gluten / Celíaco">Sin Gluten / Celíaco</option>
+            <option value="Alergia a Mariscos">Alergia a Mariscos</option>
+            <option value="Alergia a Frutos Secos">Alergia a Frutos Secos</option>
+          </select>
+        </div>
+        <div class="form-group" style="flex-direction:row; align-items:center; gap:0.6rem; margin-top:0.3rem;">
+          <input type="checkbox" id="inputGuestShuttle" style="accent-color:var(--gold); width:16px; height:16px;">
+          <label for="inputGuestShuttle" style="margin:0; text-transform:none; font-size:0.75rem; color:var(--cream); cursor:pointer;">
+            Requiere transporte oficial a la sede (Shuttle)
+          </label>
+        </div>
+        <div style="display:flex; justify-content:flex-end; gap:0.6rem; margin-top:0.8rem;">
+          <button type="button" class="btn btn-outline" id="btnCancelModal">Cancelar</button>
+          <button type="submit" class="btn btn-gold" id="btnSaveGuest">Guardar Invitado</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <!-- SCRIPT ENGINE -->
+  <script type="module">
+    import { CONCIERGE_EVENTS_DB } from './concierge-db.js';
+
+    // State
+    let currentFolio = 'VAL-2026';
+    let currentEvent = null;
+    let guests = [];
+    let activeFilter = 'all';
+    let searchQuery = '';
+
+    // Elements
+    const eventSelector = document.getElementById('eventSelector');
+    const heroFolio = document.getElementById('heroFolio');
+    const heroCity = document.getElementById('heroCity');
+    const heroCouple = document.getElementById('heroCouple');
+    const heroDate = document.getElementById('heroDate');
+    const heroVenue = document.getElementById('heroVenue');
+    const heroDress = document.getElementById('heroDress');
+
+    const kpiTotalPasses = document.getElementById('kpiTotalPasses');
+    const kpiTotalGuests = document.getElementById('kpiTotalGuests');
+    const kpiConfirmedPasses = document.getElementById('kpiConfirmedPasses');
+    const kpiConfirmedPercent = document.getElementById('kpiConfirmedPercent');
+    const kpiConfirmedBar = document.getElementById('kpiConfirmedBar');
+    const kpiPendingPasses = document.getElementById('kpiPendingPasses');
+    const kpiDeclinedPasses = document.getElementById('kpiDeclinedPasses');
+    const kpiDietaryCount = document.getElementById('kpiDietaryCount');
+    const kpiShuttleCount = document.getElementById('kpiShuttleCount');
+
+    const guestTableBody = document.getElementById('guestTableBody');
+    const seatingGrid = document.getElementById('seatingGrid');
+    const qrCardsGrid = document.getElementById('qrCardsGrid');
+    const searchInput = document.getElementById('searchInput');
+
+    const guestModal = document.getElementById('guestModal');
+    const guestForm = document.getElementById('guestForm');
+    const modalTitle = document.getElementById('modalTitle');
+    const editIndexInput = document.getElementById('editIndex');
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+
+    function getStorageKey(folio) {
+      return `celebration_planner_${folio}`;
+    }
+
+    function loadEvent(folio) {
+      currentFolio = folio;
+      currentEvent = CONCIERGE_EVENTS_DB[folio];
+      if (!currentEvent) return;
+
+      // Load saved state or initial from DB
+      const saved = localStorage.getItem(getStorageKey(folio));
+      if (saved) {
+        try {
+          guests = JSON.parse(saved);
+        } catch (e) {
+          guests = JSON.parse(JSON.stringify(currentEvent.guests || []));
+        }
+      } else {
+        guests = JSON.parse(JSON.stringify(currentEvent.guests || []));
+      }
+
+      renderHero();
+      renderKPIs();
+      renderGuests();
+      renderSeating();
+      renderQrCards();
+    }
+
+    function saveState() {
+      localStorage.setItem(getStorageKey(currentFolio), JSON.stringify(guests));
+      renderKPIs();
+      renderGuests();
+      renderSeating();
+      renderQrCards();
+    }
+
+    function renderHero() {
+      heroFolio.textContent = `#${currentEvent.folio}`;
+      heroCity.textContent = currentEvent.city;
+      
+      const names = currentEvent.couple.split('&');
+      if (names.length === 2) {
+        heroCouple.innerHTML = `${names[0].trim()} &amp; <em>${names[1].trim()}</em>`;
+      } else {
+        heroCouple.textContent = currentEvent.couple;
+      }
+
+      heroDate.textContent = `📅 ${currentEvent.date}`;
+      heroVenue.textContent = `📍 ${currentEvent.reception.place}`;
+      heroDress.textContent = `👗 ${currentEvent.dressCode.title}`;
+    }
+
+    function renderKPIs() {
+      const totalPasses = guests.reduce((acc, g) => acc + (Number(g.passes) || 1), 0);
+      const confirmedPasses = guests.filter(g => g.confirmed === true).reduce((acc, g) => acc + (Number(g.passes) || 1), 0);
+      const pendingPasses = guests.filter(g => g.confirmed === null || g.confirmed === undefined).reduce((acc, g) => acc + (Number(g.passes) || 1), 0);
+      const declinedPasses = guests.filter(g => g.confirmed === false).reduce((acc, g) => acc + (Number(g.passes) || 1), 0);
+      
+      const dietaryCount = guests.filter(g => g.dietary && g.dietary !== 'Ninguna').length;
+      const shuttleCount = guests.filter(g => g.shuttle === true).reduce((acc, g) => acc + (Number(g.passes) || 1), 0);
+
+      const percent = totalPasses > 0 ? Math.round((confirmedPasses / totalPasses) * 100) : 0;
+
+      kpiTotalPasses.textContent = totalPasses;
+      kpiTotalGuests.textContent = guests.length;
+      kpiConfirmedPasses.textContent = confirmedPasses;
+      kpiConfirmedPercent.textContent = `${percent}%`;
+      kpiConfirmedBar.style.width = `${percent}%`;
+      kpiPendingPasses.textContent = pendingPasses;
+      kpiDeclinedPasses.textContent = declinedPasses;
+      kpiDietaryCount.textContent = dietaryCount;
+      kpiShuttleCount.textContent = shuttleCount;
+    }
+
+    function filterGuests() {
+      return guests.filter((g, index) => {
+        // Query match
+        const q = searchQuery.toLowerCase().trim();
+        const matchesQuery = !q || 
+          (g.name && g.name.toLowerCase().includes(q)) ||
+          (g.family && g.family.toLowerCase().includes(q)) ||
+          (g.table && g.table.toLowerCase().includes(q));
+
+        if (!matchesQuery) return false;
+
+        // Filter chip
+        if (activeFilter === 'confirmed') return g.confirmed === true;
+        if (activeFilter === 'pending') return g.confirmed === null || g.confirmed === undefined;
+        if (activeFilter === 'declined') return g.confirmed === false;
+        if (activeFilter === 'dietary') return g.dietary && g.dietary !== 'Ninguna';
+        if (activeFilter === 'shuttle') return g.shuttle === true;
+
+        return true;
+      });
+    }
+
+    function renderGuests() {
+      const filtered = filterGuests();
+      guestTableBody.innerHTML = '';
+
+      if (filtered.length === 0) {
+        guestTableBody.innerHTML = `
+          <tr>
+            <td colspan="8" style="text-align:center; padding:2.5rem; color:var(--cream-muted);">
+              ✦ No se encontraron invitados con los criterios seleccionados.
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      filtered.forEach((g) => {
+        const realIndex = guests.indexOf(g);
+        const tr = document.createElement('tr');
+
+        // Status badge
+        let statusClass = 'pending';
+        let statusLabel = 'Pendiente';
+        if (g.confirmed === true) {
+          statusClass = 'confirmed';
+          statusLabel = 'Confirmado';
+        } else if (g.confirmed === false) {
+          statusClass = 'declined';
+          statusLabel = 'Declinado';
+        }
+
+        // Dietary
+        const dietaryHtml = (g.dietary && g.dietary !== 'Ninguna')
+          ? `<span class="tag tag-dietary">⚠️ ${g.dietary}</span>`
+          : `<span class="tag">Estándar</span>`;
+
+        // Shuttle
+        const shuttleHtml = g.shuttle
+          ? `<span class="tag tag-shuttle">🚐 Sí (${g.passes})</span>`
+          : `<span class="tag">No</span>`;
+
+        tr.innerHTML = `
+          <td>
+            <div class="guest-name-cell">
+              <span class="g-name">${g.name}</span>
+              <span class="g-family">${g.family || 'Invitado Individual'}</span>
+            </div>
+          </td>
+          <td><span class="passes-badge">${g.passes || 1}</span></td>
+          <td>
+            <span class="status-badge ${statusClass}" data-toggle-index="${realIndex}" title="Clic para alternar estatus">
+              ${statusLabel}
+            </span>
+          </td>
+          <td><span class="table-badge">${g.table || 'Sin Asignar'}</span></td>
+          <td>${dietaryHtml}</td>
+          <td>${shuttleHtml}</td>
+          <td><span style="font-family:monospace; font-size:0.75rem; color:var(--cream-muted);">${g.phone || '—'}</span></td>
+          <td style="text-align: right;">
+            <div class="table-actions" style="justify-content: flex-end;">
+              <button type="button" class="action-btn" data-edit-index="${realIndex}" title="Editar invitado">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+              </button>
+              <button type="button" class="action-btn btn-delete" data-delete-index="${realIndex}" title="Eliminar de la lista">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+              </button>
+            </div>
+          </td>
+        `;
+
+        guestTableBody.appendChild(tr);
+      });
+    }
+
+    function renderSeating() {
+      seatingGrid.innerHTML = '';
+      const tablesMap = {};
+
+      guests.forEach(g => {
+        const tableName = g.table && g.table.trim() ? g.table.trim() : 'Sin Asignar';
+        if (!tablesMap[tableName]) {
+          tablesMap[tableName] = [];
+        }
+        tablesMap[tableName].push(g);
+      });
+
+      const tableNames = Object.keys(tablesMap).sort((a, b) => {
+        if (a === 'Sin Asignar') return 1;
+        if (b === 'Sin Asignar') return -1;
+        return a.localeCompare(b, undefined, { numeric: true });
+      });
+
+      tableNames.forEach(tableName => {
+        const tableGuests = tablesMap[tableName];
+        const totalTablePasses = tableGuests.reduce((acc, cur) => acc + (Number(cur.passes) || 1), 0);
+
+        const card = document.createElement('div');
+        card.className = 'table-card';
+
+        let listHtml = '';
+        tableGuests.forEach(g => {
+          let mark = '';
+          if (g.confirmed === true) mark = '<span style="color:#2ecc71;">✓</span>';
+          else if (g.confirmed === false) mark = '<span style="color:#e74c3c;">✕</span>';
+          else mark = '<span style="color:#f39c12;">⏳</span>';
+
+          listHtml += `
+            <li class="table-guest-item">
+              <span><strong>${g.name}</strong> (${g.passes} p.)</span>
+              <span>${mark}</span>
+            </li>
+          `;
+        });
+
+        card.innerHTML = `
+          <div class="table-card-header">
+            <span class="table-card-name">${tableName}</span>
+            <span class="table-card-seats">${totalTablePasses} Comensales</span>
+          </div>
+          <ul class="table-guests-list">
+            ${listHtml}
+          </ul>
+        `;
+
+        seatingGrid.appendChild(card);
+      });
+    }
+
+    // Pure SVG QR Generator function (Zero external dependencies)
+    function generateStationeryQrSVG(dataText) {
+      // Clean luxury decorative QR SVG with high-contrast finder patterns
+      return `
+        <svg viewBox="0 0 100 100" fill="#1a1714" xmlns="http://www.w3.org/2000/svg">
+          <!-- Top Left Finder -->
+          <rect x="5" y="5" width="26" height="26" rx="4" fill="#C5A059"/>
+          <rect x="9" y="9" width="18" height="18" rx="2" fill="#fff"/>
+          <rect x="13" y="13" width="10" height="10" rx="1" fill="#C5A059"/>
+          
+          <!-- Top Right Finder -->
+          <rect x="69" y="5" width="26" height="26" rx="4" fill="#C5A059"/>
+          <rect x="73" y="9" width="18" height="18" rx="2" fill="#fff"/>
+          <rect x="77" y="13" width="10" height="10" rx="1" fill="#C5A059"/>
+          
+          <!-- Bottom Left Finder -->
+          <rect x="5" y="69" width="26" height="26" rx="4" fill="#C5A059"/>
+          <rect x="9" y="73" width="18" height="18" rx="2" fill="#fff"/>
+          <rect x="13" y="77" width="10" height="10" rx="1" fill="#C5A059"/>
+          
+          <!-- Decorative Data Matrix Points -->
+          <rect x="36" y="8" width="5" height="5" rx="1"/>
+          <rect x="46" y="8" width="5" height="5" rx="1"/>
+          <rect x="56" y="8" width="5" height="5" rx="1"/>
+          <rect x="36" y="18" width="5" height="5" rx="1"/>
+          <rect x="46" y="18" width="5" height="5" rx="1"/>
+          <rect x="56" y="18" width="5" height="5" rx="1"/>
+          
+          <rect x="8" y="36" width="5" height="5" rx="1"/>
+          <rect x="18" y="36" width="5" height="5" rx="1"/>
+          <rect x="8" y="46" width="5" height="5" rx="1"/>
+          <rect x="18" y="46" width="5" height="5" rx="1"/>
+          <rect x="8" y="56" width="5" height="5" rx="1"/>
+          <rect x="18" y="56" width="5" height="5" rx="1"/>
+
+          <rect x="36" y="36" width="8" height="8" rx="1.5" fill="#C5A059"/>
+          <rect x="48" y="36" width="6" height="6" rx="1"/>
+          <rect x="58" y="36" width="6" height="6" rx="1"/>
+          <rect x="68" y="36" width="6" height="6" rx="1"/>
+          <rect x="78" y="36" width="6" height="6" rx="1"/>
+          <rect x="88" y="36" width="6" height="6" rx="1"/>
+
+          <rect x="36" y="48" width="6" height="6" rx="1"/>
+          <rect x="46" y="48" width="8" height="8" rx="1.5" fill="#1a1714"/>
+          <rect x="58" y="48" width="6" height="6" rx="1"/>
+          <rect x="68" y="48" width="6" height="6" rx="1"/>
+          <rect x="78" y="48" width="6" height="6" rx="1"/>
+          <rect x="88" y="48" width="6" height="6" rx="1"/>
+
+          <rect x="36" y="60" width="6" height="6" rx="1"/>
+          <rect x="46" y="60" width="6" height="6" rx="1"/>
+          <rect x="56" y="60" width="8" height="8" rx="1.5" fill="#C5A059"/>
+          <rect x="68" y="60" width="6" height="6" rx="1"/>
+          <rect x="78" y="60" width="6" height="6" rx="1"/>
+          <rect x="88" y="60" width="6" height="6" rx="1"/>
+
+          <rect x="36" y="72" width="6" height="6" rx="1"/>
+          <rect x="46" y="72" width="6" height="6" rx="1"/>
+          <rect x="56" y="72" width="6" height="6" rx="1"/>
+          <rect x="68" y="72" width="8" height="8" rx="1.5" fill="#1a1714"/>
+          <rect x="80" y="72" width="6" height="6" rx="1"/>
+
+          <rect x="36" y="84" width="6" height="6" rx="1"/>
+          <rect x="46" y="84" width="6" height="6" rx="1"/>
+          <rect x="56" y="84" width="6" height="6" rx="1"/>
+          <rect x="68" y="84" width="6" height="6" rx="1"/>
+          <rect x="78" y="84" width="8" height="8" rx="1.5" fill="#C5A059"/>
+          <rect x="88" y="84" width="6" height="6" rx="1"/>
+        </svg>
+      `;
+    }
+
+    function renderQrCards() {
+      qrCardsGrid.innerHTML = '';
+      
+      const distinctTables = Array.from(new Set(guests.map(g => g.table && g.table.trim() ? g.table.trim() : 'Mesa Principal'))).sort((a,b) => a.localeCompare(b, undefined, { numeric: true }));
+
+      distinctTables.forEach(tableName => {
+        const card = document.createElement('div');
+        card.className = 'qr-stationery-card';
+
+        const coupleInitials = currentEvent.couple.split('&').map(n => n.trim().charAt(0)).join(' & ');
+
+        card.innerHTML = `
+          <div class="qr-monogram">✦ ${coupleInitials} ✦</div>
+          <div class="qr-couple">${currentEvent.couple}</div>
+          <div class="qr-event-date">${currentEvent.date}</div>
+          <div class="qr-table-num">${tableName}</div>
+          <div class="qr-box">
+            ${generateStationeryQrSVG('https://thecelebration.com.mx/?folio=' + currentFolio)}
+          </div>
+          <p class="qr-instructions">
+            Aproxima tu cámara o dispositivo NFC para ver el menú de la noche, itinerario y compartir tus fotos en tiempo real.
+          </p>
+          <div class="qr-folio-tag">FOLIO: #${currentFolio} · CELEBRATION ATELIER</div>
+        `;
+
+        qrCardsGrid.appendChild(card);
+      });
+    }
+
+    // Export to Excel CSV (UTF-8 BOM RFC 4180)
+    function exportToCSV() {
+      const headers = [
+        'Folio Evento',
+        'Pareja',
+        'Fecha Evento',
+        'Nombre Invitado',
+        'Familia / Grupo',
+        'Pases Asignados',
+        'Estatus RSVP',
+        'Mesa Asignada',
+        'Restriccion Dietetica',
+        'Requiere Transporte',
+        'Telefono WhatsApp'
+      ];
+
+      const rows = guests.map(g => {
+        let statusStr = 'Pendiente';
+        if (g.confirmed === true) statusStr = 'Confirmado';
+        else if (g.confirmed === false) statusStr = 'Declinado';
+
+        const escape = (val) => {
+          if (val === null || val === undefined) return '""';
+          const str = String(val).replace(/"/g, '""');
+          return `"${str}"`;
+        };
+
+        return [
+          escape(currentEvent.folio),
+          escape(currentEvent.couple),
+          escape(currentEvent.date),
+          escape(g.name),
+          escape(g.family || ''),
+          escape(g.passes || 1),
+          escape(statusStr),
+          escape(g.table || 'Sin Asignar'),
+          escape(g.dietary || 'Ninguna'),
+          escape(g.shuttle ? 'Sí' : 'No'),
+          escape(g.phone || '')
+        ].join(',');
+      });
+
+      // Prepend UTF-8 BOM (\uFEFF) for Excel on Windows to respect accents and ñ natively
+      const csvContent = '\uFEFF' + headers.join(',') + '\r\n' + rows.join('\r\n');
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+
+      const dateStr = new Date().toISOString().slice(0, 10);
+      link.setAttribute('href', url);
+      link.setAttribute('download', `CELEBRATION_RSVP_${currentFolio}_${dateStr}.csv`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+
+      showToast('✦ Archivo Excel (CSV) exportado con éxito');
+    }
+
+    // Event Listeners
+    eventSelector.addEventListener('change', (e) => {
+      loadEvent(e.target.value);
+      showToast(`✦ Evento cargado: #${e.target.value}`);
+    });
+
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const view = btn.dataset.view;
+        document.getElementById('viewGuests').style.display = view === 'guests' ? 'block' : 'none';
+        document.getElementById('viewSeating').style.display = view === 'seating' ? 'block' : 'none';
+        document.getElementById('viewQr').style.display = view === 'qr' ? 'block' : 'none';
+      });
+    });
+
+    searchInput.addEventListener('input', (e) => {
+      searchQuery = e.target.value;
+      renderGuests();
+    });
+
+    document.querySelectorAll('.chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        activeFilter = chip.dataset.filter;
+        renderGuests();
+      });
+    });
+
+    // Table click interactions (status toggle, edit, delete)
+    guestTableBody.addEventListener('click', (e) => {
+      const toggleBadge = e.target.closest('[data-toggle-index]');
+      if (toggleBadge) {
+        const idx = Number(toggleBadge.dataset.toggleIndex);
+        const g = guests[idx];
+        if (g) {
+          // Cycle: null -> true -> false -> null
+          if (g.confirmed === true) g.confirmed = false;
+          else if (g.confirmed === false) g.confirmed = null;
+          else g.confirmed = true;
+          saveState();
+          showToast(`✦ Estatus actualizado para ${g.name}`);
+        }
+        return;
+      }
+
+      const editBtn = e.target.closest('[data-edit-index]');
+      if (editBtn) {
+        const idx = Number(editBtn.dataset.editIndex);
+        openEditModal(idx);
+        return;
+      }
+
+      const delBtn = e.target.closest('[data-delete-index]');
+      if (delBtn) {
+        const idx = Number(delBtn.dataset.deleteIndex);
+        const g = guests[idx];
+        if (confirm(`¿Deseas eliminar a "${g.name}" de la lista de invitados?`)) {
+          guests.splice(idx, 1);
+          saveState();
+          showToast('✦ Invitado eliminado');
+        }
+        return;
+      }
+    });
+
+    // Modal logic
+    function openAddModal() {
+      modalTitle.textContent = 'Agregar Invitado / Familia';
+      editIndexInput.value = '-1';
+      guestForm.reset();
+      document.getElementById('inputGuestPasses').value = '2';
+      document.getElementById('inputGuestStatus').value = 'pending';
+      document.getElementById('inputGuestDietary').value = 'Ninguna';
+      guestModal.classList.add('show');
+    }
+
+    function openEditModal(index) {
+      const g = guests[index];
+      if (!g) return;
+
+      modalTitle.textContent = 'Editar Invitado';
+      editIndexInput.value = index;
+      document.getElementById('inputGuestName').value = g.name || '';
+      document.getElementById('inputGuestFamily').value = g.family || '';
+      document.getElementById('inputGuestPasses').value = g.passes || 1;
+      document.getElementById('inputGuestTable').value = g.table || '';
+      document.getElementById('inputGuestPhone').value = g.phone || '';
+      
+      let stVal = 'pending';
+      if (g.confirmed === true) stVal = 'confirmed';
+      else if (g.confirmed === false) stVal = 'declined';
+      document.getElementById('inputGuestStatus').value = stVal;
+
+      document.getElementById('inputGuestDietary').value = g.dietary || 'Ninguna';
+      document.getElementById('inputGuestShuttle').checked = Boolean(g.shuttle);
+
+      guestModal.classList.add('show');
+    }
+
+    function closeModal() {
+      guestModal.classList.remove('show');
+    }
+
+    document.getElementById('btnOpenAddModal').addEventListener('click', openAddModal);
+    document.getElementById('modalClose').addEventListener('click', closeModal);
+    document.getElementById('btnCancelModal').addEventListener('click', closeModal);
+
+    guestForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const idx = Number(editIndexInput.value);
+
+      const statusMap = {
+        'confirmed': true,
+        'pending': null,
+        'declined': false
+      };
+
+      const newGuestData = {
+        name: document.getElementById('inputGuestName').value.trim(),
+        family: document.getElementById('inputGuestFamily').value.trim() || document.getElementById('inputGuestName').value.trim(),
+        passes: Number(document.getElementById('inputGuestPasses').value) || 1,
+        table: document.getElementById('inputGuestTable').value.trim() || 'Sin Asignar',
+        phone: document.getElementById('inputGuestPhone').value.trim(),
+        confirmed: statusMap[document.getElementById('inputGuestStatus').value],
+        dietary: document.getElementById('inputGuestDietary').value,
+        shuttle: document.getElementById('inputGuestShuttle').checked
+      };
+
+      if (idx >= 0 && idx < guests.length) {
+        guests[idx] = newGuestData;
+        showToast('✦ Invitado actualizado');
+      } else {
+        guests.unshift(newGuestData);
+        showToast('✦ Nuevo invitado registrado');
+      }
+
+      saveState();
+      closeModal();
+    });
+
+    document.getElementById('btnExportCsv').addEventListener('click', exportToCSV);
+    document.getElementById('btnPrintReport').addEventListener('click', () => window.print());
+
+    // Init
+    loadEvent('VAL-2026');
+  </script>
+</body>
+</html>
