@@ -1890,9 +1890,9 @@ footer.site-footer {
 /* ── FLOATING LUXURY AUDIO PLAYER (CELEBRATION — QUE SE PRENDA) ── */
 .floating-audio-player {
   position: fixed;
-  bottom: calc(20px + var(--sab));
+  bottom: calc(76px + var(--sab));
   left: calc(20px + var(--sal));
-  z-index: 95;
+  z-index: 96;
   background: rgba(26, 23, 20, 0.92);
   border: 1px solid rgba(197, 160, 89, 0.4);
   border-radius: 50px;
@@ -1989,8 +1989,9 @@ footer.site-footer {
     width: 44px;
     height: 44px;
     justify-content: center;
-    bottom: calc(16px + var(--sab));
-    left: calc(16px + var(--sal));
+    bottom: calc(70px + var(--sab));
+    left: calc(14px + var(--sal));
+    z-index: 96;
   }
   .audio-info {
     display: none;
