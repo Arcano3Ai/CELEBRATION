@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Generador de Pases VIP Digitales — CELEBRATION</title>
+  <meta name="description" content="Diseña, genera y comparte pases de honor y accesos VIP personalizados por WhatsApp para los invitados de tu boda.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="assets/icons/favicon-64x64.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --gold: #C5A059;
+      --gold-lt: #e8c97a;
+      --cream: #FAF7F2;
+      --ink: #141210;
+      --ink-surface: #1e1b17;
+      --ink-card: #26221d;
+      --line: rgba(197, 160, 89, 0.25);
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Inter', system-ui, sans-serif;
+      --r: 14px;
+    }
+    body {
+      background: var(--ink);
+      color: var(--cream);
+      font-family: var(--font-sans);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* TOPBAR */
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid var(--line);
+      background: rgba(20, 18, 16, 0.95);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(250, 247, 242, 0.6);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .back:hover { color: var(--gold); }
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+    .brand-title {
+      font-size: 0.68rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+    }
+    .brand-badge {
+      font-size: 0.62rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 50px;
+      background: rgba(197, 160, 89, 0.15);
+      color: var(--gold-lt);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* WRAPPER */
+    .wrap {
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 2.2rem 1.5rem 4rem;
+      display: grid;
+      grid-template-columns: 420px 1fr;
+      gap: 2.5rem;
+      flex: 1;
+      align-items: start;
+    }
+
+    /* CONTROLS PANEL */
+    .panel {
+      background: var(--ink-surface);
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      padding: 1.8rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+    }
+    .panel-header {
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 0.8rem;
+    }
+    .panel-eyebrow {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+    .panel-title {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      font-weight: 400;
+      color: var(--cream);
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    .form-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(250, 247, 242, 0.7);
+      font-weight: 600;
+    }
+    .form-control {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(197, 160, 89, 0.3);
+      border-radius: 8px;
+      padding: 0.65rem 0.85rem;
+      color: var(--cream);
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-control:focus { border-color: var(--gold); }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8rem;
+    }
+
+    /* THEME SWITCHER PILLS */
+    .theme-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.5rem;
+    }
+    .theme-btn {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 0.55rem 0.4rem;
+      color: rgba(250, 247, 242, 0.7);
+      font-size: 0.68rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s;
+    }
+    .theme-btn:hover { border-color: var(--gold); color: var(--cream); }
+    .theme-btn.active {
+      background: rgba(197, 160, 89, 0.15);
+      border-color: var(--gold);
+      color: var(--gold-lt);
+    }
+
+    /* ACTION BUTTONS */
+    .actions-box {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      margin-top: 0.6rem;
+      border-top: 1px solid var(--line);
+      padding-top: 1.2rem;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+      padding: 0.85rem 1.2rem;
+      border-radius: 8px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: 1px solid transparent;
+    }
+    .btn-wa {
+      background: #25D366;
+      color: #FFFFFF;
+    }
+    .btn-wa:hover { filter: brightness(1.08); transform: translateY(-1px); }
+    .btn-gold {
+      background: var(--gold);
+      color: var(--ink);
+    }
+    .btn-gold:hover { background: var(--gold-lt); transform: translateY(-1px); }
+    .btn-outline {
+      background: transparent;
+      border-color: var(--line);
+      color: var(--cream);
+    }
+    .btn-outline:hover {
+      border-color: var(--gold);
+      background: rgba(197, 160, 89, 0.08);
+      color: var(--gold-lt);
+    }
+
+    /* PREVIEW CONTAINER */
+    .preview-stage {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+      position: sticky;
+      top: 6rem;
+    }
+
+    /* TICKET / VIP PASS CARD (STATIONERY LOOK) */
+    .vip-card {
+      width: 100%;
+      max-width: 480px;
+      aspect-ratio: 9 / 13;
+      border-radius: 16px;
+      padding: 2.2rem 2rem;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-align: center;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.65), 0 0 30px rgba(197, 160, 89, 0.15);
+      border: 2px solid #C5A059;
+      transition: all 0.3s ease;
+      overflow: hidden;
+    }
+    .vip-card::before {
+      content: '';
+      position: absolute;
+      inset: 8px;
+      border: 1px solid rgba(197, 160, 89, 0.45);
+      border-radius: 10px;
+      pointer-events: none;
+    }
+
+    /* THEMES */
+    /* Theme 1: Romántico / Champagne Cream */
+    .vip-card.theme-romantico {
+      background: #FAF7F2;
+      color: #1a1714;
+    }
+    .vip-card.theme-romantico .vip-inner-border { border-color: rgba(197, 160, 89, 0.4); }
+    .vip-card.theme-romantico .vip-couple { color: #1a1714; }
+    .vip-card.theme-romantico .vip-guest { color: #1a1714; }
+    .vip-card.theme-romantico .vip-sub { color: #7a7268; }
+
+    /* Theme 2: Clásico / Black Tie Noir */
+    .vip-card.theme-clasico {
+      background: radial-gradient(circle at top, #1e1b17 0%, #100f0d 100%);
+      color: #FAF7F2;
+      border-color: #e8c97a;
+    }
+    .vip-card.theme-clasico .vip-couple { color: #FAF7F2; }
+    .vip-card.theme-clasico .vip-guest { color: #FAF7F2; }
+    .vip-card.theme-clasico .vip-sub { color: rgba(250, 247, 242, 0.6); }
+
+    /* Theme 3: Editorial / Vogue Sand */
+    .vip-card.theme-editorial {
+      background: #F4F1EA;
+      color: #12100E;
+      border-color: #8c7e6d;
+    }
+    .vip-card.theme-editorial .vip-couple { color: #12100E; }
+    .vip-card.theme-editorial .vip-guest { color: #12100E; }
+    .vip-card.theme-editorial .vip-sub { color: #6b6359; }
+
+    /* CARD HEADER */
+    .vip-monogram {
+      font-family: var(--font-serif);
+      font-size: 1.7rem;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      margin-bottom: 0.2rem;
+    }
+    .vip-card-badge {
+      font-size: 0.62rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+      display: block;
+    }
+    .vip-couple {
+      font-family: var(--font-serif);
+      font-size: 1.85rem;
+      font-weight: 400;
+      line-height: 1.15;
+    }
+    .vip-event-date {
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-top: 0.35rem;
+    }
+
+    /* CARD MID / GUEST INFO */
+    .vip-mid-box {
+      border-top: 1px dashed var(--line);
+      border-bottom: 1px dashed var(--line);
+      padding: 1.2rem 0;
+      margin: 1rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+    .vip-guest-tag {
+      font-size: 0.62rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+    }
+    .vip-guest {
+      font-family: var(--font-serif);
+      font-size: 1.8rem;
+      font-weight: 600;
+      line-height: 1.15;
+    }
+    .vip-passes-pill {
+      display: inline-block;
+      margin: 0.3rem auto 0;
+      padding: 0.3rem 0.8rem;
+      border-radius: 50px;
+      background: rgba(197, 160, 89, 0.15);
+      border: 1px solid var(--line);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* CARD FOOTER */
+    .vip-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      text-align: left;
+      gap: 1rem;
+    }
+    .vip-venue-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+    .vip-venue-title {
+      font-weight: 700;
+      font-size: 0.82rem;
+    }
+    .vip-venue-sub {
+      font-size: 0.65rem;
+      line-height: 1.4;
+    }
+    .vip-qr-box {
+      width: 82px;
+      height: 82px;
+      background: #FFFFFF;
+      border-radius: 6px;
+      padding: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(197, 160, 89, 0.4);
+      flex-shrink: 0;
+    }
+    .vip-qr-box svg { width: 100%; height: 100%; }
+
+    /* TOAST */
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: var(--ink-card);
+      border: 1px solid var(--gold);
+      color: var(--cream);
+      font-size: 0.75rem;
+      padding: 0.7rem 1.4rem;
+      border-radius: 50px;
+      opacity: 0;
+      transition: opacity 0.3s, transform 0.3s;
+      z-index: 1000;
+      pointer-events: none;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    /* PRINT */
+    @media print {
+      body { background: #fff !important; color: #000 !important; }
+      .topbar, .panel, .toast { display: none !important; }
+      .wrap { display: block !important; padding: 0 !important; margin: 0 auto !important; }
+      .preview-stage { position: static !important; }
+      .vip-card {
+        box-shadow: none !important;
+        border: 2px solid #000 !important;
+        break-inside: avoid;
+        margin: 2rem auto !important;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .wrap { grid-template-columns: 1fr; }
+      .preview-stage { position: static; order: -1; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand-wrap">
+      <a href="planner.html" class="back" title="Volver al Portal Wedding Planner">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        <span>Volver a Planner</span>
+      </a>
+      <span class="brand-title">✦ CELEBRATION</span>
+      <span class="brand-badge">Pases VIP Studio</span>
+    </div>
+    <div>
+      <a href="index.html" class="back" style="font-size:0.65rem;">Inicio</a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- CONTROLS PANEL -->
+    <section class="panel">
+      <div class="panel-header">
+        <span class="panel-eyebrow">Personalizador de Pases</span>
+        <h2 class="panel-title">Tarjeta VIP de Invitado</h2>
+      </div>
+
+      <!-- Select Event -->
+      <div class="form-group">
+        <label class="form-label" for="eventSelect">Evento / Boda</label>
+        <select id="eventSelect" class="form-control">
+          <option value="VAL-2026">Valentina &amp; Mateo — SMA (#VAL-2026)</option>
+          <option value="ISA-2026">Isabella &amp; Santiago — CDMX (#ISA-2026)</option>
+          <option value="CAM-2026">Camila &amp; Sebastián — Los Cabos (#CAM-2026)</option>
+        </select>
+      </div>
+
+      <!-- Select Guest from DB -->
+      <div class="form-group">
+        <label class="form-label" for="guestSelect">Cargar Invitado de la Lista</label>
+        <select id="guestSelect" class="form-control">
+          <!-- Populated by JS -->
+        </select>
+      </div>
+
+      <!-- Editable fields -->
+      <div class="form-group">
+        <label class="form-label" for="inputGuestName">Nombre del Invitado / Familia</label>
+        <input type="text" id="inputGuestName" class="form-control" value="Mariana Garza &amp; Acompañante">
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="inputPasses">Pases Asignados</label>
+          <input type="number" id="inputPasses" class="form-control" min="1" max="10" value="2">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="inputTable">Mesa Asignada</label>
+          <input type="text" id="inputTable" class="form-control" value="Mesa 4">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="inputPhone">WhatsApp del Invitado</label>
+        <input type="tel" id="inputPhone" class="form-control" placeholder="81 1234 5678">
+      </div>
+
+      <!-- Theme Selector -->
+      <div class="form-group">
+        <label class="form-label">Estilo Editorial del Tarjetón</label>
+        <div class="theme-grid">
+          <button type="button" class="theme-btn active" data-theme="theme-romantico">Champán</button>
+          <button type="button" class="theme-btn" data-theme="theme-clasico">Black Tie</button>
+          <button type="button" class="theme-btn" data-theme="theme-editorial">Vogue Arena</button>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="actions-box">
+        <a href="#" class="btn btn-wa" id="btnShareWa" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          Compartir por WhatsApp ↗
+        </a>
+        <button type="button" class="btn btn-gold" id="btnDownloadImage">
+          💾 Descargar Imagen PNG (HD)
+        </button>
+        <button type="button" class="btn btn-outline" id="btnPrintPass">
+          🖨️ Imprimir / Guardar PDF
+        </button>
+      </div>
+    </section>
+
+    <!-- PREVIEW STAGE -->
+    <section class="preview-stage">
+      <span style="font-size:0.65rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--gold); font-weight:600;">
+        ✦ Vista Previa del Tarjetón Digital
+      </span>
+
+      <!-- THE VIP PASS -->
+      <div class="vip-card theme-romantico" id="vipCard">
+        <!-- TOP -->
+        <div class="vip-top">
+          <div class="vip-monogram" id="cardMonogram">✦ V &amp; M ✦</div>
+          <span class="vip-card-badge">Pase de Acceso Exclusivo • VIP Pass</span>
+          <h1 class="vip-couple" id="cardCouple">Valentina &amp; Mateo</h1>
+          <p class="vip-event-date vip-sub" id="cardDate">Sábado 14 de Noviembre de 2026</p>
+        </div>
+
+        <!-- MID -->
+        <div class="vip-mid-box">
+          <span class="vip-guest-tag">Invitado de Honor</span>
+          <h2 class="vip-guest" id="cardGuest">Mariana Garza &amp; Acompañante</h2>
+          <div>
+            <span class="vip-passes-pill" id="cardPasses">2 Pases de Honor</span>
+            <span class="vip-passes-pill" style="margin-left:0.4rem; background:transparent;" id="cardTable">Mesa 4</span>
+          </div>
+        </div>
+
+        <!-- BOTTOM -->
+        <div class="vip-footer">
+          <div class="vip-venue-info">
+            <span class="vip-venue-title" id="cardVenue">Hacienda Las Trancas</span>
+            <span class="vip-venue-sub vip-sub" id="cardCity">San Miguel de Allende, GTO</span>
+            <span class="vip-venue-sub vip-sub" id="cardDress">Dress Code: Formal Elegante</span>
+            <span class="vip-venue-sub" style="font-family:monospace; font-size:0.6rem; color:var(--gold); margin-top:0.3rem;" id="cardFolio">FOLIO: #VAL-2026</span>
+          </div>
+          <div class="vip-qr-box" id="cardQr">
+            <!-- Native SVG QR -->
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast"></div>
+
+  <!-- SCRIPT ENGINE -->
+  <script type="module">
+    import { CONCIERGE_EVENTS_DB } from './concierge-db.js';
+
+    let currentFolio = 'VAL-2026';
+    let currentTheme = 'theme-romantico';
+    let guests = [];
+
+    // Elements
+    const eventSelect = document.getElementById('eventSelect');
+    const guestSelect = document.getElementById('guestSelect');
+    const inputGuestName = document.getElementById('inputGuestName');
+    const inputPasses = document.getElementById('inputPasses');
+    const inputTable = document.getElementById('inputTable');
+    const inputPhone = document.getElementById('inputPhone');
+
+    const vipCard = document.getElementById('vipCard');
+    const cardMonogram = document.getElementById('cardMonogram');
+    const cardCouple = document.getElementById('cardCouple');
+    const cardDate = document.getElementById('cardDate');
+    const cardGuest = document.getElementById('cardGuest');
+    const cardPasses = document.getElementById('cardPasses');
+    const cardTable = document.getElementById('cardTable');
+    const cardVenue = document.getElementById('cardVenue');
+    const cardCity = document.getElementById('cardCity');
+    const cardDress = document.getElementById('cardDress');
+    const cardFolio = document.getElementById('cardFolio');
+    const cardQr = document.getElementById('cardQr');
+    const btnShareWa = document.getElementById('btnShareWa');
+
+    function showToast(text) {
+      const t = document.getElementById('toast');
+      t.textContent = text;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 3500);
+    }
+
+    function renderQrSVG() {
+      cardQr.innerHTML = `
+        <svg viewBox="0 0 100 100" fill="#1a1714" xmlns="http://www.w3.org/2000/svg">
+          <rect x="5" y="5" width="26" height="26" rx="4" fill="#C5A059"/>
+          <rect x="9" y="9" width="18" height="18" rx="2" fill="#fff"/>
+          <rect x="13" y="13" width="10" height="10" rx="1" fill="#C5A059"/>
+          
+          <rect x="69" y="5" width="26" height="26" rx="4" fill="#C5A059"/>
+          <rect x="73" y="9" width="18" height="18" rx="2" fill="#fff"/>
+          <rect x="77" y="13" width="10" height="10" rx="1" fill="#C5A059"/>
+          
+          <rect x="5" y="69" width="26" height="26" rx="4" fill="#C5A059"/>
+          <rect x="9" y="73" width="18" height="18" rx="2" fill="#fff"/>
+          <rect x="13" y="77" width="10" height="10" rx="1" fill="#C5A059"/>
+          
+          <rect x="36" y="8" width="6" height="6" rx="1"/>
+          <rect x="48" y="8" width="6" height="6" rx="1"/>
+          <rect x="58" y="8" width="6" height="6" rx="1"/>
+          <rect x="36" y="20" width="6" height="6" rx="1"/>
+          <rect x="48" y="20" width="6" height="6" rx="1"/>
+
+          <rect x="8" y="36" width="6" height="6" rx="1"/>
+          <rect x="20" y="36" width="6" height="6" rx="1"/>
+          <rect x="8" y="48" width="6" height="6" rx="1"/>
+
+          <rect x="36" y="36" width="8" height="8" rx="1.5" fill="#C5A059"/>
+          <rect x="48" y="36" width="6" height="6" rx="1"/>
+          <rect x="60" y="36" width="6" height="6" rx="1"/>
+          <rect x="72" y="36" width="6" height="6" rx="1"/>
+          <rect x="84" y="36" width="6" height="6" rx="1"/>
+
+          <rect x="36" y="50" width="6" height="6" rx="1"/>
+          <rect x="48" y="50" width="8" height="8" rx="1.5" fill="#1a1714"/>
+          <rect x="62" y="50" width="6" height="6" rx="1"/>
+          <rect x="74" y="50" width="6" height="6" rx="1"/>
+
+          <rect x="36" y="64" width="6" height="6" rx="1"/>
+          <rect x="48" y="64" width="6" height="6" rx="1"/>
+          <rect x="60" y="64" width="8" height="8" rx="1.5" fill="#C5A059"/>
+          <rect x="74" y="64" width="6" height="6" rx="1"/>
+
+          <rect x="36" y="78" width="6" height="6" rx="1"/>
+          <rect x="50" y="78" width="6" height="6" rx="1"/>
+          <rect x="64" y="78" width="8" height="8" rx="1.5" fill="#C5A059"/>
+          <rect x="78" y="78" width="6" height="6" rx="1"/>
+        </svg>
+      `;
+    }
+
+    function loadEvent(folio) {
+      currentFolio = folio;
+      const ev = CONCIERGE_EVENTS_DB[folio];
+      if (!ev) return;
+
+      // Initials monogram
+      const initials = ev.couple.split('&').map(n => n.trim().charAt(0)).join(' & ');
+      cardMonogram.textContent = `✦ ${initials} ✦`;
+      cardCouple.textContent = ev.couple;
+      cardDate.textContent = ev.date;
+      cardVenue.textContent = ev.reception.place;
+      cardCity.textContent = ev.city;
+      cardDress.textContent = `Dress Code: ${ev.dressCode.title.split('/')[0].trim()}`;
+      cardFolio.textContent = `FOLIO: #${ev.folio}`;
+
+      // Load guests from localStorage or fallback
+      const saved = localStorage.getItem(`celebration_planner_${folio}`);
+      if (saved) {
+        try { guests = JSON.parse(saved); } catch (e) { guests = ev.guests || []; }
+      } else {
+        guests = ev.guests || [];
+      }
+
+      // Populate guest selector
+      guestSelect.innerHTML = guests.map((g, idx) => `
+        <option value="${idx}">${g.name} (${g.passes || 1} pases · ${g.table || 'Sin mesa'})</option>
+      `).join('');
+
+      if (guests.length > 0) {
+        selectGuest(0);
+      }
+
+      renderQrSVG();
+    }
+
+    function selectGuest(idx) {
+      const g = guests[idx];
+      if (!g) return;
+
+      inputGuestName.value = g.name;
+      inputPasses.value = g.passes || 1;
+      inputTable.value = g.table || 'Mesa 1';
+      inputPhone.value = g.phone || '';
+
+      updateCard();
+    }
+
+    function updateCard() {
+      const name = inputGuestName.value.trim() || 'Invitado de Honor';
+      const passes = Number(inputPasses.value) || 1;
+      const table = inputTable.value.trim() || 'Mesa de Honor';
+      const phone = inputPhone.value.replace(/[^0-9]/g, '');
+
+      cardGuest.textContent = name;
+      cardPasses.textContent = `${passes} ${passes > 1 ? 'Pases de Honor' : 'Pase de Honor'}`;
+      cardTable.textContent = table;
+
+      // WhatsApp Share Link
+      const ev = CONCIERGE_EVENTS_DB[currentFolio];
+      const demoLinks = {
+        'VAL-2026': 'https://thecelebration.com.mx/demo-romantico.html',
+        'ISA-2026': 'https://thecelebration.com.mx/demo-clasico.html',
+        'CAM-2026': 'https://thecelebration.com.mx/demo-editorial.html'
+      };
+      const demoUrl = demoLinks[currentFolio] || 'https://thecelebration.com.mx';
+
+      const waMsg = encodeURIComponent(
+        `Estimad@ *${name}* ✨,\n\nCon inmensa alegría, *${ev.couple}* tienen el honor de compartir su *Pase VIP Oficial* para su enlace matrimonial.\n\n` +
+        `✦ *Fecha:* ${ev.date}\n` +
+        `✦ *Recepción:* ${ev.reception.place} (${ev.city})\n` +
+        `✦ *Pases Reservados:* ${passes} ${passes > 1 ? 'personas' : 'persona'}\n` +
+        `✦ *Mesa Asignada:* ${table}\n` +
+        `✦ *Dress Code:* ${ev.dressCode.title}\n\n` +
+        `Puedes consultar el itinerario interactivo con GPS (Waze/Maps), lista de regalos y confirmar tu asistencia en un clic aquí:\n${demoUrl}\n\n` +
+        `¡Será un honor inmenso brindar juntos!`
+      );
+
+      const targetPhone = phone ? (phone.startsWith('52') ? phone : '52' + phone) : '';
+      btnShareWa.href = targetPhone 
+        ? `https://wa.me/${targetPhone}?text=${waMsg}`
+        : `https://wa.me/?text=${waMsg}`;
+    }
+
+    // Canvas Image Downloader (HD 2x Retina Export)
+    function downloadVipPassImage() {
+      const card = vipCard;
+      const width = 1080;
+      const height = 1350;
+
+      const canvas = document.createElement('canvas');
+      canvas.width = width;
+      canvas.height = height;
+      const ctx = canvas.getContext('2d');
+
+      const isClassic = currentTheme === 'theme-clasico';
+      const isEditorial = currentTheme === 'theme-editorial';
+
+      // Background
+      if (isClassic) {
+        ctx.fillStyle = '#141210';
+      } else if (isEditorial) {
+        ctx.fillStyle = '#F4F1EA';
+      } else {
+        ctx.fillStyle = '#FAF7F2';
+      }
+      ctx.fillRect(0, 0, width, height);
+
+      // Gold Outer Frame
+      ctx.strokeStyle = '#C5A059';
+      ctx.lineWidth = 10;
+      ctx.strokeRect(30, 30, width - 60, height - 60);
+
+      // Inner Frame
+      ctx.strokeStyle = 'rgba(197, 160, 89, 0.45)';
+      ctx.lineWidth = 2;
+      ctx.strokeRect(45, 45, width - 90, height - 90);
+
+      // Monogram
+      ctx.fillStyle = '#C5A059';
+      ctx.font = 'italic 44px Georgia';
+      ctx.textAlign = 'center';
+      ctx.fillText(cardMonogram.textContent, width / 2, 130);
+
+      // Badge
+      ctx.font = '600 18px sans-serif';
+      ctx.letterSpacing = '5px';
+      ctx.fillText('PASE DE ACCESO EXCLUSIVO • VIP PASS', width / 2, 185);
+
+      // Couple Names
+      ctx.fillStyle = isClassic ? '#FAF7F2' : '#1a1714';
+      ctx.font = '300 70px Georgia';
+      ctx.fillText(cardCouple.textContent, width / 2, 280);
+
+      // Date
+      ctx.fillStyle = isClassic ? 'rgba(250,247,242,0.7)' : '#7a7268';
+      ctx.font = '500 22px sans-serif';
+      ctx.fillText(cardDate.textContent.toUpperCase(), width / 2, 330);
+
+      // Dashed Separator
+      ctx.setLineDash([10, 8]);
+      ctx.strokeStyle = 'rgba(197, 160, 89, 0.5)';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(100, 410);
+      ctx.lineTo(width - 100, 410);
+      ctx.stroke();
+
+      // Guest Tag
+      ctx.setLineDash([]);
+      ctx.fillStyle = '#C5A059';
+      ctx.font = '700 20px sans-serif';
+      ctx.fillText('INVITADO DE HONOR', width / 2, 480);
+
+      // Guest Name
+      ctx.fillStyle = isClassic ? '#FAF7F2' : '#1a1714';
+      ctx.font = '600 58px Georgia';
+      ctx.fillText(cardGuest.textContent, width / 2, 570);
+
+      // Passes & Table
+      ctx.fillStyle = '#C5A059';
+      ctx.font = '700 26px sans-serif';
+      ctx.fillText(`${cardPasses.textContent.toUpperCase()} • ${cardTable.textContent.toUpperCase()}`, width / 2, 650);
+
+      // Dashed Separator 2
+      ctx.setLineDash([10, 8]);
+      ctx.beginPath();
+      ctx.moveTo(100, 740);
+      ctx.lineTo(width - 100, 740);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // Venue Info (Left)
+      ctx.textAlign = 'left';
+      ctx.fillStyle = isClassic ? '#FAF7F2' : '#1a1714';
+      ctx.font = '700 32px sans-serif';
+      ctx.fillText(cardVenue.textContent, 110, 860);
+
+      ctx.fillStyle = isClassic ? 'rgba(250,247,242,0.7)' : '#7a7268';
+      ctx.font = '400 24px sans-serif';
+      ctx.fillText(cardCity.textContent, 110, 910);
+      ctx.fillText(cardDress.textContent, 110, 955);
+
+      ctx.fillStyle = '#C5A059';
+      ctx.font = '700 22px monospace';
+      ctx.fillText(cardFolio.textContent, 110, 1010);
+
+      // Footer branding
+      ctx.fillStyle = '#C5A059';
+      ctx.font = '600 18px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('CELEBRATION • ATELIER DIGITAL DE ALTA COSTURA', width / 2, 1260);
+
+      // Download
+      const link = document.createElement('a');
+      const filename = `CELEBRATION_PASE_${currentFolio}_${cardGuest.textContent.replace(/\s+/g, '_')}.png`;
+      link.download = filename;
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+
+      showToast('✦ Pase VIP descargado en alta resolución PNG (1080x1350)');
+    }
+
+    // Event Listeners
+    eventSelect.addEventListener('change', (e) => loadEvent(e.target.value));
+    guestSelect.addEventListener('change', (e) => selectGuest(Number(e.target.value)));
+
+    [inputGuestName, inputPasses, inputTable, inputPhone].forEach(inp => {
+      inp.addEventListener('input', updateCard);
+    });
+
+    document.querySelectorAll('.theme-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        currentTheme = btn.dataset.theme;
+        vipCard.className = `vip-card ${currentTheme}`;
+        showToast('✦ Estilo editorial actualizado');
+      });
+    });
+
+    document.getElementById('btnDownloadImage').addEventListener('click', downloadVipPassImage);
+    document.getElementById('btnPrintPass').addEventListener('click', () => window.print());
+
+    // Init
+    loadEvent('VAL-2026');
+  </script>
+</body>
+</html>

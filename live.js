@@ -477,3 +477,4 @@ class LiveStreamApp {
 
 // Launch
 new LiveStreamApp();
+
