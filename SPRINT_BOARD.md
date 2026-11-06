@@ -39,12 +39,12 @@
 
 | **CEL-26** | Buscador Predictivo Autocomplete en Demos & Sincronización RSVP | Logic + Frontend + QA | ✅ Completado | `smart-rsvp.js` y `smart-rsvp.css` con dropdown predictivo instantáneo as-you-type en los 3 demos (`demo-romantico.html`, `demo-clasico.html`, `demo-editorial.html`), asignación estricta de pases, mesa, requerimientos de banquete, transporte y sincronización bi-direccional en tiempo real con `planner.html`. |
 | **CEL-27** | Módulo de Libro de Firmas Digital (Digital Guestbook) | Frontend + UI/UX | ✅ Completado | `guestbook.js` y `guestbook.css` con muro de dedicatorias conmemorativas por folio (#VAL-2026, #ISA-2026, #CAM-2026), modal de firma en vivo, persistencia local y estética editorial en tarjetas de ultra lujo. |
+| **CEL-29** | Pantalla Live Event Interactiva en Tiempo Real & Carga Móvil | Frontend + UI/UX + QA | ✅ Completado | `live.html` y `live.js` full-screen para proyectores de salón en bodas Grand Luxe ($19,900 MXN), muro dinámico de fotos, modo presentación cinematográfica (slideshow), widget QR flotante, compresión cliente en canvas y sincronización reactiva local. |
 
 ---
 
 ## 🔮 Backlog de Próximos Sprints (Por Demanda)
 
+- [ ] **CEL-30 (Generador de Pases VIP Digitales para WhatsApp):** Creación dinámica de pases digitales descargables en imagen/PDF personalizados para enviar a cada familia vía WhatsApp.
 - [ ] **CEL-28 (Integración de Webhook / Backend para Notificaciones WhatsApp/Email):** Envío automático de confirmaciones vía Twilio / SendGrid / Supabase.
-- [ ] **CEL-29 (Pantalla Live Event Interactiva en Tiempo Real):** Muro interactivo full-screen para proyección en proyectores/pantallas LED de salón durante la recepción de boda con fotos de invitados.
-- [ ] **CEL-30 (Generador de PDF de Pases VIP Digitales para WhatsApp):** Creación dinámica de pases digitales descargables en imagen/PDF personalizados para enviar a cada familia.
 

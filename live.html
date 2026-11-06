@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Live Event Stream &amp; Pantalla de Salón — CELEBRATION</title>
+  <meta name="description" content="Pantalla interactiva en vivo para proyectores y pantallas LED de recepción de boda. Muro de fotos en tiempo real y recuerdos compartidos por los invitados.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="assets/icons/favicon-64x64.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --gold: #C5A059;
+      --gold-lt: #e8c97a;
+      --cream: #FAF7F2;
+      --ink: #0a0908;
+      --ink-surface: #141210;
+      --ink-card: #1c1916;
+      --line: rgba(197, 160, 89, 0.25);
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-sans: 'Inter', system-ui, sans-serif;
+    }
+    html, body {
+      width: 100%;
+      height: 100%;
+      background: var(--ink);
+      color: var(--cream);
+      font-family: var(--font-sans);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* TOPBAR STREAM HEADER */
+    .stream-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 74px;
+      background: linear-gradient(180deg, rgba(10, 9, 8, 0.95) 0%, rgba(10, 9, 8, 0.7) 80%, transparent 100%);
+      backdrop-filter: blur(12px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      z-index: 100;
+      border-bottom: 1px solid rgba(197, 160, 89, 0.15);
+      transition: opacity 0.3s;
+    }
+    .stream-header.hide-controls {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .back-btn {
+      color: rgba(250, 247, 242, 0.6);
+      text-decoration: none;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: color 0.2s;
+    }
+    .back-btn:hover { color: var(--gold); }
+    .brand-tag {
+      font-size: 0.68rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+    }
+    .live-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 50px;
+      background: rgba(231, 76, 60, 0.15);
+      border: 1px solid rgba(231, 76, 60, 0.4);
+      color: #ff6b6b;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .live-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #ff4757;
+      box-shadow: 0 0 10px #ff4757;
+      animation: livePulse 1.4s infinite;
+    }
+    @keyframes livePulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    .couple-title-center {
+      text-align: center;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .couple-names {
+      font-family: var(--font-serif);
+      font-size: 1.65rem;
+      font-weight: 300;
+      letter-spacing: 0.05em;
+      color: var(--cream);
+    }
+    .couple-names em { font-style: italic; color: var(--gold); }
+    .stream-meta-sub {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(250, 247, 242, 0.5);
+    }
+
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .folio-selector {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--line);
+      color: var(--cream);
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      outline: none;
+      cursor: pointer;
+    }
+    .ctrl-btn {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--line);
+      color: var(--cream);
+      padding: 0.45rem 0.85rem;
+      border-radius: 6px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.2s;
+    }
+    .ctrl-btn:hover {
+      background: rgba(197, 160, 89, 0.15);
+      border-color: var(--gold);
+      color: var(--gold-lt);
+    }
+    .btn-upload-direct {
+      background: var(--gold);
+      color: var(--ink);
+      border-color: var(--gold);
+      font-weight: 700;
+    }
+    .btn-upload-direct:hover {
+      background: var(--gold-lt);
+      color: var(--ink);
+    }
+
+    /* MAIN STAGE */
+    .stream-stage {
+      padding: 94px 2rem 3rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* VIEW MODES CONTAINER */
+    .gallery-view {
+      flex: 1;
+      display: block;
+    }
+    .slideshow-view {
+      flex: 1;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    /* MASONRY / MOSAIC GRID */
+    .live-grid {
+      columns: 4 280px;
+      column-gap: 1.5rem;
+      max-width: 1700px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .live-card {
+      break-inside: avoid;
+      background: #FFFFFF;
+      color: #1a1714;
+      border-radius: 8px;
+      padding: 1rem 1rem 1.4rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(197, 160, 89, 0.3);
+      position: relative;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: cardAppear 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .live-card:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 18px 40px rgba(197, 160, 89, 0.25);
+    }
+    @keyframes cardAppear {
+      from { opacity: 0; transform: translateY(20px) scale(0.96); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .live-card-img-wrap {
+      width: 100%;
+      border-radius: 4px;
+      overflow: hidden;
+      background: #eee;
+      aspect-ratio: 4 / 5;
+      position: relative;
+    }
+    .live-card-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .live-card:hover .live-card-img {
+      transform: scale(1.03);
+    }
+    .live-card-body {
+      margin-top: 0.9rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+    .live-card-caption {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-style: italic;
+      color: #2b2722;
+      line-height: 1.35;
+    }
+    .live-card-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 0.5rem;
+      border-top: 1px solid rgba(197, 160, 89, 0.2);
+      padding-top: 0.6rem;
+      font-size: 0.68rem;
+    }
+    .live-card-author {
+      font-weight: 700;
+      color: #1a1714;
+      letter-spacing: 0.02em;
+    }
+    .live-card-time {
+      color: #8c7e6d;
+      font-family: monospace;
+      font-size: 0.62rem;
+    }
+
+    /* SLIDESHOW VIEW */
+    .slide-stage-card {
+      max-width: 860px;
+      width: 90%;
+      background: #FFFFFF;
+      color: #1a1714;
+      border-radius: 12px;
+      padding: 1.5rem 1.5rem 2rem;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 40px rgba(197, 160, 89, 0.2);
+      border: 2px solid var(--gold);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      animation: slideHeroIn 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @keyframes slideHeroIn {
+      0% { opacity: 0; transform: scale(0.92); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+    .slide-img-box {
+      width: 100%;
+      max-height: 65vh;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #111;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .slide-img {
+      max-width: 100%;
+      max-height: 65vh;
+      object-fit: contain;
+      display: block;
+    }
+    .slide-caption-box {
+      margin-top: 1.2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.35rem;
+      max-width: 640px;
+    }
+    .slide-quote {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      font-style: italic;
+      color: #1a1714;
+      line-height: 1.3;
+    }
+    .slide-author-tag {
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 700;
+      margin-top: 0.2rem;
+    }
+
+    /* FLOATING QR CODE WIDGET IN CORNER */
+    .floating-qr-dock {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: rgba(20, 18, 16, 0.95);
+      border: 1px solid var(--gold);
+      border-radius: 12px;
+      padding: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 1.1rem;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(10px);
+      z-index: 90;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    .qr-thumb {
+      width: 78px;
+      height: 78px;
+      background: #FFFFFF;
+      border-radius: 6px;
+      padding: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .qr-thumb svg { width: 100%; height: 100%; }
+    .qr-dock-text {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      text-align: left;
+    }
+    .qr-dock-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold-lt);
+    }
+    .qr-dock-sub {
+      font-size: 0.65rem;
+      color: rgba(250, 247, 242, 0.65);
+      max-width: 170px;
+      line-height: 1.4;
+    }
+
+    /* UPLOAD MODAL FOR MOBILE GUESTS */
+    .upload-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      z-index: 200;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+    .upload-modal-backdrop.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .upload-card {
+      background: var(--ink-card);
+      border: 1px solid var(--gold);
+      border-radius: 16px;
+      width: 100%;
+      max-width: 480px;
+      padding: 2rem;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
+      transform: translateY(20px);
+      transition: transform 0.25s ease;
+    }
+    .upload-modal-backdrop.show .upload-card {
+      transform: translateY(0);
+    }
+    .upload-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 0.8rem;
+      margin-bottom: 1.2rem;
+    }
+    .upload-title {
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--cream);
+    }
+    .upload-close {
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      color: var(--cream);
+      cursor: pointer;
+      opacity: 0.6;
+    }
+    .upload-close:hover { opacity: 1; color: var(--gold); }
+
+    .file-dropzone {
+      border: 2px dashed var(--line);
+      border-radius: 10px;
+      padding: 1.8rem 1rem;
+      text-align: center;
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.02);
+      transition: all 0.2s;
+      margin-bottom: 1.2rem;
+    }
+    .file-dropzone:hover {
+      border-color: var(--gold);
+      background: rgba(197, 160, 89, 0.05);
+    }
+    .preview-box {
+      width: 100%;
+      max-height: 220px;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 1.2rem;
+      display: none;
+      background: #000;
+    }
+    .preview-img {
+      width: 100%;
+      height: 100%;
+      max-height: 220px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .inp-field {
+      width: 100%;
+      padding: 0.75rem 0.9rem;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--cream);
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      outline: none;
+      margin-bottom: 0.9rem;
+    }
+    .inp-field:focus { border-color: var(--gold); }
+
+    /* TOAST */
+    .live-toast {
+      position: fixed;
+      top: 90px;
+      right: 2rem;
+      background: rgba(20, 18, 16, 0.95);
+      border: 1px solid var(--gold);
+      color: var(--cream);
+      padding: 0.8rem 1.4rem;
+      border-radius: 50px;
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      transform: translateY(-20px);
+      opacity: 0;
+      transition: all 0.3s ease;
+      z-index: 200;
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .live-toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    @media (max-width: 768px) {
+      .stream-header { padding: 0 1rem; }
+      .couple-title-center { display: none; }
+      .floating-qr-dock { display: none; }
+      .stream-stage { padding: 84px 1rem 2rem; }
+      .live-grid { columns: 1; }
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="stream-header" id="streamHeader">
+    <div class="brand-group">
+      <a href="index.html" class="back-btn" title="Volver al sitio web principal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        <span>Salir</span>
+      </a>
+      <span class="brand-tag">✦ CELEBRATION</span>
+      <div class="live-indicator">
+        <span class="live-dot"></span>
+        <span>En Vivo</span>
+      </div>
+    </div>
+
+    <div class="couple-title-center">
+      <h1 class="couple-names" id="coupleStreamTitle">Camila &amp; <em>Sebastián</em></h1>
+      <span class="stream-meta-sub" id="streamVenue">Sunset Monalisa • Los Cabos</span>
+    </div>
+
+    <div class="header-controls">
+      <select id="streamFolioSelect" class="folio-selector" aria-label="Seleccionar Boda">
+        <option value="CAM-2026">Camila &amp; Sebastián — Los Cabos (#CAM-2026)</option>
+        <option value="VAL-2026">Valentina &amp; Mateo — SMA (#VAL-2026)</option>
+        <option value="ISA-2026">Isabella &amp; Santiago — CDMX (#ISA-2026)</option>
+      </select>
+      <button type="button" class="ctrl-btn" id="btnToggleMode" title="Alternar Mosaico / Presentación">
+        <span id="modeIcon">📽️</span>
+        <span id="modeLabel">Slideshow</span>
+      </button>
+      <button type="button" class="ctrl-btn" id="btnFullscreen" title="Pantalla Completa (F11)">
+        ⛶ Pantalla Completa
+      </button>
+      <button type="button" class="ctrl-btn btn-upload-direct" id="btnOpenUpload">
+        📸 Subir Foto
+      </button>
+    </div>
+  </header>
+
+  <!-- MAIN STAGE -->
+  <main class="stream-stage">
+    <!-- VIEW 1: MOSAIC GALLERY -->
+    <section class="gallery-view" id="galleryView">
+      <div class="live-grid" id="liveGrid">
+        <!-- Rendered by live.js -->
+      </div>
+    </section>
+
+    <!-- VIEW 2: CINEMATIC SLIDESHOW -->
+    <section class="slideshow-view" id="slideshowView">
+      <div class="slide-stage-card" id="slideStageCard">
+        <div class="slide-img-box">
+          <img src="" alt="Momento en Vivo" class="slide-img" id="heroSlideImg">
+        </div>
+        <div class="slide-caption-box">
+          <p class="slide-quote" id="heroSlideQuote">“¡Qué noche tan mágica y llena de bendiciones!”</p>
+          <span class="slide-author-tag" id="heroSlideAuthor">Por Patricio Sada • Mesa VIP</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FLOATING QR DOCK IN CORNER FOR GUESTS -->
+  <div class="floating-qr-dock" id="floatingQrDock">
+    <div class="qr-thumb" id="qrContainer">
+      <!-- SVG QR generated here -->
+    </div>
+    <div class="qr-dock-text">
+      <span class="qr-dock-title">📸 Comparte tus fotos</span>
+      <p class="qr-dock-sub">Apunta con la cámara de tu celular para proyectar tus momentos en esta pantalla sin instalar apps.</p>
+    </div>
+  </div>
+
+  <!-- UPLOAD MODAL FOR GUESTS -->
+  <div class="upload-modal-backdrop" id="uploadModal">
+    <div class="upload-card">
+      <div class="upload-header">
+        <h3 class="upload-title">Compartir Momento en Pantalla</h3>
+        <button type="button" class="upload-close" id="btnCloseUpload">✕</button>
+      </div>
+
+      <form id="uploadForm">
+        <input type="file" id="fileInput" accept="image/*" style="display:none;">
+        <div class="file-dropzone" id="dropzone">
+          <div style="font-size:2rem; margin-bottom:0.4rem;">📷</div>
+          <p style="font-size:0.85rem; font-weight:600; color:var(--cream);">Toca aquí para tomar una foto o elegir de tu galería</p>
+          <p style="font-size:0.68rem; color:rgba(250, 247, 242, 0.5); margin-top:0.2rem;">Formato JPG, PNG o HEIC</p>
+        </div>
+
+        <div class="preview-box" id="previewBox">
+          <img src="" alt="Vista previa" class="preview-img" id="previewImg">
+        </div>
+
+        <input type="text" id="authorInput" class="inp-field" placeholder="Tu Nombre o Familia (ej. Patricio Sada)" required>
+        <input type="text" id="captionInput" class="inp-field" placeholder="Dedicatoria o pie de foto (ej. ¡Brindando por los novios!)" required>
+
+        <div style="display:flex; justify-content:flex-end; gap:0.6rem; margin-top:0.6rem;">
+          <button type="button" class="ctrl-btn" id="btnCancelUpload">Cancelar</button>
+          <button type="submit" class="ctrl-btn btn-upload-direct" id="btnSubmitPhoto">Proyectar en Pantalla ✦</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="live-toast" id="liveToast">
+    <span style="color:var(--gold);">✦</span>
+    <span id="toastText">Nueva foto proyectada</span>
+  </div>
+
+  <!-- SCRIPT ENGINE -->
+  <script type="module" src="live.js"></script>
+</body>
+</html>
