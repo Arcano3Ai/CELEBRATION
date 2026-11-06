@@ -838,6 +838,58 @@
       ctx.font = '700 22px monospace';
       ctx.fillText(cardFolio.textContent, 110, 1010);
 
+      // QR Box on Canvas (Right)
+      const qx = width - 290;
+      const qy = 830;
+      const qw = 180;
+      ctx.fillStyle = '#FFFFFF';
+      ctx.fillRect(qx, qy, qw, qw);
+      ctx.strokeStyle = '#C5A059';
+      ctx.lineWidth = 3;
+      ctx.strokeRect(qx, qy, qw, qw);
+
+      // QR Finder Top-Left
+      ctx.fillStyle = '#C5A059';
+      ctx.fillRect(qx + 12, qy + 12, 45, 45);
+      ctx.fillStyle = '#FFFFFF';
+      ctx.fillRect(qx + 20, qy + 20, 29, 29);
+      ctx.fillStyle = '#C5A059';
+      ctx.fillRect(qx + 26, qy + 26, 17, 17);
+
+      // QR Finder Top-Right
+      ctx.fillStyle = '#C5A059';
+      ctx.fillRect(qx + qw - 57, qy + 12, 45, 45);
+      ctx.fillStyle = '#FFFFFF';
+      ctx.fillRect(qx + qw - 49, qy + 20, 29, 29);
+      ctx.fillStyle = '#C5A059';
+      ctx.fillRect(qx + qw - 43, qy + 26, 17, 17);
+
+      // QR Finder Bottom-Left
+      ctx.fillStyle = '#C5A059';
+      ctx.fillRect(qx + 12, qy + qw - 57, 45, 45);
+      ctx.fillStyle = '#FFFFFF';
+      ctx.fillRect(qx + 20, qy + qw - 49, 29, 29);
+      ctx.fillStyle = '#C5A059';
+      ctx.fillRect(qx + 26, qy + qw - 43, 17, 17);
+
+      // Decorative matrix points
+      ctx.fillStyle = '#1a1714';
+      ctx.fillRect(qx + 70, qy + 16, 10, 10);
+      ctx.fillRect(qx + 95, qy + 16, 10, 10);
+      ctx.fillRect(qx + 70, qy + 36, 10, 10);
+      ctx.fillRect(qx + 95, qy + 36, 10, 10);
+      ctx.fillRect(qx + 16, qy + 70, 10, 10);
+      ctx.fillRect(qx + 36, qy + 70, 10, 10);
+      ctx.fillRect(qx + 70, qy + 70, 14, 14);
+      ctx.fillRect(qx + 100, qy + 70, 10, 10);
+      ctx.fillRect(qx + 130, qy + 70, 10, 10);
+      ctx.fillRect(qx + 70, qy + 100, 10, 10);
+      ctx.fillRect(qx + 100, qy + 100, 14, 14);
+      ctx.fillRect(qx + 130, qy + 100, 10, 10);
+      ctx.fillRect(qx + 70, qy + 130, 10, 10);
+      ctx.fillRect(qx + 100, qy + 130, 10, 10);
+      ctx.fillRect(qx + 130, qy + 130, 14, 14);
+
       // Footer branding
       ctx.fillStyle = '#C5A059';
       ctx.font = '600 18px sans-serif';
@@ -846,7 +898,7 @@
 
       // Download
       const link = document.createElement('a');
-      const filename = `CELEBRATION_PASE_${currentFolio}_${cardGuest.textContent.replace(/\s+/g, '_')}.png`;
+      const filename = `CELEBRATION_PASE_${currentFolio}_${cardGuest.textContent.replace(/[^a-zA-Z0-9]/g, '_')}.png`;
       link.download = filename;
       link.href = canvas.toDataURL('image/png');
       link.click();
@@ -876,8 +928,22 @@
     document.getElementById('btnDownloadImage').addEventListener('click', downloadVipPassImage);
     document.getElementById('btnPrintPass').addEventListener('click', () => window.print());
 
-    // Init
-    loadEvent('VAL-2026');
+    // Init from URL Params or fallback
+    const urlParams = new URLSearchParams(window.location.search);
+    const initialFolio = urlParams.get('folio') || 'VAL-2026';
+    const targetGuest = urlParams.get('guest');
+
+    eventSelect.value = initialFolio;
+    loadEvent(initialFolio);
+
+    if (targetGuest) {
+      const gIdx = guests.findIndex(g => g.name.toLowerCase() === targetGuest.toLowerCase() || g.name.toLowerCase().includes(targetGuest.toLowerCase()));
+      if (gIdx >= 0) {
+        guestSelect.value = gIdx;
+        selectGuest(gIdx);
+      }
+    }
   </script>
 </body>
 </html>
+

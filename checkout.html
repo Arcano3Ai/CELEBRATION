@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es-MX">
 <head>
   <meta charset="UTF-8">
@@ -32,6 +32,10 @@
     .badge-lbl{font-size:.62rem;letter-spacing:.32em;text-transform:uppercase;color:rgba(250,247,242,.45);font-weight:500}
     /* PKG CARD */
     .pkg-card{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:var(--r);padding:1.4rem 1.5rem}
+    .pkg-tabs{display:flex;gap:.4rem;margin-bottom:1rem}
+    .pkg-tab-btn{flex:1;padding:.5rem .3rem;background:rgba(255,255,255,.04);border:1px solid rgba(197,160,89,.2);border-radius:6px;color:rgba(250,247,242,.65);font-size:.65rem;font-weight:600;letter-spacing:.03em;cursor:pointer;transition:all .2s;text-align:center}
+    .pkg-tab-btn:hover{border-color:var(--gold);color:var(--cream)}
+    .pkg-tab-btn.active{background:rgba(197,160,89,.18);border-color:var(--gold);color:var(--gold-lt)}
     .pkg-row{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem}
     .pkg-sub{font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:600;display:block;margin-bottom:.3rem}
     .pkg-name{font-family:var(--font-serif);font-size:1.15rem;font-weight:600;color:var(--cream);display:block}
@@ -131,6 +135,11 @@
         <p class="sub-txt">Aparta con el 50&nbsp;% de anticipo o liquida en línea — seguro, simple y con concierge personal.</p>
       </div>
       <div class="pkg-card">
+        <div class="pkg-tabs" id="pkgTabs">
+          <button type="button" class="pkg-tab-btn" data-pkg="signature">Signature $11.9k</button>
+          <button type="button" class="pkg-tab-btn active" data-pkg="destination">Destination $14.9k</button>
+          <button type="button" class="pkg-tab-btn" data-pkg="grandluxe">Grand Luxe $19.9k</button>
+        </div>
         <div class="pkg-row">
           <div><span class="pkg-sub">Colección seleccionada</span><strong class="pkg-name" id="pkgName">Destination &amp; Heritage</strong></div>
           <div><span class="pkg-sub" style="text-align:right">Inversión total</span><span class="pkg-total" id="pkgTotal">$14,900 MXN</span></div>
@@ -234,14 +243,23 @@
     const CFG={whatsapp:'528121912778',spei:{clabe:'646180123456789012'},mercadopago:{signature:'https://mpago.la/XXXXXXXXX',destination:'https://mpago.la/XXXXXXXXX',grandluxe:'https://mpago.la/XXXXXXXXX'},stripe:{signature:'https://buy.stripe.com/XXXXXXXXX',destination:'https://buy.stripe.com/XXXXXXXXX',grandluxe:'https://buy.stripe.com/XXXXXXXXX'}};
     const PKGS={signature:{name:'Signature Atelier',price:11900},destination:{name:'Destination & Heritage',price:14900},grandluxe:{name:'Grand Luxe NFC & Live',price:19900}};
     const p=new URLSearchParams(location.search);
-    const key=p.get('pkg')||'destination';
-    const pkg=PKGS[key]||PKGS.destination;
+    let key=p.get('pkg')||'destination';
+    if(!PKGS[key]) key='destination';
+    let pkg=PKGS[key];
     let scheme='deposit';
     const fmt=v=>'$'+Number(v).toLocaleString('es-MX')+' MXN';
     const payAmt=()=>scheme==='deposit'?Math.round(pkg.price*.5):pkg.price;
     const concept=()=>{const r=document.getElementById('coupleNames').value.trim()||'Novios';const c=r.replace(/[^a-zA-Z0-9\s]/g,'').replace(/\s+/g,'').substring(0,12).toUpperCase()||'BODA';return 'CEL-'+key.substring(0,4).toUpperCase()+'-'+c;};
     function toast(m){const e=document.getElementById('toast');e.textContent=m;e.classList.add('show');setTimeout(()=>e.classList.remove('show'),3000);}
+    function syncTabs(){
+      document.querySelectorAll('.pkg-tab-btn').forEach(btn=>{
+        if(btn.dataset.pkg===key) btn.classList.add('active');
+        else btn.classList.remove('active');
+      });
+    }
     function update(){
+      pkg=PKGS[key]||PKGS.destination;
+      syncTabs();
       const pay=payAmt(),dep=Math.round(pkg.price*.5),con=concept(),sl=scheme==='deposit'?'Anticipo 50%':'Total 100%';
       document.getElementById('pkgName').textContent=pkg.name;
       document.getElementById('pkgTotal').textContent=fmt(pkg.price);
@@ -263,6 +281,14 @@
       const bSt=document.getElementById('btnStripe');bSt.href=strUrl;
       bSt.onclick=e=>{if(strUrl.includes('XXX')){e.preventDefault();toast('⏳ Link de Stripe en configuración — escríbenos por WhatsApp.');}else{toast('✦ Conectando con Stripe SSL ('+fmt(pay)+')…');}};
     }
+    document.querySelectorAll('.pkg-tab-btn').forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        key=btn.dataset.pkg;
+        try{history.replaceState(null,'','checkout.html?pkg='+key);}catch(e){}
+        update();
+        toast('✦ Paquete seleccionado: '+pkg.name);
+      });
+    });
     function accordion(tId,mId){
       document.getElementById(tId).addEventListener('click',()=>{
         const m=document.getElementById(mId),open=m.classList.contains('open');
