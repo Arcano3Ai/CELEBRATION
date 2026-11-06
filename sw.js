@@ -1,10 +1,10 @@
 /**
  * CELEBRATION — High Performance Service Worker
- * Version: 2.6.0
+ * Version: 2.7.0
  * Provides offline support, caching strategies, and instant load for iOS and Android
  */
 
-const CACHE_NAME = 'celebration-v2.6.0';
+const CACHE_NAME = 'celebration-v2.7.0';
 const STATIC_ASSETS = [
   './',
   './index.html',
@@ -33,6 +33,10 @@ const STATIC_ASSETS = [
   './assets/icons/favicon-64x64.png',
   './assets/images/hero_editorial_couple.jpg',
   './assets/images/og_share_cover.jpg',
+  './assets/images/og_share_banner.jpg',
+  './assets/images/og_demo_romantico.jpg',
+  './assets/images/og_demo_clasico.jpg',
+  './assets/images/og_demo_editorial.jpg',
   './assets/images/mobile_couple_story.jpg',
   './assets/images/reception_party_couple.jpg',
   './assets/images/web_mockup_showcase.jpg',

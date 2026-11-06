@@ -46,6 +46,7 @@
 | **CEL-31** | Módulo de DJ Crowdsourced & Canciones en Vivo en Pantalla | Frontend + UI/UX + QA | ✅ Completado | Muro interactivo en `live.html` y `live.js` con ranking de canciones pedidas por los invitados (`#1 🏆`, `#2 🥈`, `#3 🥉`), sistema de votación `+1 Voto` en tiempo real, modal para solicitar pistas y sincronización cross-tab reactiva vía `localStorage`. |
 | **CEL-33** | Timeline Interactivo Minuto a Minuto (Run of Show) | Frontend + UI/UX + QA | ✅ Completado | Pestaña protocolaria en `planner.html` con hitos minuto a minuto (ceremonia, vals, banquete, brindis, fiesta), control dinámico de estatus (`Pendiente`, `En Curso ⏱️`, `Completado ✓`), persistencia por folio, edición y modo de impresión oficial. |
 | **CEL-36** | Música Ambiental Oficial "Celebration — Que Se Prenda" & Reproductor Flotante | UI/UX + Frontend + QA | ✅ Completado | Integración de audio MP3 oficial con ecualizador animado, control flotante de lujo con micro-interacciones, inicio automático al primer gesto de navegación y bypass de streaming en Service Worker. |
+| **CEL-37** | Tarjetas Sociales Open Graph 1200x630 para WhatsApp & Redes | UI/UX + Frontend + QA | ✅ Completado | Generación de banners oficiales de alta gama en proporción 1.91:1 (1200x630 px, <150 KB) con tipografía serif y monogramas dorados; metadatos Open Graph y Twitter Cards integrados en las 8 páginas del sitio para previsualizaciones ricas en WhatsApp. |
 
 ---
 
