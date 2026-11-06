@@ -881,11 +881,14 @@
         </div>
       </div>
       <div class="hero-actions">
-        <a href="passes.html" class="btn btn-gold" target="_blank" rel="noopener" title="Generar Tarjetas de Pase VIP para WhatsApp">
+        <a href="passes.html" class="btn btn-gold" id="btnHeroPasses" target="_blank" rel="noopener" title="Generar Tarjetas de Pase VIP para WhatsApp">
           🎫 Pases VIP WhatsApp
         </a>
-        <a href="live.html" class="btn btn-outline" target="_blank" rel="noopener" title="Abrir Pantalla de Salón Live Event en Directo">
+        <a href="live.html" class="btn btn-outline" id="btnHeroLive" target="_blank" rel="noopener" title="Abrir Pantalla de Salón Live Event en Directo">
           📺 Pantalla Live Event
+        </a>
+        <a href="demo-romantico.html" class="btn btn-outline" id="btnHeroInvite" target="_blank" rel="noopener" title="Ver Invitación Web en Vivo">
+          🌐 Ver Invitación Web
         </a>
         <button type="button" class="btn btn-outline" id="btnPrintReport">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
@@ -1148,6 +1151,23 @@
       renderGuests();
       renderSeating();
       renderQrCards();
+
+      // Update hero action button links for this folio
+      const btnPasses = document.getElementById('btnHeroPasses');
+      if (btnPasses) btnPasses.href = `passes.html?folio=${encodeURIComponent(folio)}`;
+
+      const btnLive = document.getElementById('btnHeroLive');
+      if (btnLive) btnLive.href = `live.html?folio=${encodeURIComponent(folio)}`;
+
+      const btnInvite = document.getElementById('btnHeroInvite');
+      if (btnInvite) {
+        const demoMap = {
+          'VAL-2026': 'demo-romantico.html',
+          'ISA-2026': 'demo-clasico.html',
+          'CAM-2026': 'demo-editorial.html'
+        };
+        btnInvite.href = demoMap[folio] || 'demo-romantico.html';
+      }
     }
 
     function saveState() {
@@ -1516,6 +1536,11 @@
     // Event Listeners
     eventSelector.addEventListener('change', (e) => {
       loadEvent(e.target.value);
+      try {
+        const url = new URL(window.location);
+        url.searchParams.set('folio', e.target.value);
+        window.history.replaceState({}, '', url);
+      } catch (err) {}
       showToast(`✦ Evento cargado: #${e.target.value}`);
     });
 
@@ -1672,8 +1697,15 @@
       loadEvent(currentFolio);
     });
 
-    // Init
-    loadEvent('VAL-2026');
+    // Init from URL param or default
+    const urlParams = new URLSearchParams(window.location.search);
+    const initialFolio = urlParams.get('folio') || 'VAL-2026';
+    if (CONCIERGE_EVENTS_DB[initialFolio]) {
+      eventSelector.value = initialFolio;
+      loadEvent(initialFolio);
+    } else {
+      loadEvent('VAL-2026');
+    }
   </script>
 </body>
 </html>

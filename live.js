@@ -79,7 +79,9 @@ const INITIAL_STREAM_PHOTOS = {
 
 class LiveStreamApp {
   constructor() {
-    this.currentFolio = 'CAM-2026';
+    const urlParams = new URLSearchParams(window.location.search);
+    const folioParam = urlParams.get('folio');
+    this.currentFolio = (folioParam && (CONCIERGE_EVENTS_DB[folioParam] || INITIAL_STREAM_PHOTOS[folioParam])) ? folioParam : 'CAM-2026';
     this.photos = [];
     this.viewMode = 'gallery'; // 'gallery' | 'slideshow'
     this.slideshowIndex = 0;
@@ -137,6 +139,9 @@ class LiveStreamApp {
 
   loadEvent(folio) {
     this.currentFolio = folio;
+    if (this.folioSelect && this.folioSelect.value !== folio) {
+      this.folioSelect.value = folio;
+    }
     const ev = CONCIERGE_EVENTS_DB[folio];
     if (ev) {
       const parts = ev.couple.split('&');
@@ -373,6 +378,11 @@ class LiveStreamApp {
   bindEvents() {
     this.folioSelect.addEventListener('change', (e) => {
       this.loadEvent(e.target.value);
+      try {
+        const url = new URL(window.location);
+        url.searchParams.set('folio', e.target.value);
+        window.history.replaceState({}, '', url);
+      } catch (err) {}
       this.showToast(`✦ Boda cargada: #${e.target.value}`);
     });
 

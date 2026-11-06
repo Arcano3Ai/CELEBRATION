@@ -907,8 +907,26 @@
     }
 
     // Event Listeners
-    eventSelect.addEventListener('change', (e) => loadEvent(e.target.value));
-    guestSelect.addEventListener('change', (e) => selectGuest(Number(e.target.value)));
+    eventSelect.addEventListener('change', (e) => {
+      loadEvent(e.target.value);
+      try {
+        const url = new URL(window.location);
+        url.searchParams.set('folio', e.target.value);
+        url.searchParams.delete('guest');
+        window.history.replaceState({}, '', url);
+      } catch (err) {}
+    });
+    guestSelect.addEventListener('change', (e) => {
+      selectGuest(Number(e.target.value));
+      try {
+        const url = new URL(window.location);
+        const selG = guests[Number(e.target.value)];
+        if (selG) {
+          url.searchParams.set('guest', selG.name);
+          window.history.replaceState({}, '', url);
+        }
+      } catch (err) {}
+    });
 
     [inputGuestName, inputPasses, inputTable, inputPhone].forEach(inp => {
       inp.addEventListener('input', updateCard);
