@@ -857,6 +857,32 @@
     <p class="ft-copy">Derechos reservados © 2026 CELEBRATION. Diseñado para enlaces inolvidables de alta costura.</p>
   </footer>
 
+  <!-- REPRODUCTOR DE MÚSICA AMBIENTAL FLOTANTE (CELEBRATION — QUE SE PRENDA) -->
+  <audio id="bgAudio" src="assets/audio/celebration_que_se_prenda.mp3" preload="auto" loop></audio>
+  <div class="floating-audio-player" id="floatingAudioPlayer" title="Celebration — Que Se Prenda (Clic para pausar o reproducir)">
+    <button type="button" class="audio-play-btn" id="audioToggleBtn" aria-label="Reproducir o pausar música">
+      <svg id="audioPlayIcon" viewBox="0 0 24 24" width="14" height="14" fill="currentColor" style="margin-left: 2px;">
+        <path d="M8 5v14l11-7z"/>
+      </svg>
+      <svg id="audioPauseIcon" viewBox="0 0 24 24" width="14" height="14" fill="currentColor" style="display: none;">
+        <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+      </svg>
+    </button>
+    <div class="audio-equalizer" id="audioEqualizer">
+      <span class="audio-bar"></span>
+      <span class="audio-bar"></span>
+      <span class="audio-bar"></span>
+      <span class="audio-bar"></span>
+    </div>
+    <div class="audio-info">
+      <span class="audio-title">Celebration — Que Se Prenda</span>
+      <span class="audio-sub">
+        <span>Música Oficial</span>
+        <span id="audioStatusText">· En Reproducción</span>
+      </span>
+    </div>
+  </div>
+
   <!-- BOTÓN FLOTANTE WHATSAPP -->
   <a href="https://wa.me/528121912778?text=Hola%20CELEBRATION%2C%20me%20gustar%C3%ADa%20platicar%20sobre%20nuestra%20invitaci%C3%B3n%20de%20boda%20%E2%9C%A8" 
      class="floating-whatsapp" 

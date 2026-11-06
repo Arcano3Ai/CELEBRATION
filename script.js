@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initShareExperience();
   initPwa();
   initCheckoutGateway();
+  initBackgroundMusic();
 });
 
 /* --------------------------------------------------------------------------
@@ -788,4 +789,92 @@ function initCheckoutGateway() {
       }
     });
   }
+}
+
+/* --------------------------------------------------------------------------
+   11. Background Music Player ("Celebration — Que Se Prenda")
+   -------------------------------------------------------------------------- */
+function initBackgroundMusic() {
+  const audio = document.getElementById('bgAudio');
+  const player = document.getElementById('floatingAudioPlayer');
+  const toggleBtn = document.getElementById('audioToggleBtn');
+  const playIcon = document.getElementById('audioPlayIcon');
+  const pauseIcon = document.getElementById('audioPauseIcon');
+  const statusText = document.getElementById('audioStatusText');
+
+  if (!audio || !player || !toggleBtn) return;
+
+  // Comfortable volume
+  audio.volume = 0.55;
+
+  function setPlayingState(playing) {
+    if (playing) {
+      player.classList.add('is-playing');
+      if (playIcon) playIcon.style.display = 'none';
+      if (pauseIcon) pauseIcon.style.display = 'block';
+      if (statusText) statusText.textContent = '· En Reproducción';
+    } else {
+      player.classList.remove('is-playing');
+      if (playIcon) playIcon.style.display = 'block';
+      if (pauseIcon) pauseIcon.style.display = 'none';
+      if (statusText) statusText.textContent = '· En Pausa';
+    }
+  }
+
+  function playAudio() {
+    const promise = audio.play();
+    if (promise !== undefined) {
+      promise
+        .then(() => {
+          setPlayingState(true);
+        })
+        .catch(() => {
+          setPlayingState(false);
+        });
+    }
+  }
+
+  function pauseAudio() {
+    audio.pause();
+    setPlayingState(false);
+  }
+
+  toggleBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (audio.paused) {
+      playAudio();
+    } else {
+      pauseAudio();
+    }
+  });
+
+  player.addEventListener('click', () => {
+    if (audio.paused) {
+      playAudio();
+    } else {
+      pauseAudio();
+    }
+  });
+
+  // Autoplay strategy:
+  // 1. Intentar reproducción inmediata
+  playAudio();
+
+  // 2. Si el navegador bloquea el autoplay sin interacción,
+  // activar al primer toque, clic, scroll o tecla en cualquier parte de la pantalla.
+  const unlockOnGesture = () => {
+    if (audio.paused) {
+      playAudio();
+    }
+    ['click', 'touchstart', 'scroll', 'keydown'].forEach(evt => {
+      document.removeEventListener(evt, unlockOnGesture);
+    });
+  };
+
+  ['click', 'touchstart', 'scroll', 'keydown'].forEach(evt => {
+    document.addEventListener(evt, unlockOnGesture, { once: true, passive: true });
+  });
+
+  audio.addEventListener('play', () => setPlayingState(true));
+  audio.addEventListener('pause', () => setPlayingState(false));
 }

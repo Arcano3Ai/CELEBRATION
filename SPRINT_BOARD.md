@@ -45,6 +45,7 @@
 | **CEL-35** | Calibración Realista SPGG & Eliminación de Overhead (Cero APIs / Cero Cloud / Cero Dominios) | Copy + UI/UX + Frontend | ✅ Completado | Ajuste de precios al mercado real de San Pedro Garza García ($4,200 / $6,800 / $9,500 MXN), eliminación de costos fijos por dominios .com, eliminación de dependencias de APIs y almacenamiento en la nube, operando 100% client-side con WhatsApp y exportación a Excel. |
 | **CEL-31** | Módulo de DJ Crowdsourced & Canciones en Vivo en Pantalla | Frontend + UI/UX + QA | ✅ Completado | Muro interactivo en `live.html` y `live.js` con ranking de canciones pedidas por los invitados (`#1 🏆`, `#2 🥈`, `#3 🥉`), sistema de votación `+1 Voto` en tiempo real, modal para solicitar pistas y sincronización cross-tab reactiva vía `localStorage`. |
 | **CEL-33** | Timeline Interactivo Minuto a Minuto (Run of Show) | Frontend + UI/UX + QA | ✅ Completado | Pestaña protocolaria en `planner.html` con hitos minuto a minuto (ceremonia, vals, banquete, brindis, fiesta), control dinámico de estatus (`Pendiente`, `En Curso ⏱️`, `Completado ✓`), persistencia por folio, edición y modo de impresión oficial. |
+| **CEL-36** | Música Ambiental Oficial "Celebration — Que Se Prenda" & Reproductor Flotante | UI/UX + Frontend + QA | ✅ Completado | Integración de audio MP3 oficial con ecualizador animado, control flotante de lujo con micro-interacciones, inicio automático al primer gesto de navegación y bypass de streaming en Service Worker. |
 
 ---
 

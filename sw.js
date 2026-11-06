@@ -73,8 +73,8 @@ self.addEventListener('fetch', (event) => {
   const { request } = event;
   const url = new URL(request.url);
 
-  // Ignore non-GET requests
-  if (request.method !== 'GET') return;
+  // Ignore non-GET requests and native audio streaming requests
+  if (request.method !== 'GET' || request.url.endsWith('.mp3')) return;
 
   // 1. Navigation requests (HTML pages): Network first, fallback to cached HTML
   if (request.mode === 'navigate') {
