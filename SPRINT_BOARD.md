@@ -43,16 +43,13 @@
 | **CEL-30** | Generador de Pases VIP Digitales para WhatsApp & Exportador HD | Frontend + UI/UX + QA | ✅ Completado | `passes.html` con personalizador en tiempo real por invitado/familia, 3 estilos editoriales (Champán, Black Tie, Vogue), motor Canvas Retina (1080x1350px PNG) y botón 1-clic con mensaje protocolario prellenado para WhatsApp. |
 | **CEL-32** | Auditoría Integral Multi-Agente & Sincronización Global por Folio | Todos los Agentes | ✅ Completado | Suite de verificación automatizada `tools/audit_suite.py`, sanitización `escapeHtml`, deep-linking bidireccional vía `URLSearchParams` (`?folio=X&guest=Y`) en `planner.html`, `passes.html`, `live.html` y los 3 demos oficiales. |
 | **CEL-35** | Calibración Realista SPGG & Eliminación de Overhead (Cero APIs / Cero Cloud / Cero Dominios) | Copy + UI/UX + Frontend | ✅ Completado | Ajuste de precios al mercado real de San Pedro Garza García ($4,200 / $6,800 / $9,500 MXN), eliminación de costos fijos por dominios .com, eliminación de dependencias de APIs y almacenamiento en la nube, operando 100% client-side con WhatsApp y exportación a Excel. |
+| **CEL-31** | Módulo de DJ Crowdsourced & Canciones en Vivo en Pantalla | Frontend + UI/UX + QA | ✅ Completado | Muro interactivo en `live.html` y `live.js` con ranking de canciones pedidas por los invitados (`#1 🏆`, `#2 🥈`, `#3 🥉`), sistema de votación `+1 Voto` en tiempo real, modal para solicitar pistas y sincronización cross-tab reactiva vía `localStorage`. |
+| **CEL-33** | Timeline Interactivo Minuto a Minuto (Run of Show) | Frontend + UI/UX + QA | ✅ Completado | Pestaña protocolaria en `planner.html` con hitos minuto a minuto (ceremonia, vals, banquete, brindis, fiesta), control dinámico de estatus (`Pendiente`, `En Curso ⏱️`, `Completado ✓`), persistencia por folio, edición y modo de impresión oficial. |
 
 ---
 
-## 🔮 Backlog de Próximos Sprints (Funcionalidades Realistas Sin Costo de Nube)
+## 🔮 Backlog de Próximos Sprints (Herramientas Opcionales para Novios)
 
-### Fase 1: Interactividad de Salón & Control Local (100% Client-Side)
-- [ ] **CEL-31 (Módulo de DJ Crowdsourced & Canciones en Vivo):** Muro interactivo en `live.html` para que invitados propongan y voten canciones para la fiesta en tiempo real vía almacenamiento local sin APIs de pago.
-- [ ] **CEL-33 (Timeline Interactivo Minuto a Minuto para Wedding Planners):** Widget de control de tiempos (Minuto a Minuto) en `planner.html` para coordinadores de evento con alertas visuales de protocolo.
-
-### Fase 2: Herramientas de Apoyo a Novios y Coordinación
 - [ ] **CEL-36 (Generador de PDF de Resumen de Banquete & Alergias):** Exportador en 1 clic de hoja ejecutiva para el chef y capitán de meseros desde `planner.html`.
 - [ ] **CEL-37 (Plantillas de Mensajes de Difusión WhatsApp):** Generador de copys de recordatorio y cuenta regresiva listos para copiar y pegar en WhatsApp.
 

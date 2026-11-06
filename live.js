@@ -77,13 +77,35 @@ const INITIAL_STREAM_PHOTOS = {
   ]
 };
 
+const INITIAL_DJ_SONGS = {
+  'CAM-2026': [
+    { id: 'cam-s1', title: 'September — Earth, Wind & Fire', guest: 'Patricio Sada • Mesa VIP', dedication: '¡Para encender la pista con toda la actitud!', votes: 29 },
+    { id: 'cam-s2', title: 'Dancing Queen — ABBA', guest: 'Renata Lozano • Mesa 3', dedication: 'Para que Camila y sus amigas rompan la pista.', votes: 25 },
+    { id: 'cam-s3', title: 'Tití Me Preguntó — Bad Bunny', guest: 'Mauricio Fernández • Mesa VIP', dedication: '¡Arriba San Pedro y Los Cabos!', votes: 22 },
+    { id: 'cam-s4', title: 'La Incondicional — Luis Miguel', guest: 'Regina Garza Lagüera • Mesa 2', dedication: 'Cantar a todo pulmón con los novios.', votes: 19 },
+    { id: 'cam-s5', title: 'Don\'t Stop Believin\' — Journey', guest: 'Emilio Azcárraga • Mesa VIP', dedication: 'Himno para el final de la noche.', votes: 16 }
+  ],
+  'VAL-2026': [
+    { id: 'val-s1', title: 'Como la Flor — Selena', guest: 'Mariana Garza • Mesa 4', dedication: '¡Para bailar y cantar en la hacienda!', votes: 28 },
+    { id: 'val-s2', title: 'Can\'t Take My Eyes Off You — Frankie Valli', guest: 'Alejandro Morales • Padrino', dedication: 'Dedicada con amor a Valentina y Mateo.', votes: 24 },
+    { id: 'val-s3', title: 'Vivir Mi Vida — Marc Anthony', guest: 'Carlos Villarreal • Mesa 2', dedication: '¡Pura fiesta en San Miguel!', votes: 21 },
+    { id: 'val-s4', title: 'I Wanna Dance with Somebody — Whitney Houston', guest: 'Paulina Sada • Mesa 1', dedication: 'Para las damas de honor.', votes: 18 }
+  ],
+  'ISA-2026': [
+    { id: 'isa-s1', title: 'Fly Me to the Moon — Frank Sinatra', guest: 'Fernando Treviño • Mesa 1', dedication: 'Clásico de gala para la recepción.', votes: 26 },
+    { id: 'isa-s2', title: 'Suave — Luis Miguel', guest: 'Lucía Domínguez • Mesa 6', dedication: '¡El Sol de México no puede faltar!', votes: 23 },
+    { id: 'isa-s3', title: 'Bailando — Enrique Iglesias', guest: 'Santiago Creel • Mesa 2', dedication: 'Todos a la pista.', votes: 19 }
+  ]
+};
+
 class LiveStreamApp {
   constructor() {
     const urlParams = new URLSearchParams(window.location.search);
     const folioParam = urlParams.get('folio');
     this.currentFolio = (folioParam && (CONCIERGE_EVENTS_DB[folioParam] || INITIAL_STREAM_PHOTOS[folioParam])) ? folioParam : 'CAM-2026';
     this.photos = [];
-    this.viewMode = 'gallery'; // 'gallery' | 'slideshow'
+    this.djSongs = [];
+    this.viewMode = 'gallery'; // 'gallery' | 'slideshow' | 'dj'
     this.slideshowIndex = 0;
     this.slideshowTimer = null;
     this.selectedImageData = null;
@@ -128,6 +150,21 @@ class LiveStreamApp {
     this.authorInput = document.getElementById('authorInput');
     this.captionInput = document.getElementById('captionInput');
 
+    // DJ Elements
+    this.djView = document.getElementById('djView');
+    this.btnToggleDj = document.getElementById('btnToggleDj');
+    this.djIcon = document.getElementById('djIcon');
+    this.djLabel = document.getElementById('djLabel');
+    this.djSongsGrid = document.getElementById('djSongsGrid');
+    this.djModal = document.getElementById('djModal');
+    this.btnOpenRequestSong = document.getElementById('btnOpenRequestSong');
+    this.btnCloseDj = document.getElementById('btnCloseDj');
+    this.btnCancelDj = document.getElementById('btnCancelDj');
+    this.djRequestForm = document.getElementById('djRequestForm');
+    this.inputSongTitle = document.getElementById('inputSongTitle');
+    this.inputSongGuest = document.getElementById('inputSongGuest');
+    this.inputSongDedication = document.getElementById('inputSongDedication');
+
     // Toast
     this.toast = document.getElementById('liveToast');
     this.toastText = document.getElementById('toastText');
@@ -135,6 +172,10 @@ class LiveStreamApp {
 
   getStorageKey() {
     return `celebration_live_photos_${this.currentFolio}`;
+  }
+
+  getDjStorageKey() {
+    return `celebration_live_dj_${this.currentFolio}`;
   }
 
   loadEvent(folio) {
@@ -164,8 +205,23 @@ class LiveStreamApp {
       this.savePhotos();
     }
 
+    // Load DJ songs from storage or defaults
+    const savedDj = localStorage.getItem(this.getDjStorageKey());
+    if (savedDj) {
+      try {
+        this.djSongs = JSON.parse(savedDj);
+      } catch (e) {
+        this.djSongs = JSON.parse(JSON.stringify(INITIAL_DJ_SONGS[folio] || INITIAL_DJ_SONGS['CAM-2026']));
+      }
+    } else {
+      this.djSongs = JSON.parse(JSON.stringify(INITIAL_DJ_SONGS[folio] || INITIAL_DJ_SONGS['CAM-2026']));
+      this.saveDjSongs();
+    }
+
     this.renderQrCode();
     this.renderGallery();
+    this.renderDjSongs();
+
     if (this.viewMode === 'slideshow') {
       this.startSlideshow();
     }
@@ -207,7 +263,93 @@ class LiveStreamApp {
     });
   }
 
+  saveDjSongs() {
+    localStorage.setItem(this.getDjStorageKey(), JSON.stringify(this.djSongs));
+    this.renderDjSongs();
+  }
+
+  renderDjSongs() {
+    if (!this.djSongsGrid) return;
+    this.djSongsGrid.innerHTML = '';
+
+    // Sort descending by votes
+    this.djSongs.sort((a, b) => (Number(b.votes) || 0) - (Number(a.votes) || 0));
+
+    if (this.djSongs.length === 0) {
+      this.djSongsGrid.innerHTML = `
+        <div style="grid-column: 1 / -1; text-align: center; padding: 3rem 1rem; color: rgba(250,247,242,0.6);">
+          <p style="font-size: 1.1rem; font-family: var(--font-serif); margin-bottom: 0.8rem;">Aún no hay canciones solicitadas en la pista.</p>
+          <button type="button" class="ctrl-btn btn-upload-direct" id="btnEmptyAddSong">¡Sé el primero en pedir una canción!</button>
+        </div>
+      `;
+      document.getElementById('btnEmptyAddSong')?.addEventListener('click', () => {
+        this.djModal?.classList.add('show');
+      });
+      return;
+    }
+
+    const rankEmojis = ['🏆', '🥈', '🥉'];
+
+    this.djSongs.forEach((song, idx) => {
+      const card = document.createElement('div');
+      card.className = `dj-song-card ${idx === 0 ? 'rank-1' : ''}`;
+
+      const rankBadge = idx < 3 ? `#${idx + 1} ${rankEmojis[idx]}` : `#${idx + 1}`;
+
+      card.innerHTML = `
+        <div class="dj-rank-badge">${rankBadge}</div>
+        <div class="dj-song-info">
+          <h4 class="dj-song-title">${this.escapeHtml(song.title)}</h4>
+          <span class="dj-song-author">Pedida por: ${this.escapeHtml(song.guest || 'Invitado')}</span>
+          ${song.dedication ? `<p class="dj-song-dedication">"${this.escapeHtml(song.dedication)}"</p>` : ''}
+        </div>
+        <button type="button" class="dj-vote-btn" data-vote-id="${song.id}" title="Votar para que el DJ la ponga ya">
+          ❤️ ${song.votes || 0}
+        </button>
+      `;
+      this.djSongsGrid.appendChild(card);
+    });
+
+    // Bind vote clicks
+    this.djSongsGrid.querySelectorAll('[data-vote-id]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.dataset.voteId;
+        const target = this.djSongs.find(s => s.id === id);
+        if (target) {
+          target.votes = (Number(target.votes) || 0) + 1;
+          this.saveDjSongs();
+          this.showToast(`🎵 +1 Voto registrado para "${target.title}"`);
+        }
+      });
+    });
+  }
+
+  toggleDjMode() {
+    if (this.viewMode === 'dj') {
+      this.viewMode = 'gallery';
+      if (this.djView) this.djView.style.display = 'none';
+      if (this.galleryView) this.galleryView.style.display = 'block';
+      if (this.slideshowView) this.slideshowView.style.display = 'none';
+      if (this.djLabel) this.djLabel.textContent = 'Pista DJ';
+      if (this.djIcon) this.djIcon.textContent = '🎵';
+      this.renderGallery();
+    } else {
+      this.stopSlideshow();
+      this.viewMode = 'dj';
+      if (this.galleryView) this.galleryView.style.display = 'none';
+      if (this.slideshowView) this.slideshowView.style.display = 'none';
+      if (this.djView) this.djView.style.display = 'block';
+      if (this.djLabel) this.djLabel.textContent = 'Ver Fotos';
+      if (this.djIcon) this.djIcon.textContent = '📸';
+      this.renderDjSongs();
+    }
+  }
+
   toggleViewMode() {
+    if (this.djView) this.djView.style.display = 'none';
+    if (this.djLabel) this.djLabel.textContent = 'Pista DJ';
+    if (this.djIcon) this.djIcon.textContent = '🎵';
+
     if (this.viewMode === 'gallery') {
       this.viewMode = 'slideshow';
       this.galleryView.style.display = 'none';
@@ -387,6 +529,7 @@ class LiveStreamApp {
     });
 
     this.btnToggleMode.addEventListener('click', () => this.toggleViewMode());
+    if (this.btnToggleDj) this.btnToggleDj.addEventListener('click', () => this.toggleDjMode());
     this.btnFullscreen.addEventListener('click', () => this.toggleFullscreen());
 
     // Upload Modal events
@@ -459,6 +602,44 @@ class LiveStreamApp {
       }
     });
 
+    // DJ Song Request Form
+    const openDjModal = () => {
+      if (this.djRequestForm) this.djRequestForm.reset();
+      this.djModal?.classList.add('show');
+    };
+    const closeDjModal = () => this.djModal?.classList.remove('show');
+
+    if (this.btnOpenRequestSong) this.btnOpenRequestSong.addEventListener('click', openDjModal);
+    if (this.btnCloseDj) this.btnCloseDj.addEventListener('click', closeDjModal);
+    if (this.btnCancelDj) this.btnCancelDj.addEventListener('click', closeDjModal);
+
+    if (this.djRequestForm) {
+      this.djRequestForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const title = this.inputSongTitle?.value.trim();
+        const guest = this.inputSongGuest?.value.trim();
+        const dedication = this.inputSongDedication?.value.trim();
+
+        if (!title || !guest) {
+          alert('Por favor indica la canción y tu nombre/mesa.');
+          return;
+        }
+
+        const newSong = {
+          id: 'song-' + Date.now(),
+          title: title,
+          guest: guest,
+          dedication: dedication,
+          votes: 1
+        };
+
+        this.djSongs.unshift(newSong);
+        this.saveDjSongs();
+        closeDjModal();
+        this.showToast(`🎶 ¡"${title}" enviada a la pista de baile!`);
+      });
+    }
+
     // Cross-tab reactive synchronization
     window.addEventListener('storage', (e) => {
       if (e.key === this.getStorageKey()) {
@@ -468,6 +649,14 @@ class LiveStreamApp {
             this.renderGallery();
           }
           this.showToast('✦ Nuevo momento proyectado en vivo');
+        } catch (err) {}
+      } else if (e.key === this.getDjStorageKey()) {
+        try {
+          this.djSongs = JSON.parse(e.newValue || '[]');
+          if (this.viewMode === 'dj') {
+            this.renderDjSongs();
+          }
+          this.showToast('🎵 ¡Lista de canciones DJ actualizada en tiempo real!');
         } catch (err) {}
       }
     });

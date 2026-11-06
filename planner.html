@@ -778,6 +778,127 @@
       transform: translateX(-50%) translateY(0);
     }
 
+    /* TIMELINE RUN OF SHOW */
+    .timeline-container {
+      position: relative;
+      padding: 1rem 0 2rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+    .timeline-container::before {
+      content: '';
+      position: absolute;
+      left: 10px;
+      top: 15px;
+      bottom: 25px;
+      width: 2px;
+      background: linear-gradient(180deg, var(--gold) 0%, rgba(197, 160, 89, 0.25) 100%);
+    }
+    .timeline-card {
+      background: var(--ink-card);
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      padding: 1.2rem 1.4rem;
+      position: relative;
+      transition: all 0.2s ease;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1.2rem;
+    }
+    .timeline-card:hover {
+      border-color: rgba(197, 160, 89, 0.4);
+    }
+    .timeline-card.is-current {
+      border-color: var(--gold);
+      background: rgba(197, 160, 89, 0.08);
+      box-shadow: 0 0 25px rgba(197, 160, 89, 0.15);
+    }
+    .timeline-card.is-completed {
+      opacity: 0.7;
+    }
+    .timeline-dot {
+      position: absolute;
+      left: -2rem;
+      top: 1.4rem;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--ink);
+      border: 2px solid var(--gold);
+      transform: translateX(-5px);
+      z-index: 2;
+    }
+    .timeline-card.is-current .timeline-dot {
+      background: var(--gold);
+      box-shadow: 0 0 10px var(--gold);
+    }
+    .timeline-card.is-completed .timeline-dot {
+      background: #2ecc71;
+      border-color: #2ecc71;
+    }
+    .timeline-time-badge {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--gold-lt);
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+    .timeline-title {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: var(--cream);
+      margin-bottom: 0.35rem;
+    }
+    .timeline-desc {
+      font-size: 0.78rem;
+      color: var(--cream-muted);
+      line-height: 1.5;
+      margin-bottom: 0.5rem;
+    }
+    .timeline-meta {
+      display: flex;
+      gap: 0.8rem;
+      align-items: center;
+      flex-wrap: wrap;
+      font-size: 0.7rem;
+    }
+    .timeline-resp {
+      color: var(--gold);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+    .timeline-status-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 0.3rem 0.75rem;
+      font-size: 0.65rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      color: var(--cream-muted);
+      transition: all 0.2s;
+    }
+    .timeline-status-btn:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+    .timeline-status-btn.current {
+      background: rgba(197, 160, 89, 0.2);
+      border-color: var(--gold);
+      color: var(--gold-lt);
+    }
+    .timeline-status-btn.completed {
+      background: rgba(46, 204, 113, 0.15);
+      border-color: #2ecc71;
+      color: #2ecc71;
+    }
+
     /* PRINT STYLES */
     @media print {
       body {
@@ -945,6 +1066,7 @@
       <button type="button" class="tab-btn active" id="tabGuests" data-view="guests">📋 Lista de Invitados &amp; RSVP</button>
       <button type="button" class="tab-btn" id="tabSeating" data-view="seating">🏛️ Distribución de Mesas</button>
       <button type="button" class="tab-btn" id="tabQr" data-view="qr">🏷️ Tarjetas de Mesa QR / NFC (Print)</button>
+      <button type="button" class="tab-btn" id="tabTimeline" data-view="timeline">⏱️ Minuto a Minuto</button>
     </nav>
 
     <!-- VIEW 1: GUEST LIST -->
@@ -1008,7 +1130,69 @@
         <!-- Rendered by JS -->
       </div>
     </div>
+
+    <!-- VIEW 4: RUN OF SHOW / MINUTO A MINUTO -->
+    <div id="viewTimeline" class="view-panel" style="display:none;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.4rem; flex-wrap:wrap; gap:1rem;">
+        <div>
+          <h3 style="font-family:var(--font-serif); font-size:1.4rem; font-weight:400; color:var(--cream);">Minuto a Minuto • Run of Show Protocolario</h3>
+          <p style="font-size:0.75rem; color:var(--cream-muted);">Cronograma de protocolo y tiempos para coordinadoras de boda, banqueteros, DJ y equipo técnico.</p>
+        </div>
+        <div style="display:flex; gap:0.6rem; flex-wrap:wrap;">
+          <button type="button" class="btn btn-outline" id="btnResetTimeline">↺ Restaurar Estándar</button>
+          <button type="button" class="btn btn-gold" id="btnOpenTimelineModal">+ Agregar Momento</button>
+          <button type="button" class="btn btn-outline" onclick="window.print()">🖨️ Imprimir Run of Show</button>
+        </div>
+      </div>
+
+      <div class="timeline-container" id="timelineContainer">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
   </main>
+
+  <!-- MODAL: ADD / EDIT TIMELINE MOMENT -->
+  <div class="modal-backdrop" id="timelineModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title" id="timelineModalTitle">Agregar Momento al Cronograma</h3>
+        <button type="button" class="modal-close" id="timelineModalClose">✕</button>
+      </div>
+      <form class="modal-form" id="timelineForm">
+        <input type="hidden" id="timelineEditIndex" value="-1">
+        <div class="form-row">
+          <div class="form-group" style="flex:1;">
+            <label for="inputTimelineTime">Hora Estimada *</label>
+            <input type="text" id="inputTimelineTime" class="form-control" placeholder="Ej. 20:30" required>
+          </div>
+          <div class="form-group" style="flex:2;">
+            <label for="inputTimelineResp">Responsable Principal *</label>
+            <input type="text" id="inputTimelineResp" class="form-control" placeholder="Ej. DJ / Wedding Planner" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputTimelineTitle">Momento / Hito *</label>
+          <input type="text" id="inputTimelineTitle" class="form-control" placeholder="Ej. Entrada Triunfal de los Novios" required>
+        </div>
+        <div class="form-group">
+          <label for="inputTimelineDesc">Descripción / Protocolo / Notas Técnicas</label>
+          <textarea id="inputTimelineDesc" class="form-control" rows="3" placeholder="Ej. Canción: 'Viva La Vida - Coldplay'. Coordinar fuegos fríos y encendido de luces cálidas."></textarea>
+        </div>
+        <div class="form-group">
+          <label for="inputTimelineStatus">Estatus Actual</label>
+          <select id="inputTimelineStatus" class="form-control">
+            <option value="pending" selected>Pendiente (Por Iniciar)</option>
+            <option value="current">En Curso ⏱️ (En Vivo)</option>
+            <option value="completed">Completado ✓</option>
+          </select>
+        </div>
+        <div style="display:flex; justify-content:flex-end; gap:0.6rem; margin-top:0.8rem;">
+          <button type="button" class="btn btn-outline" id="btnCancelTimelineModal">Cancelar</button>
+          <button type="submit" class="btn btn-gold" id="btnSaveTimeline">Guardar Momento</button>
+        </div>
+      </form>
+    </div>
+  </div>
 
   <!-- MODAL: ADD / EDIT GUEST -->
   <div class="modal-backdrop" id="guestModal">
@@ -1086,8 +1270,54 @@
     let currentFolio = 'VAL-2026';
     let currentEvent = null;
     let guests = [];
+    let timeline = [];
     let activeFilter = 'all';
     let searchQuery = '';
+
+    const DEFAULT_TIMELINES = {
+      'VAL-2026': [
+        { time: '16:00', title: 'Llegada de Invitados a la Parroquia', desc: 'Música sacra en órgano y bienvenida de asistentes en el atrio.', resp: 'Coordinador de Templo', status: 'completed' },
+        { time: '16:30', title: 'Ceremonia Religiosa Solemne', desc: 'Parroquia de San Miguel Arcángel. Cortejo de honor, lecturas y votos.', resp: 'Párroco / Familiares', status: 'completed' },
+        { time: '17:45', title: 'Sesión Fotográfica & Traslado a Hacienda', desc: 'Fotos con damas y padrinos en callejones de SMA. Salida de shuttles a Hacienda Las Trancas.', resp: 'Fotógrafo / Shuttles', status: 'completed' },
+        { time: '18:30', title: 'Cóctel de Bienvenida & Callejoneada', desc: 'Música acústica en jardines, barra de mixología de autor y canapés de bienvenida.', resp: 'Capitán de Banquetes', status: 'current' },
+        { time: '19:45', title: 'Apertura de Salón & Ubicación de Mesas', desc: 'Música ambiental suave. Recepcionistas asisten a invitados a ubicar sus mesas con centros de mesa QR.', resp: 'Wedding Planner', status: 'pending' },
+        { time: '20:15', title: 'Entrada Triunfal de Valentina & Mateo', desc: 'Canción especial de entrada. Aplausos, pirotecnia fría y bienvenida oficial.', resp: 'DJ / Iluminación', status: 'pending' },
+        { time: '20:30', title: 'Primer Vals Nupcial & Baile Familiar', desc: 'Vals de novios, seguido de baile con padres y padrinos.', resp: 'DJ / Animación', status: 'pending' },
+        { time: '21:00', title: 'Servicio de Banquete en 4 Tiempos', desc: 'Atención personalizada a mesas con restricciones alimentarias y alérgenos.', resp: 'Chef Ejecutivo / Meseros', status: 'pending' },
+        { time: '22:30', title: 'Brindis de Honor & Palabras de Novios', desc: 'Copas de champaña servidas. Discursos de papás y agradecimiento de novios.', resp: 'Sommelier / Novios', status: 'pending' },
+        { time: '22:45', title: 'Apertura de Pista & Activación Live Event', desc: 'Comienza set de fiesta. Pantalla gigante activa para proyectar fotos de invitados.', resp: 'DJ en Vivo / Pantalla Live', status: 'pending' },
+        { time: '02:00', title: 'Tornaboda & Estación de Chilaquiles', desc: 'Menú de trasnochados con chilaquiles artesanales y mariachi de despedida.', resp: 'Banquete / Mariachi', status: 'pending' }
+      ],
+      'ISA-2026': [
+        { time: '17:30', title: 'Recepción en Catedral Metropolitana', desc: 'Acceso de invitados y cortejo nupcial formal.', resp: 'Coordinación CDMX', status: 'completed' },
+        { time: '18:00', title: 'Misa Solemne Black Tie', desc: 'Música de cámara y coro monumental.', resp: 'Orquesta / Párroco', status: 'current' },
+        { time: '19:30', title: 'Cóctel de Gala en Palacio', desc: 'Champagne bar y jazz en vivo.', resp: 'Catering Palacio', status: 'pending' },
+        { time: '20:45', title: 'Entrada de Isabella & Santiago', desc: 'Fanfarria y vals de honor de recién casados.', resp: 'DJ / Wedding Planner', status: 'pending' },
+        { time: '21:15', title: 'Cena de Gala Formal en 4 Tiempos', desc: 'Servicio emplatado de alta cocina.', resp: 'Chef Ejecutivo', status: 'pending' },
+        { time: '23:00', title: 'Pista de Baile & Fiesta Monumental', desc: 'DJ internacional y espectáculo de luces.', resp: 'DJ / Audio Pro', status: 'pending' }
+      ],
+      'CAM-2026': [
+        { time: '17:00', title: 'Ceremonia al Atardecer frente al Arco', desc: 'Sunset Monalisa. Votos nupciales con vista al mar de Cortés.', resp: 'Officiant / Violinista', status: 'completed' },
+        { time: '18:15', title: 'Cóctel Sunset & Toast de Novios', desc: 'Brindis con margaritas de autor y vista al crepúsculo.', resp: 'Bar Sunset', status: 'current' },
+        { time: '19:30', title: 'Cena Mediterránea Bajo las Estrellas', desc: 'Banquete de mariscos y cortes finos.', resp: 'Sunset Monalisa Chef', status: 'pending' },
+        { time: '21:00', title: 'Fiesta & Pantallas Live Event Proyectando', desc: 'Carga de fotos por NFC y set de DJ en vivo.', resp: 'DJ / Screen Operator', status: 'pending' },
+        { time: '01:00', title: 'After Party en la Playa', desc: 'Fogata frente al mar y tornaboda.', resp: 'Concierge Cabo', status: 'pending' }
+      ]
+    };
+
+    const timelineContainer = document.getElementById('timelineContainer');
+    const timelineModal = document.getElementById('timelineModal');
+    const timelineForm = document.getElementById('timelineForm');
+    const timelineModalTitle = document.getElementById('timelineModalTitle');
+    const timelineEditIndex = document.getElementById('timelineEditIndex');
+    const btnOpenTimelineModal = document.getElementById('btnOpenTimelineModal');
+    const btnResetTimeline = document.getElementById('btnResetTimeline');
+    const btnCancelTimelineModal = document.getElementById('btnCancelTimelineModal');
+    const timelineModalClose = document.getElementById('timelineModalClose');
+
+    function getTimelineStorageKey(folio) {
+      return `celebration_timeline_${folio}`;
+    }
 
     // Elements
     const eventSelector = document.getElementById('eventSelector');
@@ -1152,6 +1382,19 @@
       renderSeating();
       renderQrCards();
 
+      // Load timeline state or defaults
+      const savedTimeline = localStorage.getItem(getTimelineStorageKey(folio));
+      if (savedTimeline) {
+        try {
+          timeline = JSON.parse(savedTimeline);
+        } catch (e) {
+          timeline = JSON.parse(JSON.stringify(DEFAULT_TIMELINES[folio] || DEFAULT_TIMELINES['VAL-2026']));
+        }
+      } else {
+        timeline = JSON.parse(JSON.stringify(DEFAULT_TIMELINES[folio] || DEFAULT_TIMELINES['VAL-2026']));
+      }
+      renderTimeline();
+
       // Update hero action button links for this folio
       const btnPasses = document.getElementById('btnHeroPasses');
       if (btnPasses) btnPasses.href = `passes.html?folio=${encodeURIComponent(folio)}`;
@@ -1176,6 +1419,126 @@
       renderGuests();
       renderSeating();
       renderQrCards();
+    }
+
+    function saveTimelineState() {
+      localStorage.setItem(getTimelineStorageKey(currentFolio), JSON.stringify(timeline));
+      renderTimeline();
+    }
+
+    function renderTimeline() {
+      if (!timelineContainer) return;
+      timelineContainer.innerHTML = '';
+
+      if (!timeline.length) {
+        timelineContainer.innerHTML = `
+          <div style="text-align:center; padding:3rem 1rem; color:var(--cream-muted);">
+            <p style="font-size:1.1rem; margin-bottom:0.8rem; font-family:var(--font-serif);">No hay momentos registrados en este cronograma.</p>
+            <button type="button" class="btn btn-gold" id="btnEmptyResetTimeline">Cargar Cronograma Protocolario Estándar</button>
+          </div>
+        `;
+        document.getElementById('btnEmptyResetTimeline')?.addEventListener('click', resetTimelineToDefault);
+        return;
+      }
+
+      const statusLabels = {
+        pending: 'Pendiente',
+        current: 'En Curso ⏱️',
+        completed: 'Completado ✓'
+      };
+
+      timeline.forEach((item, idx) => {
+        const card = document.createElement('div');
+        card.className = `timeline-card ${item.status === 'current' ? 'is-current' : ''} ${item.status === 'completed' ? 'is-completed' : ''}`;
+
+        card.innerHTML = `
+          <div class="timeline-dot"></div>
+          <div style="flex:1;">
+            <div style="display:flex; align-items:center; gap:0.9rem; margin-bottom:0.3rem;">
+              <span class="timeline-time-badge">${escapeHtml(item.time)}</span>
+              <button type="button" class="timeline-status-btn ${item.status}" data-toggle-status="${idx}" title="Clic para avanzar estatus del momento">
+                ${statusLabels[item.status] || 'Pendiente'}
+              </button>
+            </div>
+            <h4 class="timeline-title">${escapeHtml(item.title)}</h4>
+            ${item.desc ? `<p class="timeline-desc">${escapeHtml(item.desc)}</p>` : ''}
+            <div class="timeline-meta">
+              <span class="timeline-resp">✦ Responsable: ${escapeHtml(item.resp || 'Coordinación')}</span>
+            </div>
+          </div>
+          <div class="table-actions" style="margin-left:0.5rem;">
+            <button type="button" class="action-btn" data-edit-timeline="${idx}" title="Editar momento">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+            </button>
+            <button type="button" class="action-btn btn-delete" data-delete-timeline="${idx}" title="Eliminar momento">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+            </button>
+          </div>
+        `;
+        timelineContainer.appendChild(card);
+      });
+
+      // Bind status toggle
+      timelineContainer.querySelectorAll('[data-toggle-status]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const idx = Number(btn.dataset.toggleStatus);
+          const current = timeline[idx].status;
+          const nextStatus = current === 'pending' ? 'current' : current === 'current' ? 'completed' : 'pending';
+          timeline[idx].status = nextStatus;
+          saveTimelineState();
+          showToast(`✦ Momento actualizado: ${statusLabels[nextStatus]}`);
+        });
+      });
+
+      // Bind edit
+      timelineContainer.querySelectorAll('[data-edit-timeline]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const idx = Number(btn.dataset.editTimeline);
+          openTimelineModal(idx);
+        });
+      });
+
+      // Bind delete
+      timelineContainer.querySelectorAll('[data-delete-timeline]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const idx = Number(btn.dataset.deleteTimeline);
+          if (confirm(`¿Eliminar el momento "${timeline[idx].title}" del cronograma?`)) {
+            timeline.splice(idx, 1);
+            saveTimelineState();
+            showToast('✦ Momento eliminado del cronograma');
+          }
+        });
+      });
+    }
+
+    function resetTimelineToDefault() {
+      if (confirm('¿Restaurar el cronograma protocolario estándar para este evento?')) {
+        timeline = JSON.parse(JSON.stringify(DEFAULT_TIMELINES[currentFolio] || DEFAULT_TIMELINES['VAL-2026']));
+        saveTimelineState();
+        showToast('✦ Cronograma protocolario restaurado');
+      }
+    }
+
+    function openTimelineModal(idx = -1) {
+      timelineEditIndex.value = idx;
+      if (idx >= 0) {
+        const item = timeline[idx];
+        timelineModalTitle.textContent = 'Editar Momento del Cronograma';
+        document.getElementById('inputTimelineTime').value = item.time || '';
+        document.getElementById('inputTimelineResp').value = item.resp || '';
+        document.getElementById('inputTimelineTitle').value = item.title || '';
+        document.getElementById('inputTimelineDesc').value = item.desc || '';
+        document.getElementById('inputTimelineStatus').value = item.status || 'pending';
+      } else {
+        timelineModalTitle.textContent = 'Agregar Momento al Cronograma';
+        timelineForm.reset();
+        timelineEditIndex.value = -1;
+      }
+      timelineModal.classList.add('show');
+    }
+
+    function closeTimelineModal() {
+      timelineModal.classList.remove('show');
     }
 
     function renderHero() {
@@ -1553,6 +1916,7 @@
         document.getElementById('viewGuests').style.display = view === 'guests' ? 'block' : 'none';
         document.getElementById('viewSeating').style.display = view === 'seating' ? 'block' : 'none';
         document.getElementById('viewQr').style.display = view === 'qr' ? 'block' : 'none';
+        document.getElementById('viewTimeline').style.display = view === 'timeline' ? 'block' : 'none';
       });
     });
 
@@ -1685,11 +2049,57 @@
     document.getElementById('btnExportCsv').addEventListener('click', exportToCSV);
     document.getElementById('btnPrintReport').addEventListener('click', () => window.print());
 
+    // Timeline Run of Show Listeners
+    if (btnOpenTimelineModal) btnOpenTimelineModal.addEventListener('click', () => openTimelineModal(-1));
+    if (btnResetTimeline) btnResetTimeline.addEventListener('click', resetTimelineToDefault);
+    if (btnCancelTimelineModal) btnCancelTimelineModal.addEventListener('click', closeTimelineModal);
+    if (timelineModalClose) timelineModalClose.addEventListener('click', closeTimelineModal);
+
+    if (timelineForm) {
+      timelineForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const timeVal = document.getElementById('inputTimelineTime').value.trim();
+        const respVal = document.getElementById('inputTimelineResp').value.trim();
+        const titleVal = document.getElementById('inputTimelineTitle').value.trim();
+        const descVal = document.getElementById('inputTimelineDesc').value.trim();
+        const statusVal = document.getElementById('inputTimelineStatus').value;
+
+        if (!timeVal || !titleVal) {
+          alert('Por favor complete la hora y el momento protocolario.');
+          return;
+        }
+
+        const idx = Number(timelineEditIndex.value);
+        const itemData = {
+          time: timeVal,
+          resp: respVal || 'Coordinación',
+          title: titleVal,
+          desc: descVal,
+          status: statusVal
+        };
+
+        if (idx >= 0 && idx < timeline.length) {
+          timeline[idx] = itemData;
+          showToast('✦ Momento actualizado en el cronograma');
+        } else {
+          timeline.push(itemData);
+          showToast('✦ Nuevo momento agregado al cronograma');
+        }
+
+        timeline.sort((a, b) => a.time.localeCompare(b.time));
+        saveTimelineState();
+        closeTimelineModal();
+      });
+    }
+
     // Auto-sync when RSVP is submitted in demo or storage changes
     window.addEventListener('storage', (e) => {
       if (e.key === getStorageKey(currentFolio)) {
         loadEvent(currentFolio);
         showToast('✦ Datos de invitados sincronizados en tiempo real');
+      } else if (e.key === getTimelineStorageKey(currentFolio)) {
+        loadEvent(currentFolio);
+        showToast('✦ Cronograma protocolario sincronizado en tiempo real');
       }
     });
 

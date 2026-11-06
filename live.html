@@ -515,6 +515,123 @@
       opacity: 1;
     }
 
+    /* DJ CROWDSOURCED PLAYLIST VIEW */
+    .dj-stage-wrap {
+      max-width: 1050px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .dj-header-banner {
+      background: var(--ink-card);
+      border: 1px solid var(--gold);
+      border-radius: 14px;
+      padding: 1.5rem 2rem;
+      margin-bottom: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    .dj-banner-tag {
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      display: block;
+      margin-bottom: 0.35rem;
+    }
+    .dj-banner-title {
+      font-family: var(--font-serif);
+      font-size: 1.8rem;
+      font-weight: 400;
+      color: var(--cream);
+    }
+    .dj-banner-sub {
+      font-size: 0.78rem;
+      color: var(--cream-muted);
+      margin-top: 0.25rem;
+    }
+    .dj-songs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.2rem;
+    }
+    .dj-song-card {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 1.2rem 1.4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      transition: all 0.25s ease;
+      position: relative;
+    }
+    .dj-song-card:hover {
+      border-color: rgba(197, 160, 89, 0.5);
+      background: rgba(197, 160, 89, 0.04);
+      transform: translateY(-2px);
+    }
+    .dj-song-card.rank-1 {
+      border-color: var(--gold);
+      background: rgba(197, 160, 89, 0.12);
+      box-shadow: 0 8px 30px rgba(197, 160, 89, 0.2);
+    }
+    .dj-rank-badge {
+      font-family: var(--font-serif);
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--gold);
+      min-width: 44px;
+      text-align: center;
+      line-height: 1;
+    }
+    .dj-song-info {
+      flex: 1;
+    }
+    .dj-song-title {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--cream);
+      margin-bottom: 0.25rem;
+    }
+    .dj-song-author {
+      font-size: 0.72rem;
+      color: var(--gold);
+      letter-spacing: 0.05em;
+    }
+    .dj-song-dedication {
+      font-size: 0.72rem;
+      color: var(--cream-muted);
+      font-style: italic;
+      margin-top: 0.25rem;
+    }
+    .dj-vote-btn {
+      background: rgba(197, 160, 89, 0.15);
+      border: 1px solid var(--gold);
+      border-radius: 30px;
+      color: var(--cream);
+      padding: 0.5rem 0.9rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    .dj-vote-btn:hover {
+      background: var(--gold);
+      color: var(--ink);
+      transform: scale(1.05);
+    }
+
     @media (max-width: 768px) {
       .stream-header { padding: 0 1rem; }
       .couple-title-center { display: none; }
@@ -554,6 +671,10 @@
         <span id="modeIcon">📽️</span>
         <span id="modeLabel">Slideshow</span>
       </button>
+      <button type="button" class="ctrl-btn" id="btnToggleDj" title="Ver Top Canciones DJ">
+        <span id="djIcon">🎵</span>
+        <span id="djLabel">Pista DJ</span>
+      </button>
       <button type="button" class="ctrl-btn" id="btnFullscreen" title="Pantalla Completa (F11)">
         ⛶ Pantalla Completa
       </button>
@@ -584,6 +705,26 @@
         </div>
       </div>
     </section>
+
+    <!-- VIEW 3: DJ CROWDSOURCED PLAYLIST -->
+    <section class="dj-view" id="djView" style="display:none;">
+      <div class="dj-stage-wrap">
+        <div class="dj-header-banner">
+          <div>
+            <span class="dj-banner-tag">✦ Pista de Baile en Directo</span>
+            <h2 class="dj-banner-title">Canciones Más Pedidas al DJ</h2>
+            <p class="dj-banner-sub">Votadas por los invitados en tiempo real. ¡Haz clic en +1 Voto o pide tu canción favorita!</p>
+          </div>
+          <button type="button" class="ctrl-btn btn-upload-direct" id="btnOpenRequestSong">
+            🎵 + Pedir Canción al DJ
+          </button>
+        </div>
+
+        <div class="dj-songs-grid" id="djSongsGrid">
+          <!-- Rendered by live.js -->
+        </div>
+      </div>
+    </section>
   </main>
 
   <!-- FLOATING QR DOCK IN CORNER FOR GUESTS -->
@@ -592,8 +733,36 @@
       <!-- SVG QR generated here -->
     </div>
     <div class="qr-dock-text">
-      <span class="qr-dock-title">📸 Comparte tus fotos</span>
-      <p class="qr-dock-sub">Apunta con la cámara de tu celular para proyectar tus momentos en esta pantalla sin instalar apps.</p>
+      <span class="qr-dock-title">📸 Fotos &amp; 🎵 Pistas DJ</span>
+      <p class="qr-dock-sub">Apunta con tu celular para subir fotos a la pantalla o votar por las canciones de la fiesta sin apps.</p>
+    </div>
+  </div>
+
+  <!-- MODAL: REQUEST DJ SONG -->
+  <div class="upload-modal-backdrop" id="djModal">
+    <div class="upload-card">
+      <div class="upload-header">
+        <h3 class="upload-title">Pedir Canción al DJ</h3>
+        <button type="button" class="upload-close" id="btnCloseDj">✕</button>
+      </div>
+      <form id="djRequestForm">
+        <div style="margin-bottom:0.9rem;">
+          <label style="font-size:0.65rem; color:var(--cream-muted); text-transform:uppercase; letter-spacing:0.12em; display:block; margin-bottom:0.35rem;">Canción y Artista *</label>
+          <input type="text" id="inputSongTitle" class="inp-field" placeholder="Ej. Dancing Queen — ABBA" required>
+        </div>
+        <div style="margin-bottom:0.9rem;">
+          <label style="font-size:0.65rem; color:var(--cream-muted); text-transform:uppercase; letter-spacing:0.12em; display:block; margin-bottom:0.35rem;">Tu Nombre o Mesa *</label>
+          <input type="text" id="inputSongGuest" class="inp-field" placeholder="Ej. Sofía Benavides • Mesa 4" required>
+        </div>
+        <div style="margin-bottom:1.2rem;">
+          <label style="font-size:0.65rem; color:var(--cream-muted); text-transform:uppercase; letter-spacing:0.12em; display:block; margin-bottom:0.35rem;">Dedicatoria Especial (Opcional)</label>
+          <input type="text" id="inputSongDedication" class="inp-field" placeholder="Ej. ¡Para que bailen los novios en el centro!">
+        </div>
+        <div style="display:flex; justify-content:flex-end; gap:0.6rem;">
+          <button type="button" class="ctrl-btn" id="btnCancelDj">Cancelar</button>
+          <button type="submit" class="ctrl-btn btn-upload-direct">Enviar a la Pista 🎶</button>
+        </div>
+      </form>
     </div>
   </div>
 
