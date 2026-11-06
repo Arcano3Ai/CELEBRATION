@@ -41,11 +41,17 @@
 | **CEL-27** | Módulo de Libro de Firmas Digital (Digital Guestbook) | Frontend + UI/UX | ✅ Completado | `guestbook.js` y `guestbook.css` con muro de dedicatorias conmemorativas por folio (#VAL-2026, #ISA-2026, #CAM-2026), modal de firma en vivo, persistencia local y estética editorial en tarjetas de ultra lujo. |
 | **CEL-29** | Pantalla Live Event Interactiva en Tiempo Real & Carga Móvil | Frontend + UI/UX + QA | ✅ Completado | `live.html` y `live.js` full-screen para proyectores de salón en bodas Grand Luxe ($19,900 MXN), muro dinámico de fotos, modo presentación cinematográfica (slideshow), widget QR flotante, compresión cliente en canvas y sincronización reactiva local. |
 | **CEL-30** | Generador de Pases VIP Digitales para WhatsApp & Exportador HD | Frontend + UI/UX + QA | ✅ Completado | `passes.html` con personalizador en tiempo real por invitado/familia, 3 estilos editoriales (Champán, Black Tie, Vogue), motor Canvas Retina (1080x1350px PNG) y botón 1-clic con mensaje protocolario prellenado para WhatsApp. |
+| **CEL-32** | Auditoría Integral Multi-Agente & Sincronización Global por Folio | Todos los Agentes | ✅ Completado | Suite de verificación automatizada `tools/audit_suite.py`, sanitización `escapeHtml`, deep-linking bidireccional vía `URLSearchParams` (`?folio=X&guest=Y`) en `planner.html`, `passes.html`, `live.html` y los 3 demos oficiales. |
 
 ---
 
-## 🔮 Backlog de Próximos Sprints (Por Demanda)
+## 🔮 Backlog de Próximos Sprints (Plan de Mejora Estratégica)
 
-- [ ] **CEL-28 (Integración de Webhook / Backend para Notificaciones WhatsApp/Email):** Envío automático de confirmaciones vía Twilio / SendGrid / Supabase.
-- [ ] **CEL-31 (Módulo de Lista de Canciones DJ Crowdsourced):** Muro para que los invitados sugieran y voten en vivo las canciones de la fiesta desde la pantalla Live Event.
+### Fase 1: Enriquecimiento de Experiencia en Vivo & Social (Inmediato)
+- [ ] **CEL-31 (Módulo de DJ Crowdsourced & Canciones en Vivo):** Muro interactivo en `live.html` para que invitados propongan y voten canciones para la fiesta en tiempo real.
+- [ ] **CEL-33 (Timeline Interactivo en Directo para Wedding Planners):** Widget de control de tiempos (Minuto a Minuto) para recepcionistas y coordinadores de evento con alertas visuales de protocolo.
+
+### Fase 2: Cloud Sync, Webhooks & Automatización Backend
+- [ ] **CEL-28 (Integración de Webhook / Backend para Notificaciones WhatsApp/Email):** Envío automático de confirmaciones vía Twilio / SendGrid / Supabase / Google Sheets.
+- [ ] **CEL-34 (NFC Tag Provisioning Tool):** Generador de URLs de aterrizaje directo para tags NFC NTAG213/215 físicas para centros de mesa de lujo.
 
