@@ -138,12 +138,12 @@ export const CELEBRATION_FAQ_DB = [
   {
     topic: "paquetes",
     keywords: ["paquete", "precio", "cuanto cuesta", "costo", "tarifa", "precios", "coleccion", "planes"],
-    response: "CELEBRATION ofrece tres colecciones de alta costura concebidas para el mercado sampetrino y enlaces de destino:\n\n1. **Colección Signature Atelier ($11,900 MXN):** Sitio web editorial a medida, dominio propio (.com / .wedding) con SSL por 1 año, Smart RSVP predictivo por familia con control estricto de pases y alergias (cero colados), itinerario con GPS Waze/Maps, mesa de regalos de alta gama (Palacio de Hierro, Liverpool, Tiffany, CLABE) y pases digitales VIP para WhatsApp.\n\n2. **Colección Destination & Heritage ($14,900 MXN - Más Solicitada):** Todo lo de Signature más arquitectura Multi-Evento con RSVP segmentado (rompehielos, ceremonia, tornaboda/brunch), bilingüe nativo (Español/Inglés), módulo concierge de convenios hoteleros, transporte y recomendaciones locales curadas, y libro de firmas digital conmemorativo.\n\n3. **Colección Grand Luxe NFC & Live Event ($19,900 MXN - Experiencia Suprema):** Todo lo de Destination más hardware físico de tarjetas inteligentes NFC (1 Maestra para los novios + 20 tarjetas grabadas en hot-stamping para centros de mesa), pantalla interactiva Live Event para proyectar fotos de los invitados en directo durante la fiesta sin apps, entrega de archivo RAW y guardia técnica VIP durante el enlace.\n\n*Para enlaces monumentales en Club Campestre o recintos privados contamos con **Atelier Bespoke** (desde $28,000 MXN).* "
+    response: "CELEBRATION ofrece tres colecciones de alta costura concebidas para el mercado sampetrino y enlaces de destino:\n\n1. **Colección Signature Atelier ($4,200 MXN):** Sitio web editorial a medida, enlace web privado con SSL, Smart RSVP predictivo por familia con control estricto de pases y alergias (cero colados), itinerario con GPS Waze/Maps, mesa de regalos de alta gama (Palacio de Hierro, Liverpool, Tiffany, CLABE), pases digitales VIP para WhatsApp y portal para Wedding Planner con exportador a Excel.\n\n2. **Colección Destination & Heritage ($6,800 MXN - Más Solicitada):** Todo lo de Signature más arquitectura Multi-Evento con RSVP segmentado (rompehielos, ceremonia, tornaboda/brunch), bilingüe nativo (Español/Inglés), módulo concierge de convenios hoteleros, transporte y recomendaciones locales curadas, y libro de firmas digital conmemorativo.\n\n3. **Colección Grand Luxe Suite ($9,500 MXN - Experiencia Suprema):** Todo lo de Destination más 1 Tarjeta Maestra NFC personalizada para los novios, pantalla interactiva Live Event para proyectar fotos de los invitados en directo durante la fiesta sin apps, y tarjetas de mesa con código QR listas para imprimir.\n\n*Para enlaces monumentales en Club Campestre o recintos privados contamos con **Atelier Bespoke** (desde $15,000 MXN).* "
   },
   {
     topic: "tiempos",
     keywords: ["tiempo", "tarda", "dias", "plazo", "entrega", "urgente", "express"],
-    response: "Nuestro tiempo de entrega estándar es de **3 a 5 días hábiles** a partir de la recepción de su Brief de Diseño y anticipo. También contamos con servicio Express en 48 horas ($650 MXN adicionales) para enlaces con premura."
+    response: "Nuestro tiempo de entrega estándar es de **3 a 5 días hábiles** a partir de la recepción de su Brief de Diseño y anticipo. También contamos con servicio Express en 48 horas ($1,800 MXN adicionales) para enlaces con premura."
   },
   {
     topic: "smart rsvp",
@@ -153,16 +153,16 @@ export const CELEBRATION_FAQ_DB = [
   {
     topic: "nfc live event",
     keywords: ["nfc", "tarjeta", "tarjetas", "live event", "fotos en vivo", "pantalla", "proyectar"],
-    response: "La tecnología **NFC & Live Event** permite colocar elegantes tarjetas físicas en las mesas de la recepción. Cualquier invitado con smartphone (iPhone o Android) aproxima su teléfono sin instalar apps y accede al sitio web o a la pantalla colectiva donde suben fotos y videos en tiempo real para proyectarse en la fiesta."
+    response: "La tecnología **Live Event & NFC** incluye una Tarjeta Maestra de proximidad para los novios y el acceso a la pantalla en vivo para el salón. Cualquier invitado con smartphone aproxima su teléfono o escanea el QR de su mesa y accede a la pantalla colectiva donde proyectan fotos y dedicatorias en la fiesta."
   },
   {
     topic: "pagos",
     keywords: ["pago", "pagar", "metodo", "anticipo", "spei", "tarjeta"],
-    response: "El esquema de pago es **50% de anticipo** para reservar la fecha y registrar su dominio web propio, y el **50% restante** al aprobar la propuesta final previa a la publicación. Aceptamos transferencia SPEI, tarjetas de crédito/débito y enlace seguro Stripe."
+    response: "El esquema de pago es **50% de anticipo** para reservar la fecha en el calendario e iniciar la producción personalizada, y el **50% restante** al aprobar la propuesta final previa a la entrega. Aceptamos transferencia SPEI, tarjetas de crédito/débito y enlace seguro Stripe."
   },
   {
     topic: "dominio",
     keywords: ["dominio", "link", "liga", "url", "nombre de la pagina", "ssl"],
-    response: "El dominio personalizado (ejemplo: *mariaymateo.com* o *bodaaleysantiago.com*) con certificado de seguridad SSL HTTPS está **100% incluido durante 12 meses** en todos nuestros paquetes."
+    response: "La invitación web se entrega mediante un enlace privado, elegante y exclusivo, con certificado de seguridad SSL HTTPS, listo para compartir por WhatsApp sin instalar aplicaciones. Si desean vincular su propio dominio .com (ej. *mariaymateo.com*), ofrecemos el servicio de configuración técnica como complemento opcional."
   }
 ];

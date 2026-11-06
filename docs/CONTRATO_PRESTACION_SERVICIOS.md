@@ -42,23 +42,23 @@ A QUIENES DE MANERA CONJUNTA SE LES DENOMINARÁ **"LAS PARTES"**, SUJETÁNDOSE A
 
 Marque con una [X] la colección seleccionada:
 
-- [ ] **Colección SIGNATURE ATELIER ($11,900 MXN):**  
-  Dominio web propio por 1 año con SSL, diseño editorial exclusivo a medida, Módulo Smart RSVP Predictivo con control cerrado de pases, cuenta regresiva, itinerario con geolocalización GPS (Waze/Maps), mesa de regalos con CLABE de 1-clic, dress code interactivo, galería HD ilimitada, pases digitales para WhatsApp y 3 rondas de ajustes finos.
+- [ ] **Colección SIGNATURE ATELIER ($4,200 MXN):**  
+  Enlace web privado exclusivo con SSL HTTPS, diseño editorial a medida, Módulo Smart RSVP Predictivo con control cerrado de pases, cuenta regresiva, itinerario con geolocalización GPS (Waze/Maps), mesa de regalos con CLABE de 1-clic, dress code interactivo, galería HD ilimitada, pases digitales para WhatsApp, portal para Wedding Planner con exportador a Excel y 3 rondas de ajustes finos.
 
-- [ ] **Colección DESTINATION & HERITAGE ($14,900 MXN):**  
-  Todo lo incluido en Signature más: Arquitectura Multi-Evento (Cóctel, Ceremonia/Recepción, Tornaboda), plataforma bilingüe nativa (ES/EN), Concierge de Destino & Hospedaje (hoteles sede, códigos de descuento, shuttles), Guía Local Curada de restaurantes y spas, Libro de Firmas Digital conmemorativo, música ambiental curada y soporte prioritario 7 días a la semana.
+- [ ] **Colección DESTINATION & HERITAGE ($6,800 MXN):**  
+  Todo lo incluido en Signature más: Arquitectura Multi-Evento (Cóctel, Ceremonia/Recepción, Tornaboda), plataforma bilingüe nativa (ES/EN), Concierge de Destino & Hospedaje (hoteles sede, códigos de descuento, shuttles), Guía Local Curada de restaurantes y spas, Libro de Firmas Digital conmemorativo, música ambiental curada y soporte vía WhatsApp.
 
-- [ ] **Colección GRAND LUXE — NFC & Live Event ($19,900 MXN):**  
-  Todo lo incluido en Destination más: Hardware físico de lujo (1 Tarjeta Maestra para novios en acrílico mate o madera grabada en láser + 20 Mini Tarjetas NFC & QR con estampado de alta gama para mesas), Tecnología Live Event Streaming para proyección en pantallas de salón en tiempo real y descarga masiva RAW, más Guardia Técnica VIP remota durante el evento.
+- [ ] **Colección GRAND LUXE SUITE ($9,500 MXN):**  
+  Todo lo incluido en Destination más: 1 Tarjeta Maestra NFC personalizada para los novios, Tecnología Live Event Streaming para proyección en pantallas de salón en tiempo real y descarga de fotos compartidas, más Tarjetas de Mesa con código QR listas para imprimir para el banquete.
 
-- [ ] **Colección ATELIER BESPOKE (Cotización Personalizada / Desde $28,000 MXN):**  
-  Desarrollo de ingeniería exclusiva, plano de asientos interactivo 3D, acreditación QR en accesos, soporte presencial en el evento o eventos superiores a 350 invitados.
+- [ ] **Colección ATELIER BESPOKE (Cotización Personalizada / Desde $15,000 MXN):**  
+  Desarrollo de diseño exclusivo a la medida, eventos extendidos o enlaces superiores a 350 invitados.
 
 **SERVICIOS ADICIONALES (ADD-ONS):**
+- [ ] Vinculación Técnica de Dominio Propio ($850 MXN) — Dominio: ____________________
 - [ ] Set Adicional de 5 Tarjetas NFC para mesas ($950 MXN) — Cantidad de sets: _____
-- [ ] Dominio Internacional Especial (.wedding / .love / .couture) ($650 MXN)
 - [ ] Servicio Express Prioritario 48 hrs ($1,800 MXN)
-- [ ] Renovación Anticipada de Hospedaje y Dominio Año 2 ($990 MXN)
+- [ ] Renovación Anual Opcional Año 2 ($990 MXN)
 - [ ] Otro: ________________________________________________ ($ ____________ MXN)
 
 ### RESUMEN ECONÓMICO Y FORMA DE PAGO
@@ -109,19 +109,20 @@ EL PRESTADOR se obliga a diseñar, programar, configurar, hospedar en infraestru
    - **48 horas hábiles** en caso de haber contratado el servicio Express Prioritario.
    Dicho plazo comenzará a computarse a partir del día hábil siguiente a la confirmación del anticipo del 50% y la entrega de al menos el 80% de los insumos requeridos.
 3. **Rondas de Ajustes y Perfeccionamiento:** EL CLIENTE tendrá derecho a un máximo de **tres (3) rondas completas de ajustes finos** sin costo adicional (modificación de textos, selección de fotos, paleta de colores secundaria, tipografías y orden de módulos). Toda solicitud de ajuste se atenderá en un lapso de 24 a 48 horas hábiles.
-4. **Aprobación Final y Lanzamiento:** Una vez concluidas las revisiones y recibida la aprobación formal de EL CLIENTE, EL PRESTADOR vinculará el sitio al dominio web personalizado definitivo con certificado SSL activo en un plazo no mayor a 24 horas hábiles posteriores a la liquidación del saldo restante.
+4. **Aprobación Final y Lanzamiento:** Una vez concluidas las revisiones y recibida la aprobación formal de EL CLIENTE, EL PRESTADOR entregará el enlace web definitivo con certificado SSL activo y optimizado para distribución inmediata por WhatsApp en un plazo no mayor a 24 horas hábiles posteriores a la liquidación del saldo restante.
 
 ### TERCERA. PRECIO, CONDICIONES FINANCIERAS Y FACTURACIÓN
 1. **Precio Total:** Las partes pactan como contraprestación total por los servicios el monto expresado en la Carátula de Orden de Servicio, el cual incluye los conceptos detallados y no sufrirá incrementos unilaterales.
 2. **Esquema de Pago 50/50:**
-   - **50% (cincuenta por ciento)** a la firma del presente instrumento o confirmación digital de pedido, con el cual se aparta la fecha en el atelier y se tramita la compra del dominio web.
-   - **50% (cincuenta por ciento)** restante al momento de otorgar la aprobación final del diseño y previo a la propagación del dominio final o entrega física de tarjetas NFC.
+   - **50% (cincuenta por ciento)** a la firma del presente instrumento o confirmación digital de pedido, con el cual se aparta la fecha en el calendario del atelier y se inicia la producción personalizada.
+   - **50% (cincuenta por ciento)** restante al momento de otorgar la aprobación final del diseño y previo a la entrega del enlace definitivo o entrega física de tarjetas NFC.
 3. **Facturación:** En caso de que EL CLIENTE requiera Comprobante Fiscal Digital por Internet (CFDI), los precios se entenderán más el Impuesto al Valor Agregado (IVA) correspondiente conforme a la legislación fiscal aplicable, debiendo proporcionar su Constancia de Situación Fiscal actualizada dentro del mismo mes de pago.
 
-### CUARTA. DOMINIO WEB, INFRAESTRUCTURA Y VIGENCIA DE HOSPEDAJE
-1. **Vigencia del Servicio:** El contrato ampara el registro, configuración DNS, hospedaje en servidores de alta disponibilidad y certificado de seguridad SSL por un plazo de **doce (12) meses naturales**, contados a partir de la fecha de firma o activación inicial del dominio.
-2. **Modo Conmemorativo:** Concluida la fecha de la boda, el sitio permanecerá activo como álbum y memoria fotográfica conmemorativa durante el tiempo restante de los 12 meses.
-3. **Renovación Anual Opcional:** Al término del año de servicio, EL CLIENTE podrá renovar la vigencia del dominio y hospedaje por periodos anuales subsecuentes mediante la tarifa preferencial de mantenimiento ($990 MXN anuales vigentes a 2026), siendo notificado con 30 días naturales de antelación. En caso de no renovación, el dominio será liberado sin responsabilidad para EL PRESTADOR.
+### CUARTA. ALCANCE DE INFRAESTRUCTURA Y VIGENCIA
+1. **Vigencia del Servicio:** El contrato ampara la disponibilidad del enlace web privado de alta velocidad y certificado de seguridad SSL por un plazo de **doce (12) meses naturales**, contados a partir de la fecha de activación inicial.
+2. **Modo Conmemorativo:** Concluida la fecha de la boda, el sitio permanecerá activo como álbum y memoria conmemorativa durante el tiempo restante de los 12 meses.
+3. **Renovación Anual Opcional:** Al término del año de servicio, EL CLIENTE podrá solicitar la permanencia activa del enlace por periodos anuales subsecuentes mediante la tarifa preferencial de mantenimiento ($990 MXN anuales vigentes a 2026).
+4. **Dominio Propio (Opcional):** Si EL CLIENTE desea adquirir o conectar un dominio propio (.com, .wedding, etc.), este se gestionará como add-on independiente o provisto directamente por EL CLIENTE, eximiendo a EL PRESTADOR de costos recurrentes de renovación registral de terceros.
 
 ### QUINTA. CONFIDENCIALIDAD, PRIVACIDAD Y PROTECCIÓN DE DATOS PERSONALES (SMART RSVP)
 1. **Tratamiento de Datos:** EL PRESTADOR reconoce que la base de datos de invitados generada a través del sistema Smart RSVP (nombres, números telefónicos, confirmaciones, alérgenos y notas privadas) constituye información confidencial y datos personales de EL CLIENTE y sus asistentes.

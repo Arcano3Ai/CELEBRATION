@@ -136,23 +136,23 @@
       </div>
       <div class="pkg-card">
         <div class="pkg-tabs" id="pkgTabs">
-          <button type="button" class="pkg-tab-btn" data-pkg="signature">Signature $11.9k</button>
-          <button type="button" class="pkg-tab-btn active" data-pkg="destination">Destination $14.9k</button>
-          <button type="button" class="pkg-tab-btn" data-pkg="grandluxe">Grand Luxe $19.9k</button>
+          <button type="button" class="pkg-tab-btn" data-pkg="signature">Signature $4.2k</button>
+          <button type="button" class="pkg-tab-btn active" data-pkg="destination">Destination $6.8k</button>
+          <button type="button" class="pkg-tab-btn" data-pkg="grandluxe">Grand Luxe $9.5k</button>
         </div>
         <div class="pkg-row">
           <div><span class="pkg-sub">Colección seleccionada</span><strong class="pkg-name" id="pkgName">Destination &amp; Heritage</strong></div>
-          <div><span class="pkg-sub" style="text-align:right">Inversión total</span><span class="pkg-total" id="pkgTotal">$14,900 MXN</span></div>
+          <div><span class="pkg-sub" style="text-align:right">Inversión total</span><span class="pkg-total" id="pkgTotal">$6,800 MXN</span></div>
         </div>
         <div class="divider"></div>
         <div class="scheme-grid">
           <button type="button" class="scheme-btn active" id="schemeDeposit">
             <span class="radio"><span></span></span>
-            <div><span class="s-label">Anticipo 50%</span><span class="s-cap">Apartar fecha · saldo contra entrega</span><span class="s-amt" id="depositAmt">$7,450 MXN</span></div>
+            <div><span class="s-label">Anticipo 50%</span><span class="s-cap">Apartar fecha · saldo contra entrega</span><span class="s-amt" id="depositAmt">$3,400 MXN</span></div>
           </button>
           <button type="button" class="scheme-btn" id="schemeFull">
             <span class="radio"><span></span></span>
-            <div><span class="s-label">Pago total 100%</span><span class="s-cap">Liquidación completa sin saldos</span><span class="s-amt" id="fullAmt">$14,900 MXN</span></div>
+            <div><span class="s-label">Pago total 100%</span><span class="s-cap">Liquidación completa sin saldos</span><span class="s-amt" id="fullAmt">$6,800 MXN</span></div>
           </button>
         </div>
       </div>
@@ -241,7 +241,7 @@
   <div class="toast" id="toast"></div>
   <script>
     const CFG={whatsapp:'528121912778',spei:{clabe:'646180123456789012'},mercadopago:{signature:'https://mpago.la/XXXXXXXXX',destination:'https://mpago.la/XXXXXXXXX',grandluxe:'https://mpago.la/XXXXXXXXX'},stripe:{signature:'https://buy.stripe.com/XXXXXXXXX',destination:'https://buy.stripe.com/XXXXXXXXX',grandluxe:'https://buy.stripe.com/XXXXXXXXX'}};
-    const PKGS={signature:{name:'Signature Atelier',price:11900},destination:{name:'Destination & Heritage',price:14900},grandluxe:{name:'Grand Luxe NFC & Live',price:19900}};
+    const PKGS={signature:{name:'Signature Atelier',price:4200},destination:{name:'Destination & Heritage',price:6800},grandluxe:{name:'Grand Luxe Suite',price:9500}};
     const p=new URLSearchParams(location.search);
     let key=p.get('pkg')||'destination';
     if(!PKGS[key]) key='destination';

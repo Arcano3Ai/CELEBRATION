@@ -506,9 +506,9 @@ const PAYMENT_CONFIG = {
   },
 
   mercadopago: {
-    signature:    'https://mpago.la/XXXXXXXXX',   // ← REEMPLAZAR: link MP Signature $11,900
-    destination:  'https://mpago.la/XXXXXXXXX',   // ← REEMPLAZAR: link MP Destination $14,900
-    grandluxe:    'https://mpago.la/XXXXXXXXX',   // ← REEMPLAZAR: link MP Grand Luxe $19,900
+    signature:    'https://mpago.la/XXXXXXXXX',   // ← REEMPLAZAR: link MP Signature $4,200
+    destination:  'https://mpago.la/XXXXXXXXX',   // ← REEMPLAZAR: link MP Destination $6,800
+    grandluxe:    'https://mpago.la/XXXXXXXXX',   // ← REEMPLAZAR: link MP Grand Luxe $9,500
   },
 
   stripe: {
@@ -558,7 +558,7 @@ function initCheckoutGateway() {
   const collapseStripe = document.getElementById('collapseStripe');
 
   // ── Estado ──
-  let currentPackage = { id: 'destination', name: 'Destination & Heritage', price: 14900 };
+  let currentPackage = { id: 'destination', name: 'Destination & Heritage', price: 6800 };
   let currentScheme  = 'deposit';
 
   // Poblar CLABE estática una vez
@@ -693,7 +693,7 @@ function initCheckoutGateway() {
       currentPackage = {
         id:    btn.getAttribute('data-pkg-id')    || 'destination',
         name:  btn.getAttribute('data-pkg-name')  || 'Destination & Heritage',
-        price: parseInt(btn.getAttribute('data-pkg-price'), 10) || 14900,
+        price: parseInt(btn.getAttribute('data-pkg-price'), 10) || 6800,
       };
       currentScheme = 'deposit';
 

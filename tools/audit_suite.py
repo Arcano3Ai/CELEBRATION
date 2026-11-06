@@ -73,3 +73,4 @@ else:
 print("\n" + "=" * 60)
 print("AUDITORÍA DE INTEGRIDAD FINALIZADA CON ÉXITO")
 print("=" * 60)
+
