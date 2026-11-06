@@ -804,8 +804,8 @@ function initBackgroundMusic() {
 
   if (!audio || !player || !toggleBtn) return;
 
-  // Comfortable volume
-  audio.volume = 0.55;
+  const TARGET_VOLUME = 0.55;
+  let isUnlocked = false;
 
   function setPlayingState(playing) {
     if (playing) {
@@ -821,60 +821,105 @@ function initBackgroundMusic() {
     }
   }
 
-  function playAudio() {
-    const promise = audio.play();
-    if (promise !== undefined) {
-      promise
+  function tryImmediatePlay() {
+    audio.muted = false;
+    audio.volume = TARGET_VOLUME;
+    const playPromise = audio.play();
+    if (playPromise !== undefined) {
+      playPromise
         .then(() => {
+          isUnlocked = true;
           setPlayingState(true);
+          cleanupGestureListeners();
         })
         .catch(() => {
+          // Si el navegador bloquea audio con sonido en la primera visita:
+          // Iniciar en modo muted de fondo para que el búfer avance de inmediato sin demoras
+          audio.muted = true;
+          audio.play().catch(() => {});
           setPlayingState(false);
+          // Los listeners de captura permanecen armados para el primer micro-toque del usuario
         });
     }
   }
 
-  function pauseAudio() {
-    audio.pause();
-    setPlayingState(false);
+  function unlockAudio() {
+    if (isUnlocked && !audio.paused && !audio.muted) return;
+
+    audio.muted = false;
+    audio.volume = TARGET_VOLUME;
+    const p = audio.play();
+    if (p !== undefined) {
+      p.then(() => {
+        isUnlocked = true;
+        setPlayingState(true);
+        cleanupGestureListeners();
+      }).catch(() => {
+        // Si el evento actual no confirió activación (ej. scroll pasivo),
+        // mantenemos los listeners armados para el siguiente toque o clic.
+      });
+    }
   }
 
+  const gestureEvents = ['pointerdown', 'touchstart', 'mousedown', 'click', 'keydown', 'wheel'];
+
+  function cleanupGestureListeners() {
+    gestureEvents.forEach(evt => {
+      window.removeEventListener(evt, unlockAudio, { capture: true });
+      document.removeEventListener(evt, unlockAudio, { capture: true });
+    });
+  }
+
+  // Interceptar a nivel global (window y document en fase capture)
+  // Esto detecta el primer milisegundo de contacto (pointerdown/touchstart)
+  gestureEvents.forEach(evt => {
+    window.addEventListener(evt, unlockAudio, { capture: true, passive: true });
+    document.addEventListener(evt, unlockAudio, { capture: true, passive: true });
+  });
+
+  // Intentos inmediatos al cargar el script y al completar carga del DOM
+  tryImmediatePlay();
+  window.addEventListener('load', () => {
+    if (!isUnlocked) {
+      tryImmediatePlay();
+    }
+  });
+
+  // Botón manual de Play/Pausa
   toggleBtn.addEventListener('click', (e) => {
     e.stopPropagation();
-    if (audio.paused) {
-      playAudio();
+    if (audio.paused || audio.muted) {
+      audio.muted = false;
+      audio.volume = TARGET_VOLUME;
+      audio.play().then(() => {
+        isUnlocked = true;
+        setPlayingState(true);
+        cleanupGestureListeners();
+      }).catch(() => {});
     } else {
-      pauseAudio();
+      audio.pause();
+      setPlayingState(false);
     }
   });
 
-  player.addEventListener('click', () => {
-    if (audio.paused) {
-      playAudio();
+  player.addEventListener('click', (e) => {
+    if (e.target.closest('#audioToggleBtn')) return;
+    if (audio.paused || audio.muted) {
+      audio.muted = false;
+      audio.volume = TARGET_VOLUME;
+      audio.play().then(() => {
+        isUnlocked = true;
+        setPlayingState(true);
+        cleanupGestureListeners();
+      }).catch(() => {});
     } else {
-      pauseAudio();
+      audio.pause();
+      setPlayingState(false);
     }
   });
 
-  // Autoplay strategy:
-  // 1. Intentar reproducción inmediata
-  playAudio();
-
-  // 2. Si el navegador bloquea el autoplay sin interacción,
-  // activar al primer toque, clic, scroll o tecla en cualquier parte de la pantalla.
-  const unlockOnGesture = () => {
-    if (audio.paused) {
-      playAudio();
-    }
-    ['click', 'touchstart', 'scroll', 'keydown'].forEach(evt => {
-      document.removeEventListener(evt, unlockOnGesture);
-    });
-  };
-
-  ['click', 'touchstart', 'scroll', 'keydown'].forEach(evt => {
-    document.addEventListener(evt, unlockOnGesture, { once: true, passive: true });
+  audio.addEventListener('play', () => {
+    if (!audio.muted) setPlayingState(true);
   });
-
-  audio.addEventListener('play', () => setPlayingState(true));
   audio.addEventListener('pause', () => setPlayingState(false));
 }

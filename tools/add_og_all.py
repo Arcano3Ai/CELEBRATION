@@ -76,3 +76,4 @@ insert_og_after_description('checkout.html', """  <!-- Open Graph / WhatsApp Pre
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://thecelebration.com.mx/assets/images/og_share_banner.jpg">""")
+

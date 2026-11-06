@@ -85,3 +85,4 @@ update_file('demo-editorial.html', [
 ])
 
 print("All Open Graph tags successfully calibrated for WhatsApp & Social Sharing!")
+
