@@ -509,9 +509,10 @@ const PAYMENT_CONFIG = {
   },
 
   mercadopago: {
-    signature:    'https://mpago.la/XXXXXXXXX',   // ← REEMPLAZAR: link MP Signature $4,200
-    destination:  'https://mpago.la/XXXXXXXXX',   // ← REEMPLAZAR: link MP Destination $6,800
-    grandluxe:    'https://mpago.la/XXXXXXXXX',   // ← REEMPLAZAR: link MP Grand Luxe $9,500
+    mini:         'https://mpago.la/1aCxnoc',
+    essential:    'https://mpago.la/1Kr6QvJ',
+    premiere:     'https://mpago.la/2nSE4Lm',
+    signature:    'https://mpago.la/1wsG4uy',
   },
 
   stripe: {

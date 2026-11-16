@@ -1,23 +1,18 @@
 /**
  * CELEBRATION — Configuración de Enlaces de Pago Mercado Pago
  * 
- * INSTRUCCIONES:
- * Cuando tengas listos los links de pago (Checkout Pro / Link de Pago) de Mercado Pago,
- * simplemente pega la URL correspondiente dentro de las comillas de cada paquete.
- * 
- * Si un enlace está vacío (''), el botón "CONTRATAR AHORA" permanecerá en modo
- * seguro ("Pago próximamente disponible") y dirigirá a WhatsApp como respaldo.
+ * Enlaces de pago completos para cada paquete (aplican para cualquier tipo de evento).
  */
 window.CELEBRATION_PAYMENTS = {
-  // Mini Celebration — $990 MXN (Pago completo)
-  mini: '',
+  // Mini Celebration — Pago completo $990
+  mini: 'https://mpago.la/1aCxnoc',
 
-  // Essential — $1,490 MXN (Anticipo: $745 MXN)
-  essential: '',
+  // Essential — Anticipo del 50% $745
+  essential: 'https://mpago.la/1Kr6QvJ',
 
-  // Premiere Edition — $2,490 MXN (Anticipo: $1,245 MXN) [Recomendado]
-  premiere: '',
+  // Premiere Edition — Anticipo del 50% $1,245 [Recomendado]
+  premiere: 'https://mpago.la/2nSE4Lm',
 
-  // Signature — $3,990 MXN (Anticipo: $1,995 MXN)
-  signature: ''
+  // Signature — Anticipo del 50% $1,995
+  signature: 'https://mpago.la/1wsG4uy'
 };
