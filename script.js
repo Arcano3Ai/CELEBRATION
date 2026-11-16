@@ -499,6 +499,14 @@ function initPwa() {
    ║  PAYMENT CONFIG — Actualiza estos URLs cuando tengas los links reales ║
    ╚══════════════════════════════════════════════════════════════════════╝
 */
+// Definición global de enlaces oficiales de Mercado Pago
+window.CELEBRATION_PAYMENTS = {
+  mini:         'https://mpago.la/1aCxnoc',
+  essential:    'https://mpago.la/1Kr6QvJ',
+  premiere:     'https://mpago.la/2nSE4Lm',
+  signature:    'https://mpago.la/1wsG4uy',
+};
+
 const PAYMENT_CONFIG = {
   whatsapp: '528121912778',
 
@@ -508,12 +516,7 @@ const PAYMENT_CONFIG = {
     clabe:        '646180123456789012',  // ← REEMPLAZAR: CLABE real (18 dígitos)
   },
 
-  mercadopago: {
-    mini:         'https://mpago.la/1aCxnoc',
-    essential:    'https://mpago.la/1Kr6QvJ',
-    premiere:     'https://mpago.la/2nSE4Lm',
-    signature:    'https://mpago.la/1wsG4uy',
-  },
+  mercadopago: window.CELEBRATION_PAYMENTS,
 
   stripe: {
     signature:    'https://buy.stripe.com/XXXXXXXXX',   // ← REEMPLAZAR: link Stripe Signature
@@ -934,7 +937,7 @@ function initDirectPaymentButtons() {
   const contractButtons = document.querySelectorAll('[data-contract]');
   if (!contractButtons.length) return;
 
-  const payments = window.CELEBRATION_PAYMENTS || {};
+  const payments = window.CELEBRATION_PAYMENTS || (typeof PAYMENT_CONFIG !== 'undefined' ? PAYMENT_CONFIG.mercadopago : {}) || {};
 
   contractButtons.forEach((btn) => {
     const key = btn.getAttribute('data-contract');
@@ -950,21 +953,16 @@ function initDirectPaymentButtons() {
       btn.rel = 'noopener noreferrer';
       btn.onclick = null;
       if (note) {
-        note.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><span>Pago seguro con Mercado Pago</span>';
+        note.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><span>Pago seguro con Mercado Pago · Tarjeta, MSI, Débito, SPEI y OXXO</span>';
         note.classList.add('plan-pay-note--active');
       }
     } else {
-      btn.href = '#';
-      btn.classList.add('is-disabled');
-      btn.setAttribute('aria-disabled', 'true');
-      btn.onclick = (e) => {
-        e.preventDefault();
-        if (typeof showToastFeedback === 'function') {
-          showToastFeedback('✦ El pago directo con tarjeta estará disponible próximamente. Por favor, aparta tu fecha por WhatsApp.');
-        } else {
-          alert('✦ El pago directo con tarjeta estará disponible próximamente. Por favor, aparta tu fecha por WhatsApp.');
-        }
-      };
+      btn.href = `https://wa.me/528121912778?text=Hola%20CELEBRATION%2C%20quiero%20informaci%C3%B3n%20para%20contratar%20el%20paquete%20${encodeURIComponent(key)}`;
+      btn.target = '_blank';
+      btn.rel = 'noopener noreferrer';
+      btn.classList.remove('is-disabled');
+      btn.removeAttribute('aria-disabled');
+      btn.onclick = null;
       if (note) {
         note.classList.remove('plan-pay-note--active');
       }
