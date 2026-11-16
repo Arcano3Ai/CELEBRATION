@@ -7,14 +7,14 @@
 .concierge-trigger {
   position: fixed;
   bottom: calc(16px + env(safe-area-inset-bottom, 0px));
-  left: calc(16px + env(safe-area-inset-left, 0px));
+  left: calc(14px + env(safe-area-inset-left, 0px));
   z-index: 95;
   background: radial-gradient(circle at 35% 35%, #2a2520, #141210);
   color: #F4F1EA;
   border: 1px solid rgba(197, 160, 89, 0.75);
-  width: 46px;
-  height: 46px;
-  min-height: 46px;
+  width: 44px;
+  height: 44px;
+  min-height: 44px;
   padding: 0;
   border-radius: 50%;
   font-family: 'Raleway', sans-serif;
