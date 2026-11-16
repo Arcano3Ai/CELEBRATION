@@ -162,7 +162,7 @@ class CelebrationConciergeAI {
   }
 
   addWelcomeMessage() {
-    const welcome = `¡Hola! Soy tu **Concierge de CELEBRATION** ✦\n\nPuedo responder cualquier duda sobre nuestros paquetes de invitaciones, Smart RSVP y Live Event, o bien informarte los detalles de tu evento si ingresas tu **Folio** (ej. *#VAL-2026*) o tu nombre.\n\n¿En qué puedo ayudarte hoy?`;
+    const welcome = `¡Hola! Soy tu **Concierge de CELEBRATION** ✦\n\nPuedo responder cualquier duda sobre nuestros paquetes de invitaciones, y Smart RSVP, o bien informarte los detalles de tu evento si ingresas tu **Folio** (ej. *#VAL-2026*) o tu nombre.\n\n¿En qué puedo ayudarte hoy?`;
     this.renderBotMessage(welcome);
   }
 
@@ -316,7 +316,7 @@ class CelebrationConciergeAI {
     }
 
     // 4. Default intelligent fallback
-    return `Comprendo tu pregunta. Para darte una respuesta precisa:\n\n1. Si deseas información sobre un enlace particular, escribe tu **Folio de evento** (ej. *#VAL-2026*, *#ISA-2026*, *#CAM-2026*) o tu nombre.\n2. Si deseas información sobre nuestros servicios de invitaciones web, puedes preguntarme sobre **paquetes**, **precios**, **tiempos de entrega**, **Smart RSVP** o **tecnología NFC**.\n\nTambién puedes contactar a nuestro equipo por [WhatsApp](https://wa.me/528121912778) para atención inmediata.`;
+    return `Comprendo tu pregunta. Para darte una respuesta precisa:\n\n1. Si deseas información sobre un enlace particular, escribe tu **Folio de evento** (ej. *#VAL-2026*, *#ISA-2026*, *#CAM-2026*) o tu nombre.\n2. Si deseas información sobre nuestros servicios de invitaciones web, puedes preguntarme sobre **paquetes**, **precios**, **tiempos de entrega**, **Smart RSVP** o **mesa de regalos**.\n\nTambién puedes contactar a nuestro equipo por [WhatsApp](https://wa.me/528121912778) para atención inmediata.`;
   }
 
   renderUserMessage(text) {

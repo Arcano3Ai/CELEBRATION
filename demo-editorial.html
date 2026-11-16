@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Camila &amp; Sebastián — Vogue Weddings Edition | CELEBRATION Demo</title>
-  <meta name="description" content="Invitación web de boda editorial y de ultra lujo de Camila & Sebastián en Los Cabos. Colección Vanguardia Editorial & Live Event por CELEBRATION.">
+  <meta name="description" content="Invitación web de boda editorial y de ultra lujo de Camila & Sebastián en Los Cabos. Colección Vanguardia Editorial por CELEBRATION.">
   
   <!-- Open Graph / WhatsApp Rich Card Preview -->
   <link rel="canonical" href="https://thecelebration.com.mx/demo-editorial.html">
   <meta property="og:site_name" content="CELEBRATION">
   <meta property="og:title" content="Camila &amp; Sebastián — Vogue Weddings Edition en Los Cabos">
-  <meta property="og:description" content="Celebra con nosotros este Sábado 24 de Octubre de 2026 frente al Mar de Cortés. Ceremonia en The Cape Terrace, cena en Sunset Monalisa y tecnología Live Event Streaming.">
+  <meta property="og:description" content="Celebra con nosotros este Sábado 24 de Octubre de 2026 frente al Mar de Cortés. Ceremonia y cena de gala en The Cape Terrace frente al Mar de Cortés.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://thecelebration.com.mx/demo-editorial.html">
   <meta property="og:image" content="https://thecelebration.com.mx/assets/images/og_demo_editorial.jpg">
@@ -478,40 +478,7 @@
       color: #E2DBD0;
     }
 
-    /* Live Event Banner Interactive */
-    .live-event-block {
-      background: radial-gradient(circle at top right, #1F1B17 0%, #110F0D 100%);
-      color: #FFF;
-      padding: 4.5rem 2.5rem;
-      border: 1px solid rgba(197, 160, 89, 0.35);
-      margin-top: 5rem;
-      text-align: center;
-      position: relative;
-    }
-    .live-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      color: #FF5A5F;
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      margin-bottom: 1.4rem;
-      background: rgba(255,90,95,0.12);
-      padding: 0.4rem 1.1rem;
-      border-radius: 50px;
-      border: 1px solid rgba(255,90,95,0.3);
-    }
-    .live-dot {
-      width: 8px;
-      height: 8px;
-      background: #FF5A5F;
-      border-radius: 50%;
-      animation: pulse 1.5s infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
+    
       50% { opacity: 0.3; transform: scale(1.4); }
     }
 
@@ -649,7 +616,6 @@
     <a href="#historia">Nuestra Historia</a>
     <a href="#itinerario">Itinerario</a>
     <a href="#dresscode">Dress Code</a>
-    <a href="#live-event">Live Event Streaming</a>
     <a href="#hospedaje">Hospedaje</a>
     <a href="#regalos">Mesa de Regalos</a>
     <a href="#rsvp">Smart RSVP</a>
@@ -738,12 +704,12 @@
         <div class="itinerary-card">
           <div>
             <span class="itinerary-meta">18:30 HRS • CÓCTEL &amp; GALA DE NOCHE</span>
-            <h3 class="itinerary-name">Sunset Monalisa</h3>
+            <h3 class="itinerary-name">The Cape Ocean Terrace</h3>
             <p class="itinerary-desc">
-              Recepción sobre terrazas escalonadas de acantilado. Coctelería de autor, cena maridaje de cocina mediterránea contemporánea y After Party con DJ set internacional.
+              Recepción sobre terrazas escalonadas frente al Mar de Cortés. Coctelería de autor, cena maridaje de alta cocina y After Party con DJ set internacional.
             </p>
           </div>
-          <a href="https://maps.google.com/?q=Sunset+Monalisa+Cabo" target="_blank" rel="noopener" class="btn-editorial-dark" style="width:100%;">
+          <a href="https://maps.google.com/?q=The+Cape+a+Thompson+Hotel" target="_blank" rel="noopener" class="btn-editorial-dark" style="width:100%;">
             Abrir Ubicación en Maps ↗
           </a>
         </div>
@@ -786,40 +752,7 @@
     </div>
   </section>
 
-  <!-- Live Event Streaming & Tarjetas NFC -->
-  <section class="section" id="live-event">
-    <div class="live-event-block">
-      <div class="live-tag">
-        <span class="live-dot"></span>
-        <span>Tecnología Live Event Streaming Exclusiva de CELEBRATION</span>
-      </div>
-      <h2 style="font-family:var(--font-display); font-size:clamp(1.8rem, 4.5vw, 2.8rem); margin-bottom:1rem; text-transform:uppercase; letter-spacing:0.1em;">
-        Galería Colectiva en Tiempo Real
-      </h2>
-      <p style="max-width:640px; margin:0 auto 2.5rem; color:#D6D0C5; font-size:1.05rem; line-height:1.75;">
-        Durante la recepción en Sunset Monalisa, aproxima tu smartphone a los identificadores NFC en tu mesa para subir fotografías y deseos en directo. Tus tomas se proyectarán al instante en las pantallas monumentales de la fiesta.
-      </p>
-
-      <div style="display:flex; justify-content:center; gap:1.2rem; flex-wrap:wrap;">
-        <button class="btn-editorial" onclick="simulateLiveUpload()">
-          Probar Simulador de Carga en Vivo 📸
-        </button>
-        <a href="live.html?folio=CAM-2026" class="btn-editorial" style="background:transparent; color:#FFF; border-color:rgba(255,255,255,0.4); text-decoration:none;" target="_blank" rel="noopener">
-          Ver Muro en Pantalla Completa 📺 ↗
-        </a>
-      </div>
-
-      <!-- Feed simulation preview -->
-      <div id="liveFeedPreview" style="display:none; margin-top:3rem; padding:2rem; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.15); text-align:left;">
-        <p style="font-size:0.68rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--accent-gold); margin-bottom:0.8rem;">
-          ✦ Foto proyectada con éxito en las pantallas de Sunset Monalisa
-        </p>
-        <p style="color:#FFF; font-size:0.95rem;">
-          "¡Muchas felicidades a Camila y Sebastián desde la mesa 2! El atardecer más hermoso de Baja California Sur."
-        </p>
-      </div>
-    </div>
-  </section>
+  
 
   <!-- Hospedaje & Convenios -->
   <section class="section" id="hospedaje" style="background:#EFECE4; max-width:100%; padding-left:2rem; padding-right:2rem;">
@@ -919,7 +852,7 @@
   <footer>
     <div class="footer-brand">CELEBRATION</div>
     <p style="font-size:0.75rem; letter-spacing:0.28em; text-transform:uppercase; color:#AAA; margin-bottom:2rem;">
-      Colección Vanguardia Editorial &amp; Live Event • Demo #CAM-2026
+      Colección Vanguardia Editorial • Demo #CAM-2026
     </p>
     <div style="display:flex; justify-content:center; gap:1.5rem; flex-wrap:wrap;">
       <a href="index.html" class="btn-editorial" style="background:#FFF; color:#111;">
@@ -973,10 +906,7 @@
       });
     }
 
-    function simulateLiveUpload() {
-      const preview = document.getElementById('liveFeedPreview');
-      preview.style.display = 'block';
-      preview.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    );
       showToast('📸 Foto simulada cargada exitosamente a la pantalla colectiva');
     }
 

@@ -1,6 +1,6 @@
-# CELEBRATION — Invitaciones Digitales Inteligentes & Live Event
+# CELEBRATION — Invitaciones Digitales Inteligentes
 
-Sitio web oficial y landing page editorial de lujo para **CELEBRATION**, el servicio premium de invitaciones digitales inteligentes con tecnología de proximidad NFC y galerías fotográficas en tiempo real (*Live Event*) para bodas y galas de alta gama.
+Sitio web oficial y landing page editorial de lujo para **CELEBRATION**, el servicio premium de invitaciones digitales inteligentes para bodas y galas de alta gama.
 
 ---
 
@@ -17,7 +17,6 @@ Sitio web oficial y landing page editorial de lujo para **CELEBRATION**, el serv
   6. Hoteles recomendados con convenios y tarifas preferenciales.
   7. Dress Code interactivo con moodboard visual.
   8. Sugerencia de Playlist de Spotify y Libro de firmas digital.
-- **Sección Live Event & Tarjetas NFC**: Muestra de cómo los invitados escanean un QR físico en mesas o aproximan tarjetas NFC sin instalar ninguna aplicación externa.
 - **Arquitectura 100% Estática**: Cero dependencias complejas, cero Node/Docker/Cloud Run. Funciona abriendo directamente el archivo `index.html` o vía GitHub Pages.
 
 ---

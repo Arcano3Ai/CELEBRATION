@@ -106,10 +106,10 @@ export const CONCIERGE_EVENTS_DB = {
       mapsUrl: "https://maps.google.com/?q=The+Cape+a+Thompson+Hotel"
     },
     reception: {
-      place: "Sunset Monalisa",
+      place: "The Cape Residences & Terrace",
       time: "18:30 hrs",
       address: "Carretera Transpeninsular Km 6",
-      mapsUrl: "https://maps.google.com/?q=Sunset+Monalisa+Cabo"
+      mapsUrl: "https://maps.google.com/?q=The+Cape+Residences+Cabo"
     },
     dressCode: {
       title: "Coastal Chic / Black Tie Sunset",

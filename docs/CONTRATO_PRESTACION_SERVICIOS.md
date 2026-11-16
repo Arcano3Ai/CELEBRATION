@@ -49,14 +49,13 @@ Marque con una [X] la colección seleccionada:
   Todo lo incluido en Signature más: Arquitectura Multi-Evento (Cóctel, Ceremonia/Recepción, Tornaboda), plataforma bilingüe nativa (ES/EN), Concierge de Destino & Hospedaje (hoteles sede, códigos de descuento, shuttles), Guía Local Curada de restaurantes y spas, Libro de Firmas Digital conmemorativo, música ambiental curada y soporte vía WhatsApp.
 
 - [ ] **Colección GRAND LUXE SUITE ($9,500 MXN):**  
-  Todo lo incluido en Destination más: 1 Tarjeta Maestra NFC personalizada para los novios, Tecnología Live Event Streaming para proyección en pantallas de salón en tiempo real y descarga de fotos compartidas, más Tarjetas de Mesa con código QR listas para imprimir para el banquete.
+  Todo lo incluido en Destination más: Tarjetas de Mesa con código QR listas para imprimir para el banquete.
 
 - [ ] **Colección ATELIER BESPOKE (Cotización Personalizada / Desde $15,000 MXN):**  
   Desarrollo de diseño exclusivo a la medida, eventos extendidos o enlaces superiores a 350 invitados.
 
 **SERVICIOS ADICIONALES (ADD-ONS):**
 - [ ] Vinculación Técnica de Dominio Propio ($850 MXN) — Dominio: ____________________
-- [ ] Set Adicional de 5 Tarjetas NFC para mesas ($950 MXN) — Cantidad de sets: _____
 - [ ] Servicio Express Prioritario 48 hrs ($1,800 MXN)
 - [ ] Renovación Anual Opcional Año 2 ($990 MXN)
 - [ ] Otro: ________________________________________________ ($ ____________ MXN)
@@ -105,7 +104,7 @@ EL PRESTADOR se obliga a diseñar, programar, configurar, hospedar en infraestru
 1. **Entrega de Materiales Iniciales (Brief):** EL CLIENTE se compromete a llenar el *Brief Editorial de Novios* y proporcionar los textos, fotografías en alta resolución, itinerarios y datos de mesa de regalos necesarios para la confección del sitio.
 2. **Propuesta Preliminar:** EL PRESTADOR entregará un enlace privado de previsualización funcional en un plazo de:
    - **3 a 5 días hábiles** para colecciones Signature Atelier y Destination & Heritage.
-   - **5 a 7 días hábiles** para la colección Grand Luxe (incluye tiempos de programación y calibración de hardware NFC).
+   - **5 a 7 días hábiles** para la colección Grand Luxe.
    - **48 horas hábiles** en caso de haber contratado el servicio Express Prioritario.
    Dicho plazo comenzará a computarse a partir del día hábil siguiente a la confirmación del anticipo del 50% y la entrega de al menos el 80% de los insumos requeridos.
 3. **Rondas de Ajustes y Perfeccionamiento:** EL CLIENTE tendrá derecho a un máximo de **tres (3) rondas completas de ajustes finos** sin costo adicional (modificación de textos, selección de fotos, paleta de colores secundaria, tipografías y orden de módulos). Toda solicitud de ajuste se atenderá en un lapso de 24 a 48 horas hábiles.
@@ -115,7 +114,7 @@ EL PRESTADOR se obliga a diseñar, programar, configurar, hospedar en infraestru
 1. **Precio Total:** Las partes pactan como contraprestación total por los servicios el monto expresado en la Carátula de Orden de Servicio, el cual incluye los conceptos detallados y no sufrirá incrementos unilaterales.
 2. **Esquema de Pago 50/50:**
    - **50% (cincuenta por ciento)** a la firma del presente instrumento o confirmación digital de pedido, con el cual se aparta la fecha en el calendario del atelier y se inicia la producción personalizada.
-   - **50% (cincuenta por ciento)** restante al momento de otorgar la aprobación final del diseño y previo a la entrega del enlace definitivo o entrega física de tarjetas NFC.
+   - **50% (cincuenta por ciento)** restante al momento de otorgar la aprobación final del diseño y previo a la entrega del enlace definitivo.
 3. **Facturación:** En caso de que EL CLIENTE requiera Comprobante Fiscal Digital por Internet (CFDI), los precios se entenderán más el Impuesto al Valor Agregado (IVA) correspondiente conforme a la legislación fiscal aplicable, debiendo proporcionar su Constancia de Situación Fiscal actualizada dentro del mismo mes de pago.
 
 ### CUARTA. ALCANCE DE INFRAESTRUCTURA Y VIGENCIA

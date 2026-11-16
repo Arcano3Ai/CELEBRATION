@@ -314,7 +314,7 @@ function initShareExperience() {
   const shareCard = document.getElementById('epicShareCard');
 
   const shareUrl = 'https://arcano3ai.github.io/CELEBRATION/';
-  const shareMessage = `✦ CELEBRATION — Haute Couture Wedding Suites & Smart RSVP\n\nSu boda, a su manera. Espacios digitales y piezas de alta costura interactiva concebidos exclusivamente para su enlace matrimonial.\n\n✧ Página Web Editorial con Dominio Propio\n✧ Smart RSVP con Asignación de Mesas\n✧ Tarjetas NFC & Galería Live Event en Pantallas\n\nConoce nuestras colecciones exclusivas:\n${shareUrl}`;
+  const shareMessage = `✦ CELEBRATION — Haute Couture Wedding Suites & Smart RSVP\n\nSu boda, a su manera. Espacios digitales y piezas de alta costura interactiva concebidos exclusivamente para su enlace matrimonial.\n\n✧ Página Web Editorial con Dominio Propio\n✧ Smart RSVP con Asignación de Mesas\n✧ Itinerario Detallado & Mesa de Regalos\n\nConoce nuestras colecciones exclusivas:\n${shareUrl}`;
 
   if (btnShareWA) {
     btnShareWA.addEventListener('click', () => {

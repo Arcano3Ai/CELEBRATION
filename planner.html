@@ -589,7 +589,7 @@
       font-weight: 500;
     }
 
-    /* NFC / QR TABLE CARDS PRINT VIEW */
+    /* QR TABLE CARDS PRINT VIEW */
     .qr-cards-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -1090,9 +1090,6 @@
         <a href="passes.html" class="btn btn-gold" id="btnHeroPasses" target="_blank" rel="noopener" title="Generar Tarjetas de Pase VIP para WhatsApp">
           🎫 Pases VIP WhatsApp
         </a>
-        <a href="live.html" class="btn btn-outline" id="btnHeroLive" target="_blank" rel="noopener" title="Abrir Pantalla de Salón Live Event en Directo">
-          📺 Pantalla Live Event
-        </a>
         <a href="demo-romantico.html" class="btn btn-outline" id="btnHeroInvite" target="_blank" rel="noopener" title="Ver Invitación Web en Vivo">
           🌐 Ver Invitación Web
         </a>
@@ -1150,7 +1147,7 @@
     <nav class="view-tabs" aria-label="Vistas del portal">
       <button type="button" class="tab-btn active" id="tabGuests" data-view="guests">📋 Lista de Invitados &amp; RSVP</button>
       <button type="button" class="tab-btn" id="tabSeating" data-view="seating">🏛️ Distribución de Mesas</button>
-      <button type="button" class="tab-btn" id="tabQr" data-view="qr">🏷️ Tarjetas de Mesa QR / NFC (Print)</button>
+      <button type="button" class="tab-btn" id="tabQr" data-view="qr">🏷️ Tarjetas de Mesa QR (Print)</button>
       <button type="button" class="tab-btn" id="tabTimeline" data-view="timeline">⏱️ Minuto a Minuto</button>
     </nav>
 
@@ -1199,7 +1196,7 @@
       </div>
     </div>
 
-    <!-- VIEW 3: QR & NFC PRINT-READY CARDS -->
+    <!-- VIEW 3: QR PRINT-READY CARDS -->
     <div id="viewQr" class="view-panel" style="display:none;">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.2rem; flex-wrap:wrap; gap:1rem;">
         <div>
@@ -1370,7 +1367,7 @@
         { time: '20:30', title: 'Primer Vals Nupcial & Baile Familiar', desc: 'Vals de novios, seguido de baile con padres y padrinos.', resp: 'DJ / Animación', status: 'pending' },
         { time: '21:00', title: 'Servicio de Banquete en 4 Tiempos', desc: 'Atención personalizada a mesas con restricciones alimentarias y alérgenos.', resp: 'Chef Ejecutivo / Meseros', status: 'pending' },
         { time: '22:30', title: 'Brindis de Honor & Palabras de Novios', desc: 'Copas de champaña servidas. Discursos de papás y agradecimiento de novios.', resp: 'Sommelier / Novios', status: 'pending' },
-        { time: '22:45', title: 'Apertura de Pista & Activación Live Event', desc: 'Comienza set de fiesta. Pantalla gigante activa para proyectar fotos de invitados.', resp: 'DJ en Vivo / Pantalla Live', status: 'pending' },
+        { time: '22:45', title: 'Apertura de Pista & Fiesta de Gala', desc: 'Comienza set estelar de fiesta y barra libre internacional.', resp: 'DJ en Vivo / Audio', status: 'pending' },
         { time: '02:00', title: 'Tornaboda & Estación de Chilaquiles', desc: 'Menú de trasnochados con chilaquiles artesanales y mariachi de despedida.', resp: 'Banquete / Mariachi', status: 'pending' }
       ],
       'ISA-2026': [
@@ -1382,10 +1379,10 @@
         { time: '23:00', title: 'Pista de Baile & Fiesta Monumental', desc: 'DJ internacional y espectáculo de luces.', resp: 'DJ / Audio Pro', status: 'pending' }
       ],
       'CAM-2026': [
-        { time: '17:00', title: 'Ceremonia al Atardecer frente al Arco', desc: 'Sunset Monalisa. Votos nupciales con vista al mar de Cortés.', resp: 'Officiant / Violinista', status: 'completed' },
+        { time: '17:00', title: 'Ceremonia al Atardecer frente al Arco', desc: 'The Cape Ocean Terrace. Votos nupciales con vista al mar de Cortés.', resp: 'Officiant / Violinista', status: 'completed' },
         { time: '18:15', title: 'Cóctel Sunset & Toast de Novios', desc: 'Brindis con margaritas de autor y vista al crepúsculo.', resp: 'Bar Sunset', status: 'current' },
-        { time: '19:30', title: 'Cena Mediterránea Bajo las Estrellas', desc: 'Banquete de mariscos y cortes finos.', resp: 'Sunset Monalisa Chef', status: 'pending' },
-        { time: '21:00', title: 'Fiesta & Pantallas Live Event Proyectando', desc: 'Carga de fotos por NFC y set de DJ en vivo.', resp: 'DJ / Screen Operator', status: 'pending' },
+        { time: '19:30', title: 'Cena de Gala Bajo las Estrellas', desc: 'Banquete de alta cocina costera y maridaje de autor.', resp: 'Chef Ejecutivo The Cape', status: 'pending' },
+        { time: '21:00', title: 'Gran Fiesta & Brindis de Medianoche', desc: 'Celebración principal con iluminación arquitectónica y barra de coctelería.', resp: 'DJ / Wedding Planner', status: 'pending' },
         { time: '01:00', title: 'After Party en la Playa', desc: 'Fogata frente al mar y tornaboda.', resp: 'Concierge Cabo', status: 'pending' }
       ]
     };
@@ -1483,9 +1480,6 @@
       // Update hero action button links for this folio
       const btnPasses = document.getElementById('btnHeroPasses');
       if (btnPasses) btnPasses.href = `passes.html?folio=${encodeURIComponent(folio)}`;
-
-      const btnLive = document.getElementById('btnHeroLive');
-      if (btnLive) btnLive.href = `live.html?folio=${encodeURIComponent(folio)}`;
 
       const btnInvite = document.getElementById('btnHeroInvite');
       if (btnInvite) {
@@ -1913,7 +1907,7 @@
             ${generateStationeryQrSVG('https://thecelebration.com.mx/?folio=' + currentFolio)}
           </div>
           <p class="qr-instructions">
-            Aproxima tu cámara o dispositivo NFC para ver el menú de la noche, itinerario y compartir tus fotos en tiempo real.
+            Escanea con tu cámara para consultar el menú de la noche, itinerario y detalles exclusivos del evento.
           </p>
           <div class="qr-folio-tag">FOLIO: #${currentFolio} · CELEBRATION ATELIER</div>
         `;
