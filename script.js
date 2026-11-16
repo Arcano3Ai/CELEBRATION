@@ -564,8 +564,76 @@ function initCheckoutGateway() {
   const collapseMp     = document.getElementById('collapseMp');
   const collapseStripe = document.getElementById('collapseStripe');
 
+  // ── Paquetes y Entregables oficiales ──
+  const PACKAGE_DETAILS = {
+    mini: {
+      id: 'mini',
+      name: 'Mini Celebration',
+      price: 990,
+      allowDeposit: false,
+      summary: 'Invitación digital personalizada con los datos esenciales para cualquier evento social.',
+      includes: [
+        'Invitación digital personalizada con tipografía y paleta del evento',
+        'Fecha, horario del evento y cuenta regresiva interactiva en tiempo real',
+        'Ubicación con botón de acceso directo a Google Maps y Waze',
+        'Confirmación de asistencia directa e inmediata por WhatsApp',
+        'Enlace web privado exclusivo con certificado SSL seguro para iOS y Android'
+      ]
+    },
+    essential: {
+      id: 'essential',
+      name: 'Essential',
+      price: 1490,
+      allowDeposit: true,
+      summary: 'Diseño visual a la medida con galería fotográfica e información extendida.',
+      includes: [
+        'Todo lo incluido en Mini Celebration',
+        'Diseño visual personalizado con dirección de arte a la medida',
+        'Galería fotográfica de los novios en alta definición',
+        'Información ampliada del evento: Itinerario detallado, dress code y notas',
+        'URL personalizada dentro de thecelebration.com.mx',
+        '3 rondas completas de ajustes finos incluidas'
+      ]
+    },
+    premiere: {
+      id: 'premiere',
+      name: 'Premiere Edition',
+      price: 2490,
+      allowDeposit: true,
+      summary: 'Smart RSVP inteligente, Save the Date en video y música original.',
+      includes: [
+        'Todo lo incluido en Essential',
+        'Smart RSVP inteligente: Buscador predictivo por invitado/familia y control de pases',
+        'Save the Date cinematográfico vertical en MP4 para WhatsApp e Instagram Stories',
+        'Composición musical instrumental original como banda sonora de fondo',
+        'Secciones de logística: Hoteles recomendados con tarifas especiales y guía de viaje',
+        'Panel privado de novios con métricas en tiempo real y descarga a Excel'
+      ]
+    },
+    signature: {
+      id: 'signature',
+      name: 'Signature',
+      price: 3990,
+      allowDeposit: true,
+      summary: 'La máxima expresión de alta costura digital con monograma de autor y mesa de regalos.',
+      includes: [
+        'Todo lo incluido en Premiere Edition',
+        'Monograma de autor personalizado e identidad tipográfica exclusiva',
+        'Historia de la pareja con narrativa editorial y timeline conmemorativo',
+        'Galería fotográfica ampliada con visualizador en pantalla completa',
+        'Mesa de regalos con enlaces externos (Liverpool, Amazon, etc.) y botón copiar CLABE',
+        'Dirección visual extendida y acompañamiento concierge prioritario ilimitado'
+      ]
+    }
+  };
+
+  // ── Elementos de detalles del paquete ──
+  const coDetailsDesc   = document.getElementById('coPkgDetailsDesc');
+  const coDetailsScheme = document.getElementById('coPkgDetailsScheme');
+  const coDetailsList   = document.getElementById('coPkgDetailsList');
+
   // ── Estado ──
-  let currentPackage = { id: 'destination', name: 'Destination & Heritage', price: 6800 };
+  let currentPackage = PACKAGE_DETAILS.premiere;
   let currentScheme  = 'deposit';
 
   // Poblar CLABE estática una vez
@@ -592,18 +660,43 @@ function initCheckoutGateway() {
   // updateCheckoutView — sincroniza toda la UI
   // ──────────────────────────────────────────────
   function updateCheckoutView() {
-    const total   = currentPackage.price;
+    const pkgInfo = PACKAGE_DETAILS[currentPackage.id] || currentPackage;
+    const total   = pkgInfo.price;
     const deposit = Math.round(total * 0.5);
+
+    // Ajustar disponibilidad de anticipo
+    if (pkgInfo.allowDeposit === false) {
+      currentScheme = 'full';
+      if (depositBtn) depositBtn.style.display = 'none';
+      if (fullBtn) {
+        fullBtn.classList.add('active');
+        fullBtn.style.display = 'flex';
+      }
+    } else {
+      if (depositBtn) depositBtn.style.display = 'flex';
+    }
+
     const pay     = payAmount();
     const concept = buildConcept();
     const names   = coupleNamesInput?.value?.trim() || 'Novios';
-    const scheme  = currentScheme === 'deposit' ? 'Anticipo 50%' : 'Pago Total 100%';
+    const scheme  = currentScheme === 'deposit' ? 'Anticipo del 50%' : 'Pago Total 100%';
 
     // LEFT PANEL
-    if (pkgNameEl)       pkgNameEl.textContent  = currentPackage.name;
+    if (pkgNameEl)       pkgNameEl.textContent  = pkgInfo.name;
     if (pkgTotalEl)      pkgTotalEl.textContent  = fmxn(total);
     if (depositAmountEl) depositAmountEl.textContent = fmxn(deposit);
     if (fullAmountEl)    fullAmountEl.textContent    = fmxn(total);
+
+    // Detalles del pago y lista de entregables
+    if (coDetailsDesc) {
+      coDetailsDesc.textContent = `CELEBRATION | ${pkgInfo.name} — ${scheme}. ${pkgInfo.summary}`;
+    }
+    if (coDetailsScheme) {
+      coDetailsScheme.textContent = scheme;
+    }
+    if (coDetailsList && pkgInfo.includes) {
+      coDetailsList.innerHTML = pkgInfo.includes.map((item) => `<li><span>${item}</span></li>`).join('');
+    }
 
     // RIGHT PANEL — hero amount
     if (payAmountHero)  payAmountHero.textContent  = fmxn(pay);
