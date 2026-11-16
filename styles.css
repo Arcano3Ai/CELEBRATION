@@ -3962,18 +3962,16 @@ a.instagram-icon:hover {
     line-height: 1.35;
   }
 
-  /* Hero adaptativo sin scroll forzado */
+  /* Hero adaptativo en movil: Foto arriba, Video con overlay abajo */
   .hero-wrap {
     min-height: auto;
+    flex-direction: column;
   }
 
-  .hero-img-box {
-    aspect-ratio: 4 / 3;
-    max-height: 280px;
-  }
-
-  .hero-text-box {
-    padding: 1.8rem 1.1rem 2.4rem;
+  .hero-visual-side {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    max-height: 320px;
   }
 
   .hero-inner {
