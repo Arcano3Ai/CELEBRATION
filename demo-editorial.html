@@ -73,17 +73,29 @@
       top: 0;
       z-index: 200;
       border-bottom: 1px solid rgba(197, 160, 89, 0.25);
-      flex-wrap: wrap;
-      gap: 0.5rem;
+      width: 100%;
+      max-width: 100vw;
+      box-sizing: border-box;
     }
     .demo-bar-left { display: flex; align-items: center; gap: 0.6rem; font-weight: 500; }
     .demo-bar-left strong { color: var(--accent-gold); letter-spacing: 0.22em; }
-    .demo-bar-nav { display: flex; align-items: center; gap: 1.2rem; }
+    .demo-bar-nav {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      overflow-x: auto;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      max-width: 100%;
+    }
+    .demo-bar-nav::-webkit-scrollbar { display: none; }
     .demo-bar-nav a {
       color: #CCC7BC;
       text-decoration: none;
       transition: color 0.2s;
       font-size: 0.64rem;
+      flex-shrink: 0;
     }
     .demo-bar-nav a:hover, .demo-bar-nav a.active {
       color: var(--accent-gold);
@@ -95,6 +107,7 @@
       padding: 0.3rem 0.8rem;
       border-radius: 20px;
       border: 1px solid rgba(197, 160, 89, 0.4);
+      flex-shrink: 0;
     }
 
     /* Sub In-Page Sticky Navigation */
@@ -102,16 +115,22 @@
       background: rgba(244, 241, 234, 0.94);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
-      padding: 1.1rem 1.5rem;
+      padding: 0.85rem 1.2rem;
       display: flex;
-      justify-content: center;
-      gap: 2.2rem;
+      justify-content: flex-start;
+      gap: 1.8rem;
       position: sticky;
       top: 41px;
       z-index: 100;
       overflow-x: auto;
       white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      width: 100%;
+      max-width: 100vw;
+      box-sizing: border-box;
     }
+    .wedding-nav::-webkit-scrollbar { display: none; }
     .wedding-nav a {
       font-size: 0.68rem;
       font-weight: 600;
@@ -120,8 +139,70 @@
       color: var(--muted);
       text-decoration: none;
       transition: color 0.2s;
+      flex-shrink: 0;
     }
     .wedding-nav a:hover { color: var(--text); }
+
+    @media (max-width: 680px) {
+      .demo-bar {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 0.55rem 0.85rem;
+        gap: 0.45rem;
+      }
+      .demo-bar-left {
+        justify-content: space-between;
+        font-size: 0.58rem;
+        width: 100%;
+      }
+      .demo-bar-nav {
+        gap: 0.8rem;
+        width: 100%;
+        padding-bottom: 2px;
+      }
+      .wedding-nav {
+        top: 68px;
+        padding: 0.75rem 0.85rem;
+        gap: 1.2rem;
+      }
+      .cover-wrap {
+        padding: 2.2rem 1rem 3.5rem !important;
+        min-height: 85vh !important;
+      }
+      .mag-header {
+        font-size: clamp(1rem, 3.8vw, 1.5rem) !important;
+        letter-spacing: 0.2em !important;
+      }
+      .cover-names {
+        font-size: clamp(2.3rem, 8.5vw, 3.6rem) !important;
+        margin-bottom: 1rem !important;
+      }
+      .cover-date {
+        margin-bottom: 1.8rem !important;
+        letter-spacing: 0.16em !important;
+      }
+      .countdown-card {
+        padding: 0.8rem 1rem !important;
+        gap: 1rem !important;
+        margin-bottom: 2rem !important;
+        max-width: calc(100vw - 2rem) !important;
+      }
+      .countdown-num {
+        font-size: 1.55rem !important;
+      }
+      .countdown-lbl {
+        font-size: 0.52rem !important;
+        letter-spacing: 0.14em !important;
+      }
+      .btn-editorial,
+      .btn-editorial-dark {
+        padding: 0.85rem 1.4rem !important;
+        font-size: 0.66rem !important;
+        letter-spacing: 0.16em !important;
+        width: 100% !important;
+        max-width: 300px !important;
+      }
+    }
 
     /* Cover Magazine Style */
     .cover-wrap {

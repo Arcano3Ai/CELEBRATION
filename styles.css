@@ -362,44 +362,72 @@ header.site-header.scrolled {
 .hero-video-box {
   aspect-ratio: 16 / 11;
   max-height: 480px;
-  background: #1a1714;
+  background: #12100e;
+  position: relative;
+  overflow: hidden;
 }
 
 .hero-video {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: center center;
   display: block;
 }
 
-/* Translucent Editorial Overlay on Video Container */
+/* Translucent Haute Couture Overlay on Video Container */
 .hero-media-overlay {
   position: absolute;
   inset: 0;
   display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
   padding: 2.2rem 1.4rem;
   background: linear-gradient(
     180deg,
-    rgba(20, 18, 16, 0.42) 0%,
-    rgba(20, 18, 16, 0.62) 55%,
-    rgba(20, 18, 16, 0.82) 100%
+    rgba(18, 16, 14, 0.52) 0%,
+    rgba(18, 16, 14, 0.12) 34%,
+    rgba(18, 16, 14, 0.12) 66%,
+    rgba(18, 16, 14, 0.78) 100%
   );
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(2px);
   z-index: 5;
+  pointer-events: none;
 }
 
 .hero-inner {
-  max-width: 540px;
+  max-width: 520px;
   width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  pointer-events: auto;
+}
+
+.hero-top-group {
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
-  gap: 1.15rem;
+  gap: 0.75rem;
+}
+
+/* Espacio reservado para que el monograma/marca 'CELEBRATION' del video brille centrada y limpia */
+.hero-brand-stage {
+  flex: 1;
+  min-height: 60px;
+  width: 100%;
+  pointer-events: none;
+}
+
+.hero-bottom-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
 }
 
 .hero-launch-pill {
@@ -422,40 +450,40 @@ header.site-header.scrolled {
 
 .hero-desc {
   font-family: var(--font-serif);
-  font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+  font-size: clamp(1.05rem, 2.2vw, 1.28rem);
   font-weight: 300;
-  line-height: 1.6;
+  line-height: 1.55;
   color: #f4f1ea;
-  max-width: 42ch;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
+  max-width: 44ch;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
 }
 
 .hero-price-badge {
   display: inline-flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.2rem;
-  padding: 0.6rem 1.8rem;
-  background: rgba(28, 25, 22, 0.78);
-  border: 1px solid rgba(197, 160, 89, 0.45);
+  gap: 0.15rem;
+  padding: 0.5rem 1.6rem;
+  background: rgba(24, 21, 18, 0.85);
+  border: 1px solid rgba(197, 160, 89, 0.5);
   border-radius: 50px;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
 }
 
 .hero-price-label {
   font-family: var(--font-sans);
-  font-size: 0.6rem;
+  font-size: 0.58rem;
   font-weight: 600;
-  letter-spacing: 0.24em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: #dfba71;
 }
 
 .hero-price-val {
   font-family: var(--font-serif);
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   color: #ffffff;
 }
 
@@ -469,10 +497,9 @@ header.site-header.scrolled {
 .hero-ctas {
   display: flex;
   flex-direction: column;
-  gap: 0.85rem;
+  gap: 0.75rem;
   width: 100%;
   align-items: center;
-  margin-top: 0.4rem;
 }
 
 .hero-ctas .btn {
@@ -3968,14 +3995,38 @@ a.instagram-icon:hover {
     flex-direction: column;
   }
 
-  .hero-visual-side {
+  .hero-img-box {
     width: 100%;
     aspect-ratio: 16 / 10;
-    max-height: 320px;
+    max-height: 280px;
+  }
+
+  .hero-video-box {
+    width: 100%;
+    aspect-ratio: auto;
+    min-height: 480px;
+    max-height: none;
+  }
+
+  .hero-media-overlay {
+    padding: 1.8rem 1.1rem;
   }
 
   .hero-inner {
-    gap: 0.95rem;
+    height: 100%;
+    justify-content: space-between;
+  }
+
+  .hero-top-group {
+    gap: 0.65rem;
+  }
+
+  .hero-brand-stage {
+    min-height: 90px;
+  }
+
+  .hero-bottom-group {
+    gap: 0.7rem;
   }
 
   .hero-launch-pill {
@@ -3984,19 +4035,14 @@ a.instagram-icon:hover {
     padding: 0.38rem 0.85rem;
   }
 
-  .hero-brand-headline {
-    font-size: 2.3rem;
-    letter-spacing: 0.28em;
-  }
-
   .hero-desc {
     font-size: 0.98rem;
-    line-height: 1.5;
+    line-height: 1.45;
     padding: 0 0.5rem;
   }
 
   .hero-price-badge {
-    padding: 0.45rem 1.15rem;
+    padding: 0.42rem 1.25rem;
   }
 
   .hero-price-val {
@@ -4004,7 +4050,7 @@ a.instagram-icon:hover {
   }
 
   .hero-ctas {
-    gap: 0.75rem;
+    gap: 0.65rem;
   }
 
   .hero-ctas .btn,
