@@ -1084,6 +1084,14 @@ header.site-header.scrolled {
   font-weight: 500;
 }
 
+.srv-actions-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  margin-top: auto;
+  width: 100%;
+}
+
 .srv-btn,
 .srv-btn-primary {
   display: inline-flex;
@@ -1091,7 +1099,8 @@ header.site-header.scrolled {
   justify-content: center;
   width: 100%;
   padding: 0.95rem 1.4rem;
-  background: var(--btn);
+  min-height: 46px;
+  background: var(--text);
   color: #FFFFFF;
   font-family: var(--font-sans);
   font-size: 0.68rem;
@@ -1099,22 +1108,71 @@ header.site-header.scrolled {
   letter-spacing: 0.2em;
   text-transform: uppercase;
   border-radius: 50px;
+  border: 1px solid var(--text);
   transition: all 0.3s ease;
-  margin-top: auto;
+  cursor: pointer;
+  text-decoration: none;
 }
 
-.srv-btn:hover,
-.srv-btn-primary:hover {
-  background: var(--btn-hover);
+.srv-btn:hover:not(.is-disabled),
+.srv-btn-primary:hover:not(.is-disabled) {
+  background: #000000;
+  border-color: #000000;
+  color: #FFFFFF;
   transform: translateY(-2px);
   box-shadow: 0 6px 18px rgba(36, 33, 29, 0.18);
 }
 
-.srv-btn.featured,
-.srv-btn-primary.featured {
-  background: var(--text);
-  color: #FFFFFF;
-  border: 1px solid var(--gold);
+.srv-btn-featured,
+.srv-btn-primary.srv-btn-featured {
+  background: #a47e3b !important;
+  color: #FFFFFF !important;
+  border: 1px solid #c5a059 !important;
+  box-shadow: 0 4px 16px rgba(197, 160, 89, 0.35);
+}
+
+.srv-btn-featured:hover:not(.is-disabled),
+.srv-btn-primary.srv-btn-featured:hover:not(.is-disabled) {
+  background: #8e6b2c !important;
+  border-color: #dfba71 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(197, 160, 89, 0.45);
+}
+
+.srv-btn-primary.is-disabled {
+  background: #e3ded6 !important;
+  border-color: #e3ded6 !important;
+  color: #8e877e !important;
+  cursor: not-allowed;
+  opacity: 0.85;
+}
+
+.srv-btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0.85rem 1.2rem;
+  min-height: 44px;
+  background: transparent;
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  border-radius: 50px;
+  border: 1px solid var(--border-sub);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.srv-btn-ghost:hover {
+  background: rgba(158, 149, 137, 0.12);
+  border-color: var(--taupe);
+  color: var(--text);
+  transform: translateY(-1px);
 }
 
 .srv-btn.featured:hover,
