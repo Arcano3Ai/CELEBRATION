@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initPwa();
   initCheckoutGateway();
   initBackgroundMusic();
+  initDirectPaymentButtons();
 });
 
 /* --------------------------------------------------------------------------
@@ -922,4 +923,49 @@ function initBackgroundMusic() {
     if (!audio.muted) setPlayingState(true);
   });
   audio.addEventListener('pause', () => setPlayingState(false));
+}
+
+/* --------------------------------------------------------------------------
+   12. Direct Payment Buttons (Mercado Pago Integration Handler)
+   -------------------------------------------------------------------------- */
+function initDirectPaymentButtons() {
+  const contractButtons = document.querySelectorAll('[data-contract]');
+  if (!contractButtons.length) return;
+
+  const payments = window.CELEBRATION_PAYMENTS || {};
+
+  contractButtons.forEach((btn) => {
+    const key = btn.getAttribute('data-contract');
+    const url = payments[key];
+    const card = btn.closest('.plan-card');
+    const note = card ? card.querySelector('[data-pay-note]') : null;
+
+    if (url && typeof url === 'string' && url.trim().length > 0 && !url.includes('XXXX')) {
+      btn.href = url.trim();
+      btn.classList.remove('is-disabled');
+      btn.removeAttribute('aria-disabled');
+      btn.target = '_blank';
+      btn.rel = 'noopener noreferrer';
+      btn.onclick = null;
+      if (note) {
+        note.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><span>Pago seguro con Mercado Pago</span>';
+        note.classList.add('plan-pay-note--active');
+      }
+    } else {
+      btn.href = '#';
+      btn.classList.add('is-disabled');
+      btn.setAttribute('aria-disabled', 'true');
+      btn.onclick = (e) => {
+        e.preventDefault();
+        if (typeof showToastFeedback === 'function') {
+          showToastFeedback('✦ El pago directo con tarjeta estará disponible próximamente. Por favor, aparta tu fecha por WhatsApp.');
+        } else {
+          alert('✦ El pago directo con tarjeta estará disponible próximamente. Por favor, aparta tu fecha por WhatsApp.');
+        }
+      };
+      if (note) {
+        note.classList.remove('plan-pay-note--active');
+      }
+    }
+  });
 }
