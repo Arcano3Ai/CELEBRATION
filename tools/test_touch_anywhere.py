@@ -33,3 +33,4 @@ try:
         print("[✓] ¡ÉXITO! La música arranca inmediatamente al primer contacto en cualquier parte del sitio sin buscar el botón.")
 finally:
     server.terminate()
+

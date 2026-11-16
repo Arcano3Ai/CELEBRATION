@@ -1,10 +1,10 @@
 /**
  * CELEBRATION — High Performance Service Worker
- * Version: 2.7.0
+ * Version: 2.8.0
  * Provides offline support, caching strategies, and instant load for iOS and Android
  */
 
-const CACHE_NAME = 'celebration-v2.7.0';
+const CACHE_NAME = 'celebration-v2.8.0';
 const STATIC_ASSETS = [
   './',
   './index.html',
@@ -31,6 +31,7 @@ const STATIC_ASSETS = [
   './assets/icons/icon-maskable-512x512.png',
   './assets/icons/apple-touch-icon-180x180.png',
   './assets/icons/favicon-64x64.png',
+  './assets/icons/mercado-pago-logo.svg',
   './assets/images/hero_editorial_couple.jpg',
   './assets/images/og_share_cover.jpg',
   './assets/images/og_share_banner.jpg',

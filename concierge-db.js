@@ -138,7 +138,7 @@ export const CELEBRATION_FAQ_DB = [
   {
     topic: "paquetes",
     keywords: ["paquete", "precio", "cuanto cuesta", "costo", "tarifa", "precios", "coleccion", "planes"],
-    response: "CELEBRATION ofrece tres colecciones de alta costura concebidas para el mercado sampetrino y enlaces de destino:\n\n1. **Colección Signature Atelier ($4,200 MXN):** Sitio web editorial a medida, enlace web privado con SSL, Smart RSVP predictivo por familia con control estricto de pases y alergias (cero colados), itinerario con GPS Waze/Maps, mesa de regalos de alta gama (Palacio de Hierro, Liverpool, Tiffany, CLABE), pases digitales VIP para WhatsApp y portal para Wedding Planner con exportador a Excel.\n\n2. **Colección Destination & Heritage ($6,800 MXN - Más Solicitada):** Todo lo de Signature más arquitectura Multi-Evento con RSVP segmentado (rompehielos, ceremonia, tornaboda/brunch), bilingüe nativo (Español/Inglés), módulo concierge de convenios hoteleros, transporte y recomendaciones locales curadas, y libro de firmas digital conmemorativo.\n\n3. **Colección Grand Luxe Suite ($9,500 MXN - Experiencia Suprema):** Todo lo de Destination más 1 Tarjeta Maestra NFC personalizada para los novios, pantalla interactiva Live Event para proyectar fotos de los invitados en directo durante la fiesta sin apps, y tarjetas de mesa con código QR listas para imprimir.\n\n*Para enlaces monumentales en Club Campestre o recintos privados contamos con **Atelier Bespoke** (desde $15,000 MXN).* "
+    response: "CELEBRATION ofrece 4 colecciones digitales para bodas 2027:\n\n1. **Mini Celebration ($990 MXN - Pago completo):** Invitación digital personalizada, fecha, ubicación en Google Maps, cuenta regresiva y confirmación por WhatsApp.\n\n2. **Essential ($1,490 MXN - Anticipo $745 MXN):** Todo lo de Mini más diseño visual a la medida, galería fotográfica, información ampliada y URL personalizada.\n\n3. **Premiere Edition ($2,490 MXN - Recomendado - Anticipo $1,245 MXN):** Todo lo de Essential más Smart RSVP interactivo por invitado/familia, Save the Date cinematográfico en video MP4 y música instrumental original.\n\n4. **Signature ($3,990 MXN - Anticipo $1,995 MXN):** Todo lo de Premiere más monograma de autor, historia de los novios, galería ampliada y mesa de regalos con enlaces externos.\n\n*Edición de lanzamiento Founding Brides 2027 limitada a 10 parejas.*"
   },
   {
     topic: "tiempos",
@@ -151,9 +151,9 @@ export const CELEBRATION_FAQ_DB = [
     response: "El **Smart RSVP** permite a sus invitados escribir su nombre en un buscador predictivo y ver sus pases asignados de inmediato con un solo clic. Responden sobre menús especiales, alergias y transporte, y ustedes reciben las estadísticas consolidadas en tiempo real en su panel privado sin perseguir a nadie por WhatsApp."
   },
   {
-    topic: "nfc live event",
-    keywords: ["nfc", "tarjeta", "tarjetas", "live event", "fotos en vivo", "pantalla", "proyectar"],
-    response: "La tecnología **Live Event & NFC** incluye una Tarjeta Maestra de proximidad para los novios y el acceso a la pantalla en vivo para el salón. Cualquier invitado con smartphone aproxima su teléfono o escanea el QR de su mesa y accede a la pantalla colectiva donde proyectan fotos y dedicatorias en la fiesta."
+    topic: "contacto",
+    keywords: ["contacto", "telefono", "whatsapp", "reservar", "apartar", "hablar"],
+    response: "Pueden escribirnos directamente por WhatsApp al **+52 81 2191 2778** para recibir asesoría personalizada, consultar disponibilidad o apartar su fecha con el 50% de anticipo."
   },
   {
     topic: "pagos",

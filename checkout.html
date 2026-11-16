@@ -149,9 +149,10 @@
       </div>
       <div class="pkg-card">
         <div class="pkg-tabs" id="pkgTabs">
-          <button type="button" class="pkg-tab-btn" data-pkg="signature">Signature $4.2k</button>
-          <button type="button" class="pkg-tab-btn active" data-pkg="destination">Destination $6.8k</button>
-          <button type="button" class="pkg-tab-btn" data-pkg="grandluxe">Grand Luxe $9.5k</button>
+          <button type="button" class="pkg-tab-btn" data-pkg="mini">Mini $990</button>
+          <button type="button" class="pkg-tab-btn" data-pkg="essential">Essential $1.4k</button>
+          <button type="button" class="pkg-tab-btn active" data-pkg="premiere">Premiere $2.4k</button>
+          <button type="button" class="pkg-tab-btn" data-pkg="signature">Signature $3.9k</button>
         </div>
         <div class="pkg-row">
           <div><span class="pkg-sub">Colección seleccionada</span><strong class="pkg-name" id="pkgName">Destination &amp; Heritage</strong></div>
@@ -253,11 +254,11 @@
   </main>
   <div class="toast" id="toast"></div>
   <script>
-    const CFG={whatsapp:'528121912778',spei:{clabe:'646180123456789012'},mercadopago:{signature:'https://mpago.la/XXXXXXXXX',destination:'https://mpago.la/XXXXXXXXX',grandluxe:'https://mpago.la/XXXXXXXXX'},stripe:{signature:'https://buy.stripe.com/XXXXXXXXX',destination:'https://buy.stripe.com/XXXXXXXXX',grandluxe:'https://buy.stripe.com/XXXXXXXXX'}};
-    const PKGS={signature:{name:'Signature Atelier',price:4200},destination:{name:'Destination & Heritage',price:6800},grandluxe:{name:'Grand Luxe Suite',price:9500}};
+    const CFG={whatsapp:'528121912778',spei:{clabe:'646180123456789012'},mercadopago:{mini:'https://mpago.la/XXXXXXXXX',essential:'https://mpago.la/XXXXXXXXX',premiere:'https://mpago.la/XXXXXXXXX',signature:'https://mpago.la/XXXXXXXXX'},stripe:{mini:'https://buy.stripe.com/XXXXXXXXX',essential:'https://buy.stripe.com/XXXXXXXXX',premiere:'https://buy.stripe.com/XXXXXXXXX',signature:'https://buy.stripe.com/XXXXXXXXX'}};
+    const PKGS={mini:{name:'Mini Celebration',price:990},essential:{name:'Essential',price:1490},premiere:{name:'Premiere Edition',price:2490},signature:{name:'Signature',price:3990}};
     const p=new URLSearchParams(location.search);
-    let key=p.get('pkg')||'destination';
-    if(!PKGS[key]) key='destination';
+    let key=p.get('pkg')||'premiere';
+    if(!PKGS[key]) key='premiere';
     let pkg=PKGS[key];
     let scheme='deposit';
     const fmt=v=>'$'+Number(v).toLocaleString('es-MX')+' MXN';

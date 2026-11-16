@@ -47,6 +47,7 @@
 | **CEL-33** | Timeline Interactivo Minuto a Minuto (Run of Show) | Frontend + UI/UX + QA | ✅ Completado | Pestaña protocolaria en `planner.html` con hitos minuto a minuto (ceremonia, vals, banquete, brindis, fiesta), control dinámico de estatus (`Pendiente`, `En Curso ⏱️`, `Completado ✓`), persistencia por folio, edición y modo de impresión oficial. |
 | **CEL-36** | Música Ambiental Oficial "Celebration — Que Se Prenda" & Reproductor Flotante | UI/UX + Frontend + QA | ✅ Completado | Integración de audio MP3 oficial con ecualizador animado, control flotante de lujo con micro-interacciones, inicio automático al primer gesto de navegación y bypass de streaming en Service Worker. |
 | **CEL-37** | Tarjetas Sociales Open Graph 1200x630 para WhatsApp & Redes | UI/UX + Frontend + QA | ✅ Completado | Generación de banners oficiales de alta gama en proporción 1.91:1 (1200x630 px, <150 KB) con tipografía serif y monogramas dorados; metadatos Open Graph y Twitter Cards integrados en las 8 páginas del sitio para previsualizaciones ricas en WhatsApp. |
+| **CEL-38** | Landing Comercial Mobile First 2027 & Nuevos Paquetes ($990 / $1,490 / $2,490 / $3,990) | UI/UX + Frontend + QA | ✅ Completado | Transformación de la landing en una experiencia comercial digital premium para bodas 2027: eliminación de productos físicos, 4 nuevas colecciones con anticipos claros y botones WhatsApp con copy oficial, franja Founding Brides 2027, botón flotante táctil 'Consultar y Reservar', badges de confianza Lucide y 0 desbordamiento horizontal en 360px-1280px. |
 
 ---
 
