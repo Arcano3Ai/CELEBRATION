@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCheckoutGateway();
   initBackgroundMusic();
   initDirectPaymentButtons();
+  initEventCelebrationPicker();
 });
 
 /* --------------------------------------------------------------------------
@@ -968,4 +969,60 @@ function initDirectPaymentButtons() {
       }
     }
   });
+}
+
+/* --------------------------------------------------------------------------
+   13. Event Celebration Picker (¿Qué vas a celebrar?)
+   -------------------------------------------------------------------------- */
+function initEventCelebrationPicker() {
+  const eventSelect = document.getElementById('eventSelect');
+  const waButtons = document.querySelectorAll('[data-plan-wa]');
+  if (!eventSelect || !waButtons.length) return;
+
+  const WA_NUMBER = '528121912778';
+
+  const PLAN_DETAILS = {
+    mini: {
+      action: 'quiero información',
+      name: 'Mini Celebration',
+      price: '$990'
+    },
+    essential: {
+      action: 'quiero reservar',
+      name: 'Essential',
+      price: '$1,490'
+    },
+    premiere: {
+      action: 'quiero reservar',
+      name: 'Premiere Edition',
+      price: '$2,490'
+    },
+    signature: {
+      action: 'quiero información',
+      name: 'Signature',
+      price: '$3,990'
+    }
+  };
+
+  function updateWaLinks() {
+    const selectedEvent = eventSelect.value.trim() || 'Boda';
+
+    waButtons.forEach((btn) => {
+      const planKey = btn.getAttribute('data-plan-wa');
+      const plan = PLAN_DETAILS[planKey];
+      if (!plan) return;
+
+      let msg = '';
+      if (selectedEvent === 'Boda') {
+        msg = `Hola, ${plan.action} de ${plan.name} de ${plan.price}.`;
+      } else {
+        msg = `Hola, ${plan.action} de ${plan.name} de ${plan.price} para mi evento (${selectedEvent}).`;
+      }
+
+      btn.href = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
+    });
+  }
+
+  eventSelect.addEventListener('change', updateWaLinks);
+  updateWaLinks();
 }
