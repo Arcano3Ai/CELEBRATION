@@ -3845,4 +3845,128 @@ a.instagram-icon:hover {
   }
 }
 
+/* ==========================================================================
+   MOBILE FIRST OPTIMIZATIONS — iOS Safari & Android Chrome
+   ========================================================================== */
+@media (max-width: 600px) {
+  /* Header compacto y táctil */
+  header.site-header {
+    padding: calc(0.9rem + var(--sat)) 1.2rem 0.8rem;
+  }
+
+  header.site-header.scrolled {
+    padding: calc(0.65rem + var(--sat)) 1.2rem 0.65rem;
+  }
+
+  .brand-logo {
+    font-size: 1.65rem;
+    letter-spacing: 0.32em;
+  }
+
+  .brand-logo-sub {
+    font-size: 0.52rem;
+    letter-spacing: 0.28em;
+    margin-top: 0.2rem;
+  }
+
+  .top-notice {
+    padding: calc(0.45rem + var(--sat)) 0.8rem 0.45rem;
+    font-size: 0.58rem;
+    letter-spacing: 0.14em;
+    line-height: 1.35;
+  }
+
+  /* Hero adaptativo sin scroll forzado */
+  .hero-wrap {
+    min-height: auto;
+  }
+
+  .hero-img-box {
+    aspect-ratio: 4 / 3;
+    max-height: 280px;
+  }
+
+  .hero-text-box {
+    padding: 1.8rem 1.1rem 2.4rem;
+  }
+
+  .hero-inner {
+    gap: 0.95rem;
+  }
+
+  .hero-launch-pill {
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
+    padding: 0.38rem 0.85rem;
+  }
+
+  .hero-brand-headline {
+    font-size: 2.3rem;
+    letter-spacing: 0.28em;
+  }
+
+  .hero-desc {
+    font-size: 0.98rem;
+    line-height: 1.5;
+    padding: 0 0.5rem;
+  }
+
+  .hero-price-badge {
+    padding: 0.45rem 1.15rem;
+  }
+
+  .hero-price-val {
+    font-size: 1.05rem;
+  }
+
+  .hero-ctas {
+    gap: 0.75rem;
+  }
+
+  .hero-ctas .btn,
+  .hero-ctas .btn-outline {
+    width: 100%;
+    max-width: 320px;
+    padding: 0.85rem 1.4rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+  }
+
+  /* Tarjetas de paquetes mobile-first */
+  .plan-grid {
+    padding: 0 0.85rem;
+    gap: 1.2rem;
+  }
+
+  .plan-card {
+    padding: 1.5rem 1.15rem;
+    border-radius: 14px;
+  }
+
+  .plan-title {
+    font-size: 1.4rem;
+  }
+
+  .plan-amount {
+    font-size: 1.95rem;
+  }
+
+  .plan-btn {
+    min-height: 48px;
+    font-size: 0.78rem;
+  }
+
+  /* Acciones flotantes con z-index seguro y safe area padding */
+  .floating-whatsapp {
+    bottom: calc(14px + var(--sab));
+    right: calc(12px + var(--sar));
+  }
+
+  .floating-audio-player {
+    bottom: calc(68px + var(--sab));
+    left: calc(12px + var(--sal));
+  }
+}
+
+
 
