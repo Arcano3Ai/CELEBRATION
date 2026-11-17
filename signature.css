@@ -746,6 +746,44 @@ a {
   margin-top: 8px;
 }
 
+.sig-iframe-loader {
+  position: absolute;
+  inset: 0;
+  background: #0D0B0A;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  z-index: 5;
+  transition: opacity 0.3s ease;
+}
+
+.sig-loader--hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.sig-loader-spinner {
+  width: 32px;
+  height: 32px;
+  border: 2px solid rgba(197, 160, 89, 0.2);
+  border-top-color: var(--gold);
+  border-radius: 50%;
+  animation: sigSpin 0.9s linear infinite;
+}
+
+@keyframes sigSpin {
+  to { transform: rotate(360deg); }
+}
+
+.sig-loader-text {
+  font-family: var(--font-accent);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  color: var(--gold-light);
+}
+
 .sig-demo-iframe {
   width: 100%;
   height: 100%;
@@ -980,19 +1018,34 @@ a {
     height: 340px;
   }
 
+  .sig-header {
+    background: #0D0B0A;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
   .sig-features-card {
     padding: 24px 20px;
+  }
+
+  .sig-phone-mockup {
+    max-width: 100%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    contain: content;
   }
 
   .sig-demo-phone-frame {
     max-width: 100%;
     padding: 8px;
     border-radius: var(--radius-lg);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    contain: content;
   }
 
   .sig-iframe-container {
-    height: 620px;
+    height: 560px;
     border-radius: calc(var(--radius-lg) - 8px);
+    contain: strict;
   }
 
   .sig-closing-card {

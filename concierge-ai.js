@@ -15,6 +15,15 @@ class CelebrationConciergeAI {
   }
 
   init() {
+    // Si la página está dentro de un iframe (embed en landing), no montar el bot flotante para optimizar memoria móvil
+    try {
+      if (window.self !== window.top) {
+        return;
+      }
+    } catch (e) {
+      return;
+    }
+
     this.renderUI();
     this.attachEventListeners();
     this.addWelcomeMessage();

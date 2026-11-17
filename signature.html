@@ -226,13 +226,15 @@
             <div class="sig-video-container">
               <video
                 id="signaturePromoVideo"
-                src="assets/video/signature_experience.mp4"
                 poster="assets/video/signature_experience_poster.jpg"
                 playsinline
                 controls
-                preload="metadata"
+                preload="none"
                 class="sig-video-player"
-              ></video>
+              >
+                <source src="assets/video/signature_experience_720.mp4" type="video/mp4" media="(max-width: 860px)">
+                <source src="assets/video/signature_experience.mp4" type="video/mp4">
+              </video>
             </div>
             <div class="sig-phone-bar"></div>
           </div>
@@ -283,12 +285,17 @@
                 <span>Pantalla Completa</span>
               </a>
             </div>
-            <div class="sig-iframe-container">
+            <div class="sig-iframe-container" id="sigIframeWrapper">
+              <div class="sig-iframe-loader" id="sigIframeLoader">
+                <span class="sig-loader-spinner"></span>
+                <span class="sig-loader-text">Cargando invitación interactiva en vivo...</span>
+              </div>
               <iframe
-                src="demo-editorial.html"
+                id="sigDemoIframe"
+                data-src="demo-editorial.html"
                 title="Invitación Interactiva Camila &amp; Sebastián"
                 class="sig-demo-iframe"
-                loading="eager"
+                loading="lazy"
                 allow="autoplay; encrypted-media"
               ></iframe>
             </div>
@@ -404,6 +411,39 @@
             tracked = true;
           }
         });
+      }
+
+      // Lazy Loading inteligente del iframe para evitar saturación de memoria en Android
+      const iframe = document.getElementById('sigDemoIframe');
+      const loader = document.getElementById('sigIframeLoader');
+      const wrapper = document.getElementById('sigIframeWrapper') || iframe;
+
+      if (iframe && iframe.dataset.src) {
+        const loadIframe = () => {
+          if (!iframe.src) {
+            iframe.src = iframe.dataset.src;
+            iframe.onload = () => {
+              if (loader) {
+                loader.style.opacity = '0';
+                setTimeout(() => { loader.style.display = 'none'; }, 300);
+              }
+            };
+          }
+        };
+
+        if ('IntersectionObserver' in window) {
+          const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                loadIframe();
+                obs.disconnect();
+              }
+            });
+          }, { rootMargin: '300px 0px' });
+          observer.observe(wrapper);
+        } else {
+          loadIframe();
+        }
       }
     });
   </script>
