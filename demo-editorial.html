@@ -638,9 +638,9 @@
     <div class="mag-header">VOGUE WEDDINGS SPECIAL EDITION</div>
     
     <div class="cover-center">
-      <p class="cover-eyebrow">The Destination Wedding Issue • Los Cabos 2026</p>
+      <p class="cover-eyebrow">The Destination Wedding Issue • Los Cabos 2027</p>
       <h1 class="cover-names">Camila &amp; Sebastián</h1>
-      <p class="cover-date">Sábado 24 de Octubre de 2026 • Cabo San Lucas, México</p>
+      <p class="cover-date">Sábado 23 de Octubre de 2027 • Cabo San Lucas, México</p>
 
       <!-- Live Countdown -->
       <div class="countdown-card" id="editorialCountdown">
@@ -697,7 +697,7 @@
   <section class="section" id="itinerario" style="background:#EFECE4; max-width:100%; padding-left:2rem; padding-right:2rem;">
     <div style="max-width:1040px; margin:0 auto;">
       <h2 class="section-title">El Itinerario</h2>
-      <p class="section-subtitle">Sábado 24 de Octubre de 2026 • Cabo San Lucas</p>
+      <p class="section-subtitle">Sábado 23 de Octubre de 2027 • Cabo San Lucas</p>
 
       <div class="itinerary-grid">
         <div class="itinerary-card">
@@ -840,7 +840,7 @@
       <h2 class="section-title">Smart RSVP</h2>
       <p class="section-subtitle">Confirmación Exclusiva de Asistencia</p>
       <p style="text-align:center; color:var(--muted); font-size:1.05rem; margin-bottom:2.5rem;">
-        Rogamos confirmar su presencia antes del <strong>1 de Octubre de 2026</strong> para la adecuada asignación de lugares y logística de destino.
+        Rogamos confirmar su presencia antes del <strong>1 de Octubre de 2027</strong> para la adecuada asignación de lugares y logística de destino.
       </p>
 
       <div class="rsvp-container">
@@ -884,20 +884,37 @@
 
   <!-- Scripts -->
   <script>
-    // Live countdown to Oct 24, 2026 (Los Cabos Ceremony)
-    const targetDate = new Date('2026-10-24T16:00:00').getTime();
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const diff = targetDate - now;
-      if (diff > 0) {
-        document.getElementById('dDays').textContent = Math.floor(diff / (1000 * 60 * 60 * 24));
-        document.getElementById('dHours').textContent = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
-        document.getElementById('dMins').textContent = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
-        document.getElementById('dSecs').textContent = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
+    // Live countdown to Oct 23, 2027 (Los Cabos Ceremony)
+    function getEditorialTarget() {
+      let d = new Date('2027-10-23T16:00:00');
+      const now = new Date();
+      while (d.getTime() <= now.getTime()) {
+        d.setFullYear(d.getFullYear() + 1);
       }
+      return d.getTime();
     }
-    setInterval(updateCountdown, 1000);
+    const targetDate = getEditorialTarget();
+    function updateCountdown() {
+      const now = Date.now();
+      let diff = targetDate - now;
+      if (diff < 0) diff = 0;
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+      const elD = document.getElementById('dDays');
+      const elH = document.getElementById('dHours');
+      const elM = document.getElementById('dMins');
+      const elS = document.getElementById('dSecs');
+
+      if (elD) elD.textContent = String(days);
+      if (elH) elH.textContent = String(hours).padStart(2, '0');
+      if (elM) elM.textContent = String(mins).padStart(2, '0');
+      if (elS) elS.textContent = String(secs).padStart(2, '0');
+    }
     updateCountdown();
+    setInterval(updateCountdown, 1000);
 
     // Toast Utility
     function showToast(text) {
@@ -916,10 +933,6 @@
       }).catch(() => {
         prompt('Copia tu CLABE manualmente:', clabe);
       });
-    }
-
-    );
-      showToast('📸 Foto simulada cargada exitosamente a la pantalla colectiva');
     }
 
     // --- KAIZEN: IntersectionObserver for Reveal Animations ---

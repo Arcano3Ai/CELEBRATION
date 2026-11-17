@@ -458,7 +458,7 @@
     <div class="monogram-crest">I &amp; S</div>
     <span class="hero-eyebrow">Con la bendición de Dios y de nuestros padres</span>
     <h1 class="hero-names">Isabella &amp; Santiago</h1>
-    <p class="hero-date">Sábado 10 de Octubre de 2026 • Centro Histórico, Ciudad de México</p>
+    <p class="hero-date">Sábado 9 de Octubre de 2027 • Centro Histórico, Ciudad de México</p>
 
     <div class="countdown-card" id="demoCountdown">
       <div class="countdown-item">
@@ -573,7 +573,7 @@
       <h2 class="sec-title">Smart RSVP</h2>
       <div class="sec-divider"></div>
       <p style="color:var(--muted); font-size:1.05rem; margin-bottom:2rem;">
-        Agradecemos confirmar su asistencia antes del 15 de Septiembre de 2026.
+        Agradecemos confirmar su asistencia antes del 15 de Septiembre de 2027.
       </p>
 
       <div class="rsvp-box">
@@ -598,21 +598,37 @@
   </footer>
 
   <script>
-    // Live countdown to Oct 10, 2026
-    const target = new Date('2026-10-10T17:00:00').getTime();
-    function tick() {
-      const now = new Date().getTime();
-      const diff = target - now;
-      if (diff > 0) {
-        document.getElementById('dDays').textContent = Math.floor(diff / (1000 * 60 * 60 * 24));
-        document.getElementById('dHours').textContent = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
-        document.getElementById('dMins').textContent = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
-        document.getElementById('dSecs').textContent = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
+    // Live countdown to Oct 9, 2027 (CDMX Ceremony)
+    function getClasicoTarget() {
+      let d = new Date('2027-10-09T17:00:00');
+      const now = new Date();
+      while (d.getTime() <= now.getTime()) {
+        d.setFullYear(d.getFullYear() + 1);
       }
+      return d.getTime();
     }
-    setInterval(tick, 1000);
-    tick();
+    const target = getClasicoTarget();
+    function tick() {
+      const now = Date.now();
+      let diff = target - now;
+      if (diff < 0) diff = 0;
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const secs = Math.floor((diff % (1000 * 60)) / 1000);
 
+      const elD = document.getElementById('dDays');
+      const elH = document.getElementById('dHours');
+      const elM = document.getElementById('dMins');
+      const elS = document.getElementById('dSecs');
+
+      if (elD) elD.textContent = String(days);
+      if (elH) elH.textContent = String(hours).padStart(2, '0');
+      if (elM) elM.textContent = String(mins).padStart(2, '0');
+      if (elS) elS.textContent = String(secs).padStart(2, '0');
+    }
+    tick();
+    setInterval(tick, 1000);
   </script>
 
   <!-- Smart RSVP Engine & Digital Guestbook Modules -->

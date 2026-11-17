@@ -593,7 +593,7 @@
   <header class="hero">
     <span class="hero-eyebrow">Nos casamos • Save the Date</span>
     <h1 class="hero-names">Valentina &amp; Mateo</h1>
-    <p class="hero-date">Sábado 14 de Noviembre de 2026 • San Miguel de Allende, Gto.</p>
+    <p class="hero-date">Sábado 13 de Noviembre de 2027 • San Miguel de Allende, Gto.</p>
 
     <div class="countdown-card" id="demoCountdown">
       <div class="countdown-item">
@@ -780,20 +780,37 @@
 
   <!-- Real-Time Countdown Script & Smart RSVP Search Script -->
   <script>
-    // Live countdown to Nov 14, 2026
-    const target = new Date('2026-11-14T16:30:00').getTime();
-    function tick() {
-      const now = new Date().getTime();
-      const diff = target - now;
-      if (diff > 0) {
-        document.getElementById('dDays').textContent = Math.floor(diff / (1000 * 60 * 60 * 24));
-        document.getElementById('dHours').textContent = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
-        document.getElementById('dMins').textContent = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
-        document.getElementById('dSecs').textContent = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
+    // Live countdown to Nov 13, 2027 (San Miguel Ceremony)
+    function getRomanticoTarget() {
+      let d = new Date('2027-11-13T16:30:00');
+      const now = new Date();
+      while (d.getTime() <= now.getTime()) {
+        d.setFullYear(d.getFullYear() + 1);
       }
+      return d.getTime();
     }
-    setInterval(tick, 1000);
+    const target = getRomanticoTarget();
+    function tick() {
+      const now = Date.now();
+      let diff = target - now;
+      if (diff < 0) diff = 0;
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+      const elD = document.getElementById('dDays');
+      const elH = document.getElementById('dHours');
+      const elM = document.getElementById('dMins');
+      const elS = document.getElementById('dSecs');
+
+      if (elD) elD.textContent = String(days);
+      if (elH) elH.textContent = String(hours).padStart(2, '0');
+      if (elM) elM.textContent = String(mins).padStart(2, '0');
+      if (elS) elS.textContent = String(secs).padStart(2, '0');
+    }
     tick();
+    setInterval(tick, 1000);
 
   </script>
 
