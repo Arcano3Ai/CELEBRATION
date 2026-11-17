@@ -625,7 +625,93 @@ a {
   font-style: italic;
   font-size: 1.3rem;
   color: var(--gold-light);
-  margin-bottom: 16px;
+  margin-bottom: 24px;
+}
+
+/* Módulo Destacado Wedding Planner (debajo de Un comienzo para siempre) */
+.sig-planner-highlight {
+  background: linear-gradient(135deg, rgba(32, 27, 22, 0.95) 0%, rgba(20, 17, 14, 0.95) 100%);
+  border: 1px solid var(--gold-border);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+  border-radius: var(--radius-md);
+  padding: 24px 28px;
+  max-width: 760px;
+  margin: 0 auto 32px;
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+}
+
+.sig-planner-highlight::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--gold-light), var(--gold));
+}
+
+.sig-planner-tag {
+  font-family: var(--font-accent);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--gold-light);
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.sig-planner-title {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  color: var(--cream);
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.sig-planner-lead {
+  font-size: 0.88rem;
+  color: var(--muted-light);
+  line-height: 1.6;
+  margin-bottom: 18px;
+}
+
+.sig-planner-buttons {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.sig-btn-planner {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: rgba(197, 160, 89, 0.12);
+  border: 1px solid var(--gold-border);
+  color: var(--gold-light);
+  font-family: var(--font-accent);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: var(--radius-sm);
+  transition: var(--transition);
+}
+
+.sig-btn-planner:hover {
+  background: rgba(197, 160, 89, 0.22);
+  border-color: var(--gold);
+  color: #FFFFFF;
+  transform: translateY(-1px);
+}
+
+.sig-btn-planner-cta {
+  padding: 12px 22px;
+  font-size: 0.78rem;
 }
 
 .sig-demo-desc {
@@ -715,24 +801,33 @@ a {
   font-weight: 600;
 }
 
-.sig-phone-expand-link {
+.sig-phone-top-left {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  font-size: 0.68rem;
-  font-family: var(--font-accent);
-  color: var(--muted-light);
-  letter-spacing: 0.06em;
-  padding: 3px 8px;
-  border-radius: 6px;
-  border: 1px solid rgba(197, 160, 89, 0.2);
-  transition: var(--transition);
+  gap: 8px;
 }
 
-.sig-phone-expand-link:hover {
-  color: var(--gold-light);
-  border-color: var(--gold);
+.sig-phone-status-tag {
+  font-family: var(--font-accent);
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  color: var(--gold);
   background: rgba(197, 160, 89, 0.1);
+  padding: 3px 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(197, 160, 89, 0.2);
+}
+
+.sig-demo-bottom-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 680px;
+  margin-top: 20px;
 }
 
 .sig-iframe-container {
@@ -1046,6 +1141,30 @@ a {
     height: 560px;
     border-radius: calc(var(--radius-lg) - 8px);
     contain: strict;
+  }
+
+  .sig-planner-highlight {
+    padding: 20px 16px;
+  }
+
+  .sig-planner-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .sig-planner-buttons a {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .sig-demo-bottom-cta {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .sig-demo-bottom-cta a {
+    width: 100%;
   }
 
   .sig-closing-card {
