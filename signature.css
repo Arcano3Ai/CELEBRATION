@@ -1167,6 +1167,28 @@ a {
     width: 100%;
   }
 
+  .sig-modal-card {
+    padding: 22px 16px 20px;
+    max-height: 88vh;
+  }
+
+  .sig-modal-head {
+    margin-bottom: 14px;
+  }
+
+  .sig-modal-title {
+    font-size: 1.45rem;
+  }
+
+  .sig-pay-options {
+    gap: 10px;
+  }
+
+  .sig-pay-opt {
+    padding: 12px;
+    gap: 8px;
+  }
+
   .sig-closing-card {
     padding: 36px 20px;
   }
@@ -1181,22 +1203,269 @@ a {
   }
 
   .sig-header-inner {
-    padding: 0 16px;
+    padding: 0 12px;
+    gap: 8px;
   }
 
-  .sig-logo {
-    letter-spacing: 0.16em;
-    font-size: 1.05rem;
-    white-space: nowrap;
-  }
-
-  .sig-header-wa {
-    padding: 5px 10px;
-    font-size: 0.7rem;
-    white-space: nowrap;
+  .sig-back-link {
+    width: 28px;
+    flex-shrink: 0;
   }
 
   .sig-back-link span {
     display: none;
   }
+
+  .sig-logo {
+    letter-spacing: 0.12em;
+    font-size: 0.95rem;
+    white-space: nowrap;
+    text-align: center;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .sig-header-wa {
+    padding: 5px 9px;
+    font-size: 0.68rem;
+    gap: 4px;
+    flex-shrink: 0;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+  }
+}
+
+
+/* --------------------------------------------------------------------------
+   Modal de Reservación & Pago Resiliente
+   -------------------------------------------------------------------------- */
+.sig-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: rgba(8, 7, 6, 0.88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.sig-modal-backdrop.sig-modal--open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.sig-modal-card {
+  width: 100%;
+  max-width: 480px;
+  background: linear-gradient(180deg, #1A1612 0%, #120F0D 100%);
+  border: 1px solid var(--gold-border);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.8), 0 0 0 1px var(--gold-border);
+  padding: 32px 24px 28px;
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+  transform: translateY(12px) scale(0.98);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sig-modal-backdrop.sig-modal--open .sig-modal-card {
+  transform: translateY(0) scale(1);
+}
+
+.sig-modal-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--muted-light);
+  font-size: 1.3rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.sig-modal-close:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #FFFFFF;
+}
+
+.sig-modal-head {
+  text-align: center;
+  margin-bottom: 22px;
+}
+
+.sig-modal-pill {
+  font-family: var(--font-accent);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--gold-light);
+  text-transform: uppercase;
+  display: inline-block;
+  margin-bottom: 8px;
+}
+
+.sig-modal-title {
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  letter-spacing: 0.06em;
+  color: var(--cream);
+  margin-bottom: 4px;
+}
+
+.sig-modal-subtitle {
+  font-size: 0.88rem;
+  color: var(--muted-light);
+}
+
+.sig-modal-subtitle strong {
+  color: var(--gold-light);
+}
+
+.sig-pay-options {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sig-pay-opt {
+  background: rgba(13, 11, 10, 0.65);
+  border: 1px solid rgba(197, 160, 89, 0.2);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sig-pay-opt-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sig-pay-icon {
+  font-size: 1.3rem;
+}
+
+.sig-pay-opt-header strong {
+  display: block;
+  font-size: 0.92rem;
+  color: var(--cream);
+}
+
+.sig-pay-opt-header small {
+  font-size: 0.74rem;
+  color: var(--muted);
+}
+
+.sig-btn-pay-mp {
+  width: 100%;
+  padding: 12px;
+  font-size: 0.82rem;
+}
+
+.sig-spei-box {
+  background: #090807;
+  border: 1px dashed rgba(197, 160, 89, 0.3);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.8rem;
+}
+
+.sig-spei-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sig-spei-lbl {
+  color: var(--muted);
+  font-size: 0.74rem;
+}
+
+.sig-spei-val {
+  color: var(--cream);
+  font-weight: 500;
+}
+
+.sig-spei-row--clabe {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  padding-top: 6px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.08);
+}
+
+.sig-clabe-copy-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.sig-spei-clabe {
+  font-family: 'Courier New', monospace;
+  font-weight: 700;
+  color: var(--gold-light);
+  letter-spacing: 0.06em;
+  font-size: 0.86rem;
+}
+
+.sig-btn-copy {
+  background: rgba(197, 160, 89, 0.15);
+  border: 1px solid var(--gold-border);
+  color: var(--gold-light);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-family: var(--font-accent);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.sig-btn-copy:hover {
+  background: rgba(197, 160, 89, 0.3);
+  color: #FFFFFF;
+}
+
+.sig-btn-spei-notify {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  background: rgba(37, 211, 102, 0.14);
+  border: 1px solid rgba(37, 211, 102, 0.35);
+  color: #25D366;
+  font-family: var(--font-accent);
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-radius: var(--radius-sm);
+  transition: var(--transition);
+  text-align: center;
+}
+
+.sig-btn-spei-notify:hover {
+  background: rgba(37, 211, 102, 0.24);
+  border-color: #25D366;
 }

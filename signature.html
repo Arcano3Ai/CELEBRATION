@@ -66,8 +66,9 @@
         <span>Atelier CELEBRATION</span>
       </a>
       <a href="signature.html" class="sig-logo">C E L E B R A T I O N</a>
-      <a href="https://wa.me/528121912778?text=Hola%20CELEBRATION%2C%20quiero%20informaci%C3%B3n%20sobre%20la%20colecci%C3%B3n%20Signature%20%E2%9C%A8" class="sig-header-wa" target="_blank" rel="noopener">
-        <span>Concierge WhatsApp</span>
+      <a href="https://wa.me/528121912778?text=Hola%20CELEBRATION%2C%20quiero%20informaci%C3%B3n%20sobre%20la%20colecci%C3%B3n%20Signature%20%E2%9C%A8" class="sig-header-wa" target="_blank" rel="noopener" aria-label="WhatsApp Concierge">
+        <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        <span class="sig-header-wa-label">WhatsApp</span>
       </a>
     </div>
   </header>
@@ -412,6 +413,84 @@
     <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
   </a>
 
+  <!-- Modal de Reservación & Pago Resiliente -->
+  <div class="sig-modal-backdrop" id="sigPayModal" aria-hidden="true">
+    <div class="sig-modal-card">
+      <button class="sig-modal-close" id="sigModalClose" aria-label="Cerrar modal">&times;</button>
+      
+      <div class="sig-modal-head">
+        <span class="sig-modal-pill">✦ APARTADO DE FECHA EXCLUSIVA</span>
+        <h3 class="sig-modal-title">Colección SIGNATURE</h3>
+        <p class="sig-modal-subtitle">Inversión: $3,990 MXN · <strong>Anticipo 50%: $1,995 MXN</strong></p>
+      </div>
+
+      <div class="sig-pay-options">
+        
+        <!-- Opción 1: Mercado Pago -->
+        <div class="sig-pay-opt">
+          <div class="sig-pay-opt-header">
+            <span class="sig-pay-icon">💳</span>
+            <div>
+              <strong>Pago con Tarjeta de Crédito / Débito</strong>
+              <small>Mercado Pago (Hasta meses sin intereses)</small>
+            </div>
+          </div>
+          <a href="https://mpago.la/1wsG4uy" class="sig-btn-primary sig-btn-pay-mp" target="_blank" rel="noopener">
+            Pagar $1,995 MXN con Mercado Pago →
+          </a>
+        </div>
+
+        <!-- Opción 2: Transferencia SPEI Inmediata -->
+        <div class="sig-pay-opt sig-pay-opt--spei">
+          <div class="sig-pay-opt-header">
+            <span class="sig-pay-icon">🏦</span>
+            <div>
+              <strong>Transferencia SPEI Directa</strong>
+              <small>Sin intermediarios · Acreditación inmediata</small>
+            </div>
+          </div>
+          <div class="sig-spei-box">
+            <div class="sig-spei-row">
+              <span class="sig-spei-lbl">Banco:</span>
+              <span class="sig-spei-val">BBVA / STP</span>
+            </div>
+            <div class="sig-spei-row">
+              <span class="sig-spei-lbl">Beneficiario:</span>
+              <span class="sig-spei-val">CELEBRATION Atelier</span>
+            </div>
+            <div class="sig-spei-row sig-spei-row--clabe">
+              <span class="sig-spei-lbl">CLABE Interbancaria:</span>
+              <div class="sig-clabe-copy-group">
+                <span class="sig-spei-clabe" id="sigClabeVal">646180123456789012</span>
+                <button type="button" class="sig-btn-copy" id="sigBtnCopy">
+                  Copiar CLABE
+                </button>
+              </div>
+            </div>
+          </div>
+          <a href="https://wa.me/528121912778?text=Hola%20CELEBRATION%2C%20acabo%20de%20realizar%20mi%20transferencia%20SPEI%20de%20%241%2C995%20MXN%20para%20el%20paquete%20Signature%20%E2%9C%A8" class="sig-btn-spei-notify" target="_blank" rel="noopener">
+            Enviar Comprobante por WhatsApp →
+          </a>
+        </div>
+
+        <!-- Opción 3: Concierge Asistido -->
+        <div class="sig-pay-opt sig-pay-opt--wa">
+          <div class="sig-pay-opt-header">
+            <span class="sig-pay-icon">✨</span>
+            <div>
+              <strong>Asistencia Personalizada con Concierge</strong>
+              <small>¿Dudas o requerimientos especiales? Te atendemos de inmediato</small>
+            </div>
+          </div>
+          <a href="https://wa.me/528121912778?text=Hola%20CELEBRATION%2C%20quiero%20reservar%20el%20paquete%20Signature%20de%20%243%2C990%20MXN%20y%20tengo%20algunas%20dudas%20%E2%9C%A8" class="sig-btn-wa sig-btn--block" target="_blank" rel="noopener">
+            Hablar con un Concierge por WhatsApp →
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
   <!-- Micro-interacciones & Tracking Script -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -476,6 +555,62 @@
         } else {
           loadIframe();
         }
+      }
+
+      // Modal de Pago y Reservación Resiliente
+      const payModal = document.getElementById('sigPayModal');
+      const modalClose = document.getElementById('sigModalClose');
+      const openModalButtons = document.querySelectorAll('#btnContrataHero, .sig-btn-planner-cta, #btnContrataSignatureFinal, .sig-features-cta-box a, .sig-demo-bottom-cta .sig-btn-primary');
+
+      const openModal = (e) => {
+        if (e) e.preventDefault();
+        if (payModal) {
+          payModal.classList.add('sig-modal--open');
+          payModal.setAttribute('aria-hidden', 'false');
+          document.body.style.overflow = 'hidden';
+        }
+      };
+
+      const closeModal = () => {
+        if (payModal) {
+          payModal.classList.remove('sig-modal--open');
+          payModal.setAttribute('aria-hidden', 'true');
+          document.body.style.overflow = '';
+        }
+      };
+
+      openModalButtons.forEach(btn => btn.addEventListener('click', openModal));
+      if (modalClose) modalClose.addEventListener('click', closeModal);
+      if (payModal) {
+        payModal.addEventListener('click', (e) => {
+          if (e.target === payModal) closeModal();
+        });
+      }
+
+      // Copiar CLABE SPEI
+      const btnCopy = document.getElementById('sigBtnCopy');
+      const clabeVal = document.getElementById('sigClabeVal');
+      if (btnCopy && clabeVal) {
+        btnCopy.addEventListener('click', () => {
+          const text = clabeVal.textContent.trim();
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(() => {
+              btnCopy.textContent = '✓ Copiada';
+              setTimeout(() => { btnCopy.textContent = 'Copiar CLABE'; }, 2500);
+            });
+          } else {
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            ta.style.position = 'fixed';
+            ta.style.opacity = '0';
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+            btnCopy.textContent = '✓ Copiada';
+            setTimeout(() => { btnCopy.textContent = 'Copiar CLABE'; }, 2500);
+          }
+        });
       }
     });
   </script>
