@@ -143,6 +143,33 @@ function callMpApi(string $method, string $path, string $accessToken, ?array $bo
     return ['http' => $httpCode, 'data' => $decoded];
 }
 
+function callCloudRunOrderService(bool $isSandbox, array $payload): array
+{
+    $endpoint = $isSandbox
+        ? 'https://mp-orders-service-436wihiq4q-uc.a.run.app/create-order-test'
+        : 'https://mp-orders-service-436wihiq4q-uc.a.run.app/create-order';
+
+    $ch = curl_init($endpoint);
+    curl_setopt_array($ch, [
+        CURLOPT_CUSTOMREQUEST => 'POST',
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_HTTPHEADER => ['Content-Type: application/json', 'Accept: application/json'],
+        CURLOPT_POSTFIELDS => json_encode($payload, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES),
+        CURLOPT_TIMEOUT => 12,
+        CURLOPT_CONNECTTIMEOUT => 5,
+    ]);
+
+    $raw = curl_exec($ch);
+    $httpCode = (int) curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    curl_close($ch);
+
+    if ($raw === false || $httpCode < 200 || $httpCode >= 300) {
+        return ['http' => $httpCode ?: 502, 'data' => []];
+    }
+    $decoded = json_decode($raw, true);
+    return ['http' => $httpCode, 'data' => is_array($decoded) ? $decoded : []];
+}
+
 function appendOrderLog(array $entry): void
 {
     $logFile = __DIR__ . '/orders-log.json';
@@ -242,54 +269,88 @@ if ($action === 'redirect' || $action === 'create_checkout_order') {
     $pkg = resolvePackage($pkgParam, $schemeParam);
     $extRef = buildExternalReference($pkg['key'], $pkg['scheme']);
 
-    $payload = [
-        'type' => 'online',
-        'processing_mode' => 'manual',
-        'total_amount' => $pkg['amount_str'],
-        'external_reference' => $extRef,
-        'description' => 'CELEBRATION — ' . $pkg['name'] . ' (' . $pkg['scheme_label'] . ')',
+    $coupleNames = trim((string) ($input['couple_names'] ?? ''));
+    $couplePhone = trim((string) ($input['couple_phone'] ?? ''));
+    $payerEmail = trim((string) ($input['payer_email'] ?? ''));
+
+    // Intentar primero vía microservicio unificado Cloud Run (telemetría SDK + conciliación Supabase + Webhook)
+    $crPayload = [
+        'brand' => 'celebration',
+        'orderId' => $extRef,
+        'buyerName' => $coupleNames !== '' ? $coupleNames : 'Cliente Celebration',
+        'buyerEmail' => $payerEmail !== '' ? normalizeEmail($payerEmail) : 'concierge@thecelebration.com.mx',
+        'buyerPhone' => $couplePhone,
         'items' => [
             [
                 'title' => $pkg['name'] . ' — ' . $pkg['scheme_label'] . ' (CELEBRATION)',
-                'unit_price' => $pkg['amount_str'],
+                'unit_price' => $pkg['amount_float'],
                 'quantity' => 1,
+                'description' => 'Invitación Digital CELEBRATION — ' . $pkg['name'],
             ],
         ],
     ];
 
-    $res = callMpApi('POST', '/v1/orders', $accessToken, $payload, generateUuidV4());
-    if ($res['http'] < 200 || $res['http'] >= 300 || empty($res['data']['checkout_url'])) {
-        if ($action === 'redirect') {
-            header('Location: /checkout.html?pkg=' . rawurlencode($pkg['key']) . '&scheme=' . rawurlencode($pkg['scheme']), true, 302);
-            exit;
+    $crRes = callCloudRunOrderService($isSandbox, $crPayload);
+    $orderId = (string) ($crRes['data']['order_id'] ?? '');
+    $checkoutUrl = (string) ($crRes['data']['checkout_url'] ?? '');
+    $provider = 'cloudrun';
+
+    // Respaldo directo contra API de Mercado Pago si Cloud Run no responde a tiempo
+    if ($checkoutUrl === '') {
+        $provider = 'direct_mp';
+        $payload = [
+            'type' => 'online',
+            'processing_mode' => 'manual',
+            'total_amount' => $pkg['amount_str'],
+            'external_reference' => $extRef,
+            'description' => 'CELEBRATION — ' . $pkg['name'] . ' (' . $pkg['scheme_label'] . ')',
+            'items' => [
+                [
+                    'title' => $pkg['name'] . ' — ' . $pkg['scheme_label'] . ' (CELEBRATION)',
+                    'unit_price' => $pkg['amount_str'],
+                    'quantity' => 1,
+                ],
+            ],
+        ];
+
+        $res = callMpApi('POST', '/v1/orders', $accessToken, $payload, generateUuidV4());
+        if ($res['http'] < 200 || $res['http'] >= 300 || empty($res['data']['checkout_url'])) {
+            if ($action === 'redirect') {
+                header('Location: /checkout.html?pkg=' . rawurlencode($pkg['key']) . '&scheme=' . rawurlencode($pkg['scheme']), true, 302);
+                exit;
+            }
+            sendJson($res['http'] ?: 502, [
+                'ok' => false,
+                'error' => $res['data']['message'] ?? 'No se pudo generar la orden de checkout',
+                'details' => $res['data']['errors'] ?? null,
+            ]);
         }
-        sendJson($res['http'] ?: 502, [
-            'ok' => false,
-            'error' => $res['data']['message'] ?? 'No se pudo generar la orden de checkout',
-            'details' => $res['data']['errors'] ?? null,
-        ]);
+        $orderId = (string) ($res['data']['id'] ?? '');
+        $checkoutUrl = (string) $res['data']['checkout_url'];
     }
 
     appendOrderLog([
         'action' => $action,
-        'order_id' => $res['data']['id'] ?? '',
+        'provider' => $provider,
+        'order_id' => $orderId,
         'pkg' => $pkg['key'],
         'scheme' => $pkg['scheme'],
         'amount' => $pkg['amount_str'],
         'external_reference' => $extRef,
-        'status' => $res['data']['status'] ?? 'created',
+        'status' => 'created',
         'mode' => $isSandbox ? 'sandbox' : 'production',
     ]);
 
     if ($action === 'redirect') {
-        header('Location: ' . $res['data']['checkout_url'], true, 302);
+        header('Location: ' . $checkoutUrl, true, 302);
         exit;
     }
 
     sendJson(200, [
         'ok' => true,
-        'order_id' => $res['data']['id'] ?? '',
-        'checkout_url' => $res['data']['checkout_url'],
+        'provider' => $provider,
+        'order_id' => $orderId,
+        'checkout_url' => $checkoutUrl,
         'total_amount' => $pkg['amount_str'],
         'external_reference' => $extRef,
         'pkg' => $pkg['key'],

@@ -797,7 +797,10 @@
           body: JSON.stringify({
             action: 'create_checkout_order',
             pkg: key,
-            scheme: scheme
+            scheme: scheme,
+            couple_names: document.getElementById('coupleNames').value.trim(),
+            couple_phone: document.getElementById('couplePhone').value.trim(),
+            payer_email: document.getElementById('coupleEmail').value.trim()
           })
         });
         const data = await res.json();
