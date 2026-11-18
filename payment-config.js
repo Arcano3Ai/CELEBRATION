@@ -1,18 +1,20 @@
 /**
  * CELEBRATION — Configuración de Enlaces de Pago Mercado Pago
  * 
- * Enlaces de pago completos para cada paquete (aplican para cualquier tipo de evento).
+ * NOTA: Los enlaces anteriores (mpago.la/1aCxnoc, 1Kr6QvJ, 2nSE4Lm, 1wsG4uy)
+ * fueron deshabilitados porque Mercado Pago devolvía error ("Algo salió mal").
+ * Dejar vacío ('') activa automáticamente la reserva asistida por Concierge / SPEI.
  */
 window.CELEBRATION_PAYMENTS = {
   // Mini Celebration — Pago completo $990
-  mini: 'https://mpago.la/1aCxnoc',
+  mini: '',
 
   // Essential — Anticipo del 50% $745
-  essential: 'https://mpago.la/1Kr6QvJ',
+  essential: '',
 
   // Premiere Edition — Anticipo del 50% $1,245 [Recomendado]
-  premiere: 'https://mpago.la/2nSE4Lm',
+  premiere: '',
 
   // Signature — Anticipo del 50% $1,995
-  signature: 'https://mpago.la/1wsG4uy'
+  signature: ''
 };

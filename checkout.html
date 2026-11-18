@@ -290,7 +290,7 @@
   </main>
   <div class="toast" id="toast"></div>
   <script>
-    const CFG={whatsapp:'528121912778',spei:{clabe:'646180123456789012'},mercadopago:{mini:'https://mpago.la/1aCxnoc',essential:'https://mpago.la/1Kr6QvJ',premiere:'https://mpago.la/2nSE4Lm',signature:'https://mpago.la/1wsG4uy'},stripe:{mini:'https://buy.stripe.com/XXXXXXXXX',essential:'https://buy.stripe.com/XXXXXXXXX',premiere:'https://buy.stripe.com/XXXXXXXXX',signature:'https://buy.stripe.com/XXXXXXXXX'}};
+    const CFG={whatsapp:'528121912778',spei:{clabe:'Solicitar vía Concierge'},mercadopago:{mini:'',essential:'',premiere:'',signature:''},stripe:{mini:'',essential:'',premiere:'',signature:''}};
     const PKGS={
       mini:{
         name:'Mini Celebration',
@@ -401,12 +401,26 @@
       const names=document.getElementById('coupleNames').value.trim()||'Novios';
       const wa=encodeURIComponent('Hola CELEBRATION ✨, realicé la transferencia SPEI para apartar la '+pkg.name+' ('+sl+': '+fmt(pay)+').\n✦ Pareja: '+names+'\n✦ Concepto: '+con+'\nAdjunto mi comprobante para apartar la fecha en el calendario.');
       document.getElementById('btnSpeiWa').href='https://wa.me/'+CFG.whatsapp+'?text='+wa;
-      const mpUrl=CFG.mercadopago[key]||'#';
-      const bMp=document.getElementById('btnMp');bMp.href=mpUrl;
-      bMp.onclick=e=>{if(mpUrl.includes('XXX')){e.preventDefault();toast('⏳ Link de Mercado Pago en configuración — escríbenos por WhatsApp.');}else{toast('✦ Redirigiendo a Mercado Pago ('+fmt(pay)+')…');}};
-      const strUrl=CFG.stripe[key]||'#';
-      const bSt=document.getElementById('btnStripe');bSt.href=strUrl;
-      bSt.onclick=e=>{if(strUrl.includes('XXX')){e.preventDefault();toast('⏳ Link de Stripe en configuración — escríbenos por WhatsApp.');}else{toast('✦ Conectando con Stripe SSL ('+fmt(pay)+')…');}};
+      const mpUrl=CFG.mercadopago[key]||'';
+      const bMp=document.getElementById('btnMp');
+      if(!mpUrl || mpUrl==='#' || mpUrl.includes('XXX')){
+        bMp.href='https://wa.me/'+CFG.whatsapp+'?text='+encodeURIComponent('Hola CELEBRATION ✨, quiero solicitar el link de pago con tarjeta para '+pkg.name+' ('+fmt(pay)+').');
+        bMp.textContent='Solicitar Link de Tarjeta por WhatsApp →';
+        bMp.onclick=()=>{toast('✦ Abriendo Concierge para enlace de tarjeta ('+fmt(pay)+')…');};
+      }else{
+        bMp.href=mpUrl;
+        bMp.onclick=()=>{toast('✦ Redirigiendo a Mercado Pago ('+fmt(pay)+')…');};
+      }
+      const strUrl=CFG.stripe[key]||'';
+      const bSt=document.getElementById('btnStripe');
+      if(!strUrl || strUrl==='#' || strUrl.includes('XXX')){
+        bSt.href='https://wa.me/'+CFG.whatsapp+'?text='+encodeURIComponent('Hola CELEBRATION ✨, quiero solicitar el enlace Stripe / Apple Pay para '+pkg.name+' ('+fmt(pay)+').');
+        bSt.textContent='Solicitar Link Stripe / Apple Pay →';
+        bSt.onclick=()=>{toast('✦ Abriendo Concierge para enlace Stripe ('+fmt(pay)+')…');};
+      }else{
+        bSt.href=strUrl;
+        bSt.onclick=()=>{toast('✦ Conectando con Stripe SSL ('+fmt(pay)+')…');};
+      }
     }
     // Listeners esquemas de pago
     document.getElementById('schemeDeposit').addEventListener('click',()=>{

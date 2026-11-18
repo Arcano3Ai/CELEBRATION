@@ -1,10 +1,10 @@
 /**
  * CELEBRATION — High Performance Service Worker
- * Version: 2.8.0
+ * Version: 2.9.0
  * Provides offline support, caching strategies, and instant load for iOS and Android
  */
 
-const CACHE_NAME = 'celebration-v2.8.0';
+const CACHE_NAME = 'celebration-v2.9.0';
 const STATIC_ASSETS = [
   './',
   './index.html',
@@ -118,7 +118,23 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // 3. Static local assets (CSS, JS, Images, Icons): Cache First with Background Update
+  // 3. CSS y JS locales: Network First (evita mostrar estilos/lógica obsoletos tras despliegues)
+  if (url.origin === self.location.origin && (url.pathname.endsWith('.css') || url.pathname.endsWith('.js'))) {
+    event.respondWith(
+      fetch(request)
+        .then((networkResponse) => {
+          if (networkResponse && networkResponse.status === 200) {
+            const responseToCache = networkResponse.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(request, responseToCache));
+          }
+          return networkResponse;
+        })
+        .catch(() => caches.match(request))
+    );
+    return;
+  }
+
+  // 4. Static local media assets (Images, Icons): Cache First with Background Update
   event.respondWith(
     caches.match(request).then((cachedResponse) => {
       if (cachedResponse) {

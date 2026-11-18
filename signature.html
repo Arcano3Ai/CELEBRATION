@@ -52,7 +52,15 @@
     href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Raleway:wght@400;500;600;700&display=swap"
     rel="stylesheet">
 
-  <link rel="stylesheet" href="signature.css">
+  <link rel="stylesheet" href="signature.css?v=20261118a">
+  <style>
+    /* Crítico anti-FOUC: evita que el modal aparezca sin estilos debajo del footer si falla caché */
+    #sigPayModal.sig-modal-backdrop:not(.sig-modal--open) {
+      display: none;
+      opacity: 0;
+      pointer-events: none;
+    }
+  </style>
 </head>
 
 <body>
@@ -546,6 +554,11 @@
 
   <!-- Micro-interacciones & Tracking Script -->
   <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(regs => {
+        regs.forEach(reg => reg.update());
+      }).catch(() => {});
+    }
     document.addEventListener('DOMContentLoaded', () => {
       const WA_NUMBER = '528121912778';
 
