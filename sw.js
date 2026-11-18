@@ -1,13 +1,14 @@
 /**
  * CELEBRATION — High Performance Service Worker
- * Version: 2.9.1
+ * Version: 2.9.2
  * Provides offline support, caching strategies, and instant load for iOS and Android
  */
 
-const CACHE_NAME = 'celebration-v2.9.1';
+const CACHE_NAME = 'celebration-v2.9.2';
 const STATIC_ASSETS = [
   './',
   './index.html',
+  './signature.html',
   './checkout.html',
   './planner.html',
   './passes.html',
@@ -15,6 +16,7 @@ const STATIC_ASSETS = [
   './demo-clasico.html',
   './demo-editorial.html',
   './styles.css',
+  './signature.css',
   './concierge-ai.css',
   './smart-rsvp.css',
   './guestbook.css',

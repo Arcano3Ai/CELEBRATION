@@ -1,18 +1,18 @@
 /**
- * CELEBRATION — Configuración de Enlaces de Pago Mercado Pago
- * 
- * Enlaces oficiales de pago para cada paquete (aplican para cualquier tipo de evento).
+ * CELEBRATION — Configuración de Rutas Directas de Pago (Mercado Pago Orders API)
+ *
+ * Redirige directamente a la pasarela integrada en checkout.html (sin fricción ni splash de mpago.la).
  */
 window.CELEBRATION_PAYMENTS = {
   // Mini Celebration — Pago completo $990
-  mini: 'https://mpago.la/1aCxnoc',
+  mini: 'checkout.html?pkg=mini&method=mp',
 
   // Essential — Anticipo del 50% $745
-  essential: 'https://mpago.la/1Kr6QvJ',
+  essential: 'checkout.html?pkg=essential&method=mp',
 
   // Premiere Edition — Anticipo del 50% $1,245 [Recomendado]
-  premiere: 'https://mpago.la/2nSE4Lm',
+  premiere: 'checkout.html?pkg=premiere&method=mp',
 
   // Signature — Anticipo del 50% $1,995
-  signature: 'https://mpago.la/1wsG4uy'
+  signature: 'checkout.html?pkg=signature&method=mp'
 };

@@ -501,10 +501,10 @@ function initPwa() {
 */
 // Definición global de enlaces oficiales de Mercado Pago
 window.CELEBRATION_PAYMENTS = {
-  mini:         'https://mpago.la/1aCxnoc',
-  essential:    'https://mpago.la/1Kr6QvJ',
-  premiere:     'https://mpago.la/2nSE4Lm',
-  signature:    'https://mpago.la/1wsG4uy',
+  mini:         'checkout.html?pkg=mini&method=mp',
+  essential:    'checkout.html?pkg=essential&method=mp',
+  premiere:     'checkout.html?pkg=premiere&method=mp',
+  signature:    'checkout.html?pkg=signature&method=mp',
 };
 
 const PAYMENT_CONFIG = {
@@ -719,15 +719,11 @@ function initCheckoutGateway() {
     // MP
     if (mpAmountEl)  mpAmountEl.textContent    = fmxn(pay);
     if (btnMpCheckout) {
-      const mpUrl = PAYMENT_CONFIG.mercadopago[currentPackage.id] || '#';
-      btnMpCheckout.href = mpUrl;
-      btnMpCheckout.onclick = (e) => {
-        if (mpUrl === '#' || mpUrl.includes('XXXX')) {
-          e.preventDefault();
-          showToastFeedback('⏳ Link de Mercado Pago en configuración — escríbenos por WhatsApp.');
-          return;
-        }
-        showToastFeedback(`✦ Redirigiendo a Mercado Pago (${fmxn(pay)})...`);
+      btnMpCheckout.href = `checkout.html?pkg=${encodeURIComponent(currentPackage.id)}&scheme=${encodeURIComponent(currentScheme)}&method=mp`;
+      btnMpCheckout.removeAttribute('target');
+      btnMpCheckout.removeAttribute('rel');
+      btnMpCheckout.onclick = () => {
+        showToastFeedback(`✦ Abriendo pasarela directa (${fmxn(pay)})...`);
       };
     }
 
@@ -1042,8 +1038,13 @@ function initDirectPaymentButtons() {
       btn.href = url.trim();
       btn.classList.remove('is-disabled');
       btn.removeAttribute('aria-disabled');
-      btn.target = '_blank';
-      btn.rel = 'noopener noreferrer';
+      if (url.trim().startsWith('http')) {
+        btn.target = '_blank';
+        btn.rel = 'noopener noreferrer';
+      } else {
+        btn.removeAttribute('target');
+        btn.removeAttribute('rel');
+      }
       btn.onclick = null;
       if (note) {
         note.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><span>Pago seguro con Mercado Pago · Tarjeta, MSI, Débito, SPEI y OXXO</span>';

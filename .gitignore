@@ -5,3 +5,8 @@ tools/*.jpg
 tools/*.png
 tools/*.mp4
 tools/old_index.html
+.aider*
+api/mp-config.php
+api/orders-log.json
+api/*.log
+

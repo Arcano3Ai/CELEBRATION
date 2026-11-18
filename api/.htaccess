@@ -1,0 +1,8 @@
+# CELEBRATION API Protection
+<Files "mp-config.php">
+    Require all denied
+</Files>
+
+<FilesMatch "\.(json|log|env|ini)$">
+    Require all denied
+</FilesMatch>

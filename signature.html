@@ -80,7 +80,7 @@
         <span>Atelier CELEBRATION</span>
       </a>
       <a href="signature.html" class="sig-logo">C E L E B R A T I O N</a>
-      <a href="https://mpago.la/1wsG4uy" class="sig-header-wa" target="_blank" rel="noopener">Contratar →</a>
+      <a href="checkout.html?pkg=signature&method=mp" class="sig-header-wa">Contratar →</a>
     </div>
   </header>
 
@@ -118,7 +118,7 @@
             </div>
           </div>
           <div class="sig-offer-right">
-            <a href="https://mpago.la/1wsG4uy" class="sig-btn-primary" id="btnContrataHero" target="_blank" rel="noopener">
+            <a href="checkout.html?pkg=signature&method=mp" class="sig-btn-primary" id="btnContrataHero">
               CONTRATA AQUÍ →
             </a>
             <div class="sig-trust-line">
@@ -215,7 +215,7 @@
 
               <!-- CTA de Refuerzo dentro de la tarjeta -->
               <div class="sig-features-cta-box">
-                <a href="https://mpago.la/1wsG4uy" class="sig-btn-primary sig-btn--block" target="_blank" rel="noopener">
+                <a href="checkout.html?pkg=signature&method=mp" class="sig-btn-primary sig-btn--block">
                   CONTRATA AQUÍ ($1,995 MXN ANTICIPO) →
                 </a>
               </div>
@@ -303,7 +303,7 @@
                 </svg>
                 <span>EXPLORAR PORTAL PLANNER →</span>
               </a>
-              <a href="https://mpago.la/1wsG4uy" class="sig-btn-primary sig-btn-planner-cta" target="_blank" rel="noopener">
+              <a href="checkout.html?pkg=signature&method=mp" class="sig-btn-primary sig-btn-planner-cta">
                 <span>CONTRATA AQUÍ ($1,995 MXN ANTICIPO) →</span>
               </a>
             </div>
@@ -566,7 +566,7 @@
       <!-- CTA Inmediatamente Abajo del Demo -->
       <div class="sig-container">
         <div class="sig-demo-bottom-cta">
-          <a href="https://mpago.la/1wsG4uy" class="sig-btn-primary sig-btn-large" target="_blank" rel="noopener">
+          <a href="checkout.html?pkg=signature&method=mp" class="sig-btn-primary sig-btn-large">
             CONTRATA TU SIGNATURE ($1,995 MXN ANTICIPO) →
           </a>
         </div>
@@ -617,7 +617,7 @@
           </div>
 
           <div class="sig-closing-buttons">
-            <a href="https://mpago.la/1wsG4uy" class="sig-btn-primary sig-btn-large" id="btnContrataSignatureFinal" target="_blank" rel="noopener">
+            <a href="checkout.html?pkg=signature&method=mp" class="sig-btn-primary sig-btn-large" id="btnContrataSignatureFinal">
               CONTRATA TU SIGNATURE →
             </a>
             <a href="https://wa.me/528121912778?text=Hola%20CELEBRATION%2C%20quiero%20reservar%20el%20paquete%20Signature%20de%20%243%2C990%20%E2%9C%A8"
@@ -724,7 +724,7 @@
       setInterval(updateCountdown, 1000);
 
       // Tracking de eventos de clic en botones de contratación Mercado Pago
-      document.querySelectorAll('a[href*="mpago.la"]').forEach(btn => {
+      document.querySelectorAll('a[href*="checkout.html"]').forEach(btn => {
         btn.addEventListener('click', () => {
           if (typeof gtag === 'function') {
             gtag('event', 'begin_checkout', {
