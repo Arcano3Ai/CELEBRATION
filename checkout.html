@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html lang="es-MX">
+SI
+
 <head>
   <meta charset="UTF-8">
   <!-- Google Tag Manager -->
   <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-KD9P55XB"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
   </script>
   <!-- End Google Tag Manager -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Pago Directo — CELEBRATION</title>
-  <meta name="description" content="Paga tu invitación digital CELEBRATION directo con tarjeta (MSI), Mercado Pago o transferencia SPEI.">
+  <meta name="description"
+    content="Paga tu invitación digital CELEBRATION directo con tarjeta (MSI), Mercado Pago o transferencia SPEI.">
   <!-- Open Graph / WhatsApp Preview -->
   <meta property="og:site_name" content="CELEBRATION">
   <meta property="og:title" content="Reserva tu Fecha de Boda — CELEBRATION">
-  <meta property="og:description" content="Aparta tu fecha con el 50% de anticipo. Pago directo seguro con tarjeta, MSI, Mercado Pago o SPEI.">
+  <meta property="og:description"
+    content="Aparta tu fecha con el 50% de anticipo. Pago directo seguro con tarjeta, MSI, Mercado Pago o SPEI.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://thecelebration.com.mx/checkout.html">
   <meta property="og:image" content="https://thecelebration.com.mx/assets/images/og_share_banner.jpg">
@@ -30,127 +34,836 @@
   <link rel="icon" href="assets/icons/favicon-64x64.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
   <script src="https://sdk.mercadopago.com/js/v2"></script>
+  <script src="https://www.mercadopago.com/v2/security.js" view="checkout"></script>
   <style>
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    :root{--gold:#C5A059;--gold-lt:#e8c97a;--cream:#FAF7F2;--ink:#1a1714;--ink-soft:#3a3530;--line:rgba(197,160,89,0.22);--font-serif:'Cormorant Garamond',Georgia,serif;--font-sans:'Inter',system-ui,sans-serif;--r:16px}
-    html{scroll-behavior:smooth}
-    body{font-family:var(--font-sans);background:var(--ink);color:var(--cream);min-height:100dvh;display:flex;flex-direction:column}
-    .topbar{display:flex;align-items:center;justify-content:space-between;padding:1.1rem 1.5rem;border-bottom:1px solid var(--line)}
-    .back{display:inline-flex;align-items:center;gap:.4rem;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(250,247,242,.6);text-decoration:none;transition:color .2s}
-    .back:hover{color:var(--gold)}
-    .brand{font-size:.65rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);font-weight:600}
-    .wrap{flex:1;display:grid;grid-template-columns:1fr 1.08fr;max-width:1140px;width:100%;margin:0 auto;padding:2.2rem 1.5rem 3rem;gap:2.4rem}
-    .left{display:flex;flex-direction:column;gap:1.35rem;position:sticky;top:1.5rem;align-self:start}
-    .hl{font-family:var(--font-serif);font-size:clamp(2.3rem,4.5vw,3.4rem);font-weight:300;line-height:1.08;color:var(--cream);margin-top:.5rem}
-    .hl em{font-style:italic;color:var(--gold)}
-    .sub-txt{font-size:.78rem;line-height:1.65;color:rgba(250,247,242,.62);max-width:360px;margin-top:.65rem}
-    .badge-wrap{display:inline-flex;align-items:center;gap:.5rem}
-    .orn{color:var(--gold);font-size:1.1rem}
-    .badge-lbl{font-size:.62rem;letter-spacing:.32em;text-transform:uppercase;color:rgba(250,247,242,.55);font-weight:500}
-    .pkg-card{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:var(--r);padding:1.35rem 1.45rem}
-    .pkg-tabs{display:flex;gap:.4rem;margin-bottom:1rem}
-    .pkg-tab-btn{flex:1;padding:.52rem .3rem;background:rgba(255,255,255,.04);border:1px solid rgba(197,160,89,.2);border-radius:6px;color:rgba(250,247,242,.68);font-size:.64rem;font-weight:600;letter-spacing:.03em;cursor:pointer;transition:all .2s;text-align:center}
-    .pkg-tab-btn:hover{border-color:var(--gold);color:var(--cream)}
-    .pkg-tab-btn.active{background:rgba(197,160,89,.18);border-color:var(--gold);color:var(--gold-lt)}
-    .pkg-row{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem}
-    .pkg-sub{font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:600;display:block;margin-bottom:.3rem}
-    .pkg-name{font-family:var(--font-serif);font-size:1.25rem;font-weight:600;color:var(--cream);display:block}
-    .pkg-total{font-family:var(--font-serif);font-size:1.15rem;font-weight:400;color:rgba(250,247,242,.72);white-space:nowrap;display:block;text-align:right}
-    .divider{height:1px;background:var(--line);margin:1rem 0}
-    .scheme-grid{display:flex;flex-direction:column;gap:.55rem}
-    .scheme-btn{display:flex;align-items:center;gap:.8rem;padding:.8rem 1rem;background:transparent;border:1px solid rgba(255,255,255,.1);border-radius:10px;cursor:pointer;color:var(--cream);width:100%;text-align:left;transition:all .2s}
-    .scheme-btn.active{border-color:var(--gold);background:rgba(197,160,89,.08)}
-    .radio{width:17px;height:17px;border-radius:50%;border:1.5px solid rgba(255,255,255,.3);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:border-color .2s}
-    .scheme-btn.active .radio{border-color:var(--gold)}
-    .scheme-btn.active .radio::after{content:'';width:8px;height:8px;border-radius:50%;background:var(--gold)}
-    .s-label{font-size:.76rem;font-weight:600;letter-spacing:.04em;display:block}
-    .s-cap{font-size:.65rem;color:rgba(250,247,242,.5);display:block;margin-top:.1rem}
-    .s-amt{font-family:var(--font-serif);font-size:1.08rem;font-weight:600;color:var(--gold);display:block;margin-top:.18rem}
-    .pkg-details-card{margin-top:1rem;background:rgba(197,160,89,.07);border:1px solid rgba(197,160,89,.28);border-radius:12px;padding:1.05rem 1.2rem}
-    .pkg-details-head{display:flex;justify-content:space-between;align-items:center;gap:.6rem;margin-bottom:.5rem}
-    .pkg-details-badge{font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:600}
-    .pkg-details-scheme{font-size:.62rem;letter-spacing:.08em;background:rgba(255,255,255,.09);color:var(--cream);padding:.2rem .58rem;border-radius:20px;border:1px solid rgba(197,160,89,.35);font-weight:500}
-    .pkg-details-desc{font-size:.84rem;line-height:1.48;color:var(--cream);font-family:var(--font-serif);margin-bottom:.7rem}
-    .pkg-details-subhead{font-size:.61rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:.5rem}
-    .pkg-details-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.42rem}
-    .pkg-details-list li{font-size:.73rem;line-height:1.45;color:rgba(250,247,242,.86);display:flex;align-items:flex-start;gap:.5rem}
-    .pkg-details-list li::before{content:'✦';color:var(--gold);font-size:.66rem;line-height:1.4;flex-shrink:0}
-    .form{display:flex;flex-direction:column;gap:.85rem}
-    .lbl{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(250,247,242,.55);font-weight:500;display:block;margin-bottom:.32rem}
-    .inp{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);border-radius:8px;padding:.72rem .88rem;color:var(--cream);font-family:var(--font-sans);font-size:.82rem;outline:none;transition:border-color .2s}
-    .inp::placeholder{color:rgba(250,247,242,.32)}
-    .inp:focus{border-color:var(--gold)}
-    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
-    .trust{display:flex;align-items:center;flex-wrap:wrap;gap:.5rem .8rem}
-    .t-item{font-size:.62rem;color:rgba(250,247,242,.48);letter-spacing:.04em}
-    .t-sep{color:rgba(250,247,242,.22);font-size:.7rem}
-    .right{display:flex;flex-direction:column;gap:1rem}
-    .r-head{font-family:var(--font-serif);font-size:1.45rem;font-weight:300;color:var(--cream)}
-    .r-amt{font-size:.8rem;color:rgba(250,247,242,.6);margin-top:.32rem}
-    .r-amt strong{font-family:var(--font-serif);font-size:1.6rem;font-weight:600;color:var(--gold-lt)}
-    .method{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.1);border-radius:var(--r);overflow:hidden;transition:border-color .25s}
-    .method.open{border-color:var(--gold)}
-    .m-toggle{width:100%;display:flex;align-items:center;gap:.9rem;padding:1.05rem 1.2rem;background:none;border:none;cursor:pointer;color:var(--cream);text-align:left}
-    .m-icon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
-    .m-icon--spei{background:rgba(0,123,255,.15)}
-    .m-icon--mp{background:rgba(0,158,227,.16)}
-    .m-info{flex:1}
-    .m-title{font-size:.84rem;font-weight:600;letter-spacing:.02em;display:block}
-    .m-desc{font-size:.66rem;color:rgba(250,247,242,.52);margin-top:.15rem;display:block}
-    .m-chev{width:20px;height:20px;color:rgba(250,247,242,.42);transition:transform .25s;flex-shrink:0}
-    .method.open .m-chev{transform:rotate(180deg)}
-    .m-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s ease}
-    .method.open .m-body{grid-template-rows:1fr}
-    .m-inner{overflow:hidden;padding:0 1.2rem;transition:padding .25s}
-    .method.open .m-inner{padding:0 1.2rem 1.2rem}
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    :root {
+      --gold: #C5A059;
+      --gold-lt: #e8c97a;
+      --cream: #FAF7F2;
+      --ink: #1a1714;
+      --ink-soft: #3a3530;
+      --line: rgba(197, 160, 89, 0.22);
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Inter', system-ui, sans-serif;
+      --r: 16px
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--ink);
+      color: var(--cream);
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 1.5rem;
+      border-bottom: 1px solid var(--line)
+    }
+
+    .back {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      font-size: .7rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: rgba(250, 247, 242, .6);
+      text-decoration: none;
+      transition: color .2s
+    }
+
+    .back:hover {
+      color: var(--gold)
+    }
+
+    .brand {
+      font-size: .65rem;
+      letter-spacing: .35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600
+    }
+
+    .wrap {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1.08fr;
+      max-width: 1140px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 2.2rem 1.5rem 3rem;
+      gap: 2.4rem
+    }
+
+    .left {
+      display: flex;
+      flex-direction: column;
+      gap: 1.35rem;
+      position: sticky;
+      top: 1.5rem;
+      align-self: start
+    }
+
+    .hl {
+      font-family: var(--font-serif);
+      font-size: clamp(2.3rem, 4.5vw, 3.4rem);
+      font-weight: 300;
+      line-height: 1.08;
+      color: var(--cream);
+      margin-top: .5rem
+    }
+
+    .hl em {
+      font-style: italic;
+      color: var(--gold)
+    }
+
+    .sub-txt {
+      font-size: .78rem;
+      line-height: 1.65;
+      color: rgba(250, 247, 242, .62);
+      max-width: 360px;
+      margin-top: .65rem
+    }
+
+    .badge-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem
+    }
+
+    .orn {
+      color: var(--gold);
+      font-size: 1.1rem
+    }
+
+    .badge-lbl {
+      font-size: .62rem;
+      letter-spacing: .32em;
+      text-transform: uppercase;
+      color: rgba(250, 247, 242, .55);
+      font-weight: 500
+    }
+
+    .pkg-card {
+      background: rgba(255, 255, 255, .04);
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      padding: 1.35rem 1.45rem
+    }
+
+    .pkg-tabs {
+      display: flex;
+      gap: .4rem;
+      margin-bottom: 1rem
+    }
+
+    .pkg-tab-btn {
+      flex: 1;
+      padding: .52rem .3rem;
+      background: rgba(255, 255, 255, .04);
+      border: 1px solid rgba(197, 160, 89, .2);
+      border-radius: 6px;
+      color: rgba(250, 247, 242, .68);
+      font-size: .64rem;
+      font-weight: 600;
+      letter-spacing: .03em;
+      cursor: pointer;
+      transition: all .2s;
+      text-align: center
+    }
+
+    .pkg-tab-btn:hover {
+      border-color: var(--gold);
+      color: var(--cream)
+    }
+
+    .pkg-tab-btn.active {
+      background: rgba(197, 160, 89, .18);
+      border-color: var(--gold);
+      color: var(--gold-lt)
+    }
+
+    .pkg-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem
+    }
+
+    .pkg-sub {
+      font-size: .6rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      display: block;
+      margin-bottom: .3rem
+    }
+
+    .pkg-name {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--cream);
+      display: block
+    }
+
+    .pkg-total {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-weight: 400;
+      color: rgba(250, 247, 242, .72);
+      white-space: nowrap;
+      display: block;
+      text-align: right
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--line);
+      margin: 1rem 0
+    }
+
+    .scheme-grid {
+      display: flex;
+      flex-direction: column;
+      gap: .55rem
+    }
+
+    .scheme-btn {
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+      padding: .8rem 1rem;
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, .1);
+      border-radius: 10px;
+      cursor: pointer;
+      color: var(--cream);
+      width: 100%;
+      text-align: left;
+      transition: all .2s
+    }
+
+    .scheme-btn.active {
+      border-color: var(--gold);
+      background: rgba(197, 160, 89, .08)
+    }
+
+    .radio {
+      width: 17px;
+      height: 17px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(255, 255, 255, .3);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color .2s
+    }
+
+    .scheme-btn.active .radio {
+      border-color: var(--gold)
+    }
+
+    .scheme-btn.active .radio::after {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--gold)
+    }
+
+    .s-label {
+      font-size: .76rem;
+      font-weight: 600;
+      letter-spacing: .04em;
+      display: block
+    }
+
+    .s-cap {
+      font-size: .65rem;
+      color: rgba(250, 247, 242, .5);
+      display: block;
+      margin-top: .1rem
+    }
+
+    .s-amt {
+      font-family: var(--font-serif);
+      font-size: 1.08rem;
+      font-weight: 600;
+      color: var(--gold);
+      display: block;
+      margin-top: .18rem
+    }
+
+    .pkg-details-card {
+      margin-top: 1rem;
+      background: rgba(197, 160, 89, .07);
+      border: 1px solid rgba(197, 160, 89, .28);
+      border-radius: 12px;
+      padding: 1.05rem 1.2rem
+    }
+
+    .pkg-details-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: .6rem;
+      margin-bottom: .5rem
+    }
+
+    .pkg-details-badge {
+      font-size: .64rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600
+    }
+
+    .pkg-details-scheme {
+      font-size: .62rem;
+      letter-spacing: .08em;
+      background: rgba(255, 255, 255, .09);
+      color: var(--cream);
+      padding: .2rem .58rem;
+      border-radius: 20px;
+      border: 1px solid rgba(197, 160, 89, .35);
+      font-weight: 500
+    }
+
+    .pkg-details-desc {
+      font-size: .84rem;
+      line-height: 1.48;
+      color: var(--cream);
+      font-family: var(--font-serif);
+      margin-bottom: .7rem
+    }
+
+    .pkg-details-subhead {
+      font-size: .61rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: .5rem
+    }
+
+    .pkg-details-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: .42rem
+    }
+
+    .pkg-details-list li {
+      font-size: .73rem;
+      line-height: 1.45;
+      color: rgba(250, 247, 242, .86);
+      display: flex;
+      align-items: flex-start;
+      gap: .5rem
+    }
+
+    .pkg-details-list li::before {
+      content: '✦';
+      color: var(--gold);
+      font-size: .66rem;
+      line-height: 1.4;
+      flex-shrink: 0
+    }
+
+    .form {
+      display: flex;
+      flex-direction: column;
+      gap: .85rem
+    }
+
+    .lbl {
+      font-size: .62rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: rgba(250, 247, 242, .55);
+      font-weight: 500;
+      display: block;
+      margin-bottom: .32rem
+    }
+
+    .inp {
+      width: 100%;
+      background: rgba(255, 255, 255, .05);
+      border: 1px solid rgba(255, 255, 255, .14);
+      border-radius: 8px;
+      padding: .72rem .88rem;
+      color: var(--cream);
+      font-family: var(--font-sans);
+      font-size: .82rem;
+      outline: none;
+      transition: border-color .2s
+    }
+
+    .inp::placeholder {
+      color: rgba(250, 247, 242, .32)
+    }
+
+    .inp:focus {
+      border-color: var(--gold)
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .8rem
+    }
+
+    .trust {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: .5rem .8rem
+    }
+
+    .t-item {
+      font-size: .62rem;
+      color: rgba(250, 247, 242, .48);
+      letter-spacing: .04em
+    }
+
+    .t-sep {
+      color: rgba(250, 247, 242, .22);
+      font-size: .7rem
+    }
+
+    .right {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem
+    }
+
+    .r-head {
+      font-family: var(--font-serif);
+      font-size: 1.45rem;
+      font-weight: 300;
+      color: var(--cream)
+    }
+
+    .r-amt {
+      font-size: .8rem;
+      color: rgba(250, 247, 242, .6);
+      margin-top: .32rem
+    }
+
+    .r-amt strong {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--gold-lt)
+    }
+
+    .method {
+      background: rgba(255, 255, 255, .03);
+      border: 1px solid rgba(255, 255, 255, .1);
+      border-radius: var(--r);
+      overflow: hidden;
+      transition: border-color .25s
+    }
+
+    .method.open {
+      border-color: var(--gold)
+    }
+
+    .m-toggle {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: .9rem;
+      padding: 1.05rem 1.2rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--cream);
+      text-align: left
+    }
+
+    .m-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0
+    }
+
+    .m-icon--spei {
+      background: rgba(0, 123, 255, .15)
+    }
+
+    .m-icon--mp {
+      background: rgba(0, 158, 227, .16)
+    }
+
+    .m-info {
+      flex: 1
+    }
+
+    .m-title {
+      font-size: .84rem;
+      font-weight: 600;
+      letter-spacing: .02em;
+      display: block
+    }
+
+    .m-desc {
+      font-size: .66rem;
+      color: rgba(250, 247, 242, .52);
+      margin-top: .15rem;
+      display: block
+    }
+
+    .m-chev {
+      width: 20px;
+      height: 20px;
+      color: rgba(250, 247, 242, .42);
+      transition: transform .25s;
+      flex-shrink: 0
+    }
+
+    .method.open .m-chev {
+      transform: rotate(180deg)
+    }
+
+    .m-body {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows .3s ease
+    }
+
+    .method.open .m-body {
+      grid-template-rows: 1fr
+    }
+
+    .m-inner {
+      overflow: hidden;
+      padding: 0 1.2rem;
+      transition: padding .25s
+    }
+
+    .method.open .m-inner {
+      padding: 0 1.2rem 1.2rem
+    }
+
     /* BRICK + ORDERS PANEL */
-    .mp-brick-wrap{background:rgba(0,0,0,.22);border:1px solid rgba(197,160,89,.24);border-radius:12px;padding:.95rem;margin-bottom:.85rem}
-    .mp-loading{font-size:.74rem;color:rgba(250,247,242,.65);text-align:center;padding:1.2rem .5rem}
-    .mp-or{display:flex;align-items:center;gap:.75rem;margin:.9rem 0 .75rem;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(250,247,242,.42)}
-    .mp-or::before,.mp-or::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.1)}
-    .mp-error{display:none;background:rgba(220,53,69,.14);border:1px solid rgba(220,53,69,.45);color:#ffd2d6;border-radius:10px;padding:.78rem .95rem;font-size:.76rem;line-height:1.45;margin-bottom:.85rem}
-    .mp-error.show{display:block}
-    .mp-success{display:none;background:rgba(37,211,102,.09);border:1px solid rgba(197,160,89,.55);border-radius:14px;padding:1.3rem 1.2rem;margin-bottom:.85rem}
-    .mp-success.show{display:block}
-    .mp-success-title{font-family:var(--font-serif);font-size:1.55rem;color:var(--gold-lt);margin-bottom:.35rem}
-    .mp-success-meta{font-size:.76rem;color:rgba(250,247,242,.82);line-height:1.6;margin-bottom:1rem}
+    .mp-brick-wrap {
+      background: rgba(0, 0, 0, .22);
+      border: 1px solid rgba(197, 160, 89, .24);
+      border-radius: 12px;
+      padding: .95rem;
+      margin-bottom: .85rem
+    }
+
+    .mp-loading {
+      font-size: .74rem;
+      color: rgba(250, 247, 242, .65);
+      text-align: center;
+      padding: 1.2rem .5rem
+    }
+
+    .mp-or {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      margin: .9rem 0 .75rem;
+      font-size: .65rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: rgba(250, 247, 242, .42)
+    }
+
+    .mp-or::before,
+    .mp-or::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(255, 255, 255, .1)
+    }
+
+    .mp-error {
+      display: none;
+      background: rgba(220, 53, 69, .14);
+      border: 1px solid rgba(220, 53, 69, .45);
+      color: #ffd2d6;
+      border-radius: 10px;
+      padding: .78rem .95rem;
+      font-size: .76rem;
+      line-height: 1.45;
+      margin-bottom: .85rem
+    }
+
+    .mp-error.show {
+      display: block
+    }
+
+    .mp-success {
+      display: none;
+      background: rgba(37, 211, 102, .09);
+      border: 1px solid rgba(197, 160, 89, .55);
+      border-radius: 14px;
+      padding: 1.3rem 1.2rem;
+      margin-bottom: .85rem
+    }
+
+    .mp-success.show {
+      display: block
+    }
+
+    .mp-success-title {
+      font-family: var(--font-serif);
+      font-size: 1.55rem;
+      color: var(--gold-lt);
+      margin-bottom: .35rem
+    }
+
+    .mp-success-meta {
+      font-size: .76rem;
+      color: rgba(250, 247, 242, .82);
+      line-height: 1.6;
+      margin-bottom: 1rem
+    }
+
     /* BANK CARD */
-    .bank-card{background:linear-gradient(135deg,#1e3a5f 0%,#0d2340 100%);border-radius:12px;padding:1.15rem;margin-bottom:.85rem}
-    .bank-top{display:flex;justify-content:space-between;margin-bottom:.85rem;gap:1rem}
-    .b-lbl{font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.55);display:block;margin-bottom:.18rem}
-    .b-val{font-size:.78rem;font-weight:500;color:#fff;display:block}
-    .clabe-row{display:flex;align-items:center;justify-content:space-between;gap:.8rem;margin-bottom:.85rem}
-    .clabe{font-family:'Courier New',monospace;font-size:.92rem;font-weight:700;color:#fff;letter-spacing:.07em}
-    .btn-copy{display:inline-flex;align-items:center;gap:.35rem;padding:.42rem .78rem;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);border-radius:6px;font-size:.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#fff;cursor:pointer;transition:background .2s;white-space:nowrap}
-    .btn-copy:hover{background:rgba(255,255,255,.24)}
-    .bank-bot{display:flex;justify-content:space-between;gap:1rem;align-items:flex-end}
-    .b-amt{font-size:1rem;font-weight:700;color:#fff;display:block}
-    .b-con{font-size:.72rem;color:rgba(255,255,255,.72);display:block;font-family:monospace}
-    .spei-ticket-link{display:inline-block;margin-top:.55rem;font-size:.7rem;color:var(--gold-lt);text-decoration:underline}
+    .bank-card {
+      background: linear-gradient(135deg, #1e3a5f 0%, #0d2340 100%);
+      border-radius: 12px;
+      padding: 1.15rem;
+      margin-bottom: .85rem
+    }
+
+    .bank-top {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: .85rem;
+      gap: 1rem
+    }
+
+    .b-lbl {
+      font-size: .58rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .55);
+      display: block;
+      margin-bottom: .18rem
+    }
+
+    .b-val {
+      font-size: .78rem;
+      font-weight: 500;
+      color: #fff;
+      display: block
+    }
+
+    .clabe-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: .8rem;
+      margin-bottom: .85rem
+    }
+
+    .clabe {
+      font-family: 'Courier New', monospace;
+      font-size: .92rem;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: .07em
+    }
+
+    .btn-copy {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      padding: .42rem .78rem;
+      background: rgba(255, 255, 255, .14);
+      border: 1px solid rgba(255, 255, 255, .25);
+      border-radius: 6px;
+      font-size: .65rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: #fff;
+      cursor: pointer;
+      transition: background .2s;
+      white-space: nowrap
+    }
+
+    .btn-copy:hover {
+      background: rgba(255, 255, 255, .24)
+    }
+
+    .bank-bot {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: flex-end
+    }
+
+    .b-amt {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+      display: block
+    }
+
+    .b-con {
+      font-size: .72rem;
+      color: rgba(255, 255, 255, .72);
+      display: block;
+      font-family: monospace
+    }
+
+    .spei-ticket-link {
+      display: inline-block;
+      margin-top: .55rem;
+      font-size: .7rem;
+      color: var(--gold-lt);
+      text-decoration: underline
+    }
+
     /* CTA BUTTONS */
-    .btn-wa,.btn-mp{display:flex;align-items:center;justify-content:center;gap:.55rem;width:100%;padding:.9rem 1rem;border:none;border-radius:10px;color:#fff;font-size:.74rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:filter .2s,transform .15s}
-    .btn-wa{background:#25D366}
-    .btn-mp{background:#009ee3}
-    .btn-mp--outline{background:rgba(0,158,227,.14);border:1px solid rgba(0,158,227,.55);color:#dff4ff}
-    .btn-wa:hover,.btn-mp:hover{filter:brightness(1.08);transform:translateY(-1px)}
-    .btn-mp:disabled{opacity:.65;cursor:wait;transform:none}
-    .foot-note{font-size:.64rem;color:rgba(250,247,242,.42);text-align:center;padding-top:.4rem}
-    .toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink-soft);border:1px solid var(--gold);color:var(--cream);font-size:.75rem;padding:.7rem 1.4rem;border-radius:50px;opacity:0;transition:opacity .3s,transform .3s;z-index:999;white-space:nowrap;pointer-events:none}
-    .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-    @media(max-width:860px){.wrap{grid-template-columns:1fr;padding:1.4rem 1rem 2.8rem;gap:1.8rem}.left{position:static}.form-row{grid-template-columns:1fr}.hl{font-size:2.1rem}}
+    .btn-wa,
+    .btn-mp {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .55rem;
+      width: 100%;
+      padding: .9rem 1rem;
+      border: none;
+      border-radius: 10px;
+      color: #fff;
+      font-size: .74rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      transition: filter .2s, transform .15s
+    }
+
+    .btn-wa {
+      background: #25D366
+    }
+
+    .btn-mp {
+      background: #009ee3
+    }
+
+    .btn-mp--outline {
+      background: rgba(0, 158, 227, .14);
+      border: 1px solid rgba(0, 158, 227, .55);
+      color: #dff4ff
+    }
+
+    .btn-wa:hover,
+    .btn-mp:hover {
+      filter: brightness(1.08);
+      transform: translateY(-1px)
+    }
+
+    .btn-mp:disabled {
+      opacity: .65;
+      cursor: wait;
+      transform: none
+    }
+
+    .foot-note {
+      font-size: .64rem;
+      color: rgba(250, 247, 242, .42);
+      text-align: center;
+      padding-top: .4rem
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: var(--ink-soft);
+      border: 1px solid var(--gold);
+      color: var(--cream);
+      font-size: .75rem;
+      padding: .7rem 1.4rem;
+      border-radius: 50px;
+      opacity: 0;
+      transition: opacity .3s, transform .3s;
+      z-index: 999;
+      white-space: nowrap;
+      pointer-events: none
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0)
+    }
+
+    @media(max-width:860px) {
+      .wrap {
+        grid-template-columns: 1fr;
+        padding: 1.4rem 1rem 2.8rem;
+        gap: 1.8rem
+      }
+
+      .left {
+        position: static
+      }
+
+      .form-row {
+        grid-template-columns: 1fr
+      }
+
+      .hl {
+        font-size: 2.1rem
+      }
+    }
   </style>
 </head>
+
 <body>
   <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KD9P55XB"
-  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KD9P55XB" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
 
   <header class="topbar">
     <a href="signature.html" class="back" id="backLink">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+        <path d="M19 12H5M12 5l-7 7 7 7" />
+      </svg>
       Volver
     </a>
     <span class="brand">✦ CELEBRATION</span>
@@ -161,9 +874,11 @@
     <!-- LEFT: RESUMEN Y DATOS -->
     <section class="left">
       <div>
-        <div class="badge-wrap"><span class="orn">✦</span><span class="badge-lbl">Pasarela Directa · API Orders</span></div>
+        <div class="badge-wrap"><span class="orn">✦</span><span class="badge-lbl">Pasarela Directa · API Orders</span>
+        </div>
         <h1 class="hl">Reserva<br><em>tu fecha</em></h1>
-        <p class="sub-txt">Aparta con el 50&nbsp;% de anticipo o liquida en línea — pago directo con tarjeta a MSI, Mercado Pago o SPEI.</p>
+        <p class="sub-txt">Aparta con el 50&nbsp;% de anticipo o liquida en línea — pago directo con tarjeta a MSI,
+          Mercado Pago o SPEI.</p>
       </div>
 
       <div class="pkg-card">
@@ -174,18 +889,22 @@
           <button type="button" class="pkg-tab-btn" data-pkg="signature">Signature $3.9k</button>
         </div>
         <div class="pkg-row">
-          <div><span class="pkg-sub">Colección seleccionada</span><strong class="pkg-name" id="pkgName">Signature</strong></div>
-          <div><span class="pkg-sub" style="text-align:right">Inversión total</span><span class="pkg-total" id="pkgTotal">$3,990 MXN</span></div>
+          <div><span class="pkg-sub">Colección seleccionada</span><strong class="pkg-name"
+              id="pkgName">Signature</strong></div>
+          <div><span class="pkg-sub" style="text-align:right">Inversión total</span><span class="pkg-total"
+              id="pkgTotal">$3,990 MXN</span></div>
         </div>
         <div class="divider"></div>
         <div class="scheme-grid">
           <button type="button" class="scheme-btn active" id="schemeDeposit">
             <span class="radio"><span></span></span>
-            <div><span class="s-label">Anticipo 50%</span><span class="s-cap">Apartar fecha · saldo contra entrega</span><span class="s-amt" id="depositAmt">$1,995 MXN</span></div>
+            <div><span class="s-label">Anticipo 50%</span><span class="s-cap">Apartar fecha · saldo contra
+                entrega</span><span class="s-amt" id="depositAmt">$1,995 MXN</span></div>
           </button>
           <button type="button" class="scheme-btn" id="schemeFull">
             <span class="radio"><span></span></span>
-            <div><span class="s-label">Pago total 100%</span><span class="s-cap">Liquidación completa sin saldos</span><span class="s-amt" id="fullAmt">$3,990 MXN</span></div>
+            <div><span class="s-label">Pago total 100%</span><span class="s-cap">Liquidación completa sin
+                saldos</span><span class="s-amt" id="fullAmt">$3,990 MXN</span></div>
           </button>
         </div>
 
@@ -201,10 +920,13 @@
       </div>
 
       <div class="form">
-        <div><label class="lbl" for="coupleNames">Nombres de los novios</label><input class="inp" type="text" id="coupleNames" placeholder="Ej. Camila &amp; Sebastián" autocomplete="name"></div>
+        <div><label class="lbl" for="coupleNames">Nombres de los novios</label><input class="inp" type="text"
+            id="coupleNames" placeholder="Ej. Camila &amp; Sebastián" autocomplete="name"></div>
         <div class="form-row">
-          <div><label class="lbl" for="couplePhone">WhatsApp</label><input class="inp" type="tel" id="couplePhone" placeholder="81 1234 5678" autocomplete="tel"></div>
-          <div><label class="lbl" for="coupleEmail">Correo para comprobante</label><input class="inp" type="email" id="coupleEmail" placeholder="novios@boda.com" autocomplete="email"></div>
+          <div><label class="lbl" for="couplePhone">WhatsApp</label><input class="inp" type="tel" id="couplePhone"
+              placeholder="81 1234 5678" autocomplete="tel"></div>
+          <div><label class="lbl" for="coupleEmail">Correo para comprobante</label><input class="inp" type="email"
+              id="coupleEmail" placeholder="novios@boda.com" autocomplete="email"></div>
         </div>
       </div>
 
@@ -230,28 +952,34 @@
             <span class="m-title">Tarjeta Crédito / Débito · MSI · Mercado Pago</span>
             <span class="m-desc">Pago directo aquí mismo · Visa · Mastercard · Amex · OXXO</span>
           </div>
-          <div class="m-chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+          <div class="m-chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M6 9l6 6 6-6" />
+            </svg></div>
         </button>
-        <div class="m-body"><div class="m-inner">
-          <div class="mp-success" id="mpSuccessPanel">
-            <h3 class="mp-success-title">✦ ¡Orden confirmada!</h3>
-            <div class="mp-success-meta" id="mpSuccessMeta"></div>
-            <a href="#" class="btn-wa" id="btnSuccessWa" target="_blank" rel="noopener">Notificar a Concierge por WhatsApp →</a>
+        <div class="m-body">
+          <div class="m-inner">
+            <div class="mp-success" id="mpSuccessPanel">
+              <h3 class="mp-success-title">✦ ¡Orden confirmada!</h3>
+              <div class="mp-success-meta" id="mpSuccessMeta"></div>
+              <a href="#" class="btn-wa" id="btnSuccessWa" target="_blank" rel="noopener">Notificar a Concierge por
+                WhatsApp →</a>
+            </div>
+
+            <div class="mp-error" id="mpErrorBanner"></div>
+
+            <div class="mp-brick-wrap" id="mpBrickWrap">
+              <div class="mp-loading" id="mpBrickLoading">Cargando formulario seguro de tarjeta…</div>
+              <div id="mpCardBrickContainer"></div>
+            </div>
+
+            <div class="mp-or">o paga con tu app Mercado Pago / OXXO</div>
+
+            <button type="button" class="btn-mp btn-mp--outline" id="btnMpDirectOrder">
+              <span>💙 &nbsp;Pagar con cuenta Mercado Pago / OXXO (<strong id="mpOrderAmtText">$1,995 MXN</strong>)
+                →</span>
+            </button>
           </div>
-
-          <div class="mp-error" id="mpErrorBanner"></div>
-
-          <div class="mp-brick-wrap" id="mpBrickWrap">
-            <div class="mp-loading" id="mpBrickLoading">Cargando formulario seguro de tarjeta…</div>
-            <div id="mpCardBrickContainer"></div>
-          </div>
-
-          <div class="mp-or">o paga con tu app Mercado Pago / OXXO</div>
-
-          <button type="button" class="btn-mp btn-mp--outline" id="btnMpDirectOrder">
-            <span>💙 &nbsp;Pagar con cuenta Mercado Pago / OXXO (<strong id="mpOrderAmtText">$1,995 MXN</strong>) →</span>
-          </button>
-        </div></div>
+        </div>
       </div>
 
       <!-- MÉTODO 2: SPEI CLABE DINÁMICA ORDERS API -->
@@ -262,38 +990,50 @@
             <span class="m-title">Transferencia SPEI (CLABE en tiempo real)</span>
             <span class="m-desc">Acreditación inmediata · Sin comisiones · Cualquier banco MX</span>
           </div>
-          <div class="m-chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+          <div class="m-chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M6 9l6 6 6-6" />
+            </svg></div>
         </button>
-        <div class="m-body"><div class="m-inner">
-          <div class="bank-card">
-            <div class="bank-top">
-              <div><span class="b-lbl">Beneficiario</span><span class="b-val">CELEBRATION · Mercado Pago STP</span></div>
-              <div><span class="b-lbl">Banco Receptor</span><span class="b-val">STP (SPEI Directo)</span></div>
-            </div>
-            <div class="clabe-row">
-              <div>
-                <span class="b-lbl">CLABE Interbancaria (18 dígitos)</span>
-                <span class="clabe" id="speiClabe">Abre para generar CLABE…</span>
+        <div class="m-body">
+          <div class="m-inner">
+            <div class="bank-card">
+              <div class="bank-top">
+                <div><span class="b-lbl">Beneficiario</span><span class="b-val">CELEBRATION · Mercado Pago STP</span>
+                </div>
+                <div><span class="b-lbl">Banco Receptor</span><span class="b-val">STP (SPEI Directo)</span></div>
               </div>
-              <button type="button" class="btn-copy" id="btnCopyClabe">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
-                Copiar
-              </button>
-            </div>
-            <div class="bank-bot">
-              <div><span class="b-lbl">Monto exacto</span><span class="b-amt" id="speiAmt">$1,995 MXN</span></div>
-              <div style="text-align:right">
-                <span class="b-lbl">Referencia / Orden</span>
-                <span class="b-con" id="speiConcept">CEL-SIGN-SPEI</span>
+              <div class="clabe-row">
+                <div>
+                  <span class="b-lbl">CLABE Interbancaria (18 dígitos)</span>
+                  <span class="clabe" id="speiClabe">Abre para generar CLABE…</span>
+                </div>
+                <button type="button" class="btn-copy" id="btnCopyClabe">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12">
+                    <rect x="9" y="9" width="13" height="13" rx="2" />
+                    <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+                  </svg>
+                  Copiar
+                </button>
               </div>
+              <div class="bank-bot">
+                <div><span class="b-lbl">Monto exacto</span><span class="b-amt" id="speiAmt">$1,995 MXN</span></div>
+                <div style="text-align:right">
+                  <span class="b-lbl">Referencia / Orden</span>
+                  <span class="b-con" id="speiConcept">CEL-SIGN-SPEI</span>
+                </div>
+              </div>
+              <a href="#" class="spei-ticket-link" id="btnSpeiTicket" target="_blank" rel="noopener"
+                style="display:none">Ver ficha oficial de transferencia SPEI →</a>
             </div>
-            <a href="#" class="spei-ticket-link" id="btnSpeiTicket" target="_blank" rel="noopener" style="display:none">Ver ficha oficial de transferencia SPEI →</a>
+            <a href="#" class="btn-wa" id="btnSpeiWa" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+              </svg>
+              Enviar comprobante por WhatsApp
+            </a>
           </div>
-          <a href="#" class="btn-wa" id="btnSpeiWa" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-            Enviar comprobante por WhatsApp
-          </a>
-        </div></div>
+        </div>
       </div>
 
       <p class="foot-note">Pago directo 100&nbsp;% cifrado · Procesado por CELEBRATION vía Mercado Pago Orders API</p>
@@ -505,7 +1245,7 @@
         }
 
         if (cardBrickController && typeof cardBrickController.unmount === 'function') {
-          try { await cardBrickController.unmount(); } catch (_) {}
+          try { await cardBrickController.unmount(); } catch (_) { }
           cardBrickController = null;
         }
         if (seq !== brickMountSeq) return;
@@ -553,11 +1293,15 @@
               return new Promise((resolve, reject) => {
                 fetch(API_URL, {
                   method: 'POST',
-                  headers: { 'Content-Type': 'application/json' },
+                  headers: {
+                    'Content-Type': 'application/json',
+                    'X-Meli-Session-Id': window.MP_DEVICE_SESSION_ID || ''
+                  },
                   body: JSON.stringify({
                     action: 'pay_card',
                     pkg: key,
                     scheme: scheme,
+                    device_id: window.MP_DEVICE_SESSION_ID || '',
                     couple_names: document.getElementById('coupleNames').value.trim(),
                     couple_phone: document.getElementById('couplePhone').value.trim(),
                     payer_email: (formData && formData.payer && formData.payer.email) || document.getElementById('coupleEmail').value.trim(),
@@ -568,31 +1312,31 @@
                     identification: (formData && formData.payer && formData.payer.identification) || null
                   })
                 })
-                .then(r => r.json())
-                .then(data => {
-                  if (!data || !data.ok) {
-                    const errTxt = (data && data.error) || 'No fue posible procesar tu tarjeta.';
+                  .then(r => r.json())
+                  .then(data => {
+                    if (!data || !data.ok) {
+                      const errTxt = (data && data.error) || 'No fue posible procesar tu tarjeta.';
+                      showMpError(errTxt);
+                      toast('⚠ ' + errTxt);
+                      reject(new Error(errTxt));
+                      return;
+                    }
+                    if (data.status === 'failed' || data.status === 'canceled') {
+                      const reason = STATUS_MESSAGES[data.status_detail] || ('Tu pago no pudo aprobarse (' + (data.status_detail || 'rechazado') + ').');
+                      showMpError(reason);
+                      toast('⚠ Pago rechazado');
+                      reject(new Error(reason));
+                      return;
+                    }
+                    showOrderSuccess(data);
+                    resolve();
+                  })
+                  .catch(err => {
+                    const errTxt = 'Error de conexión al procesar el pago. Intenta nuevamente o usa SPEI.';
                     showMpError(errTxt);
                     toast('⚠ ' + errTxt);
-                    reject(new Error(errTxt));
-                    return;
-                  }
-                  if (data.status === 'failed' || data.status === 'canceled') {
-                    const reason = STATUS_MESSAGES[data.status_detail] || ('Tu pago no pudo aprobarse (' + (data.status_detail || 'rechazado') + ').');
-                    showMpError(reason);
-                    toast('⚠ Pago rechazado');
-                    reject(new Error(reason));
-                    return;
-                  }
-                  showOrderSuccess(data);
-                  resolve();
-                })
-                .catch(err => {
-                  const errTxt = 'Error de conexión al procesar el pago. Intenta nuevamente o usa SPEI.';
-                  showMpError(errTxt);
-                  toast('⚠ ' + errTxt);
-                  reject(err);
-                });
+                    reject(err);
+                  });
               });
             },
             onError: (err) => {
@@ -603,7 +1347,7 @@
 
         if (seq !== brickMountSeq) {
           if (controller && typeof controller.unmount === 'function') {
-            try { await controller.unmount(); } catch (_) {}
+            try { await controller.unmount(); } catch (_) { }
           }
           return;
         }
@@ -633,11 +1377,15 @@
       try {
         const res = await fetch(API_URL, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: {
+            'Content-Type': 'application/json',
+            'X-Meli-Session-Id': window.MP_DEVICE_SESSION_ID || ''
+          },
           body: JSON.stringify({
             action: 'create_spei_order',
             pkg: key,
             scheme: scheme,
+            device_id: window.MP_DEVICE_SESSION_ID || '',
             couple_names: document.getElementById('coupleNames').value.trim(),
             payer_email: document.getElementById('coupleEmail').value.trim()
           })
@@ -736,7 +1484,7 @@
       btn.addEventListener('click', () => {
         key = btn.dataset.pkg;
         if (!PKGS[key].allowDeposit) scheme = 'full';
-        try { history.replaceState(null, '', 'checkout.html?pkg=' + key + '&scheme=' + scheme + '&method=mp'); } catch (_) {}
+        try { history.replaceState(null, '', 'checkout.html?pkg=' + key + '&scheme=' + scheme + '&method=mp'); } catch (_) { }
         update();
         toast('✦ Paquete seleccionado: ' + pkg.name);
       });
@@ -793,11 +1541,15 @@
       try {
         const res = await fetch(API_URL, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: {
+            'Content-Type': 'application/json',
+            'X-Meli-Session-Id': window.MP_DEVICE_SESSION_ID || ''
+          },
           body: JSON.stringify({
             action: 'create_checkout_order',
             pkg: key,
             scheme: scheme,
+            device_id: window.MP_DEVICE_SESSION_ID || '',
             couple_names: document.getElementById('coupleNames').value.trim(),
             couple_phone: document.getElementById('couplePhone').value.trim(),
             payer_email: document.getElementById('coupleEmail').value.trim()
@@ -827,4 +1579,5 @@
     update();
   </script>
 </body>
+
 </html>

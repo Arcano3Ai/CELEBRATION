@@ -100,18 +100,28 @@ function buildExternalReference(string $pkgKey, string $scheme): string
     return sprintf('CEL-%s-%s-%s-%s', $pkgCode, $schCode, gmdate('ymdHis'), $rand);
 }
 
-function callMpApi(string $method, string $path, string $accessToken, ?array $body = null, ?string $idempotencyKey = null): array
+function callMpApi(string $method, string $path, string $accessToken, ?array $body = null, ?string $idempotencyKey = null, ?string $deviceId = null, ?string $productId = null): array
 {
     $url = 'https://api.mercadopago.com' . $path;
     $ch = curl_init($url);
+
+    if ($deviceId === null || $deviceId === '') {
+        $deviceId = trim((string) ($_SERVER['HTTP_X_MELI_SESSION_ID'] ?? ''));
+        if ($deviceId === '') {
+            $deviceId = bin2hex(random_bytes(16));
+        }
+    }
+
+    $prodId = ($productId !== null && $productId !== '') ? $productId : 'C85Q6TGS4G718CFJS27G';
 
     $headers = [
         'Authorization: Bearer ' . $accessToken,
         'Content-Type: application/json; charset=UTF-8',
         'Accept: application/json',
         'User-Agent: MercadoPago DX-PHP SDK/3.16.0',
-        'X-Product-Id: BC32A7RU643001OI3940',
+        'X-Product-Id: ' . $prodId,
         'X-Tracking-Id: platform:8|8.3.0,type:SDK3.16.0,so;',
+        'X-meli-session-id: ' . $deviceId,
     ];
     if ($idempotencyKey !== null && $idempotencyKey !== '') {
         $headers[] = 'X-Idempotency-Key: ' . $idempotencyKey;
@@ -354,22 +364,17 @@ if ($action === 'redirect' || $action === 'create_checkout_order') {
     // Respaldo directo contra API de Mercado Pago si Cloud Run no responde a tiempo
     if ($checkoutUrl === '') {
         $provider = 'direct_mp';
+        $deviceId = trim((string) ($input['device_id'] ?? ($_SERVER['HTTP_X_MELI_SESSION_ID'] ?? '')));
         $payload = [
             'type' => 'online',
             'processing_mode' => 'manual',
             'total_amount' => $pkg['amount_str'],
             'external_reference' => $extRef,
             'description' => 'CELEBRATION — ' . $pkg['name'] . ' (' . $pkg['scheme_label'] . ')',
-            'items' => [
-                [
-                    'title' => $pkg['name'] . ' — ' . $pkg['scheme_label'] . ' (CELEBRATION)',
-                    'unit_price' => $pkg['amount_str'],
-                    'quantity' => 1,
-                ],
-            ],
+            'items' => buildOrderItems($pkg),
         ];
 
-        $res = callMpApi('POST', '/v1/orders', $accessToken, $payload, generateUuidV4());
+        $res = callMpApi('POST', '/v1/orders', $accessToken, $payload, generateUuidV4(), $deviceId);
         if ($res['http'] < 200 || $res['http'] >= 300 || empty($res['data']['checkout_url'])) {
             if ($action === 'redirect') {
                 header('Location: /checkout.html?pkg=' . rawurlencode($pkg['key']) . '&scheme=' . rawurlencode($pkg['scheme']), true, 302);
@@ -455,7 +460,8 @@ if ($action === 'create_spei_order') {
         ],
     ];
 
-    $res = callMpApi('POST', '/v1/orders', $accessToken, $payload, generateUuidV4());
+    $deviceId = trim((string) ($input['device_id'] ?? ($_SERVER['HTTP_X_MELI_SESSION_ID'] ?? '')));
+    $res = callMpApi('POST', '/v1/orders', $accessToken, $payload, generateUuidV4(), $deviceId);
     if ($res['http'] < 200 || $res['http'] >= 300) {
         sendJson($res['http'] ?: 502, [
             'ok' => false,
@@ -547,7 +553,8 @@ if ($action === 'pay_card') {
         ],
     ];
 
-    $res = callMpApi('POST', '/v1/orders', $accessToken, $payload, generateUuidV4());
+    $deviceId = trim((string) ($input['device_id'] ?? ($_SERVER['HTTP_X_MELI_SESSION_ID'] ?? '')));
+    $res = callMpApi('POST', '/v1/orders', $accessToken, $payload, generateUuidV4(), $deviceId);
     if ($res['http'] < 200 || $res['http'] >= 300) {
         $rej = parseMpRejection($res['data']);
         sendJson($res['http'] ?: 502, [
