@@ -1,6 +1,8 @@
 User-agent: *
 Allow: /
 Allow: /signature.html
+Allow: /premiere.html
+Allow: /essential.html
 Allow: /demo-romantico.html
 Allow: /demo-clasico.html
 Allow: /demo-editorial.html
