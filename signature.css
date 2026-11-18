@@ -1577,3 +1577,653 @@ a {
     gap: 8px;
   }
 }
+
+/* --------------------------------------------------------------------------
+   DEMO NATIVO FULL-WIDTH: CAMILA & SEBASTIÁN (100% ESCALA COMPLETA)
+   -------------------------------------------------------------------------- */
+.sig-editorial-native {
+  --ed-bg: #F4F1EA;
+  --ed-bg-tint: #EFECE4;
+  --ed-bg-dark: #12100E;
+  --ed-card: #FFFFFF;
+  --ed-text: #1E1B18;
+  --ed-muted: #736C65;
+  --ed-accent: #B09886;
+  --ed-gold: #C5A059;
+  --ed-border: rgba(30, 27, 24, 0.12);
+  --ed-display: 'Playfair Display', Georgia, serif;
+  --ed-body: 'Plus Jakarta Sans', sans-serif;
+
+  width: 100%;
+  margin-top: 40px;
+  background: var(--ed-bg);
+  color: var(--ed-text);
+  font-family: var(--ed-body);
+  line-height: 1.65;
+  border-top: 1px solid var(--gold-border);
+  border-bottom: 1px solid var(--gold-border);
+  overflow-x: clip;
+  position: relative;
+}
+
+.sig-editorial-native *,
+.sig-editorial-native *::before,
+.sig-editorial-native *::after {
+  box-sizing: border-box;
+}
+
+.sig-editorial-native .wedding-nav {
+  background: rgba(244, 241, 234, 0.96);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--ed-border);
+  padding: 0.9rem 1.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 1.8rem;
+  position: sticky;
+  top: 56px;
+  z-index: 45;
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  width: 100%;
+}
+
+.sig-editorial-native .wedding-nav::-webkit-scrollbar {
+  display: none;
+}
+
+.sig-editorial-native .wedding-nav a {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ed-muted);
+  text-decoration: none;
+  transition: color 0.2s;
+  flex-shrink: 0;
+}
+
+.sig-editorial-native .wedding-nav a:hover {
+  color: var(--ed-text);
+}
+
+.sig-editorial-native .cover-wrap {
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 3.5rem 2rem 4.5rem;
+  background: linear-gradient(to bottom, rgba(18, 16, 14, 0.38) 0%, rgba(18, 16, 14, 0.78) 100%), url('assets/images/estilo_editorial.jpg') center/cover no-repeat;
+  color: #FFFFFF;
+  text-align: center;
+  position: relative;
+}
+
+.sig-editorial-native .mag-header {
+  font-family: var(--ed-display);
+  font-size: clamp(1.35rem, 4.5vw, 2.6rem);
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  font-weight: 400;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  padding-bottom: 1.2rem;
+  max-width: 980px;
+  margin: 0 auto;
+  width: 100%;
+  color: #FFFFFF;
+}
+
+.sig-editorial-native .cover-center {
+  max-width: 900px;
+  margin: 2.5rem auto 0;
+  width: 100%;
+}
+
+.sig-editorial-native .cover-eyebrow {
+  font-size: 0.76rem;
+  letter-spacing: 0.36em;
+  text-transform: uppercase;
+  color: #E2DBD0;
+  margin-bottom: 1.2rem;
+  font-weight: 500;
+}
+
+.sig-editorial-native .cover-names {
+  font-family: var(--ed-display);
+  font-size: clamp(3rem, 9.5vw, 6.6rem);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.05;
+  margin-bottom: 1.4rem;
+  color: #FFFFFF;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.sig-editorial-native .cover-date {
+  font-size: clamp(0.85rem, 2.2vw, 1.1rem);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  margin-bottom: 2.5rem;
+  color: #E6E1DA;
+}
+
+.sig-editorial-native .countdown-card {
+  background: rgba(18, 16, 14, 0.76);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  padding: 1.4rem 2.6rem;
+  display: inline-flex;
+  gap: 2.2rem;
+  align-items: center;
+  margin-bottom: 2.6rem;
+  border-radius: 4px;
+  max-width: 100%;
+}
+
+.sig-editorial-native .countdown-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sig-editorial-native .countdown-num {
+  font-family: var(--ed-display);
+  font-size: 2.2rem;
+  color: #FFFFFF;
+  line-height: 1;
+  margin-bottom: 0.3rem;
+}
+
+.sig-editorial-native .countdown-lbl {
+  font-size: 0.58rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--ed-gold);
+  font-weight: 600;
+}
+
+.sig-editorial-native .cover-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+
+.sig-editorial-native .cover-footer-note {
+  font-size: 0.68rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: #D0C9BE;
+  margin-top: 2rem;
+}
+
+.sig-editorial-native .btn-editorial {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #FFFFFF;
+  color: #12100E;
+  padding: 1.1rem 2.6rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: 1px solid #FFFFFF;
+  cursor: pointer;
+}
+
+.sig-editorial-native .btn-editorial:hover {
+  background: transparent;
+  color: #FFFFFF;
+  border-color: #FFFFFF;
+}
+
+.sig-editorial-native .btn-editorial--outline {
+  background: transparent;
+  color: #FFFFFF;
+  border-color: rgba(255, 255, 255, 0.65);
+}
+
+.sig-editorial-native .btn-editorial--outline:hover {
+  background: #FFFFFF;
+  color: #12100E;
+}
+
+.sig-editorial-native .btn-editorial-dark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #12100E;
+  color: #FFFFFF;
+  padding: 1.1rem 2.4rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: 1px solid #12100E;
+  cursor: pointer;
+}
+
+.sig-editorial-native .btn-editorial-dark:hover {
+  background: transparent;
+  color: #12100E;
+}
+
+.sig-editorial-native .section {
+  padding: 6rem 2rem;
+  max-width: 1040px;
+  margin: 0 auto;
+}
+
+.sig-editorial-native .section--tinted {
+  background: var(--ed-bg-tint);
+  max-width: 100%;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.sig-editorial-native .section-inner {
+  max-width: 1040px;
+  margin: 0 auto;
+}
+
+.sig-editorial-native .section-inner--narrow {
+  max-width: 740px;
+}
+
+.sig-editorial-native .section-title {
+  font-family: var(--ed-display);
+  font-size: clamp(2rem, 5.5vw, 3.2rem);
+  font-weight: 400;
+  text-align: center;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+  color: var(--ed-text);
+}
+
+.sig-editorial-native .section-subtitle {
+  font-size: 0.76rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--ed-accent);
+  text-align: center;
+  margin-bottom: 3rem;
+  font-weight: 600;
+}
+
+.sig-editorial-native .section-lead {
+  max-width: 580px;
+  margin: 0 auto 3rem;
+  text-align: center;
+  color: var(--ed-muted);
+  font-size: 1.02rem;
+}
+
+.sig-editorial-native .story-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+@media (min-width: 820px) {
+  .sig-editorial-native .story-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.sig-editorial-native .story-quote {
+  font-family: var(--ed-display);
+  font-size: clamp(1.5rem, 3.4vw, 2.2rem);
+  font-style: italic;
+  line-height: 1.4;
+  color: var(--ed-text);
+  border-left: 2px solid var(--ed-gold);
+  padding-left: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.sig-editorial-native .story-heading {
+  font-family: var(--ed-display);
+  font-size: 1.75rem;
+  margin-bottom: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ed-text);
+  font-weight: 500;
+}
+
+.sig-editorial-native .story-text {
+  color: var(--ed-muted);
+  font-size: 1.02rem;
+  line-height: 1.85;
+}
+
+.sig-editorial-native .itinerary-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.2rem;
+}
+
+@media (min-width: 768px) {
+  .sig-editorial-native .itinerary-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.sig-editorial-native .itinerary-card {
+  background: #FFFFFF;
+  border: 1px solid var(--ed-border);
+  padding: 3rem 2.2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.03);
+  transition: transform 0.3s ease;
+}
+
+.sig-editorial-native .itinerary-card:hover {
+  transform: translateY(-4px);
+}
+
+.sig-editorial-native .itinerary-meta {
+  font-size: 0.68rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--ed-gold);
+  font-weight: 600;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.sig-editorial-native .itinerary-name {
+  font-family: var(--ed-display);
+  font-size: 1.9rem;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+  color: var(--ed-text);
+  font-weight: 500;
+}
+
+.sig-editorial-native .itinerary-desc {
+  color: var(--ed-muted);
+  font-size: 0.98rem;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+.sig-editorial-native .dresscode-sec {
+  background: #12100E;
+  color: #FFFFFF;
+  padding: 5.5rem 2.2rem;
+  text-align: center;
+  border: 1px solid rgba(197, 160, 89, 0.3);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+}
+
+.sig-editorial-native .dresscode-tag {
+  font-size: 0.72rem;
+  letter-spacing: 0.36em;
+  text-transform: uppercase;
+  color: var(--ed-gold);
+  margin-bottom: 1.2rem;
+  display: inline-block;
+}
+
+.sig-editorial-native .dresscode-title {
+  font-family: var(--ed-display);
+  font-size: clamp(1.9rem, 5vw, 3rem);
+  margin-bottom: 1.5rem;
+  font-style: italic;
+  color: #FFFFFF;
+  font-weight: 400;
+}
+
+.sig-editorial-native .dresscode-text {
+  max-width: 680px;
+  margin: 0 auto 2.8rem;
+  color: #D6D0C5;
+  font-size: 1.02rem;
+  line-height: 1.85;
+}
+
+.sig-editorial-native .palette-flex {
+  display: flex;
+  justify-content: center;
+  gap: 1.4rem;
+  flex-wrap: wrap;
+}
+
+.sig-editorial-native .palette-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.sig-editorial-native .palette-circle {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.sig-editorial-native .palette-label {
+  font-size: 0.64rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #E2DBD0;
+}
+
+.sig-editorial-native .hotels-grid,
+.sig-editorial-native .gifts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.sig-editorial-native .hotel-card,
+.sig-editorial-native .gift-box {
+  background: #FFFFFF;
+  border: 1px solid var(--ed-border);
+  padding: 2.8rem 2rem;
+  text-align: center;
+}
+
+.sig-editorial-native .hotel-code-badge {
+  display: inline-block;
+  font-size: 0.66rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ed-gold);
+  background: rgba(197, 160, 89, 0.12);
+  padding: 0.4rem 1rem;
+  border: 1px solid rgba(197, 160, 89, 0.3);
+  margin-bottom: 1.2rem;
+  font-weight: 600;
+}
+
+.sig-editorial-native .hotel-name,
+.sig-editorial-native .gift-name {
+  font-family: var(--ed-display);
+  font-size: 1.55rem;
+  margin-bottom: 0.7rem;
+  color: var(--ed-text);
+  font-weight: 500;
+}
+
+.sig-editorial-native .hotel-desc,
+.sig-editorial-native .gift-sub,
+.sig-editorial-native .gift-meta {
+  color: var(--ed-muted);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin-bottom: 1.4rem;
+}
+
+.sig-editorial-native .gift-clabe {
+  font-family: monospace;
+  font-size: 1.05rem;
+  background: #F4F1EA;
+  padding: 0.65rem;
+  margin-bottom: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--ed-text);
+}
+
+.sig-editorial-native .rsvp-container {
+  max-width: 680px;
+  margin: 0 auto;
+  background: #FFFFFF;
+  border: 1px solid var(--ed-border);
+  padding: 3.5rem 2.5rem;
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.04);
+}
+
+.sig-editorial-native .rsvp-label {
+  display: block;
+  font-size: 0.68rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ed-gold);
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+}
+
+.sig-editorial-native .rsvp-input {
+  width: 100%;
+  padding: 1.05rem 1.3rem;
+  border: 1px solid var(--ed-border);
+  font-family: var(--ed-body);
+  font-size: 1rem;
+  color: var(--ed-text);
+  background: #FFFFFF;
+  outline: none;
+  transition: border-color 0.2s;
+  margin-bottom: 1.2rem;
+}
+
+.sig-editorial-native .rsvp-input:focus {
+  border-color: var(--ed-text);
+}
+
+.sig-editorial-native .rsvp-result-box {
+  display: none;
+  margin-top: 2rem;
+  padding: 1.8rem;
+  background: var(--ed-bg);
+  border: 1px solid var(--ed-gold);
+  text-align: left;
+  color: var(--ed-text);
+}
+
+.sig-editorial-native .toast-msg {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: #110F0D;
+  color: #FFFFFF;
+  padding: 1rem 2rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  border: 1px solid var(--ed-gold);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+  opacity: 0;
+  transition: all 0.4s ease;
+  pointer-events: none;
+}
+
+.sig-editorial-native .toast-msg.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+.sig-demo-bottom-cta {
+  margin: 40px auto 0;
+}
+
+@media (max-width: 680px) {
+  .sig-editorial-native .wedding-nav {
+    justify-content: flex-start;
+    top: 52px;
+    padding: 0.75rem 1rem;
+    gap: 1.2rem;
+  }
+
+  .sig-editorial-native .cover-wrap {
+    padding: 2.5rem 1rem 3.5rem;
+    min-height: 82vh;
+  }
+
+  .sig-editorial-native .mag-header {
+    font-size: clamp(0.95rem, 3.8vw, 1.4rem);
+    letter-spacing: 0.2em;
+  }
+
+  .sig-editorial-native .cover-names {
+    font-size: clamp(2.4rem, 9vw, 3.6rem);
+    margin-bottom: 1rem;
+  }
+
+  .sig-editorial-native .cover-date {
+    margin-bottom: 1.8rem;
+    letter-spacing: 0.16em;
+  }
+
+  .sig-editorial-native .countdown-card {
+    padding: 0.85rem 1.1rem;
+    gap: 1.1rem;
+    margin-bottom: 2rem;
+  }
+
+  .sig-editorial-native .countdown-num {
+    font-size: 1.55rem;
+  }
+
+  .sig-editorial-native .countdown-lbl {
+    font-size: 0.52rem;
+    letter-spacing: 0.14em;
+  }
+
+  .sig-editorial-native .btn-editorial,
+  .sig-editorial-native .btn-editorial-dark {
+    padding: 0.9rem 1.4rem;
+    font-size: 0.66rem;
+    letter-spacing: 0.16em;
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .sig-editorial-native .section,
+  .sig-editorial-native .section--tinted {
+    padding: 4rem 1.1rem;
+  }
+
+  .sig-editorial-native .itinerary-card,
+  .sig-editorial-native .hotel-card,
+  .sig-editorial-native .gift-box {
+    padding: 2.2rem 1.4rem;
+  }
+
+  .sig-editorial-native .dresscode-sec {
+    padding: 3.5rem 1.4rem;
+  }
+
+  .sig-editorial-native .rsvp-container {
+    padding: 2.2rem 1.3rem;
+  }
+}

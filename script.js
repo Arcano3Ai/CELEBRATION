@@ -499,12 +499,12 @@ function initPwa() {
    ║  PAYMENT CONFIG — Actualiza estos URLs cuando tengas los links reales ║
    ╚══════════════════════════════════════════════════════════════════════╝
 */
-// Definición global de enlaces oficiales de Mercado Pago (vacío = flujo seguro WhatsApp/SPEI)
-window.CELEBRATION_PAYMENTS = window.CELEBRATION_PAYMENTS || {
-  mini:         '',
-  essential:    '',
-  premiere:     '',
-  signature:    '',
+// Definición global de enlaces oficiales de Mercado Pago
+window.CELEBRATION_PAYMENTS = {
+  mini:         'https://mpago.la/1aCxnoc',
+  essential:    'https://mpago.la/1Kr6QvJ',
+  premiere:     'https://mpago.la/2nSE4Lm',
+  signature:    'https://mpago.la/1wsG4uy',
 };
 
 const PAYMENT_CONFIG = {
@@ -1046,7 +1046,7 @@ function initDirectPaymentButtons() {
       btn.rel = 'noopener noreferrer';
       btn.onclick = null;
       if (note) {
-        note.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><span>Pago seguro · Tarjeta, MSI, Débito y Transferencia SPEI</span>';
+        note.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><span>Pago seguro con Mercado Pago · Tarjeta, MSI, Débito, SPEI y OXXO</span>';
         note.classList.add('plan-pay-note--active');
       }
     } else {
