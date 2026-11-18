@@ -7,7 +7,7 @@ Allow: /demo-editorial.html
 Allow: /assets/
 Allow: /dist/
 
-# Bloquear páginas transaccionales y herramientas privadas
+# Bloquear paginas transaccionales y herramientas privadas
 Disallow: /checkout.html
 Disallow: /planner.html
 Disallow: /passes.html
