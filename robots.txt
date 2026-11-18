@@ -7,7 +7,7 @@ Allow: /demo-editorial.html
 Allow: /assets/
 Allow: /dist/
 
-# Bloquear paginas transaccionales y herramientas privadas
+# Bloquear páginas transaccionales y herramientas privadas
 Disallow: /checkout.html
 Disallow: /planner.html
 Disallow: /passes.html
@@ -17,3 +17,4 @@ Disallow: /tools/
 
 # Mapa del sitio oficial
 Sitemap: https://thecelebration.com.mx/sitemap.xml
+Sitemap: https://thecelebration.com.mx/sitemap_index.xml
