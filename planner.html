@@ -2200,6 +2200,14 @@
 
     // Init from URL param or default
     const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('from') === 'signature') {
+      const backLink = document.querySelector('.topbar .back');
+      if (backLink) {
+        backLink.href = 'signature.html#invitacion-demo';
+        const backSpan = backLink.querySelector('span');
+        if (backSpan) backSpan.textContent = 'Volver a Signature';
+      }
+    }
     const initialFolio = urlParams.get('folio') || 'VAL-2026';
     if (CONCIERGE_EVENTS_DB[initialFolio]) {
       eventSelector.value = initialFolio;
