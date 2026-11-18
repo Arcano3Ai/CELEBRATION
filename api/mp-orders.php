@@ -107,8 +107,11 @@ function callMpApi(string $method, string $path, string $accessToken, ?array $bo
 
     $headers = [
         'Authorization: Bearer ' . $accessToken,
-        'Content-Type: application/json',
+        'Content-Type: application/json; charset=UTF-8',
         'Accept: application/json',
+        'User-Agent: MercadoPago DX-PHP SDK/3.16.0',
+        'X-Product-Id: BC32A7RU643001OI3940',
+        'X-Tracking-Id: platform:8|8.3.0,type:SDK3.16.0,so;',
     ];
     if ($idempotencyKey !== null && $idempotencyKey !== '') {
         $headers[] = 'X-Idempotency-Key: ' . $idempotencyKey;
@@ -210,6 +213,59 @@ function resolveCardPaymentType(string $methodId, string $explicitType): string
         return 'debit_card';
     }
     return 'credit_card';
+}
+
+function buildOrderItems(array $pkg): array
+{
+    return [
+        [
+            'external_code' => 'CEL-' . strtoupper($pkg['key']) . '-' . strtoupper($pkg['scheme']),
+            'title' => $pkg['name'] . ' — ' . $pkg['scheme_label'] . ' (CELEBRATION)',
+            'description' => 'Invitación Digital de Lujo CELEBRATION — ' . $pkg['name'],
+            'category_id' => 'services',
+            'quantity' => 1,
+            'unit_price' => $pkg['amount_str'],
+        ],
+    ];
+}
+
+function buildPayerPhone(string $rawPhone): ?array
+{
+    $digits = preg_replace('/\D+/', '', $rawPhone);
+    if ($digits === '' || strlen($digits) < 8) {
+        return null;
+    }
+    $local10 = strlen($digits) > 10 ? substr($digits, -10) : $digits;
+    return [
+        'area_code' => substr($local10, 0, 2),
+        'number' => substr($local10, 2),
+    ];
+}
+
+function parseMpRejection(array $mpData): array
+{
+    $detailCode = '';
+    if (!empty($mpData['errors'][0]['details'][0]) && is_string($mpData['errors'][0]['details'][0])) {
+        $parts = explode(':', $mpData['errors'][0]['details'][0], 2);
+        $detailCode = trim($parts[1] ?? $parts[0]);
+    } elseif (!empty($mpData['status_detail'])) {
+        $detailCode = (string) $mpData['status_detail'];
+    }
+
+    $messages = [
+        'insufficient_amount' => 'Fondos o límite insuficiente en la tarjeta.',
+        'card_insufficient_amount' => 'La tarjeta no tiene saldo o límite suficiente.',
+        'required_call_for_authorize' => 'El banco requiere autorización del titular para aprobar este cargo.',
+        'bad_filled_card_data' => 'Revisa el número de tarjeta, fecha de vencimiento o código de seguridad.',
+        'card_disabled' => 'La tarjeta está deshabilitada o bloqueada.',
+        'rejected_by_issuer' => 'Cargo rechazado por el banco emisor. Intenta con otra tarjeta o vía SPEI.',
+        'high_risk' => 'Operación detenida por prevención de fraude. Prueba con otra tarjeta o SPEI.',
+        'invalid_installments' => 'El plazo de mensualidades elegido no aplica para esta tarjeta.',
+        'max_attempts_exceeded' => 'Se excedió el límite de intentos con esta tarjeta.',
+    ];
+
+    $friendly = $messages[$detailCode] ?? ($mpData['message'] ?? 'No se pudo procesar el pago con tarjeta.');
+    return ['detail' => $detailCode, 'message' => $friendly];
 }
 
 $method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
@@ -366,6 +422,17 @@ if ($action === 'create_spei_order') {
     $pkg = resolvePackage((string) ($input['pkg'] ?? 'signature'), (string) ($input['scheme'] ?? 'deposit'));
     $extRef = buildExternalReference($pkg['key'], $pkg['scheme']);
     $email = normalizeEmail((string) ($input['payer_email'] ?? ''));
+    [$firstName, $lastName] = splitCoupleName((string) ($input['couple_names'] ?? ''));
+
+    $payer = [
+        'email' => $email,
+        'first_name' => $firstName,
+        'last_name' => $lastName,
+    ];
+    $phoneObj = buildPayerPhone((string) ($input['couple_phone'] ?? ''));
+    if ($phoneObj !== null) {
+        $payer['phone'] = $phoneObj;
+    }
 
     $payload = [
         'type' => 'online',
@@ -373,9 +440,8 @@ if ($action === 'create_spei_order') {
         'total_amount' => $pkg['amount_str'],
         'external_reference' => $extRef,
         'description' => 'CELEBRATION SPEI — ' . $pkg['name'] . ' (' . $pkg['scheme_label'] . ')',
-        'payer' => [
-            'email' => $email,
-        ],
+        'payer' => $payer,
+        'items' => buildOrderItems($pkg),
         'transactions' => [
             'payments' => [
                 [
@@ -446,6 +512,10 @@ if ($action === 'pay_card') {
         'first_name' => $firstName,
         'last_name' => $lastName,
     ];
+    $phoneObj = buildPayerPhone((string) ($input['couple_phone'] ?? ''));
+    if ($phoneObj !== null) {
+        $payer['phone'] = $phoneObj;
+    }
     if (!empty($input['identification']['type']) && !empty($input['identification']['number'])) {
         $payer['identification'] = [
             'type' => substr((string) $input['identification']['type'], 0, 20),
@@ -460,6 +530,7 @@ if ($action === 'pay_card') {
         'external_reference' => $extRef,
         'description' => 'CELEBRATION — ' . $pkg['name'] . ' (' . $pkg['scheme_label'] . ')',
         'payer' => $payer,
+        'items' => buildOrderItems($pkg),
         'transactions' => [
             'payments' => [
                 [
@@ -478,9 +549,12 @@ if ($action === 'pay_card') {
 
     $res = callMpApi('POST', '/v1/orders', $accessToken, $payload, generateUuidV4());
     if ($res['http'] < 200 || $res['http'] >= 300) {
+        $rej = parseMpRejection($res['data']);
         sendJson($res['http'] ?: 502, [
             'ok' => false,
-            'error' => $res['data']['message'] ?? 'No se pudo procesar el pago con tarjeta',
+            'status' => 'failed',
+            'status_detail' => $rej['detail'],
+            'error' => $rej['message'],
             'details' => $res['data']['errors'] ?? null,
         ]);
     }
