@@ -12,6 +12,8 @@
   --cream-alt:   #eae5dc;       /* Beige suave para contrastes de sección y trust bar */
   --card-bg:     #ece7e0;       /* Fondo de tarjetas de servicio, estilos y timeline */
   --text:        #24211d;       /* Grafito carbón profundo y cálido */
+  --ink:         #24211d;       /* Alias carbón profundo */
+  --ink-soft:    #4a443c;       /* Tinta suavizada legible */
   --muted:       #756f68;       /* Texto atenuado y metadatos elegantes */
   --taupe:       #9e9589;       /* Acento taupe champán */
   --btn:         #948a7e;       /* Botones píldora aterciopelados */
@@ -476,15 +478,18 @@ header.site-header.scrolled {
 }
 
 .hero-ctas .btn-outline {
-  border-color: rgba(244, 241, 234, 0.65);
-  color: #f4f1ea;
-  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--ink);
+  color: var(--ink);
+  background: rgba(36, 33, 29, 0.04);
+  font-weight: 600;
 }
 
 .hero-ctas .btn-outline:hover {
-  background: #f4f1ea;
-  color: #12100e;
-  border-color: #f4f1ea;
+  background: var(--ink);
+  color: var(--cream);
+  border-color: var(--ink);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(36, 33, 29, 0.16);
 }
 
 @media (min-width: 540px) {

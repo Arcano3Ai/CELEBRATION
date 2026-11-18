@@ -41,7 +41,8 @@ html {
 
 body {
   font-family: var(--font-sans);
-  background: radial-gradient(circle at 50% 0%, #1A1612 0%, #0D0B0A 60%, #080706 100%);
+  background-color: #0D0B0A;
+  background-image: radial-gradient(circle at 50% 0%, #1A1612 0%, #0D0B0A 60%, #080706 100%);
   color: var(--cream);
   line-height: 1.6;
   overflow-x: hidden;
@@ -257,6 +258,7 @@ a {
    -------------------------------------------------------------------------- */
 .sig-hero-section {
   padding: 48px 0 64px;
+  background-color: transparent;
 }
 
 .sig-hero-header {
@@ -273,9 +275,15 @@ a {
   line-height: 1.05;
   color: var(--cream);
   margin-bottom: 16px;
-  background: linear-gradient(180deg, #FFFFFF 0%, #E8DFD3 60%, #C5A059 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+}
+
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+  .sig-package-title {
+    background: linear-gradient(180deg, #FFFFFF 0%, #E8DFD3 60%, #C5A059 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 }
 
 .sig-package-lead {
