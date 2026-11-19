@@ -19,7 +19,7 @@ SI
   <meta property="og:site_name" content="CELEBRATION">
   <meta property="og:title" content="Reserva tu Fecha de Boda — CELEBRATION">
   <meta property="og:description"
-    content="Aparta tu fecha con el 50% de anticipo. Pago directo seguro con tarjeta, MSI, Mercado Pago o SPEI.">
+    content="Pago directo 100% seguro en línea. Con tarjeta, MSI, Mercado Pago o SPEI.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://thecelebration.com.mx/checkout.html">
   <meta property="og:image" content="https://thecelebration.com.mx/assets/images/og_share_banner.jpg">
@@ -876,8 +876,7 @@ SI
         <div class="badge-wrap"><span class="orn">✦</span><span class="badge-lbl">Pasarela Directa · API Orders</span>
         </div>
         <h1 class="hl">Reserva<br><em>tu fecha</em></h1>
-        <p class="sub-txt">Aparta con el 50&nbsp;% de anticipo o liquida en línea — pago directo con tarjeta a MSI,
-          Mercado Pago o SPEI.</p>
+        <p class="sub-txt" id="checkoutSubTxt">Pago 100% en línea — pago directo con tarjeta a MSI, Mercado Pago o SPEI.</p>
       </div>
 
       <div class="pkg-card">
@@ -895,12 +894,12 @@ SI
         </div>
         <div class="divider"></div>
         <div class="scheme-grid">
-          <button type="button" class="scheme-btn active" id="schemeDeposit">
+          <button type="button" class="scheme-btn" id="schemeDeposit" style="display:none">
             <span class="radio"><span></span></span>
             <div><span class="s-label">Anticipo 50%</span><span class="s-cap">Apartar fecha · saldo contra
                 entrega</span><span class="s-amt" id="depositAmt">$500 MXN</span></div>
           </button>
-          <button type="button" class="scheme-btn" id="schemeFull">
+          <button type="button" class="scheme-btn active" id="schemeFull">
             <span class="radio"><span></span></span>
             <div><span class="s-label">Pago total 100%</span><span class="s-cap">Liquidación completa sin
                 saldos</span><span class="s-amt" id="fullAmt">$500 MXN</span></div>
@@ -910,7 +909,7 @@ SI
         <div class="pkg-details-card" id="pkgDetailsCard">
           <div class="pkg-details-head">
             <span class="pkg-details-badge">✦ Detalles del pago</span>
-            <span class="pkg-details-scheme" id="pkgDetailsScheme">Anticipo del 50%</span>
+            <span class="pkg-details-scheme" id="pkgDetailsScheme">Pago Total 100%</span>
           </div>
           <p class="pkg-details-desc" id="pkgDetailsDesc"></p>
           <div class="pkg-details-subhead">Lo que incluye tu colección:</div>
