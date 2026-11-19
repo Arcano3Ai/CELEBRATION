@@ -501,10 +501,12 @@ function initPwa() {
 */
 // Definición global de enlaces oficiales de Mercado Pago
 window.CELEBRATION_PAYMENTS = {
-  mini:         'checkout.html?pkg=mini&method=mp',
+  signature:    'checkout.html?pkg=signature&method=mp',
   essential:    'checkout.html?pkg=essential&method=mp',
   premiere:     'checkout.html?pkg=premiere&method=mp',
-  signature:    'checkout.html?pkg=signature&method=mp',
+  couture:      'checkout.html?pkg=couture&method=mp',
+  mini:         'checkout.html?pkg=signature&method=mp',
+  'haute-couture': 'checkout.html?pkg=couture&method=mp'
 };
 
 const PAYMENT_CONFIG = {
@@ -566,66 +568,74 @@ function initCheckoutGateway() {
 
   // ── Paquetes y Entregables oficiales ──
   const PACKAGE_DETAILS = {
-    mini: {
-      id: 'mini',
-      name: 'Mini Celebration',
-      price: 990,
+    signature: {
+      id: 'signature',
+      name: 'Signature',
+      price: 500,
       allowDeposit: false,
-      summary: 'Invitación digital personalizada con los datos esenciales para cualquier evento social.',
+      summary: 'La máxima expresión de alta costura digital con monograma de autor y mesa de regalos.',
       includes: [
-        'Invitación digital personalizada con tipografía y paleta del evento',
-        'Fecha, horario del evento y cuenta regresiva interactiva en tiempo real',
-        'Ubicación con botón de acceso directo a Google Maps y Waze',
-        'Confirmación de asistencia directa e inmediata por WhatsApp',
-        'Enlace web privado exclusivo con certificado SSL seguro para iOS y Android'
+        'Monograma de autor personalizado e identidad tipográfica exclusiva',
+        'Historia de la pareja con narrativa editorial y timeline conmemorativo',
+        'Módulo Smart RSVP interactivo con buscador predictivo por familia',
+        'Save the Date cinematográfico vertical 9:16 para WhatsApp e Instagram Stories',
+        'Banda sonora instrumental original integrada',
+        'Galería fotográfica ampliada con visualizador en pantalla completa',
+        'Mesa de regalos con enlaces externos (Liverpool, Amazon, etc.) y botón copiar CLABE',
+        'Dirección visual extendida y acompañamiento concierge prioritario ilimitado'
       ]
     },
     essential: {
       id: 'essential',
       name: 'Essential',
-      price: 1490,
+      price: 990,
       allowDeposit: true,
-      summary: 'Diseño visual a la medida con galería fotográfica e información extendida.',
+      summary: 'Diseño visual a la medida con música ambiental y animación digital de bienvenida.',
       includes: [
-        'Todo lo incluido en Mini Celebration',
+        'Todo lo incluido en Signature',
+        'Extra Digital: Música / Audio ambiental instrumental integrado',
+        'Extra Digital: Clip o animación digital de bienvenida para tus invitados',
         'Diseño visual personalizado con dirección de arte a la medida',
         'Galería fotográfica de los novios en alta definición',
         'Información ampliada del evento: Itinerario detallado, dress code y notas',
-        'URL personalizada dentro de thecelebration.com.mx',
-        '3 rondas completas de ajustes finos incluidas'
+        'URL personalizada dentro de thecelebration.com.mx'
       ]
     },
     premiere: {
       id: 'premiere',
       name: 'Premiere Edition',
-      price: 2490,
+      price: 1790,
       allowDeposit: true,
-      summary: 'Smart RSVP inteligente, Save the Date en video y música original.',
+      summary: 'Edición estelar con Save the Date en video, música personalizada y funciones interactivas.',
       includes: [
         'Todo lo incluido en Essential',
-        'Smart RSVP inteligente: Buscador predictivo por invitado/familia y control de pases',
-        'Save the Date cinematográfico vertical en MP4 para WhatsApp e Instagram Stories',
-        'Composición musical instrumental original como banda sonora de fondo',
-        'Secciones de logística: Hoteles recomendados con tarifas especiales y guía de viaje',
-        'Panel privado de novios con métricas en tiempo real y descarga a Excel'
+        'Extra Digital: Video Save the Date vertical (9:16) en alta resolución',
+        'Extra Digital: Composición y música de fondo personalizada',
+        'Extra Digital: Funciones interactivas ampliadas (selección de menú y dietas)',
+        'Smart RSVP inteligente con control estricto de pases por familia',
+        'Itinerario minuto a minuto con diseño interactivo',
+        'Secciones de logística: Hoteles recomendados con tarifas especiales y guía de viaje'
       ]
     },
-    signature: {
-      id: 'signature',
-      name: 'Signature',
-      price: 3990,
+    couture: {
+      id: 'couture',
+      name: 'Haute Couture',
+      price: 2990,
       allowDeposit: true,
-      summary: 'La máxima expresión de alta costura digital con monograma de autor y mesa de regalos.',
+      summary: 'Máximo nivel de lujo con video recap/teaser, producción de audio y secciones exclusivas.',
       includes: [
         'Todo lo incluido en Premiere Edition',
-        'Monograma de autor personalizado e identidad tipográfica exclusiva',
-        'Historia de la pareja con narrativa editorial y timeline conmemorativo',
-        'Galería fotográfica ampliada con visualizador en pantalla completa',
-        'Mesa de regalos con enlaces externos (Liverpool, Amazon, etc.) y botón copiar CLABE',
-        'Dirección visual extendida y acompañamiento concierge prioritario ilimitado'
+        'Extra Digital: Video Recap / Teaser conmemorativo post-boda en alta definición',
+        'Extra Digital: Producción de audio extendida y banda sonora multitema',
+        'Extra Digital: Secciones digitales exclusivas (guía de viaje, dress code inmersivo y recomendaciones)',
+        'Monograma de autor con aplicaciones para papelería física y digital',
+        'Galería inmersiva full-screen con descarga fotográfica para invitados',
+        'Acompañamiento concierge VIP ilimitado y soporte prioritario'
       ]
     }
   };
+  PACKAGE_DETAILS.mini = PACKAGE_DETAILS.signature;
+  PACKAGE_DETAILS['haute-couture'] = PACKAGE_DETAILS.couture;
 
   // ── Elementos de detalles del paquete ──
   const coDetailsDesc   = document.getElementById('coPkgDetailsDesc');
@@ -1088,25 +1098,30 @@ function initEventCelebrationPicker() {
   const WA_NUMBER = '528121912778';
 
   const PLAN_DETAILS = {
-    mini: {
-      action: 'quiero información',
-      name: 'Mini Celebration',
-      price: '$990'
+    signature: {
+      action: 'quiero reservar',
+      name: 'Signature',
+      price: '$500'
     },
     essential: {
       action: 'quiero reservar',
       name: 'Essential',
-      price: '$1,490'
+      price: '$990'
     },
     premiere: {
       action: 'quiero reservar',
       name: 'Premiere Edition',
-      price: '$2,490'
+      price: '$1,790'
     },
-    signature: {
-      action: 'quiero información',
+    couture: {
+      action: 'quiero reservar',
+      name: 'Haute Couture',
+      price: '$2,990'
+    },
+    mini: {
+      action: 'quiero reservar',
       name: 'Signature',
-      price: '$3,990'
+      price: '$500'
     }
   };
 

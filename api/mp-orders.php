@@ -51,29 +51,41 @@ function generateUuidV4(): string
 function resolvePackage(string $pkgKey, string $scheme): array
 {
     $catalog = [
-        'mini' => [
-            'name' => 'Mini Celebration',
-            'full' => 990.00,
-            'deposit' => 990.00,
+        'signature' => [
+            'name' => 'Signature',
+            'full' => 500.00,
+            'deposit' => 500.00,
             'allow_deposit' => false,
         ],
         'essential' => [
             'name' => 'Essential',
-            'full' => 1490.00,
-            'deposit' => 745.00,
+            'full' => 990.00,
+            'deposit' => 495.00,
             'allow_deposit' => true,
         ],
         'premiere' => [
             'name' => 'Premiere Edition',
-            'full' => 2490.00,
-            'deposit' => 1245.00,
+            'full' => 1790.00,
+            'deposit' => 895.00,
             'allow_deposit' => true,
         ],
-        'signature' => [
-            'name' => 'Signature',
-            'full' => 3990.00,
-            'deposit' => 1995.00,
+        'couture' => [
+            'name' => 'Haute Couture',
+            'full' => 2990.00,
+            'deposit' => 1495.00,
             'allow_deposit' => true,
+        ],
+        'haute-couture' => [
+            'name' => 'Haute Couture',
+            'full' => 2990.00,
+            'deposit' => 1495.00,
+            'allow_deposit' => true,
+        ],
+        'mini' => [
+            'name' => 'Signature',
+            'full' => 500.00,
+            'deposit' => 500.00,
+            'allow_deposit' => false,
         ],
     ];
 

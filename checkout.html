@@ -882,28 +882,28 @@ SI
 
       <div class="pkg-card">
         <div class="pkg-tabs" id="pkgTabs">
-          <button type="button" class="pkg-tab-btn" data-pkg="mini">Mini $990</button>
-          <button type="button" class="pkg-tab-btn" data-pkg="essential">Essential $1.4k</button>
-          <button type="button" class="pkg-tab-btn" data-pkg="premiere">Premiere $2.4k</button>
-          <button type="button" class="pkg-tab-btn" data-pkg="signature">Signature $3.9k</button>
+          <button type="button" class="pkg-tab-btn" data-pkg="signature">Signature $500</button>
+          <button type="button" class="pkg-tab-btn" data-pkg="essential">Essential $990</button>
+          <button type="button" class="pkg-tab-btn" data-pkg="premiere">Premiere $1.7k</button>
+          <button type="button" class="pkg-tab-btn" data-pkg="couture">Haute Couture $2.9k</button>
         </div>
         <div class="pkg-row">
           <div><span class="pkg-sub">Colección seleccionada</span><strong class="pkg-name"
               id="pkgName">Signature</strong></div>
           <div><span class="pkg-sub" style="text-align:right">Inversión total</span><span class="pkg-total"
-              id="pkgTotal">$3,990 MXN</span></div>
+              id="pkgTotal">$500 MXN</span></div>
         </div>
         <div class="divider"></div>
         <div class="scheme-grid">
           <button type="button" class="scheme-btn active" id="schemeDeposit">
             <span class="radio"><span></span></span>
             <div><span class="s-label">Anticipo 50%</span><span class="s-cap">Apartar fecha · saldo contra
-                entrega</span><span class="s-amt" id="depositAmt">$1,995 MXN</span></div>
+                entrega</span><span class="s-amt" id="depositAmt">$500 MXN</span></div>
           </button>
           <button type="button" class="scheme-btn" id="schemeFull">
             <span class="radio"><span></span></span>
             <div><span class="s-label">Pago total 100%</span><span class="s-cap">Liquidación completa sin
-                saldos</span><span class="s-amt" id="fullAmt">$3,990 MXN</span></div>
+                saldos</span><span class="s-amt" id="fullAmt">$500 MXN</span></div>
           </button>
         </div>
 
@@ -940,7 +940,7 @@ SI
     <section class="right">
       <div>
         <p class="r-head">Pagar directamente</p>
-        <p class="r-amt">Monto a cubrir: <strong id="payHero">$1,995 MXN</strong></p>
+        <p class="r-amt">Monto a cubrir: <strong id="payHero">$500 MXN</strong></p>
       </div>
 
       <!-- MÉTODO 1: TARJETA / MERCADO PAGO ORDERS API -->
@@ -974,7 +974,7 @@ SI
             <div class="mp-or">o paga con tu app Mercado Pago / OXXO</div>
 
             <button type="button" class="btn-mp btn-mp--outline" id="btnMpDirectOrder">
-              <span>💙 &nbsp;Pagar con cuenta Mercado Pago / OXXO (<strong id="mpOrderAmtText">$1,995 MXN</strong>)
+              <span>💙 &nbsp;Pagar con cuenta Mercado Pago / OXXO (<strong id="mpOrderAmtText">$500 MXN</strong>)
                 →</span>
             </button>
           </div>
@@ -1015,7 +1015,7 @@ SI
                 </button>
               </div>
               <div class="bank-bot">
-                <div><span class="b-lbl">Monto exacto</span><span class="b-amt" id="speiAmt">$1,995 MXN</span></div>
+                <div><span class="b-lbl">Monto exacto</span><span class="b-amt" id="speiAmt">$500 MXN</span></div>
                 <div style="text-align:right">
                   <span class="b-lbl">Referencia / Orden</span>
                   <span class="b-con" id="speiConcept">CEL-SIGN-SPEI</span>
@@ -1044,62 +1044,70 @@ SI
   <script>
     const CFG = { whatsapp: '528121912778' };
     const PKGS = {
-      mini: {
-        name: 'Mini Celebration',
-        price: 990,
+      signature: {
+        name: 'Signature',
+        price: 500,
         allowDeposit: false,
-        summary: 'Invitación digital personalizada para cualquier evento social.',
+        summary: 'La suite emblemática de alta costura digital con monograma de autor y mesa de regalos.',
         includes: [
-          'Invitación digital personalizada con tipografía y paleta del evento',
-          'Fecha, horario del evento y cuenta regresiva interactiva en vivo',
-          'Ubicación con botón de enlace directo a Google Maps y Waze',
-          'Confirmación de asistencia directa e inmediata por WhatsApp',
-          'Enlace web privado exclusivo con certificado SSL seguro para iOS y Android'
+          'Monograma de autor personalizado e identidad tipográfica exclusiva',
+          'Historia de la pareja con narrativa editorial y timeline conmemorativo',
+          'Módulo Smart RSVP interactivo con buscador predictivo por familia',
+          'Save the Date cinematográfico vertical 9:16 para WhatsApp e Instagram Stories',
+          'Banda sonora instrumental original integrada',
+          'Galería fotográfica ampliada con visualizador en pantalla completa',
+          'Mesa de regalos con enlaces externos y botón copiar CLABE en 1 clic',
+          'Dirección visual y acompañamiento concierge prioritario'
         ]
       },
       essential: {
         name: 'Essential',
-        price: 1490,
+        price: 990,
         allowDeposit: true,
-        summary: 'Diseño visual a la medida con galería fotográfica e información extendida.',
+        summary: 'Diseño visual a la medida con música ambiental y animación digital de bienvenida.',
         includes: [
-          'Todo lo incluido en Mini Celebration',
-          'Diseño visual personalizado con dirección de arte a la medida',
-          'Galería fotográfica de los novios en alta definición',
-          'Información ampliada del evento: Itinerario detallado, dress code y notas',
-          'URL personalizada dentro de thecelebration.com.mx',
-          '3 rondas completas de ajustes finos incluidas'
+          'Todo lo incluido en Signature',
+          'Extra Digital: Música / Audio ambiental instrumental integrado',
+          'Extra Digital: Clip o animación digital de bienvenida para tus invitados',
+          'Diseño visual personalizado con paleta y tipografía de tu boda',
+          'Galería fotográfica de alta resolución',
+          'Cuenta regresiva en vivo y mapa interactivo a Google Maps y Waze',
+          'Confirmación de asistencia directa por WhatsApp'
         ]
       },
       premiere: {
         name: 'Premiere Edition',
-        price: 2490,
+        price: 1790,
         allowDeposit: true,
-        summary: 'Smart RSVP inteligente, Save the Date en video y música original.',
+        summary: 'Edición estelar con Save the Date en video, música personalizada y funciones interactivas.',
         includes: [
           'Todo lo incluido en Essential',
-          'Smart RSVP inteligente: Buscador predictivo por invitado/familia y control de pases',
-          'Save the Date cinematográfico vertical en MP4 para WhatsApp e Instagram Stories',
-          'Composición musical instrumental original como banda sonora de fondo',
-          'Secciones de logística: Hoteles recomendados con tarifas especiales y guía de viaje',
-          'Panel privado de novios con métricas en tiempo real y descarga a Excel'
+          'Extra Digital: Video Save the Date vertical (9:16) en alta resolución',
+          'Extra Digital: Composición y música de fondo personalizada',
+          'Extra Digital: Funciones interactivas ampliadas (selección de menú y dietas)',
+          'Smart RSVP inteligente con control estricto de pases por familia',
+          'Itinerario minuto a minuto con diseño interactivo',
+          'Mesa de regalos multitienda + datos bancarios con copia en 1 clic'
         ]
       },
-      signature: {
-        name: 'Signature',
-        price: 3990,
+      couture: {
+        name: 'Haute Couture',
+        price: 2990,
         allowDeposit: true,
-        summary: 'La máxima expresión editorial digital con monograma de autor y mesa de regalos.',
+        summary: 'Máximo nivel de lujo con video recap/teaser, producción de audio y secciones exclusivas.',
         includes: [
           'Todo lo incluido en Premiere Edition',
-          'Monograma de autor personalizado e identidad tipográfica exclusiva',
-          'Historia de la pareja con narrativa editorial y timeline conmemorativo',
-          'Galería fotográfica ampliada con visualizador en pantalla completa',
-          'Mesa de regalos con enlaces externos (Liverpool, Amazon, etc.) y botón copiar CLABE',
-          'Dirección visual extendida y acompañamiento concierge prioritario ilimitado'
+          'Extra Digital: Video Recap / Teaser conmemorativo post-boda en alta definición',
+          'Extra Digital: Producción de audio extendida y banda sonora multitema',
+          'Extra Digital: Secciones digitales exclusivas (guía de viaje, dress code inmersivo y recomendaciones)',
+          'Monograma de autor con aplicaciones para papelería física y digital',
+          'Galería inmersiva full-screen con descarga fotográfica para invitados',
+          'Acompañamiento concierge VIP ilimitado y soporte prioritario'
         ]
       }
     };
+    PKGS.mini = PKGS.signature;
+    PKGS['haute-couture'] = PKGS.couture;
 
     const STATUS_MESSAGES = {
       bad_filled_card_data: 'Revisa el número de tarjeta, fecha de vencimiento o código de seguridad.',
@@ -1116,8 +1124,10 @@ SI
     const IS_SANDBOX = params.get('sandbox') === '1';
     const API_URL = 'api/mp-orders.php' + (IS_SANDBOX ? '?sandbox=1' : '');
 
-    let key = params.get('pkg') || 'premiere';
-    if (!PKGS[key]) key = 'premiere';
+    let key = params.get('pkg') || 'signature';
+    if (key === 'mini') key = 'signature';
+    if (key === 'haute-couture') key = 'couture';
+    if (!PKGS[key]) key = 'signature';
     let pkg = PKGS[key];
     let scheme = params.get('scheme') === 'full' ? 'full' : (pkg.allowDeposit ? 'deposit' : 'full');
 
